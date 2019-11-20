@@ -165,9 +165,14 @@
   <ItemGroup>
     <ClInclude Include="..\..\Implementation\Resource.h" />
     <ClInclude Include="..\..\Implementation\targetver.h" />
+    <ClInclude Include="..\..\Implementation\Window.hpp" />
+    <ClInclude Include="..\..\Implementation\WindowManager.hpp" />
+    <ClInclude Include="..\..\Implementation\WindowsInterface.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\main.cpp" />
+    <ClCompile Include="..\..\Implementation\Window.cpp" />
+    <ClCompile Include="..\..\Implementation\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc" />
