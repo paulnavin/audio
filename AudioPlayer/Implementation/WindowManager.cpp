@@ -61,24 +61,30 @@ Result WindowManager::CreateNewWindow(Window** windowToReturn) {
 //  WM_COMMAND  - process the application menu
 //  WM_DESTROY  - post a quit message and return
 LRESULT WindowManager::ProcessMessage(const HWND& hWnd, const UINT& message, const WPARAM& wParam, const LPARAM& lParam) {
-    if (message == WM_DESTROY) {
-        PostQuitMessage(0);
-        return 0;
+    // The user chose "Exit" from the menu, so quit everything.
+    if (message == WM_COMMAND) {
+        int wmId = LOWORD(wParam);
+        if (wmId == IDM_EXIT) {
+            PostQuitMessage(0);
+            return 0;
+        }
     }
-
+    
     HandleToWindowMap::iterator windowFinder = windows_.find(hWnd);
     if (windowFinder != windows_.end()) {
         Window* window = windowFinder->second;
-        if (message == WM_COMMAND) {
-            int wmId = LOWORD(wParam);
-            if (wmId == IDM_EXIT) {
-                window->Destroy();
-                windows_.erase(hWnd);
-                delete window;
-                window = nullptr;
-                //PostQuitMessage(0);
-                return 0;
+        if (message == WM_DESTROY) {
+            // Don't need to call Destroy() here, as it's already being destroyed.
+            windows_.erase(hWnd);
+            delete window;
+            window = nullptr;
+
+            // If the last window was just closed, then close the whole app.
+            if (windows_.empty() == true) {
+                PostQuitMessage(0);
             }
+
+            return 0;
         }
         return window->ProcessMessage(message, wParam, lParam);
     } else {
@@ -91,12 +97,14 @@ LRESULT WindowManager::ProcessMessage(const HWND& hWnd, const UINT& message, con
 }
 
 WindowManager::~WindowManager() {
-    HandleToWindowMap::iterator windowFinder = windows_.begin();
-    HandleToWindowMap::iterator windowEnd = windows_.end();
-    while (windowFinder != windows_.end()) {
+    HandleToWindowMap::reverse_iterator windowFinder = windows_.rbegin();
+    HandleToWindowMap::reverse_iterator windowEnd = windows_.rend();
+    while (windowFinder != windowEnd) {
         Window* window = windowFinder->second;
         window->Destroy();
-        delete window;
+        windows_.erase(window->GetHandle());
+        // TODO: Why does the following crash? Why has it already been deleted?
+        // delete window;
 
         // Loop incrementer.
         ++windowFinder;

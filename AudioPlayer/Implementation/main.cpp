@@ -30,11 +30,21 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     Result createWindowResult = windowManager.CreateNewWindow(&mainWindow);
     if (createWindowResult.HasErrors()) {
-        ShowErrors(initResult);
+        ShowErrors(createWindowResult);
         return 1;
     }
 
     mainWindow->Show();
+
+    Window* anotherWindow = nullptr;
+
+    Result secondCreateWindowResult = windowManager.CreateNewWindow(&anotherWindow);
+    if (secondCreateWindowResult.HasErrors()) {
+        ShowErrors(secondCreateWindowResult);
+        return 1;
+    }
+
+    anotherWindow->Show();
 
     // TODO: Place code here.
 
