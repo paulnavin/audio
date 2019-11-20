@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Implementation\App.hpp" />
     <ClInclude Include="..\..\Implementation\EasyLogging++.hpp" />
+    <ClInclude Include="..\..\Implementation\IniReader.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
     <ClInclude Include="..\..\Implementation\Result.hpp" />
     <ClInclude Include="..\..\Implementation\targetver.h" />
