@@ -1,4 +1,5 @@
 #include "WindowsInterface.hpp"
+#include "EasyLogging++.hpp"
 #include "Result.hpp"
 #include "WindowManager.hpp"
 #include "Window.hpp"
@@ -8,6 +9,8 @@ HINSTANCE hInst = nullptr;      // The instance for the whole application.
 Window* mainWindow = nullptr;   // The main window. Der.
 
 void ShowErrors(const Result& result);
+
+INITIALIZE_EASYLOGGINGPP
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -27,6 +30,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         ShowErrors(initResult);
         return 1;
     }
+
+    LOG(ERROR) << "Successfully initialised WindowManager!";
 
     Result createWindowResult = windowManager.CreateNewWindow(&mainWindow);
     if (createWindowResult.HasErrors()) {
