@@ -2,6 +2,8 @@
 
 #include "WindowsInterface.hpp"
 
+#include "Result.hpp"
+
 class Window {
 public:
     Window();
@@ -10,7 +12,7 @@ public:
     const HWND GetHandle() const;
 
 public:
-    void Init(const WNDCLASSEXW& wcex);
+    Result Init(const WNDCLASSEXW& wcex);
     void Show();
     LRESULT ProcessMessage(const UINT& message, const WPARAM& wParam, const LPARAM& lParam);
     void Destroy();

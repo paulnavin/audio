@@ -33,20 +33,24 @@ const HWND Window::GetHandle() const {
     return windowHandle_;
 }
 
-void Window::Init(const WNDCLASSEXW& wcex) {
+Result Window::Init(const WNDCLASSEXW& wcex) {
+    Result returnValue = {};
     appInstance_ = wcex.hInstance;
 
     static constexpr size_t MAX_LOADSTRING = 100;
     WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
     LoadStringW(appInstance_, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 
+    // Note: This function results in a message being called through to WindowManager's
+    //       ProcessMessage() function, before the HWND is valid.
     windowHandle_ = CreateWindowW(wcex.lpszClassName, szTitle, WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, appInstance_, nullptr);
 
-    // TODO: Handle initialisation errors.
-    //if (!windowHandle_) {
-    //    return FALSE;
-    //}
+    if (windowHandle_ == nullptr) {
+        returnValue.AppendError("Window::Init() : Error creating window!");
+    }
+
+    return returnValue;
 }
 
 void Window::Show() {

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "WindowsInterface.hpp"
-
 #pragma warning(push)
 #pragma warning( disable : 4514)    // Inline function removed.
 #pragma warning( disable : 4625) // Warning about Window having an implicitly deleted copy constructor.
@@ -16,36 +14,27 @@
 #pragma warning( disable : 4710)    //  function not inlined
 #pragma warning( disable : 4577)    //  noexcept
 #pragma warning( disable : 4530)    //  C++ exception handler used, but unwind semantics are not enabled
-#include <map>
-#pragma warning(pop)
+#include <string>
+#include <vector>
+#pragma warning(pop)    // Turn back on all warnings.
 
-#include "Result.hpp"
-#include "Window.hpp"
-
-class WindowManager {
+class Result {
+public:
+    using ErrorList = std::vector<std::string>;
 
 public:
-    static WindowManager& GetInstance();
+    // TODO: Define move constructor/assignment?
+    Result() = default;
+    ~Result() = default;
 
 public:
-    Result Init(const HINSTANCE& appInstance);
-    Result CreateNewWindow(Window** windowToReturn);
-    LRESULT ProcessMessage(const HWND& hWnd, const UINT& message, const WPARAM& wParam, const LPARAM& lParam);
+    const bool HasErrors() const;
+    const bool IsOkay() const;
+    const std::string Errors() const;
+
+public:
+    void AppendError(const char* newError);
 
 private:
-    WindowManager() = default;
-    ~WindowManager();
-    WindowManager(WindowManager const&) = delete;
-    void operator=(WindowManager const&) = delete;
-
-private:
-    #pragma warning( disable : 4625) // Warning about Window having an implicitly deleted copy constructor.
-    #pragma warning( disable : 5027) // Warning about Window having an implicitly deleted move constructor.
-    #pragma warning( disable : 4626) // Warning about Window having an implicitly deleted assignment operator.
-    #pragma warning( disable : 4571) // Something about catch(...) semantics.
-    using HandleToWindowMap = std::map<HWND, Window*>;
-    HandleToWindowMap windows_;
-
-    WNDCLASSEXW wcex_;
+    ErrorList errors_;
 };
-

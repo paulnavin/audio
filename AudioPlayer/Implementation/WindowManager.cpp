@@ -1,7 +1,6 @@
 #include "WindowManager.hpp"
 
 static constexpr size_t MAX_LOADSTRING = 100;
-WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 //
@@ -17,8 +16,8 @@ WindowManager& WindowManager::GetInstance() {
     return instance;               // Instantiated on first use.
 }
 
-void WindowManager::Init(const HINSTANCE& hInstance) {
-
+Result WindowManager::Init(const HINSTANCE& hInstance) {
+    Result returnValue = {};
     // Initialize global strings
     LoadStringW(hInstance, IDC_AUDIOPLAYER, szWindowClass, MAX_LOADSTRING);
     
@@ -36,17 +35,27 @@ void WindowManager::Init(const HINSTANCE& hInstance) {
     wcex_.lpszClassName = szWindowClass;
     wcex_.hIconSm = LoadIcon(wcex_.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
-    (void) RegisterClassExW(&wcex_);
+    if (!RegisterClassExW(&wcex_)) {
+        returnValue.AppendError("WindowManager::Init() : Error registering window class.");
+    }
+    return returnValue;
 }
 
 // Note: Can't call this CreateWindow, because that is a macro defined by Windows.
-Window* WindowManager::CreateNewWindow() {
+Result WindowManager::CreateNewWindow(Window** windowToReturn) {
+    Result returnValue = {};
     // TODO: Handle initialisation errors.
     Window* newWindow = new Window();
-    newWindow->Init(wcex_);
-    HWND newWindowHandle = newWindow->GetHandle();
-    windows_[newWindowHandle] = newWindow;
-    return newWindow;
+    *windowToReturn = newWindow;
+    returnValue = newWindow->Init(wcex_);
+    if (returnValue.IsOkay()) {
+        HWND newWindowHandle = newWindow->GetHandle();
+        windows_[newWindowHandle] = newWindow;
+    } else {
+        returnValue.AppendError("WindowManager::CreateNewWindow() : Couldn't init new window.");
+    }
+
+    return returnValue;
 }
 
 //  WM_COMMAND  - process the application menu
@@ -67,11 +76,29 @@ LRESULT WindowManager::ProcessMessage(const HWND& hWnd, const UINT& message, con
                 windows_.erase(hWnd);
                 delete window;
                 window = nullptr;
+                //PostQuitMessage(0);
                 return 0;
             }
         }
         return window->ProcessMessage(message, wParam, lParam);
+    } else {
+        // If the HWND doesn't exist yet, we are getting a message as the new window
+        // is being created, so we can use the default processing.
+        return DefWindowProc(hWnd, message, wParam, lParam);
     }
 
     return 0;
+}
+
+WindowManager::~WindowManager() {
+    HandleToWindowMap::iterator windowFinder = windows_.begin();
+    HandleToWindowMap::iterator windowEnd = windows_.end();
+    while (windowFinder != windows_.end()) {
+        Window* window = windowFinder->second;
+        window->Destroy();
+        delete window;
+
+        // Loop incrementer.
+        ++windowFinder;
+    }
 }
