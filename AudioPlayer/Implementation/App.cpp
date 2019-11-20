@@ -17,8 +17,6 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
-    LOG(INFO) << "Successfully initialised WindowManager!";
-
     Result createWindowResult = windowManager.CreateNewWindow(&mainWindow_);
     if (createWindowResult.HasErrors()) {
         initResult.AppendError("App::Init() : Error creating main window.");
@@ -26,11 +24,14 @@ Result App::Init(const HINSTANCE& appInstance) {
     }
 
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
-    
+
+    LOG(INFO) << "App::Init() : Successful!";
+
     return Result{};
 }
 
 void App::Run() {
+    LOG(INFO) << "App::Run() : Started!";
     mainWindow_->Show();
 
     // Loop taken from: https://gamedev.stackexchange.com/a/138780
@@ -71,5 +72,6 @@ void App::Run() {
 
 void App::ShutDown() {
     // mainWindow_ will be destroyed by the WindowManager.
+    LOG(INFO) << "App::ShutDown() : Shut down!";
     mainWindow_ = nullptr;
 }

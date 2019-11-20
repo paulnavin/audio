@@ -23,6 +23,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return 1;
     }
     app.Run();
+    app.ShutDown();
     return 0;
 }
 
