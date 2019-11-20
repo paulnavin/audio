@@ -167,6 +167,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Implementation\App.hpp" />
     <ClInclude Include="..\..\Implementation\EasyLogging++.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
     <ClInclude Include="..\..\Implementation\Result.hpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="..\..\Implementation\WindowsInterface.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\App.cpp" />
     <ClCompile Include="..\..\Implementation\EasyLogging++.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
     <ClCompile Include="..\..\Implementation\Result.cpp" />

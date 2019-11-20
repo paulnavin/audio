@@ -20,15 +20,6 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
 }
 
 
-Window::Window() 
-    : appInstance_(nullptr)
-    , windowHandle_(nullptr) {
-
-}
-
-Window::~Window() {
-}
-
 const HWND Window::GetHandle() const {
     return windowHandle_;
 }

@@ -6,8 +6,9 @@
 
 class Window {
 public:
-    Window();
-    ~Window();
+    Window() = default;
+    ~Window() = default;
+
 public:
     const HWND GetHandle() const;
 

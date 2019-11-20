@@ -97,16 +97,12 @@ LRESULT WindowManager::ProcessMessage(const HWND& hWnd, const UINT& message, con
 }
 
 WindowManager::~WindowManager() {
-    HandleToWindowMap::reverse_iterator windowFinder = windows_.rbegin();
-    HandleToWindowMap::reverse_iterator windowEnd = windows_.rend();
+    HandleToWindowMap::iterator windowFinder = windows_.begin();
+    HandleToWindowMap::iterator windowEnd = windows_.end();
     while (windowFinder != windowEnd) {
         Window* window = windowFinder->second;
+        windowFinder = windows_.erase(windowFinder);
         window->Destroy();
-        windows_.erase(window->GetHandle());
-        // TODO: Why does the following crash? Why has it already been deleted?
-        // delete window;
-
-        // Loop incrementer.
-        ++windowFinder;
+        delete window;
     }
 }
