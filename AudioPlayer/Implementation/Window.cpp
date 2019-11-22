@@ -51,6 +51,10 @@ void Window::Show() {
 
 //  WM_COMMAND  - process the application menu
 //  WM_PAINT    - Paint the main window
+//  WM_DESTROY  - Window is being destroyed (e.g. by cross click or quit).
+//  WM_ACTIVATE - Window became active or inactive.
+//  WM_MENUCHAR - Menu is open, and user pressed a key.
+//  WM_SIZE     - Window got resized.
 LRESULT Window::ProcessMessage(const UINT& message, const WPARAM& wParam, const LPARAM& lParam) {
 
     switch (message) {
