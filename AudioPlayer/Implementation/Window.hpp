@@ -19,6 +19,9 @@ public:
     void Destroy();
 
 private:
+    void HandleKeyUp(const WPARAM& wParam);
+
+private:
     HINSTANCE appInstance_;
     HWND windowHandle_;
 };

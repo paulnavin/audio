@@ -58,40 +58,52 @@ void Window::Show() {
 LRESULT Window::ProcessMessage(const UINT& message, const WPARAM& wParam, const LPARAM& lParam) {
 
     switch (message) {
-    case WM_COMMAND:
-    {
-        int wmId = LOWORD(wParam);
-        // Parse the menu selections:
-        switch (wmId) {
-        case IDM_ABOUT:
-            DialogBox(appInstance_, MAKEINTRESOURCE(IDD_ABOUTBOX), windowHandle_, About);
+        case WM_COMMAND:
+        {
+            int wmId = LOWORD(wParam);
+            // Parse the menu selections:
+            switch (wmId) {
+            case IDM_ABOUT:
+                DialogBox(appInstance_, MAKEINTRESOURCE(IDD_ABOUTBOX), windowHandle_, About);
+                break;
+            default:
+                return DefWindowProc(windowHandle_, message, wParam, lParam);
+            }
+        }
+        break;
+        case WM_PAINT:
+        {
+            PAINTSTRUCT ps;
+            HDC hdc = BeginPaint(windowHandle_, &ps);
+
+            UNREFERENCED_PARAMETER(hdc);
+
+            // TODO: Add any drawing code that uses hdc here...
+        
+            EndPaint(windowHandle_, &ps);
+        }
+        break;
+        case WM_KEYUP:
+        {
+            HandleKeyUp(wParam);
             break;
+        }
         default:
             return DefWindowProc(windowHandle_, message, wParam, lParam);
-        }
-    }
-    break;
-    case WM_PAINT:
-    {
-        PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(windowHandle_, &ps);
-
-        UNREFERENCED_PARAMETER(hdc);
-
-        // TODO: Add any drawing code that uses hdc here...
-        
-        EndPaint(windowHandle_, &ps);
-    }
-    break;
-    case WM_DESTROY:
-        PostQuitMessage(0);
-        break;
-    default:
-        return DefWindowProc(windowHandle_, message, wParam, lParam);
     }
     return 0;
 }
 
 void Window::Destroy() {
     DestroyWindow(windowHandle_);
+}
+
+void Window::HandleKeyUp(const WPARAM& wParam) {
+    switch (wParam) {
+        case VK_ESCAPE:
+            PostMessage(windowHandle_, WM_CLOSE, 0, 0);
+            break;
+
+        default: break;
+    }
 }
