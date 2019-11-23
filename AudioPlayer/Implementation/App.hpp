@@ -3,6 +3,7 @@
 #include "WindowsInterface.hpp"
 
 #include "AppTimer.hpp"
+#include "Direct3dController.hpp"
 #include "Result.hpp"
 
 class Window;
@@ -30,6 +31,7 @@ private:
     Window* mainWindow_;
     AppTimer timer_;
     int64_t totalAppFrames_;
+    Direct3dController direct3dController_;
 #pragma warning(push)
 #pragma warning(disable : 4820) // Padding.
     bool showFps_ = true;

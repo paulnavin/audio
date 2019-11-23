@@ -25,8 +25,14 @@ Result App::Init(const HINSTANCE& appInstance) {
 
     Result createWindowResult = windowManager.CreateNewWindow(&mainWindow_);
     if (createWindowResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error creating main window.");
-        return initResult;
+        createWindowResult.AppendError("App::Init() : Error creating main window.");
+        return createWindowResult;
+    }
+
+    Result initialise3d = direct3dController_.Init();
+    if (initialise3d.HasErrors()) {
+        initialise3d.AppendError("App::Init() : Error creating main window.");
+        return initialise3d;
     }
 
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));

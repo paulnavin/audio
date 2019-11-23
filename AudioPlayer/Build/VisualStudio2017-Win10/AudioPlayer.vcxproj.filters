@@ -45,6 +45,9 @@
     <ClInclude Include="..\..\Implementation\AppTimer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Implementation\Direct3dController.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc">
@@ -82,6 +85,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\AppTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Direct3dController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

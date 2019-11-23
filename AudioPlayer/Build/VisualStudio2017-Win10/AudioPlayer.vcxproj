@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Implementation\App.hpp" />
     <ClInclude Include="..\..\Implementation\AppTimer.hpp" />
+    <ClInclude Include="..\..\Implementation\Direct3dController.hpp" />
     <ClInclude Include="..\..\Implementation\EasyLogging++.hpp" />
     <ClInclude Include="..\..\Implementation\IniReader.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
@@ -181,6 +182,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\App.cpp" />
     <ClCompile Include="..\..\Implementation\AppTimer.cpp" />
+    <ClCompile Include="..\..\Implementation\Direct3dController.cpp" />
     <ClCompile Include="..\..\Implementation\EasyLogging++.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
     <ClCompile Include="..\..\Implementation\Result.cpp" />
