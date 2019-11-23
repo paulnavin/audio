@@ -29,11 +29,11 @@ Result WindowManager::Init(const HINSTANCE& hInstance) {
     wcex_.cbWndExtra = 0;
     wcex_.hInstance = hInstance;
     wcex_.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_AUDIOPLAYER));
-    wcex_.hCursor = LoadCursor(nullptr, IDC_ARROW);
+    wcex_.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_DARK_OXYGEN_CURSOR_NORMAL));
     wcex_.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wcex_.lpszMenuName = MAKEINTRESOURCEW(IDC_AUDIOPLAYER);
     wcex_.lpszClassName = szWindowClass;
-    wcex_.hIconSm = LoadIcon(wcex_.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+    wcex_.hIconSm = LoadIcon(wcex_.hInstance, MAKEINTRESOURCE(IDI_MONKEY_ICON));
 
     if (!RegisterClassExW(&wcex_)) {
         returnValue.AppendError("WindowManager::Init() : Error registering window class.");

@@ -58,6 +58,9 @@
     <Image Include="..\..\Resources\AudioPlayer.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\Resources\MonkeyIcon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\main.cpp">
@@ -81,5 +84,10 @@
     <ClCompile Include="..\..\Implementation\AppTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Resources\DarkOxygenCursorNormal.cur">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
