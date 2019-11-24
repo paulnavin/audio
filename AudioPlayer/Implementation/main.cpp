@@ -2,6 +2,7 @@
 #include "App.hpp"
 #include "EasyLogging++.hpp"
 #include "Result.hpp"
+#include "StringUtil.hpp"
 
 void ShowErrors(const Result& result);
 
@@ -27,19 +28,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     return 0;
 }
 
-std::wstring s2ws(const std::string& s) {
-    size_t len = 0;
-    size_t slength = s.length() + 1;
-    len = static_cast<size_t>(MultiByteToWideChar(CP_ACP, 0, s.c_str(), static_cast<int>(slength), 0, 0));
-    wchar_t* buf = new wchar_t[len];
-    MultiByteToWideChar(CP_ACP, 0, s.c_str(), static_cast<int>(slength), buf, static_cast<int>(len));
-    std::wstring r(buf);
-    delete[] buf;
-    return r;
-}
-
 void ShowErrors(const Result& result) {
-    std::wstring errorString = s2ws(result.Errors());
-    MessageBox(NULL, errorString.c_str(), L"Error!",
-        MB_ICONEXCLAMATION | MB_OK);
+    std::wstring errorString = StringUtil::StringToWideString(result.Errors());
+    MessageBox(NULL, errorString.c_str(), L"Error!", MB_ICONEXCLAMATION | MB_OK);
 }

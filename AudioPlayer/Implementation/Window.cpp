@@ -25,7 +25,6 @@ const HWND Window::GetHandle() const {
 }
 
 Result Window::Init(const WNDCLASSEXW& wcex) {
-    Result returnValue = {};
     appInstance_ = wcex.hInstance;
 
     static constexpr size_t MAX_LOADSTRING = 100;
@@ -37,11 +36,19 @@ Result Window::Init(const WNDCLASSEXW& wcex) {
     windowHandle_ = CreateWindowW(wcex.lpszClassName, szTitle, WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, appInstance_, nullptr);
 
+    Result createWindowResult = {};
     if (windowHandle_ == nullptr) {
-        returnValue.AppendError("Window::Init() : Error creating window!");
+        createWindowResult.AppendError("Window::Init() : Error creating window!");
+        return createWindowResult;
     }
 
-    return returnValue;
+    Result initialise3d = direct3dController_.Init(windowHandle_);
+    if (initialise3d.HasErrors()) {
+        initialise3d.AppendError("Window::Init() : Error initialising 3D controller.");
+        return initialise3d;
+    }
+
+    return Result{};
 }
 
 void Window::Show() {
@@ -92,6 +99,11 @@ LRESULT Window::ProcessMessage(const UINT& message, const WPARAM& wParam, const 
             return DefWindowProc(windowHandle_, message, wParam, lParam);
     }
     return 0;
+}
+
+Result Window::Render(const double& dt) {
+    UNREFERENCED_PARAMETER(dt);
+    return direct3dController_.Present();
 }
 
 void Window::Destroy() {

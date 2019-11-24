@@ -35,9 +35,17 @@ public:
     ~Direct3dController() = default;
 
 public:
-    Result Init();
+    Result Init(const HWND& newWindowHandle);
+    Result Present();
+    Result Resize();
 
 private:
+    Result CreateDxgiResources();
+
+private:
+    DXGI_FORMAT colourFormat_;
     Microsoft::WRL::ComPtr<ID3D11Device> device_;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> deviceContext_;
+    HWND windowHandle_;
+    Microsoft::WRL::ComPtr<IDXGISwapChain> swapChain_;
 };

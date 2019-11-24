@@ -35,8 +35,5 @@ private:
     double secondsPerCpuCount_;
     double timeBetweenFrames_;
 
-#pragma warning(push)
-#pragma warning(disable : 4820) // Padding after running_.
     bool running_;
 };
-#pragma warning(pop)

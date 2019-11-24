@@ -3,6 +3,7 @@
 #include "App.hpp"
 #include "EasyLogging++.hpp"
 #include "Result.hpp"
+#include "StringUtil.hpp"
 #include "WindowManager.hpp"
 #include "Window.hpp"
 
@@ -27,12 +28,6 @@ Result App::Init(const HINSTANCE& appInstance) {
     if (createWindowResult.HasErrors()) {
         createWindowResult.AppendError("App::Init() : Error creating main window.");
         return createWindowResult;
-    }
-
-    Result initialise3d = direct3dController_.Init();
-    if (initialise3d.HasErrors()) {
-        initialise3d.AppendError("App::Init() : Error creating main window.");
-        return initialise3d;
     }
 
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
@@ -102,7 +97,11 @@ void App::Update(const double& dt) {
 }
 
 void App::Render(const double& dt) {
-    UNREFERENCED_PARAMETER(dt);
+    Result renderResult = mainWindow_->Render(dt);
+    if (renderResult.HasErrors()) {
+        std::wstring errorString = StringUtil::StringToWideString(renderResult.Errors());
+        MessageBox(NULL, errorString.c_str(), L"Error!", MB_ICONEXCLAMATION | MB_OK);
+    }
 }
 
 void App::ShutDown() {
