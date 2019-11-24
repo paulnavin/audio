@@ -48,6 +48,12 @@ Result Window::Init(const WNDCLASSEXW& wcex) {
         return initialise3d;
     }
 
+    Result initialise2d = direct2dController_.Init(windowHandle_, direct3dController_.GetDirect3dDevice(), direct3dController_.GetDirect3dSwapChain());
+    if (initialise2d.HasErrors()) {
+        initialise2d.AppendError("Window::Init() : Error initialising 3D controller.");
+        return initialise2d;
+    }
+
     return Result{};
 }
 
@@ -101,9 +107,21 @@ LRESULT Window::ProcessMessage(const UINT& message, const WPARAM& wParam, const 
     return 0;
 }
 
+void Window::ClearBuffers() {
+    direct3dController_.ClearBuffers();
+}
+
 Result Window::Render(const double& dt) {
     UNREFERENCED_PARAMETER(dt);
     return direct3dController_.Present();
+}
+
+Result Window::RenderFps() {
+    return direct2dController_.RenderFps();
+}
+
+Result Window::SetFpsValue(const int64_t& newFps) {
+    return direct2dController_.SetFpsValue(newFps);
 }
 
 void Window::Destroy() {

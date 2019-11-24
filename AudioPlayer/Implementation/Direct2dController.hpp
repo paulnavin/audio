@@ -24,35 +24,47 @@
 #include <d3d11.h>
 #pragma comment (lib, "d3d11.lib")
 
+// Direct2D
+#include <d2d1_2.h>
+#pragma comment (lib, "d2d1.lib")
+
+// DirectWrite
+#include <dwrite_2.h>
+#pragma comment (lib, "dwrite.lib")
+
+#include <sstream>
+
 #pragma warning(pop)    // Turn back on all warnings.
 
 #include "Result.hpp"
 
-class Direct3dController {
+class Direct2dController {
 public:
-    // TODO: Define move constructor/assignment?
-    Direct3dController() = default;
-    ~Direct3dController() = default;
+    Direct2dController() = default;
+    ~Direct2dController() = default;
 
 public:
-    const Microsoft::WRL::ComPtr<ID3D11Device>& GetDirect3dDevice() const;
-    const Microsoft::WRL::ComPtr<IDXGISwapChain>& GetDirect3dSwapChain() const;
-
-public:
-    Result Init(const HWND& newWindowHandle);
-    void ClearBuffers();
-    Result Present();
-    Result Resize();
+    Result Init(const HWND& newWindowHandle, const Microsoft::WRL::ComPtr<ID3D11Device>& newDevice3d, const Microsoft::WRL::ComPtr<IDXGISwapChain>& new3dSwapChain);
+    Result RenderFps();
+    Result SetFpsValue(const int64_t& newFps);
 
 private:
-    Result CreateDxgiResources();
+    Result CreateDevice();
+    Result CreateBitmapRenderTarget();
+    Result InitialiseTextFormats();
 
 private:
-    DXGI_FORMAT colourFormat_;
-    Microsoft::WRL::ComPtr<ID3D11DepthStencilView> depthStencilView_;
-    Microsoft::WRL::ComPtr<ID3D11Device> device_;
-    Microsoft::WRL::ComPtr<ID3D11DeviceContext> deviceContext_;
-    Microsoft::WRL::ComPtr<ID3D11RenderTargetView> renderTargetView_;
-    Microsoft::WRL::ComPtr<IDXGISwapChain> swapChain_;
+
+    Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> fpsBrush_;
+    Microsoft::WRL::ComPtr<IDWriteTextFormat> fpsTextFormat_;
+    Microsoft::WRL::ComPtr<IDWriteTextLayout> fpsTextLayout_;
+
+    Microsoft::WRL::ComPtr<ID3D11Device> device3d_;
+    Microsoft::WRL::ComPtr<IDXGISwapChain> swapChain3d_;
+
+    Microsoft::WRL::ComPtr<ID2D1Device1> device2d_;
+    Microsoft::WRL::ComPtr<ID2D1DeviceContext1> deviceContext2d_;
+    Microsoft::WRL::ComPtr<ID2D1Factory2> factory2d_;
+    Microsoft::WRL::ComPtr<IDWriteFactory2> writeFactory_;
     HWND windowHandle_;
 };

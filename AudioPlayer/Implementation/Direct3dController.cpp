@@ -1,5 +1,13 @@
 #include "Direct3dController.hpp"
 
+const Microsoft::WRL::ComPtr<ID3D11Device>& Direct3dController::GetDirect3dDevice() const {
+    return device_;
+}
+
+const Microsoft::WRL::ComPtr<IDXGISwapChain>& Direct3dController::GetDirect3dSwapChain() const {
+    return swapChain_;
+}
+
 Result Direct3dController::Init(const HWND& newWindowHandle) {
     windowHandle_ = newWindowHandle;
 
@@ -85,29 +93,21 @@ Result Direct3dController::CreateDxgiResources() {
     return Result{};
 }
 
-Result Direct3dController::ClearBuffers() {
+void Direct3dController::ClearBuffers() {
     float clearColour[] = { 0.0f, 0.0f, 0.2f, 1.0f };
     deviceContext_->ClearRenderTargetView(renderTargetView_.Get(), clearColour);
     deviceContext_->ClearDepthStencilView(depthStencilView_.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-
-    // TODO: Maybe this isn't needed, and just slows things down...?
-    return Result{};
 }
 
 Result Direct3dController::Present() {
-    Result presentResult = ClearBuffers();
-    if (presentResult.HasErrors()) {
-        presentResult.AppendError("Direct3dController::Present() : Couldn't clear buffers.");
-        return presentResult;
-    }
-
+    Result presentResult{};
     HRESULT hr = swapChain_->Present(0, DXGI_PRESENT_DO_NOT_WAIT);
     if (FAILED(hr) && hr != DXGI_ERROR_WAS_STILL_DRAWING) {
         presentResult.AppendError("Direct3dController::Present() : Couldn't present rebuttal.");
         return presentResult;
     }
 
-    return Result{};
+    return presentResult;
 }
 
 Result Direct3dController::Resize() {

@@ -99,7 +99,20 @@ void App::Update(const double& dt) {
 }
 
 void App::Render(const double& dt) {
-    Result renderResult = mainWindow_->Render(dt);
+    Result renderResult{};
+
+    mainWindow_->ClearBuffers();
+
+    if (showFps_ == true) {
+        renderResult = mainWindow_->RenderFps();
+        if (renderResult.HasErrors()) {
+            std::wstring errorString = StringUtil::StringToWideString(renderResult.Errors());
+            MessageBox(NULL, errorString.c_str(), L"Error!", MB_ICONEXCLAMATION | MB_OK);
+            return;
+        }
+    }
+
+    renderResult = mainWindow_->Render(dt);
     if (renderResult.HasErrors()) {
         std::wstring errorString = StringUtil::StringToWideString(renderResult.Errors());
         MessageBox(NULL, errorString.c_str(), L"Error!", MB_ICONEXCLAMATION | MB_OK);
@@ -122,5 +135,6 @@ void App::UpdateFps() {
 
         totalAppFrames_ = 0;
         lastFpsCalculationTime_ += 1;
+        mainWindow_->SetFpsValue(fps_);
     }
 }
