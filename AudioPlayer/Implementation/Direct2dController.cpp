@@ -1,5 +1,9 @@
 #include "Direct2dController.hpp"
 
+const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& Direct2dController::GetDeviceContext2d() const {
+    return deviceContext2d_;
+}
+
 Result Direct2dController::Init(
         const HWND& newWindowHandle,
         const Microsoft::WRL::ComPtr<ID3D11Device>& newDevice3d,
@@ -21,70 +25,11 @@ Result Direct2dController::Init(
         return initResult;
     }
 
-    initResult = InitialiseTextFormats();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Direct2dController::Init() : Could not initialise text formats.");
-        return initResult;
-    }
-    
-    return SetFpsValue(0);
-}
-
-Result Direct2dController::RenderFps() {
-    Result renderResult{};
-
-    deviceContext2d_->BeginDraw();
-
-    deviceContext2d_->DrawTextLayout(D2D1::Point2F(5.0f, 5.0f), fpsTextLayout_.Get(), fpsBrush_.Get());
-    
-    HRESULT hr = deviceContext2d_->EndDraw();
-    if (FAILED(hr)) {
-        renderResult.AppendError("Direct2dController::RenderFps() : Could not finish drawing FPS.");
-    }
-
-    return renderResult;
-}
-
-Result Direct2dController::SetFpsValue(const int64_t& newFps) {
-    Result setResult{};
-
-    std::wostringstream fpsString{};
-    fpsString.precision(6);
-    fpsString << "FPS: " << newFps << std::endl;
-
-    // TODO: Should this window size retrieval actually be in the Window?
-    RECT rect;
-    BOOL resultOfGet = GetWindowRect(windowHandle_, &rect);
-    if (resultOfGet == 0) {
-        setResult.AppendError("Direct2dController::SetFpsValue() : Could not get width of window for FPS.");
-    }
-
-    LONG width = rect.right - rect.left;
-    LONG height = rect.bottom - rect.top;
-
-    HRESULT hr = writeFactory_->CreateTextLayout(
-        fpsString.str().c_str(),
-        static_cast<UINT32>(fpsString.str().size()),
-        fpsTextFormat_.Get(),
-        static_cast<float>(width),
-        static_cast<float>(height),
-        &fpsTextLayout_);
-
-    if (FAILED(hr)) {
-        setResult.AppendError("Direct2dController::SetFpsValue() : Could not recreate text layout for FPS.");
-    }
-
-    return setResult;
+    return initResult;
 }
 
 Result Direct2dController::CreateDevice() {
     Result createDeviceResult{};
-
-    HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), &writeFactory_);
-    if (FAILED(hr)) {
-        createDeviceResult.AppendError("Direct2dController::CreateDevice() : Could not create Write Factory.");
-        return createDeviceResult;
-    }
 
     D2D1_FACTORY_OPTIONS options;
 #ifdef _DEBUG
@@ -93,7 +38,7 @@ Result Direct2dController::CreateDevice() {
     options.debugLevel = D2D1_DEBUG_LEVEL_NONE;
 #endif
 
-    hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, __uuidof(ID2D1Factory2), &options, &factory2d_);
+    HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, __uuidof(ID2D1Factory2), &options, &factory2d_);
     if (FAILED(hr)) {
         createDeviceResult.AppendError("Direct2dController::CreateDevice() : Could not create 2D Factory.");
         return createDeviceResult;
@@ -150,34 +95,3 @@ Result Direct2dController::CreateBitmapRenderTarget() {
 
     return createRenderTargetResult;
 }
-
-Result Direct2dController::InitialiseTextFormats() {
-    Result initTextFormatResult{};
-
-    HRESULT hr = deviceContext2d_->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::AliceBlue), &fpsBrush_);
-    if (FAILED(hr)) {
-        initTextFormatResult.AppendError("Direct2dController::InitialiseTextFormats() : Could not create brush for FPS text.");
-        return initTextFormatResult;
-    }
-
-    hr = writeFactory_.Get()->CreateTextFormat(L"Lucida Console", nullptr, DWRITE_FONT_WEIGHT_LIGHT, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, 12.0f, L"en-GB", &fpsTextFormat_);
-    if (FAILED(hr)) {
-        initTextFormatResult.AppendError("Direct2dController::InitialiseTextFormats() : Could not create text format for FPS.");
-        return initTextFormatResult;
-    }
-
-    hr = fpsTextFormat_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
-    if (FAILED(hr)) {
-        initTextFormatResult.AppendError("Direct2dController::InitialiseTextFormats() : Could not set text alignment for FPS text format.");
-        return initTextFormatResult;
-    }
-
-    hr = fpsTextFormat_->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
-    if (FAILED(hr)) {
-        initTextFormatResult.AppendError("Direct2dController::InitialiseTextFormats() : Could not set paragraph alignment for FPS text format.");
-        return initTextFormatResult;
-    }
-
-    return initTextFormatResult;
-}
-

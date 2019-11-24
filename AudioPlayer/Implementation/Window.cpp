@@ -36,25 +36,41 @@ Result Window::Init(const WNDCLASSEXW& wcex) {
     windowHandle_ = CreateWindowW(wcex.lpszClassName, szTitle, WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, appInstance_, nullptr);
 
-    Result createWindowResult = {};
+    Result initResult = {};
     if (windowHandle_ == nullptr) {
-        createWindowResult.AppendError("Window::Init() : Error creating window!");
-        return createWindowResult;
+        initResult.AppendError("Window::Init() : Error creating window!");
+        return initResult;
     }
 
-    Result initialise3d = direct3dController_.Init(windowHandle_);
-    if (initialise3d.HasErrors()) {
-        initialise3d.AppendError("Window::Init() : Error initialising 3D controller.");
-        return initialise3d;
+    initResult = direct3dController_.Init(windowHandle_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 3D controller.");
+        return initResult;
     }
 
-    Result initialise2d = direct2dController_.Init(windowHandle_, direct3dController_.GetDirect3dDevice(), direct3dController_.GetDirect3dSwapChain());
-    if (initialise2d.HasErrors()) {
-        initialise2d.AppendError("Window::Init() : Error initialising 3D controller.");
-        return initialise2d;
+    initResult = direct2dController_.Init(windowHandle_, direct3dController_.GetDirect3dDevice(), direct3dController_.GetDirect3dSwapChain());
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 3D controller.");
+        return initResult;
     }
 
-    return Result{};
+    initResult = textManager2d_.Init(windowHandle_, direct2dController_.GetDeviceContext2d());
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 2D text manager.");
+        return initResult;
+    }
+
+    initResult = fpsText_.Init(
+        direct2dController_.GetDeviceContext2d(),
+        textManager2d_.GetFpsTextFormat(),
+        textManager2d_.GetWriteFactory(),
+        textManager2d_.GetFpsBrush());
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 2D FPS text.");
+        return initResult;
+    }
+
+    return initResult;
 }
 
 void Window::Show() {
@@ -117,11 +133,11 @@ Result Window::Render(const double& dt) {
 }
 
 Result Window::RenderFps() {
-    return direct2dController_.RenderFps();
+    return fpsText_.RenderFps();
 }
 
 Result Window::SetFpsValue(const int64_t& newFps) {
-    return direct2dController_.SetFpsValue(newFps);
+    return fpsText_.SetFpsValue(newFps);
 }
 
 void Window::Destroy() {
