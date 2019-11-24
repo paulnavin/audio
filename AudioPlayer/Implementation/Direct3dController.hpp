@@ -36,6 +36,7 @@ public:
 
 public:
     Result Init(const HWND& newWindowHandle);
+    Result ClearBuffers();
     Result Present();
     Result Resize();
 
@@ -44,8 +45,10 @@ private:
 
 private:
     DXGI_FORMAT colourFormat_;
+    Microsoft::WRL::ComPtr<ID3D11DepthStencilView> depthStencilView_;
     Microsoft::WRL::ComPtr<ID3D11Device> device_;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> deviceContext_;
-    HWND windowHandle_;
+    Microsoft::WRL::ComPtr<ID3D11RenderTargetView> renderTargetView_;
     Microsoft::WRL::ComPtr<IDXGISwapChain> swapChain_;
+    HWND windowHandle_;
 };

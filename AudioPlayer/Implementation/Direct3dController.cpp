@@ -85,10 +85,24 @@ Result Direct3dController::CreateDxgiResources() {
     return Result{};
 }
 
+Result Direct3dController::ClearBuffers() {
+    float clearColour[] = { 0.0f, 0.0f, 0.2f, 1.0f };
+    deviceContext_->ClearRenderTargetView(renderTargetView_.Get(), clearColour);
+    deviceContext_->ClearDepthStencilView(depthStencilView_.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+
+    // TODO: Maybe this isn't needed, and just slows things down...?
+    return Result{};
+}
+
 Result Direct3dController::Present() {
+    Result presentResult = ClearBuffers();
+    if (presentResult.HasErrors()) {
+        presentResult.AppendError("Direct3dController::Present() : Couldn't clear buffers.");
+        return presentResult;
+    }
+
     HRESULT hr = swapChain_->Present(0, DXGI_PRESENT_DO_NOT_WAIT);
     if (FAILED(hr) && hr != DXGI_ERROR_WAS_STILL_DRAWING) {
-        Result presentResult{};
         presentResult.AppendError("Direct3dController::Present() : Couldn't present rebuttal.");
         return presentResult;
     }
@@ -97,12 +111,64 @@ Result Direct3dController::Present() {
 }
 
 Result Direct3dController::Resize() {
+    deviceContext_->ClearState();
+    renderTargetView_ = nullptr;
+    depthStencilView_ = nullptr;
+
     HRESULT hr = swapChain_->ResizeBuffers(0, 0, 0, colourFormat_, 0);
+    Result resizeResult;
     if (FAILED(hr)) {
-        Result resizeResult;
         resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize swap chain buffers.");
         return resizeResult;
     }
+
+    Microsoft::WRL::ComPtr<ID3D11Texture2D> backBuffer;
+    ID3D11Texture2D** backBufferPointer = backBuffer.GetAddressOf();
+    const IID& textureId = __uuidof(ID3D11Texture2D);
+    hr = swapChain_->GetBuffer(0, textureId, reinterpret_cast<void**>(backBufferPointer));
+    if (FAILED(hr)) {
+        resizeResult.AppendError("Direct3dController::Resize() : Couldn't get the back buffer.");
+        return resizeResult;
+    }
+
+    ID3D11Texture2D* backBufferTexture = backBuffer.Get();
+    hr = device_->CreateRenderTargetView(backBufferTexture, 0, &renderTargetView_);
+    if (FAILED(hr)) {
+        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a render target view.");
+        return resizeResult;
+    }
+
+    D3D11_TEXTURE2D_DESC depthStencilDescriptor;
+    Microsoft::WRL::ComPtr<ID3D11Texture2D> depthStencilBuffer;
+    backBuffer->GetDesc(&depthStencilDescriptor);
+    depthStencilDescriptor.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+    depthStencilDescriptor.Usage = D3D11_USAGE_DEFAULT;
+    depthStencilDescriptor.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+
+    hr = device_->CreateTexture2D(&depthStencilDescriptor, nullptr, depthStencilBuffer.GetAddressOf());
+    if (FAILED(hr)) {
+        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a depth/stencil buffer.");
+        return resizeResult;
+    }
+
+    hr = device_->CreateDepthStencilView(depthStencilBuffer.Get(), nullptr, depthStencilView_.GetAddressOf());
+    if (FAILED(hr)) {
+        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a depth/stencil view.");
+        return resizeResult;
+    }
+
+    // Actually activate the render target with the depth/stencil buffer.
+    deviceContext_->OMSetRenderTargets(1, renderTargetView_.GetAddressOf(), depthStencilView_.Get());
+
+    // set the viewport to the entire backbuffer
+    D3D11_VIEWPORT viewPort;
+    viewPort.TopLeftX = 0;
+    viewPort.TopLeftY = 0;
+    viewPort.Width = static_cast<float>(depthStencilDescriptor.Width);
+    viewPort.Height = static_cast<float>(depthStencilDescriptor.Height);
+    viewPort.MinDepth = 0.0f;
+    viewPort.MaxDepth = 1.0f;
+    deviceContext_->RSSetViewports(1, &viewPort);
 
     return Result{};
 }

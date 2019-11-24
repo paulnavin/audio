@@ -56,7 +56,7 @@ void App::Run() {
     MSG msg = {};
     bool finished = false;
 
-    while (!finished) {
+    while (finished == false) {
         // Note: If you pass in the HWND to the main window instead of nullptr here, you
         //       won't get all messages, only those directly related to the window. So
         //       you'll miss things like if the user clicks the cross in the top corner.
@@ -73,22 +73,24 @@ void App::Run() {
             }
         };
 
-        timer_.Update();
+        if (finished == false) {
+            timer_.Update();
 
-        if (showFps_ == true) {
-            UpdateFps();
+            if (showFps_ == true) {
+                UpdateFps();
+            }
+
+            accumulatedTime += timer_.GetTimeBetweenFramesInS();
+            loopCount = 0;
+            while (accumulatedTime >= MS_PER_FRAME && loopCount < MAX_SKIP_FRAMES) {
+                Update(MS_PER_FRAME);
+                accumulatedTime -= MS_PER_FRAME;
+                ++loopCount;
+            }
+
+            // peek into the future and generate the output
+            Render(accumulatedTime / MS_PER_FRAME);
         }
-
-        accumulatedTime += timer_.GetTimeBetweenFramesInS();
-        loopCount = 0;
-        while (accumulatedTime >= MS_PER_FRAME && loopCount < MAX_SKIP_FRAMES) {
-            Update(MS_PER_FRAME);
-            accumulatedTime -= MS_PER_FRAME;
-            ++loopCount;
-        }
-
-        // peek into the future and generate the output
-        Render(accumulatedTime / MS_PER_FRAME);
     }
 }
 
