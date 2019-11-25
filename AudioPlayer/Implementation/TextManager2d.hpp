@@ -4,6 +4,9 @@
 
 #include "Result.hpp"
 
+class Engine2d;
+class Window;
+
 class TextManager2d {
 
 public:
@@ -17,7 +20,7 @@ public:
     const Microsoft::WRL::ComPtr<IDWriteFactory2>&          GetWriteFactory() const;
 
 public:
-    Result Init(const HWND& newWindowHandle, const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& newDeviceContext2d);
+    Result Init(const Window& newWindow, const Engine2d& newEngine);
     Result InitialiseFactory();
     Result InitialiseTextFormats();
 

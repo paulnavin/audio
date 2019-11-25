@@ -2,8 +2,10 @@
 
 #include "DirectXInterface.hpp"
 
-#include <sstream>
 #include "Result.hpp"
+
+class Engine3d;
+class Window;
 
 class Engine2d {
 public:
@@ -14,7 +16,7 @@ public:
     const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& GetDeviceContext2d() const;
 
 public:
-    Result Init(const HWND& newWindowHandle, const Microsoft::WRL::ComPtr<ID3D11Device>& newDevice3d, const Microsoft::WRL::ComPtr<IDXGISwapChain>& new3dSwapChain);
+    Result Init(const Window& newWindow, const Engine3d& newEngine);
 
 private:
     Result CreateDevice();

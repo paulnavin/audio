@@ -1,5 +1,7 @@
 #include "Engine3d.hpp"
 
+#include "Window.hpp"
+
 const Microsoft::WRL::ComPtr<ID3D11Device>& Engine3d::GetDirect3dDevice() const {
     return device_;
 }
@@ -8,8 +10,8 @@ const Microsoft::WRL::ComPtr<IDXGISwapChain>& Engine3d::GetDirect3dSwapChain() c
     return swapChain_;
 }
 
-Result Engine3d::Init(const HWND& newWindowHandle) {
-    windowHandle_ = newWindowHandle;
+Result Engine3d::Init(const Window& newWindow) {
+    windowHandle_ = newWindow.GetHandle();
 
     // D3D11_CREATE_DEVICE_BGRA_SUPPORT is needed to do both 3D and 2D.
     UINT deviceCreationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;

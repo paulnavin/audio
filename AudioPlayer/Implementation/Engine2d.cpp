@@ -1,16 +1,16 @@
 #include "Engine2d.hpp"
 
+#include "Engine3d.hpp"
+#include "Window.hpp"
+
 const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& Engine2d::GetDeviceContext2d() const {
     return deviceContext2d_;
 }
 
-Result Engine2d::Init(
-        const HWND& newWindowHandle,
-        const Microsoft::WRL::ComPtr<ID3D11Device>& newDevice3d,
-        const Microsoft::WRL::ComPtr<IDXGISwapChain>& new3dSwapChain) {
-    windowHandle_ = newWindowHandle;
-    device3d_ = newDevice3d;
-    swapChain3d_ = new3dSwapChain;
+Result Engine2d::Init(const Window& newWindow, const Engine3d& newEngine) {
+    windowHandle_ = newWindow.GetHandle();
+    device3d_ = newEngine.GetDirect3dDevice();
+    swapChain3d_ = newEngine.GetDirect3dSwapChain();
 
     Result initResult{};
     initResult = CreateDevice();

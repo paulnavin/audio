@@ -1,5 +1,8 @@
 #include "TextManager2d.hpp"
 
+#include "Engine2d.hpp"
+#include "Window.hpp"
+
 const Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>& TextManager2d::GetFpsBrush() const {
     return fpsBrush_;
 }
@@ -12,9 +15,9 @@ const Microsoft::WRL::ComPtr<IDWriteFactory2>& TextManager2d::GetWriteFactory() 
     return writeFactory_;
 }
 
-Result TextManager2d::Init(const HWND& newWindowHandle, const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& newDeviceContext2d) {
-    windowHandle_ = newWindowHandle;
-    deviceContext2d_ = newDeviceContext2d;
+Result TextManager2d::Init(const Window& newWindow, const Engine2d& newEngine) {
+    windowHandle_ = newWindow.GetHandle();
+    deviceContext2d_ = newEngine.GetDeviceContext2d();
 
     Result initResult = InitialiseFactory();
     if (initResult.HasErrors()) {

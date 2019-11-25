@@ -4,6 +4,8 @@
 
 #include "Result.hpp"
 
+class Window;
+
 class Engine3d {
 public:
     // TODO: Define move constructor/assignment?
@@ -15,7 +17,7 @@ public:
     const Microsoft::WRL::ComPtr<IDXGISwapChain>& GetDirect3dSwapChain() const;
 
 public:
-    Result Init(const HWND& newWindowHandle);
+    Result Init(const Window& newWindow);
     void ClearBuffers();
     Result Present();
     Result Resize();

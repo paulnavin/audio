@@ -31,8 +31,8 @@ private:
 private:
     HACCEL acceleratorTable_;
     HINSTANCE appInstance_;
-    Engine2d direct2dController_;
-    Engine3d direct3dController_;
+    Engine2d engine2d_;
+    Engine3d engine3d_;
     int64_t fps_;
     Text2d fpsText_;  // TODO: Provide this as a renderable object, instead of a raw object.
     double lastFpsCalculationTime_;

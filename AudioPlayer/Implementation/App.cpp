@@ -30,26 +30,26 @@ Result App::Init(const HINSTANCE& appInstance) {
         return createWindowResult;
     }
 
-    initResult = direct3dController_.Init(mainWindow_->GetHandle());
+    initResult = engine3d_.Init(*mainWindow_);
     if (initResult.HasErrors()) {
         initResult.AppendError("Window::Init() : Error initialising 3D controller.");
         return initResult;
     }
 
-    initResult = direct2dController_.Init(mainWindow_->GetHandle(), direct3dController_.GetDirect3dDevice(), direct3dController_.GetDirect3dSwapChain());
+    initResult = engine2d_.Init(*mainWindow_, engine3d_);
     if (initResult.HasErrors()) {
         initResult.AppendError("Window::Init() : Error initialising 3D controller.");
         return initResult;
     }
 
-    initResult = textManager2d_.Init(mainWindow_->GetHandle(), direct2dController_.GetDeviceContext2d());
+    initResult = textManager2d_.Init(*mainWindow_, engine2d_);
     if (initResult.HasErrors()) {
         initResult.AppendError("Window::Init() : Error initialising 2D text manager.");
         return initResult;
     }
 
     initResult = fpsText_.Init(
-        direct2dController_.GetDeviceContext2d(),
+        engine2d_.GetDeviceContext2d(),
         textManager2d_.GetFpsTextFormat(),
         textManager2d_.GetWriteFactory(),
         textManager2d_.GetFpsBrush());
@@ -138,7 +138,7 @@ Result App::Render(const double& dt) {
     Result renderResult{};
 
     // (1) Clear the screen.
-    direct3dController_.ClearBuffers();
+    engine3d_.ClearBuffers();
 
     // (2) Draw any 3D stuff.
     UNREFERENCED_PARAMETER(dt);
@@ -152,7 +152,7 @@ Result App::Render(const double& dt) {
     }
 
     // (4) Present the buffers to the screen.
-    return direct3dController_.Present();
+    return engine3d_.Present();
 }
 
 void App::ShutDown() {
