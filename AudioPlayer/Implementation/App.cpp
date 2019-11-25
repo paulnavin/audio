@@ -30,6 +30,34 @@ Result App::Init(const HINSTANCE& appInstance) {
         return createWindowResult;
     }
 
+    initResult = direct3dController_.Init(mainWindow_->GetHandle());
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 3D controller.");
+        return initResult;
+    }
+
+    initResult = direct2dController_.Init(mainWindow_->GetHandle(), direct3dController_.GetDirect3dDevice(), direct3dController_.GetDirect3dSwapChain());
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 3D controller.");
+        return initResult;
+    }
+
+    initResult = textManager2d_.Init(mainWindow_->GetHandle(), direct2dController_.GetDeviceContext2d());
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 2D text manager.");
+        return initResult;
+    }
+
+    initResult = fpsText_.Init(
+        direct2dController_.GetDeviceContext2d(),
+        textManager2d_.GetFpsTextFormat(),
+        textManager2d_.GetWriteFactory(),
+        textManager2d_.GetFpsBrush());
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 2D FPS text.");
+        return initResult;
+    }
+
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
 
     LOG(INFO) << "App::Init() : Successful!";
@@ -101,10 +129,15 @@ void App::Update(const double& dt) {
 void App::Render(const double& dt) {
     Result renderResult{};
 
-    mainWindow_->ClearBuffers();
+    // (1) Clear the screen.
+    direct3dController_.ClearBuffers();
 
+    // (2) Draw any 3D stuff.
+    UNREFERENCED_PARAMETER(dt);
+
+    // (3) Draw any 2D stuff on top of the 3D stuff.
     if (showFps_ == true) {
-        renderResult = mainWindow_->RenderFps();
+        renderResult = RenderFps();
         if (renderResult.HasErrors()) {
             std::wstring errorString = StringUtil::StringToWideString(renderResult.Errors());
             MessageBox(NULL, errorString.c_str(), L"Error!", MB_ICONEXCLAMATION | MB_OK);
@@ -112,7 +145,8 @@ void App::Render(const double& dt) {
         }
     }
 
-    renderResult = mainWindow_->Render(dt);
+    // (4) Present the buffers to the screen.
+    renderResult = direct3dController_.Present();
     if (renderResult.HasErrors()) {
         std::wstring errorString = StringUtil::StringToWideString(renderResult.Errors());
         MessageBox(NULL, errorString.c_str(), L"Error!", MB_ICONEXCLAMATION | MB_OK);
@@ -125,6 +159,14 @@ void App::ShutDown() {
     mainWindow_ = nullptr;
 }
 
+Result App::RenderFps() {
+    return fpsText_.RenderFps();
+}
+
+Result App::SetFpsValue(const int64_t& newFps) {
+    return fpsText_.SetFpsValue(newFps);
+}
+
 void App::UpdateFps() {
     ++totalAppFrames_;
     double currentTime = timer_.GetTotalRunningTimeInS();
@@ -135,6 +177,6 @@ void App::UpdateFps() {
 
         totalAppFrames_ = 0;
         lastFpsCalculationTime_ += 1;
-        mainWindow_->SetFpsValue(fps_);
+        SetFpsValue(fps_);
     }
 }

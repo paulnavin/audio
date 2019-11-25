@@ -36,38 +36,9 @@ Result Window::Init(const WNDCLASSEXW& wcex) {
     windowHandle_ = CreateWindowW(wcex.lpszClassName, szTitle, WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, appInstance_, nullptr);
 
-    Result initResult = {};
+    Result initResult{};
     if (windowHandle_ == nullptr) {
         initResult.AppendError("Window::Init() : Error creating window!");
-        return initResult;
-    }
-
-    initResult = direct3dController_.Init(windowHandle_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 3D controller.");
-        return initResult;
-    }
-
-    initResult = direct2dController_.Init(windowHandle_, direct3dController_.GetDirect3dDevice(), direct3dController_.GetDirect3dSwapChain());
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 3D controller.");
-        return initResult;
-    }
-
-    initResult = textManager2d_.Init(windowHandle_, direct2dController_.GetDeviceContext2d());
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 2D text manager.");
-        return initResult;
-    }
-
-    initResult = fpsText_.Init(
-        direct2dController_.GetDeviceContext2d(),
-        textManager2d_.GetFpsTextFormat(),
-        textManager2d_.GetWriteFactory(),
-        textManager2d_.GetFpsBrush());
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 2D FPS text.");
-        return initResult;
     }
 
     return initResult;
@@ -121,23 +92,6 @@ LRESULT Window::ProcessMessage(const UINT& message, const WPARAM& wParam, const 
             return DefWindowProc(windowHandle_, message, wParam, lParam);
     }
     return 0;
-}
-
-void Window::ClearBuffers() {
-    direct3dController_.ClearBuffers();
-}
-
-Result Window::Render(const double& dt) {
-    UNREFERENCED_PARAMETER(dt);
-    return direct3dController_.Present();
-}
-
-Result Window::RenderFps() {
-    return fpsText_.RenderFps();
-}
-
-Result Window::SetFpsValue(const int64_t& newFps) {
-    return fpsText_.SetFpsValue(newFps);
 }
 
 void Window::Destroy() {
