@@ -1,10 +1,10 @@
-#include "Direct2dController.hpp"
+#include "Engine2d.hpp"
 
-const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& Direct2dController::GetDeviceContext2d() const {
+const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& Engine2d::GetDeviceContext2d() const {
     return deviceContext2d_;
 }
 
-Result Direct2dController::Init(
+Result Engine2d::Init(
         const HWND& newWindowHandle,
         const Microsoft::WRL::ComPtr<ID3D11Device>& newDevice3d,
         const Microsoft::WRL::ComPtr<IDXGISwapChain>& new3dSwapChain) {
@@ -28,7 +28,7 @@ Result Direct2dController::Init(
     return initResult;
 }
 
-Result Direct2dController::CreateDevice() {
+Result Engine2d::CreateDevice() {
     Result createDeviceResult{};
 
     D2D1_FACTORY_OPTIONS options;
@@ -66,7 +66,7 @@ Result Direct2dController::CreateDevice() {
     return createDeviceResult;
 }
 
-Result Direct2dController::CreateBitmapRenderTarget() {
+Result Engine2d::CreateBitmapRenderTarget() {
     Result createRenderTargetResult{};
 
     D2D1_BITMAP_PROPERTIES1 bitmapProperties;

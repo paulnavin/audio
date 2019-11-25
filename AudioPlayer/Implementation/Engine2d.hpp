@@ -5,10 +5,10 @@
 #include <sstream>
 #include "Result.hpp"
 
-class Direct2dController {
+class Engine2d {
 public:
-    Direct2dController() = default;
-    ~Direct2dController() = default;
+    Engine2d() = default;
+    ~Engine2d() = default;
 
 public:
     const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& GetDeviceContext2d() const;

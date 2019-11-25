@@ -1,10 +1,8 @@
 #include "WindowsInterface.hpp"
 #include "App.hpp"
 #include "EasyLogging++.hpp"
+#include "ErrorDisplay.hpp"
 #include "Result.hpp"
-#include "StringUtil.hpp"
-
-void ShowErrors(const Result& result);
 
 INITIALIZE_EASYLOGGINGPP
 
@@ -18,17 +16,19 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(nCmdShow);
 
     App app;
+    
     Result appInitResult = app.Init(hInstance);
     if (appInitResult.HasErrors()) {
-        ShowErrors(appInitResult);
+        ErrorDisplay::ShowErrors(appInitResult);
         return 1;
     }
-    app.Run();
+
+    Result appRunResult = app.Run();
+    if (appRunResult.HasErrors()) {
+        ErrorDisplay::ShowErrors(appRunResult);
+        return 1;
+    }
+    
     app.ShutDown();
     return 0;
-}
-
-void ShowErrors(const Result& result) {
-    std::wstring errorString = StringUtil::StringToWideString(result.Errors());
-    MessageBox(NULL, errorString.c_str(), L"Error!", MB_ICONEXCLAMATION | MB_OK);
 }

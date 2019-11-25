@@ -1,14 +1,14 @@
-#include "Direct3dController.hpp"
+#include "Engine3d.hpp"
 
-const Microsoft::WRL::ComPtr<ID3D11Device>& Direct3dController::GetDirect3dDevice() const {
+const Microsoft::WRL::ComPtr<ID3D11Device>& Engine3d::GetDirect3dDevice() const {
     return device_;
 }
 
-const Microsoft::WRL::ComPtr<IDXGISwapChain>& Direct3dController::GetDirect3dSwapChain() const {
+const Microsoft::WRL::ComPtr<IDXGISwapChain>& Engine3d::GetDirect3dSwapChain() const {
     return swapChain_;
 }
 
-Result Direct3dController::Init(const HWND& newWindowHandle) {
+Result Engine3d::Init(const HWND& newWindowHandle) {
     windowHandle_ = newWindowHandle;
 
     // D3D11_CREATE_DEVICE_BGRA_SUPPORT is needed to do both 3D and 2D.
@@ -31,7 +31,7 @@ Result Direct3dController::Init(const HWND& newWindowHandle) {
     return CreateDxgiResources();
 }
 
-Result Direct3dController::CreateDxgiResources() {
+Result Engine3d::CreateDxgiResources() {
     colourFormat_ = DXGI_FORMAT_B8G8R8A8_UNORM;
 
     DXGI_SWAP_CHAIN_DESC swapChainDescriptor{};
@@ -93,13 +93,13 @@ Result Direct3dController::CreateDxgiResources() {
     return Result{};
 }
 
-void Direct3dController::ClearBuffers() {
+void Engine3d::ClearBuffers() {
     float clearColour[] = { 0.0f, 0.0f, 0.2f, 1.0f };
     deviceContext_->ClearRenderTargetView(renderTargetView_.Get(), clearColour);
     deviceContext_->ClearDepthStencilView(depthStencilView_.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 }
 
-Result Direct3dController::Present() {
+Result Engine3d::Present() {
     Result presentResult{};
     HRESULT hr = swapChain_->Present(0, DXGI_PRESENT_DO_NOT_WAIT);
     if (FAILED(hr) && hr != DXGI_ERROR_WAS_STILL_DRAWING) {
@@ -110,7 +110,7 @@ Result Direct3dController::Present() {
     return presentResult;
 }
 
-Result Direct3dController::Resize() {
+Result Engine3d::Resize() {
     deviceContext_->ClearState();
     renderTargetView_ = nullptr;
     depthStencilView_ = nullptr;

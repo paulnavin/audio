@@ -3,8 +3,8 @@
 #include "WindowsInterface.hpp"
 
 #include "AppTimer.hpp"
-#include "Direct2dController.hpp"
-#include "Direct3dController.hpp"
+#include "Engine2d.hpp"
+#include "Engine3d.hpp"
 #include "Result.hpp"
 #include "Text2d.hpp"
 #include "TextManager2d.hpp"
@@ -18,21 +18,21 @@ public:
 
 public:
     Result Init(const HINSTANCE& appInstance);
-    void Run();
-    void Update(const double& dt);
-    void Render(const double& dt);
+    Result Run();
     void ShutDown();
 
 private:
+    void Update(const double& dt);
+    Result Render(const double& dt);
     Result RenderFps();
-    Result SetFpsValue(const int64_t& newFps);
-    void UpdateFps();
+    Result SetFpsText(const int64_t& newFps);
+    Result UpdateFps();
 
 private:
     HACCEL acceleratorTable_;
     HINSTANCE appInstance_;
-    Direct2dController direct2dController_;
-    Direct3dController direct3dController_;
+    Engine2d direct2dController_;
+    Engine3d direct3dController_;
     int64_t fps_;
     Text2d fpsText_;  // TODO: Provide this as a renderable object, instead of a raw object.
     double lastFpsCalculationTime_;

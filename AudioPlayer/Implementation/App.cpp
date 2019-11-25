@@ -65,7 +65,7 @@ Result App::Init(const HINSTANCE& appInstance) {
     return Result{};
 }
 
-void App::Run() {
+Result App::Run() {
     LOG(INFO) << "App::Run() : Started!";
     mainWindow_->Show();
 
@@ -105,7 +105,10 @@ void App::Run() {
             timer_.Update();
 
             if (showFps_ == true) {
-                UpdateFps();
+                Result updateResult = UpdateFps();
+                if (updateResult.HasErrors()) {
+                    return updateResult;
+                }
             }
 
             accumulatedTime += timer_.GetTimeBetweenFramesInS();
@@ -117,16 +120,21 @@ void App::Run() {
             }
 
             // peek into the future and generate the output
-            Render(accumulatedTime / MS_PER_FRAME);
+            Result renderResult = Render(accumulatedTime / MS_PER_FRAME);
+            if (renderResult.HasErrors()) {
+                return renderResult;
+            }
         }
     }
+
+    return Result{};
 }
 
 void App::Update(const double& dt) {
     UNREFERENCED_PARAMETER(dt);
 }
 
-void App::Render(const double& dt) {
+Result App::Render(const double& dt) {
     Result renderResult{};
 
     // (1) Clear the screen.
@@ -139,18 +147,12 @@ void App::Render(const double& dt) {
     if (showFps_ == true) {
         renderResult = RenderFps();
         if (renderResult.HasErrors()) {
-            std::wstring errorString = StringUtil::StringToWideString(renderResult.Errors());
-            MessageBox(NULL, errorString.c_str(), L"Error!", MB_ICONEXCLAMATION | MB_OK);
-            return;
+            return renderResult;
         }
     }
 
     // (4) Present the buffers to the screen.
-    renderResult = direct3dController_.Present();
-    if (renderResult.HasErrors()) {
-        std::wstring errorString = StringUtil::StringToWideString(renderResult.Errors());
-        MessageBox(NULL, errorString.c_str(), L"Error!", MB_ICONEXCLAMATION | MB_OK);
-    }
+    return direct3dController_.Present();
 }
 
 void App::ShutDown() {
@@ -163,11 +165,20 @@ Result App::RenderFps() {
     return fpsText_.RenderFps();
 }
 
-Result App::SetFpsValue(const int64_t& newFps) {
-    return fpsText_.SetFpsValue(newFps);
+Result App::SetFpsText(const int64_t& newFps) {
+    std::wostringstream fpsString{};
+    fpsString.precision(6);
+    fpsString << "FPS: " << newFps << std::endl;
+
+    Result setTextResult = fpsText_.SetText(fpsString.str());
+    if (setTextResult.HasErrors()) {
+        setTextResult.AppendError("App::SetFpsText() : Could not set text on Text2d.");
+    }
+
+    return setTextResult;
 }
 
-void App::UpdateFps() {
+Result App::UpdateFps() {
     ++totalAppFrames_;
     double currentTime = timer_.GetTotalRunningTimeInS();
 
@@ -177,6 +188,8 @@ void App::UpdateFps() {
 
         totalAppFrames_ = 0;
         lastFpsCalculationTime_ += 1;
-        SetFpsValue(fps_);
+        return SetFpsText(fps_);
     }
+
+    return Result{};
 }

@@ -4,11 +4,11 @@
 
 #include "Result.hpp"
 
-class Direct3dController {
+class Engine3d {
 public:
     // TODO: Define move constructor/assignment?
-    Direct3dController() = default;
-    ~Direct3dController() = default;
+    Engine3d() = default;
+    ~Engine3d() = default;
 
 public:
     const Microsoft::WRL::ComPtr<ID3D11Device>& GetDirect3dDevice() const;

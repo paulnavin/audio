@@ -33,5 +33,6 @@
 #pragma comment (lib, "dwrite.lib")
 
 #include <sstream>
+#include <string>
 
 #pragma warning(pop)    // Turn back on all warnings.
