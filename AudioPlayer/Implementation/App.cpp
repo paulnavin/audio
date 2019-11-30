@@ -4,6 +4,7 @@
 #include "EasyLogging++.hpp"
 #include "Result.hpp"
 #include "StringUtil.hpp"
+#include "WindowConfig.hpp"
 #include "WindowManager.hpp"
 #include "Window.hpp"
 
@@ -24,7 +25,17 @@ Result App::Init(const HINSTANCE& appInstance) {
         return createTimerResult;
     }
 
-    Result createWindowResult = windowManager.CreateNewWindow(&mainWindow_);
+    Result loadConfigResult = config_.LoadConfig("someRubbish.ini");
+    if (loadConfigResult.HasErrors()) {
+        loadConfigResult.AppendError("App::Init() : Error loading app config.");
+        return loadConfigResult;
+    }
+
+    WindowConfig newWindowConfig{};
+    newWindowConfig.height = config_.GetInt32("height", 200);
+    newWindowConfig.width = config_.GetInt32("width", 300);
+
+    Result createWindowResult = windowManager.CreateNewWindow(newWindowConfig, &mainWindow_);
     if (createWindowResult.HasErrors()) {
         createWindowResult.AppendError("App::Init() : Error creating main window.");
         return createWindowResult;

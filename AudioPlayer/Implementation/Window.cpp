@@ -1,6 +1,6 @@
 #include "Window.hpp"
 
-
+#include "WindowConfig.hpp"
 
 // Message handler for about box.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
@@ -24,7 +24,7 @@ const HWND Window::GetHandle() const {
     return windowHandle_;
 }
 
-Result Window::Init(const WNDCLASSEXW& wcex) {
+Result Window::Init(const WNDCLASSEXW& wcex, const WindowConfig& config) {
     appInstance_ = wcex.hInstance;
 
     static constexpr size_t MAX_LOADSTRING = 100;
@@ -34,7 +34,7 @@ Result Window::Init(const WNDCLASSEXW& wcex) {
     // Note: This function results in a message being called through to WindowManager's
     //       ProcessMessage() function, before the HWND is valid.
     windowHandle_ = CreateWindowW(wcex.lpszClassName, szTitle, WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, appInstance_, nullptr);
+        CW_USEDEFAULT, CW_USEDEFAULT, config.width, config.height, nullptr, nullptr, appInstance_, nullptr);
 
     Result initResult{};
     if (windowHandle_ == nullptr) {

@@ -171,6 +171,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\Implementation\App.hpp" />
     <ClInclude Include="..\..\Implementation\AppTimer.hpp" />
+    <ClInclude Include="..\..\Implementation\Config.hpp" />
+    <ClInclude Include="..\..\Implementation\DirectXInterface.hpp" />
     <ClInclude Include="..\..\Implementation\Engine2d.hpp" />
     <ClInclude Include="..\..\Implementation\Engine3d.hpp" />
     <ClInclude Include="..\..\Implementation\EasyLogging++.hpp" />
@@ -178,17 +180,20 @@
     <ClInclude Include="..\..\Implementation\IniReader.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
     <ClInclude Include="..\..\Implementation\Result.hpp" />
+    <ClInclude Include="..\..\Implementation\StlWrapper.hpp" />
     <ClInclude Include="..\..\Implementation\StringUtil.hpp" />
     <ClInclude Include="..\..\Implementation\targetver.h" />
     <ClInclude Include="..\..\Implementation\Text2d.hpp" />
     <ClInclude Include="..\..\Implementation\TextManager2d.hpp" />
     <ClInclude Include="..\..\Implementation\Window.hpp" />
+    <ClInclude Include="..\..\Implementation\WindowConfig.hpp" />
     <ClInclude Include="..\..\Implementation\WindowManager.hpp" />
     <ClInclude Include="..\..\Implementation\WindowsInterface.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\App.cpp" />
     <ClCompile Include="..\..\Implementation\AppTimer.cpp" />
+    <ClCompile Include="..\..\Implementation\Config.cpp" />
     <ClCompile Include="..\..\Implementation\Engine2d.cpp" />
     <ClCompile Include="..\..\Implementation\Engine3d.cpp" />
     <ClCompile Include="..\..\Implementation\EasyLogging++.cpp" />

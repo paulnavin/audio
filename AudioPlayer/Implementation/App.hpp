@@ -3,6 +3,7 @@
 #include "WindowsInterface.hpp"
 
 #include "AppTimer.hpp"
+#include "Config.hpp"
 #include "Engine2d.hpp"
 #include "Engine3d.hpp"
 #include "Result.hpp"
@@ -31,6 +32,7 @@ private:
 private:
     HACCEL acceleratorTable_;
     HINSTANCE appInstance_;
+    ::config::Config config_;
     Engine2d engine2d_;
     Engine3d engine3d_;
     int64_t fps_;

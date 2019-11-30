@@ -42,12 +42,12 @@ Result WindowManager::Init(const HINSTANCE& hInstance) {
 }
 
 // Note: Can't call this CreateWindow, because that is a macro defined by Windows.
-Result WindowManager::CreateNewWindow(Window** windowToReturn) {
+Result WindowManager::CreateNewWindow(const WindowConfig& config, Window** windowToReturn) {
     Result returnValue = {};
     // TODO: Handle initialisation errors.
     Window* newWindow = new Window();
     *windowToReturn = newWindow;
-    returnValue = newWindow->Init(wcex_);
+    returnValue = newWindow->Init(wcex_, config);
     if (returnValue.IsOkay()) {
         HWND newWindowHandle = newWindow->GetHandle();
         windows_[newWindowHandle] = newWindow;

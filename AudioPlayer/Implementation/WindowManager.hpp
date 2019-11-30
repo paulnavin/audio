@@ -22,6 +22,8 @@
 #include "Result.hpp"
 #include "Window.hpp"
 
+struct WindowConfig;
+
 class WindowManager {
 
 public:
@@ -29,7 +31,7 @@ public:
 
 public:
     Result Init(const HINSTANCE& appInstance);
-    Result CreateNewWindow(Window** windowToReturn);
+    Result CreateNewWindow(const WindowConfig& config, Window** windowToReturn);
     LRESULT ProcessMessage(const HWND& hWnd, const UINT& message, const WPARAM& wParam, const LPARAM& lParam);
 
 private:

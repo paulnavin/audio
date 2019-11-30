@@ -4,6 +4,8 @@
 
 #include "Result.hpp"
 
+struct WindowConfig;
+
 class Window {
 public:
     Window() = default;
@@ -13,7 +15,7 @@ public:
     const HWND GetHandle() const;
 
 public:
-    Result Init(const WNDCLASSEXW& wcex);
+    Result Init(const WNDCLASSEXW& wcex, const WindowConfig& config);
     void Show();
     LRESULT ProcessMessage(const UINT& message, const WPARAM& wParam, const LPARAM& lParam);
     void Destroy();
