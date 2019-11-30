@@ -41,7 +41,7 @@ private:
     int64_t fps_;
     Text2d fpsText_;  // TODO: Provide this as a renderable object, instead of a raw object.
     double lastFpsCalculationTime_;
-    ModelStarField starField_;
+    Model3d* model3d_;
     bool showFps_ = true;
     TextManager2d textManager2d_;
     AppTimer timer_;

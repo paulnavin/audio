@@ -10,9 +10,9 @@ public:
 
 public:
     virtual Result Init() {
-        triangleVertices[0] = Vertex{ 0.0f, 0.1f, 0.3f, 1.0f, 1.0f, 0.0f };
-        triangleVertices[1] = Vertex{ 0.11f, -0.1f, 0.3f, 1.0f, 1.0f, 0.0f };
-        triangleVertices[2] = Vertex{ -0.11f, -0.1f, 0.3f, 1.0f, 1.0f, 0.0f };
+        triangleVertices[0] = Vertex{ 0.0f, 0.1f, 0.3f, 1.0f, 1.0f, 0.0f, 1.0f };
+        triangleVertices[1] = Vertex{ 0.11f, -0.1f, 0.3f, 1.0f, 1.0f, 0.0f, 1.0f };
+        triangleVertices[2] = Vertex{ -0.11f, -0.1f, 0.3f, 1.0f, 1.0f, 0.0f, 1.0f };
         return Result{};
     }
 

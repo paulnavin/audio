@@ -72,13 +72,15 @@ Result App::Init(const HINSTANCE& appInstance) {
 
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
 
-    initResult = starField_.Init();
+    //model3d_ = new ModelStarField();
+    model3d_ = new ModelTriangle();
+    initResult = model3d_->Init();
     if (initResult.HasErrors()) {
         initResult.AppendError("Window::Init() : Error initialising 3D model.");
         return initResult;
     }
 
-    initResult = engine3d_.InitGraphics(starField_);
+    initResult = engine3d_.InitGraphics(*model3d_);
     if (initResult.HasErrors()) {
         initResult.AppendError("Window::Init() : Error initialising 3D vertex buffer.");
         return initResult;
@@ -184,6 +186,10 @@ void App::ShutDown() {
     // mainWindow_ will be destroyed by the WindowManager.
     LOG(INFO) << "App::ShutDown() : Shut down!";
     mainWindow_ = nullptr;
+    if (model3d_ != nullptr) {
+        delete model3d_;
+    }
+    model3d_ = nullptr;
 }
 
 Result App::RenderFps() {
