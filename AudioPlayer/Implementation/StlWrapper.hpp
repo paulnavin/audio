@@ -17,6 +17,7 @@
 #pragma warning( disable : 4061)    //  enumerator 'D3D_SRV_DIMENSION_UNKNOWN' in switch of enum 'D3D_SRV_DIMENSION' is not explicitly handled by a case label
 #pragma warning( disable : 4668)    //  '_WIN32_WINNT_WIN10_RS2' is not defined as a preprocessor macro, replacing with '0' for '#if/#elif'
 
+#include <array>
 #include <map>
 #include <fstream>
 #include <sstream>

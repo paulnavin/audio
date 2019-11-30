@@ -1,7 +1,6 @@
 #include "Engine3d.hpp"
 
 #include "ShaderBuffer.hpp"
-#include "Vertex.hpp"
 #include "Window.hpp"
 
 const Microsoft::WRL::ComPtr<ID3D11Device>& Engine3d::GetDirect3dDevice() const {
@@ -41,18 +40,54 @@ Result Engine3d::Init(const Window& newWindow) {
     return initResult;
 }
 
+static inline float randomColour() {
+    return static_cast <float> (rand()) / (static_cast <float> (RAND_MAX));
+}
+
+// function to create a "random" float between -1.0f and 1.0f
+static inline float randomPosition() {
+    return  static_cast <float> (rand()) / (static_cast <float> (RAND_MAX)) * 2 - 1;
+}
+
 Result Engine3d::InitGraphics() {
-    Vertex triangleVertices[] = { { 0.0f, 0.1f, 0.3f }, { 0.11f, -0.1f, 0.3f }, { -0.11f, -0.1f, 0.3f } }; // TODO: Move this somewhere.
+    //Vertex triangleVertices[] = { { 0.0f, 0.1f, 0.3f }, { 0.11f, -0.1f, 0.3f }, { -0.11f, -0.1f, 0.3f } }; // TODO: Move this somewhere.
+    //D3D11_BUFFER_DESC bd;
+    //bd.ByteWidth = sizeof(Vertex) * ARRAYSIZE(triangleVertices);
+    //bd.Usage = D3D11_USAGE_DEFAULT;
+    //bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+    //bd.CPUAccessFlags = 0;
+    //bd.MiscFlags = 0;
+    //bd.StructureByteStride = 0;
+
+    //// define subresource data
+    //D3D11_SUBRESOURCE_DATA srd = { triangleVertices, 0, 0 };
+
+    //// create the vertex buffer
+    //Result initResult{};
+    //HRESULT hr = device_->CreateBuffer(&bd, &srd, &vertexBuffer_);
+    //if (FAILED(hr)) {
+    //    initResult.AppendError("Direct3dController::InitGraphics() : Couldn't create vertext buffer.");
+    //}
+
+    for (size_t i = 0; i < STAR_FIELD_SIZE; ++i) {
+        starField[i].x = randomPosition();
+        starField[i].y = randomPosition();
+        starField[i].z = randomPosition();
+        starField[i].red = randomColour();
+        starField[i].green = randomColour();
+        starField[i].blue = randomColour();
+    }
+
     D3D11_BUFFER_DESC bd;
-    bd.ByteWidth = sizeof(Vertex) * ARRAYSIZE(triangleVertices);
-    bd.Usage = D3D11_USAGE_DEFAULT;
+    bd.ByteWidth = static_cast<UINT>(sizeof(Vertex) * starField.size());
+    bd.Usage = D3D11_USAGE_DYNAMIC;
     bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-    bd.CPUAccessFlags = 0;
+    bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
     bd.MiscFlags = 0;
     bd.StructureByteStride = 0;
 
     // define subresource data
-    D3D11_SUBRESOURCE_DATA srd = { triangleVertices, 0, 0 };
+    D3D11_SUBRESOURCE_DATA srd = { starField.data(), 0, 0 };
 
     // create the vertex buffer
     Result initResult{};
@@ -84,13 +119,23 @@ Result Engine3d::Present() {
 }
 
 Result Engine3d::RenderVertices() {
-    // set the vertex buffer
-    unsigned int stride = sizeof(Vertex);
-    unsigned int offset = 0;
+    //// set the vertex buffer
+    //unsigned int stride = sizeof(Vertex);
+    //unsigned int offset = 0;
+    //deviceContext_->IASetVertexBuffers(0, 1, vertexBuffer_.GetAddressOf(), &stride, &offset);
+
+    //// set primitive topology
+    //deviceContext_->Draw(3, 0);
+
+    UINT stride = sizeof(Vertex);
+    UINT offset = 0;
     deviceContext_->IASetVertexBuffers(0, 1, vertexBuffer_.GetAddressOf(), &stride, &offset);
 
     // set primitive topology
-    deviceContext_->Draw(3, 0);
+    deviceContext_->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
+
+    // draw 3 vertices, starting from vertex 0
+    deviceContext_->Draw((unsigned int)starField.size(), 0);
 
     return Result{};
 }
@@ -267,8 +312,8 @@ Result Engine3d::InitShaders() {
 
     // specify the input layout
     D3D11_INPUT_ELEMENT_DESC ied[] = {
-        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        { "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, POSITION_OFFSET, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+        { "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, COLOUR_OFFSET, D3D11_INPUT_PER_VERTEX_DATA, 0 }
     };
 
     // create the input layout

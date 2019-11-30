@@ -5,6 +5,7 @@
 
 #include "Result.hpp"
 #include "ShaderBuffer.hpp"
+#include "Vertex.hpp"
 
 class Window;
 
@@ -42,4 +43,8 @@ private:
     Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer_;
     Microsoft::WRL::ComPtr<ID3D11VertexShader> vertexShader_;
     HWND windowHandle_;
+
+    // TODO: Move this stuff out of the Engine, into the App.
+    static constexpr size_t STAR_FIELD_SIZE = 1000;
+    std::array<Vertex, STAR_FIELD_SIZE> starField;
 };
