@@ -1,10 +1,10 @@
 #pragma once
 
-#include "StlWrapper.hpp"
 #include "DirectXInterface.hpp"
-
+#include "Model3d.hpp"
 #include "Result.hpp"
 #include "ShaderBuffer.hpp"
+#include "StlWrapper.hpp"
 #include "Vertex.hpp"
 
 class Window;
@@ -21,7 +21,7 @@ public:
 
 public:
     Result Init(const Window& newWindow);
-    Result InitGraphics();
+    Result InitGraphics(const Model3d& model);
     void ClearBuffers();
     Result Present();
     Result RenderVertices();
@@ -41,10 +41,8 @@ private:
     Microsoft::WRL::ComPtr<ID3D11RenderTargetView> renderTargetView_;
     Microsoft::WRL::ComPtr<IDXGISwapChain> swapChain_;
     Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer_;
+    size_t vertexCount_;
+    VertexType vertexType_;
     Microsoft::WRL::ComPtr<ID3D11VertexShader> vertexShader_;
     HWND windowHandle_;
-
-    // TODO: Move this stuff out of the Engine, into the App.
-    static constexpr size_t STAR_FIELD_SIZE = 1000;
-    std::array<Vertex, STAR_FIELD_SIZE> starField;
 };

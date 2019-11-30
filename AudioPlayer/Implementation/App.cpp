@@ -48,12 +48,6 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
-    initResult = engine3d_.InitGraphics();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 3D vertex buffer.");
-        return initResult;
-    }
-
     initResult = engine2d_.Init(*mainWindow_, engine3d_);
     if (initResult.HasErrors()) {
         initResult.AppendError("Window::Init() : Error initialising 2D controller.");
@@ -77,6 +71,18 @@ Result App::Init(const HINSTANCE& appInstance) {
     }
 
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
+
+    initResult = starField_.Init();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 3D model.");
+        return initResult;
+    }
+
+    initResult = engine3d_.InitGraphics(starField_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 3D vertex buffer.");
+        return initResult;
+    }
 
     LOG(INFO) << "App::Init() : Successful!";
 

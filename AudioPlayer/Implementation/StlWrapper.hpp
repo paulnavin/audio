@@ -18,6 +18,7 @@
 #pragma warning( disable : 4668)    //  '_WIN32_WINNT_WIN10_RS2' is not defined as a preprocessor macro, replacing with '0' for '#if/#elif'
 
 #include <array>
+#include <cstdint>
 #include <map>
 #include <fstream>
 #include <sstream>
