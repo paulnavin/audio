@@ -9,6 +9,7 @@
 #include "Result.hpp"
 #include "Text2d.hpp"
 #include "TextManager2d.hpp"
+#include "Vertex.hpp"
 
 class Window;
 
@@ -32,7 +33,7 @@ private:
 private:
     HACCEL acceleratorTable_;
     HINSTANCE appInstance_;
-    ::config::Config config_;
+    ::Config::Config config_;
     Engine2d engine2d_;
     Engine3d engine3d_;
     int64_t fps_;

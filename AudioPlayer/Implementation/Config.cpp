@@ -24,7 +24,7 @@
 
 #pragma warning(pop)    // Turn back on all warnings.
 
-namespace config {
+namespace Config {
 
 class ConfigInternals {
 public:
@@ -74,4 +74,4 @@ Result Config::LoadConfig(const std::string& fileName) {
     return internals_->LoadConfig(fileName);
 }
 
-} // namespace config
+} // namespace Config

@@ -3,7 +3,7 @@
 #include "Result.hpp"
 #include "StlWrapper.hpp"
 
-namespace config {
+namespace Config {
 
 class ConfigInternals;
 
@@ -23,4 +23,4 @@ private:
     ConfigInternals* internals_;
 };
 
-} // namespace config
+} // namespace Config

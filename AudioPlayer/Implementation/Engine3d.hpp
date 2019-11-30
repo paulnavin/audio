@@ -1,8 +1,10 @@
 #pragma once
 
+#include "StlWrapper.hpp"
 #include "DirectXInterface.hpp"
 
 #include "Result.hpp"
+#include "ShaderBuffer.hpp"
 
 class Window;
 
@@ -18,19 +20,26 @@ public:
 
 public:
     Result Init(const Window& newWindow);
+    Result InitGraphics();
     void ClearBuffers();
     Result Present();
+    Result RenderVertices();
     Result Resize();
 
 private:
     Result CreateDxgiResources();
+    Result InitShaders();
+    Result LoadShader(const std::wstring& fileName, ShaderBuffer* shaderBuffer);
 
 private:
     DXGI_FORMAT colourFormat_;
     Microsoft::WRL::ComPtr<ID3D11DepthStencilView> depthStencilView_;
     Microsoft::WRL::ComPtr<ID3D11Device> device_;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> deviceContext_;
+    Microsoft::WRL::ComPtr<ID3D11PixelShader> pixelShader_;
     Microsoft::WRL::ComPtr<ID3D11RenderTargetView> renderTargetView_;
     Microsoft::WRL::ComPtr<IDXGISwapChain> swapChain_;
+    Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer_;
+    Microsoft::WRL::ComPtr<ID3D11VertexShader> vertexShader_;
     HWND windowHandle_;
 };

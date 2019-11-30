@@ -1,5 +1,7 @@
 #include "Engine3d.hpp"
 
+#include "ShaderBuffer.hpp"
+#include "Vertex.hpp"
 #include "Window.hpp"
 
 const Microsoft::WRL::ComPtr<ID3D11Device>& Engine3d::GetDirect3dDevice() const {
@@ -30,7 +32,130 @@ Result Engine3d::Init(const Window& newWindow) {
         initResult.AppendError("Direct3dController::Init() : DirectX 11 isn't supported.");
     }
 
-    return CreateDxgiResources();
+    initResult = CreateDxgiResources();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Engine3d::Init() : Couldn't create DXGI resources.");
+        return initResult;
+    }
+
+    return initResult;
+}
+
+Result Engine3d::InitGraphics() {
+    Vertex triangleVertices[] = { { 0.0f, 0.1f, 0.3f }, { 0.11f, -0.1f, 0.3f }, { -0.11f, -0.1f, 0.3f } }; // TODO: Move this somewhere.
+    D3D11_BUFFER_DESC bd;
+    bd.ByteWidth = sizeof(Vertex) * ARRAYSIZE(triangleVertices);
+    bd.Usage = D3D11_USAGE_DEFAULT;
+    bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+    bd.CPUAccessFlags = 0;
+    bd.MiscFlags = 0;
+    bd.StructureByteStride = 0;
+
+    // define subresource data
+    D3D11_SUBRESOURCE_DATA srd = { triangleVertices, 0, 0 };
+
+    // create the vertex buffer
+    Result initResult{};
+    HRESULT hr = device_->CreateBuffer(&bd, &srd, &vertexBuffer_);
+    if (FAILED(hr)) {
+        initResult.AppendError("Direct3dController::InitGraphics() : Couldn't create vertext buffer.");
+    }
+
+    return Result{};
+}
+
+void Engine3d::ClearBuffers() {
+    float clearColour[] = { 0.0f, 0.0f, 0.2f, 1.0f };
+    deviceContext_->ClearRenderTargetView(renderTargetView_.Get(), clearColour);
+    deviceContext_->ClearDepthStencilView(depthStencilView_.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+}
+
+Result Engine3d::Present() {
+    Result presentResult{};
+    HRESULT hr = swapChain_->Present(0, DXGI_PRESENT_DO_NOT_WAIT);
+    if (FAILED(hr) && hr != DXGI_ERROR_WAS_STILL_DRAWING) {
+        presentResult.AppendError("Direct3dController::Present() : Couldn't present rebuttal.");
+        return presentResult;
+    }
+
+    deviceContext_->OMSetRenderTargets(1, renderTargetView_.GetAddressOf(), depthStencilView_.Get());
+
+    return presentResult;
+}
+
+Result Engine3d::RenderVertices() {
+    // set the vertex buffer
+    unsigned int stride = sizeof(Vertex);
+    unsigned int offset = 0;
+    deviceContext_->IASetVertexBuffers(0, 1, vertexBuffer_.GetAddressOf(), &stride, &offset);
+
+    // set primitive topology
+    deviceContext_->Draw(3, 0);
+
+    return Result{};
+}
+
+Result Engine3d::Resize() {
+    deviceContext_->ClearState();
+    renderTargetView_ = nullptr;
+    depthStencilView_ = nullptr;
+
+    HRESULT hr = swapChain_->ResizeBuffers(0, 0, 0, colourFormat_, 0);
+    Result resizeResult;
+    if (FAILED(hr)) {
+        resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize swap chain buffers.");
+        return resizeResult;
+    }
+
+    Microsoft::WRL::ComPtr<ID3D11Texture2D> backBuffer;
+    ID3D11Texture2D** backBufferPointer = backBuffer.GetAddressOf();
+    const IID& textureId = __uuidof(ID3D11Texture2D);
+    hr = swapChain_->GetBuffer(0, textureId, reinterpret_cast<void**>(backBufferPointer));
+    if (FAILED(hr)) {
+        resizeResult.AppendError("Direct3dController::Resize() : Couldn't get the back buffer.");
+        return resizeResult;
+    }
+
+    ID3D11Texture2D* backBufferTexture = backBuffer.Get();
+    hr = device_->CreateRenderTargetView(backBufferTexture, 0, &renderTargetView_);
+    if (FAILED(hr)) {
+        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a render target view.");
+        return resizeResult;
+    }
+
+    D3D11_TEXTURE2D_DESC depthStencilDescriptor;
+    Microsoft::WRL::ComPtr<ID3D11Texture2D> depthStencilBuffer;
+    backBuffer->GetDesc(&depthStencilDescriptor);
+    depthStencilDescriptor.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+    depthStencilDescriptor.Usage = D3D11_USAGE_DEFAULT;
+    depthStencilDescriptor.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+
+    hr = device_->CreateTexture2D(&depthStencilDescriptor, nullptr, depthStencilBuffer.GetAddressOf());
+    if (FAILED(hr)) {
+        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a depth/stencil buffer.");
+        return resizeResult;
+    }
+
+    hr = device_->CreateDepthStencilView(depthStencilBuffer.Get(), nullptr, depthStencilView_.GetAddressOf());
+    if (FAILED(hr)) {
+        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a depth/stencil view.");
+        return resizeResult;
+    }
+
+    // Actually activate the render target with the depth/stencil buffer.
+    deviceContext_->OMSetRenderTargets(1, renderTargetView_.GetAddressOf(), depthStencilView_.Get());
+
+    // set the viewport to the entire backbuffer
+    D3D11_VIEWPORT viewPort;
+    viewPort.TopLeftX = 0;
+    viewPort.TopLeftY = 0;
+    viewPort.Width = static_cast<float>(depthStencilDescriptor.Width);
+    viewPort.Height = static_cast<float>(depthStencilDescriptor.Height);
+    viewPort.MinDepth = 0.0f;
+    viewPort.MaxDepth = 1.0f;
+    deviceContext_->RSSetViewports(1, &viewPort);
+
+    return InitShaders();
 }
 
 Result Engine3d::CreateDxgiResources() {
@@ -95,82 +220,101 @@ Result Engine3d::CreateDxgiResources() {
     return Result{};
 }
 
-void Engine3d::ClearBuffers() {
-    float clearColour[] = { 0.0f, 0.0f, 0.2f, 1.0f };
-    deviceContext_->ClearRenderTargetView(renderTargetView_.Get(), clearColour);
-    deviceContext_->ClearDepthStencilView(depthStencilView_.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+Result Engine3d::InitShaders() {
+    Result initResult{};
+
+    // Pixel shaders
+    ShaderBuffer pixelShaderBuffer;
+
+#ifdef _DEBUG
+    initResult = LoadShader(L"../../Binaries/x64/Debug/pixelShader.cso", &pixelShaderBuffer);
+#else
+    initResult = LoadShader(L"../../Binaries/x64/Release/pixelShader.cso", &pixelShaderBuffer_);
+#endif
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Engine3d::InitShaders() : Couldn't load pixel shader.");
+        return initResult;
+    }
+
+    HRESULT hr = device_->CreatePixelShader(pixelShaderBuffer.buffer, pixelShaderBuffer.size, nullptr, &pixelShader_);
+
+    if (FAILED(hr)) {
+        initResult.AppendError("Direct3dController::InitShaders() : Couldn't create pixel shader.");
+        return initResult;
+    }
+    deviceContext_->PSSetShader(pixelShader_.Get(), NULL, 0);
+
+    // Vertex shaders
+    ShaderBuffer vertexShaderBuffer;
+
+#ifdef _DEBUG
+    initResult = LoadShader(L"../../Binaries/x64/Debug/vertexShader.cso", &vertexShaderBuffer);
+#else
+    initResult = LoadShader(L"../../Binaries/x64/Release/vertexShader.cso", &vertexShaderBuffer_);
+#endif
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Engine3d::InitShaders() : Couldn't load vertex shader.");
+        return initResult;
+    }
+
+    hr = device_->CreateVertexShader(vertexShaderBuffer.buffer, vertexShaderBuffer.size, nullptr, &vertexShader_);
+    if (FAILED(hr)) {
+        initResult.AppendError("Direct3dController::InitShaders() : Couldn't create vertex shader.");
+        return initResult;
+    }
+
+    deviceContext_->VSSetShader(vertexShader_.Get(), NULL, 0);
+
+    // specify the input layout
+    D3D11_INPUT_ELEMENT_DESC ied[] = {
+        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+        { "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+    };
+
+    // create the input layout
+    Microsoft::WRL::ComPtr<ID3D11InputLayout> inputLayout;
+    hr = device_->CreateInputLayout(ied, ARRAYSIZE(ied), vertexShaderBuffer.buffer, vertexShaderBuffer.size, &inputLayout);
+    if (FAILED(hr)) {
+        initResult.AppendError("Direct3dController::InitShaders() : Couldn't create input layout.");
+        return initResult;
+    }
+
+    // set active input layout
+    deviceContext_->IASetInputLayout(inputLayout.Get());
+
+    if (pixelShaderBuffer.buffer != nullptr) {
+        delete[] pixelShaderBuffer.buffer;
+        pixelShaderBuffer.buffer = nullptr;
+    }
+
+    if (vertexShaderBuffer.buffer != nullptr) {
+        delete[] vertexShaderBuffer.buffer;
+        vertexShaderBuffer.buffer = nullptr;
+    }
+
+    return initResult;
 }
 
-Result Engine3d::Present() {
-    Result presentResult{};
-    HRESULT hr = swapChain_->Present(0, DXGI_PRESENT_DO_NOT_WAIT);
-    if (FAILED(hr) && hr != DXGI_ERROR_WAS_STILL_DRAWING) {
-        presentResult.AppendError("Direct3dController::Present() : Couldn't present rebuttal.");
-        return presentResult;
+// Loads precompiled shaders from .cso objects.
+Result Engine3d::LoadShader(const std::wstring& fileName, ShaderBuffer* shaderBuffer) {
+    Result loadResult{};
+
+    // open the file
+    std::ifstream csoFile(fileName, std::ios::in | std::ios::binary | std::ios::ate);
+
+    if (csoFile.is_open()) {
+        // get shader size
+        std::streamsize fileStreamSize = csoFile.tellg();
+        shaderBuffer->size = static_cast<size_t>(fileStreamSize);
+
+        // TODO: Handle read errors here?
+        shaderBuffer->buffer = new byte[static_cast<size_t>(shaderBuffer->size)];
+        csoFile.seekg(0, std::ios::beg);
+        csoFile.read(reinterpret_cast<char*>(shaderBuffer->buffer), fileStreamSize);
+        csoFile.close();
+    } else {
+        loadResult.AppendError("Engine3d::LoadShader() : Couldn't load shader.");
     }
 
-    return presentResult;
-}
-
-Result Engine3d::Resize() {
-    deviceContext_->ClearState();
-    renderTargetView_ = nullptr;
-    depthStencilView_ = nullptr;
-
-    HRESULT hr = swapChain_->ResizeBuffers(0, 0, 0, colourFormat_, 0);
-    Result resizeResult;
-    if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize swap chain buffers.");
-        return resizeResult;
-    }
-
-    Microsoft::WRL::ComPtr<ID3D11Texture2D> backBuffer;
-    ID3D11Texture2D** backBufferPointer = backBuffer.GetAddressOf();
-    const IID& textureId = __uuidof(ID3D11Texture2D);
-    hr = swapChain_->GetBuffer(0, textureId, reinterpret_cast<void**>(backBufferPointer));
-    if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't get the back buffer.");
-        return resizeResult;
-    }
-
-    ID3D11Texture2D* backBufferTexture = backBuffer.Get();
-    hr = device_->CreateRenderTargetView(backBufferTexture, 0, &renderTargetView_);
-    if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a render target view.");
-        return resizeResult;
-    }
-
-    D3D11_TEXTURE2D_DESC depthStencilDescriptor;
-    Microsoft::WRL::ComPtr<ID3D11Texture2D> depthStencilBuffer;
-    backBuffer->GetDesc(&depthStencilDescriptor);
-    depthStencilDescriptor.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-    depthStencilDescriptor.Usage = D3D11_USAGE_DEFAULT;
-    depthStencilDescriptor.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-
-    hr = device_->CreateTexture2D(&depthStencilDescriptor, nullptr, depthStencilBuffer.GetAddressOf());
-    if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a depth/stencil buffer.");
-        return resizeResult;
-    }
-
-    hr = device_->CreateDepthStencilView(depthStencilBuffer.Get(), nullptr, depthStencilView_.GetAddressOf());
-    if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a depth/stencil view.");
-        return resizeResult;
-    }
-
-    // Actually activate the render target with the depth/stencil buffer.
-    deviceContext_->OMSetRenderTargets(1, renderTargetView_.GetAddressOf(), depthStencilView_.Get());
-
-    // set the viewport to the entire backbuffer
-    D3D11_VIEWPORT viewPort;
-    viewPort.TopLeftX = 0;
-    viewPort.TopLeftY = 0;
-    viewPort.Width = static_cast<float>(depthStencilDescriptor.Width);
-    viewPort.Height = static_cast<float>(depthStencilDescriptor.Height);
-    viewPort.MinDepth = 0.0f;
-    viewPort.MaxDepth = 1.0f;
-    deviceContext_->RSSetViewports(1, &viewPort);
-
-    return Result{};
+    return loadResult;
 }

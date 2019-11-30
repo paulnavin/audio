@@ -4,6 +4,7 @@
 #include "EasyLogging++.hpp"
 #include "Result.hpp"
 #include "StringUtil.hpp"
+#include "Vertex.hpp"
 #include "WindowConfig.hpp"
 #include "WindowManager.hpp"
 #include "Window.hpp"
@@ -19,26 +20,26 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
-    Result createTimerResult = timer_.Init();
-    if (createTimerResult.HasErrors()) {
-        createTimerResult.AppendError("App::Init() : Error initialising app timer.");
-        return createTimerResult;
+    initResult = timer_.Init();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error initialising app timer.");
+        return initResult;
     }
 
-    Result loadConfigResult = config_.LoadConfig("someRubbish.ini");
-    if (loadConfigResult.HasErrors()) {
-        loadConfigResult.AppendError("App::Init() : Error loading app config.");
-        return loadConfigResult;
+    initResult = config_.LoadConfig("someRubbish.ini");
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error loading app config.");
+        return initResult;
     }
 
     WindowConfig newWindowConfig{};
     newWindowConfig.height = config_.GetInt32("height", 200);
     newWindowConfig.width = config_.GetInt32("width", 300);
 
-    Result createWindowResult = windowManager.CreateNewWindow(newWindowConfig, &mainWindow_);
-    if (createWindowResult.HasErrors()) {
-        createWindowResult.AppendError("App::Init() : Error creating main window.");
-        return createWindowResult;
+    initResult = windowManager.CreateNewWindow(newWindowConfig, &mainWindow_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error creating main window.");
+        return initResult;
     }
 
     initResult = engine3d_.Init(*mainWindow_);
@@ -47,9 +48,15 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
+    initResult = engine3d_.InitGraphics();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 3D vertex buffer.");
+        return initResult;
+    }
+
     initResult = engine2d_.Init(*mainWindow_, engine3d_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 3D controller.");
+        initResult.AppendError("Window::Init() : Error initialising 2D controller.");
         return initResult;
     }
 
@@ -153,6 +160,7 @@ Result App::Render(const double& dt) {
 
     // (2) Draw any 3D stuff.
     UNREFERENCED_PARAMETER(dt);
+    engine3d_.RenderVertices();
 
     // (3) Draw any 2D stuff on top of the 3D stuff.
     if (showFps_ == true) {
