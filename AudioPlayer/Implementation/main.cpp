@@ -1,8 +1,9 @@
-#include "WindowsInterface.hpp"
+#include <Ui/WindowsInterface.hpp>
+#include <Ui/EasyLogging++.hpp>
+#include <Ui/ErrorDisplay.hpp>
+#include <Ui/Result.hpp>
+
 #include "App.hpp"
-#include "EasyLogging++.hpp"
-#include "ErrorDisplay.hpp"
-#include "Result.hpp"
 
 INITIALIZE_EASYLOGGINGPP
 

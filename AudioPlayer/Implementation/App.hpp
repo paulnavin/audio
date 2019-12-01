@@ -1,17 +1,17 @@
 #pragma once
 
-#include "WindowsInterface.hpp"
+#include <Ui/Config.hpp>
+#include <Ui/Engine2d.hpp>
+#include <Ui/Engine3d.hpp>
+#include <Ui/Result.hpp>
+#include <Ui/Text2d.hpp>
+#include <Ui/TextManager2d.hpp>
+#include <Ui/Vertex.hpp>
+#include <Ui/WindowsInterface.hpp>
 
 #include "AppTimer.hpp"
-#include "Config.hpp"
-#include "Engine2d.hpp"
-#include "Engine3d.hpp"
 #include "ModelStarField.hpp"
 #include "ModelTriangle.hpp"
-#include "Result.hpp"
-#include "Text2d.hpp"
-#include "TextManager2d.hpp"
-#include "Vertex.hpp"
 
 class Window;
 

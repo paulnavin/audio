@@ -1,13 +1,14 @@
 #include "App.hpp"
 
-#include "App.hpp"
-#include "EasyLogging++.hpp"
-#include "Result.hpp"
-#include "StringUtil.hpp"
-#include "Vertex.hpp"
-#include "WindowConfig.hpp"
+#include <Ui/EasyLogging++.hpp>
+#include <Ui/Result.hpp>
+#include <Ui/StringUtil.hpp>
+#include <Ui/Vertex.hpp>
+#include <Ui/WindowConfig.hpp>
+#include <Ui/Window.hpp>
+
+#include "Resource.h"
 #include "WindowManager.hpp"
-#include "Window.hpp"
 
 Result App::Init(const HINSTANCE& appInstance) {
     appInstance_ = appInstance;

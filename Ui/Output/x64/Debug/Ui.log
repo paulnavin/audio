@@ -1,0 +1,10 @@
+﻿  Config.cpp
+  EasyLogging++.cpp
+  Engine2d.cpp
+  Engine3d.cpp
+  ErrorDisplay.cpp
+  Text2d.cpp
+  TextManager2d.cpp
+  Window.cpp
+  Generating Code...
+  Ui.vcxproj -> J:\Documents\Paul\Projects\audio\Ui\Build\VisualStudio2017-Win10\..\..\Binaries\x64\Debug\Ui.lib

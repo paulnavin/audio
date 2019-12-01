@@ -1,5 +1,7 @@
 #include "WindowManager.hpp"
 
+#include "Resource.h"
+
 static constexpr size_t MAX_LOADSTRING = 100;
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 

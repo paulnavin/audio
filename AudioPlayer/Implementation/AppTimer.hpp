@@ -1,13 +1,13 @@
 #pragma once
 
-#include "WindowsInterface.hpp"
+#include <Ui/WindowsInterface.hpp>
 
 #pragma warning(push)
 #pragma warning( disable : 4577)
 #include <cstdint>
 #pragma warning(pop)
 
-#include "Result.hpp"
+#include <Ui/Result.hpp>
 
 class AppTimer {
 public:

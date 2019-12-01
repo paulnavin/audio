@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Model3d.hpp"
-#include "StlWrapper.hpp"
+#include <Ui/Model3d.hpp>
+#include <Ui/StlWrapper.hpp>
 
 class ModelTriangle : public Model3d {
 public:
