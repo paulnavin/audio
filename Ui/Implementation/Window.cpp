@@ -1,5 +1,6 @@
 #include <Ui/Window.hpp>
 
+#include <Ui/StringUtil.hpp>
 #include <Ui/WindowConfig.hpp>
 
 // Message handler for about box.
@@ -27,15 +28,9 @@ const HWND Window::GetHandle() const {
 Result Window::Init(const WNDCLASSEXW& wcex, const WindowConfig& config) {
     appInstance_ = wcex.hInstance;
 
-    //static constexpr size_t MAX_LOADSTRING = 100;
-    //WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
-    //LoadStringW(appInstance_, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-
-    const WCHAR* szTitle = L"Title needs changing";
-
     // Note: This function results in a message being called through to WindowManager's
     //       ProcessMessage() function, before the HWND is valid.
-    windowHandle_ = CreateWindowW(wcex.lpszClassName, szTitle, WS_OVERLAPPEDWINDOW,
+    windowHandle_ = CreateWindowW(wcex.lpszClassName, config.title.c_str(), WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT, config.width, config.height, nullptr, nullptr, appInstance_, nullptr);
 
     Result initResult{};

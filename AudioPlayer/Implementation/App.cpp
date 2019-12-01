@@ -33,9 +33,14 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
+    static constexpr size_t MAX_LOADSTRING = 100;
+    WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
+    LoadStringW(appInstance_, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+
     WindowConfig newWindowConfig{};
     newWindowConfig.height = config_.GetInt32("height", 200);
     newWindowConfig.width = config_.GetInt32("width", 300);
+    newWindowConfig.title = std::wstring(szTitle);
 
     initResult = windowManager.CreateNewWindow(newWindowConfig, &mainWindow_);
     if (initResult.HasErrors()) {
