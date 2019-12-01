@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Ui/Engine2d.hpp>
+#include <Ui/Ellipse2d.hpp>
 #include <Ui/Model2d.hpp>
 #include <Ui/Rectangle2d.hpp>
 #include <Ui/StlWrapper.hpp>
@@ -20,6 +21,13 @@ public:
         }
         rectangle_.SetColour(Colour{ 1.0f, 0.0f, 1.0f, 1.0f });
 
+        initResult = ellipse_.Init(engine);
+        if (initResult.HasErrors()) {
+            initResult.AppendError("Window::Init() : Error initialising 2D ellipse.");
+            return initResult;
+        }
+        ellipse_.SetColour(Colour{ 0.0f, 1.0f, 0.0f, 0.5f });
+
         initResult = fpsText_.Init(engine);
         if (initResult.HasErrors()) {
             initResult.AppendError("Window::Init() : Error initialising 2D FPS text.");
@@ -32,6 +40,7 @@ public:
     }
 
     void Render() {
+        ellipse_.Render();
         rectangle_.Render();
         fpsText_.Render();
     }
@@ -49,6 +58,7 @@ public:
     }
 
 private:
+    Ellipse2d ellipse_;
     Rectangle2d rectangle_;
     Text2d fpsText_;
     bool showFpsText_;

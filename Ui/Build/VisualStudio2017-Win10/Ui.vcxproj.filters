@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\Implementation\Rectangle2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Implementation\Ellipse2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Interface\Ui\Config.hpp">
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Interface\Ui\Colour.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Ui\Ellipse2d.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

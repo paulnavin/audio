@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Config.cpp" />
     <ClCompile Include="..\..\Implementation\EasyLogging++.cpp" />
+    <ClCompile Include="..\..\Implementation\Ellipse2d.cpp" />
     <ClCompile Include="..\..\Implementation\Engine2d.cpp" />
     <ClCompile Include="..\..\Implementation\Engine3d.cpp" />
     <ClCompile Include="..\..\Implementation\ErrorDisplay.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="..\..\Interface\Ui\Config.hpp" />
     <ClInclude Include="..\..\Interface\Ui\DirectXInterface.hpp" />
     <ClInclude Include="..\..\Interface\Ui\EasyLogging++.hpp" />
+    <ClInclude Include="..\..\Interface\Ui\Ellipse2d.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Engine2d.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Engine3d.hpp" />
     <ClInclude Include="..\..\Interface\Ui\ErrorDisplay.hpp" />
