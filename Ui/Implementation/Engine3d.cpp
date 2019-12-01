@@ -216,13 +216,13 @@ Result Engine3d::CreateDxgiResources() {
         return dxgiResult;
     }
 
-    Result resizeResult = Resize();
-    if (resizeResult.HasErrors()) {
+    dxgiResult = Resize();
+    if (dxgiResult.HasErrors()) {
         dxgiResult.AppendError("Direct3dController::CreateDxgiResources() : Couldn't resize swap chain.");
         return dxgiResult;
     }
 
-    return Result{};
+    return dxgiResult;
 }
 
 Result Engine3d::InitShaders() {
