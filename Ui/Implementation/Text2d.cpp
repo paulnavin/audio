@@ -1,36 +1,25 @@
 #include <Ui/Text2d.hpp>
 
-Result Text2d::Init(
-        const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& newDeviceContext2d,
-        const Microsoft::WRL::ComPtr<IDWriteTextFormat>& newTextFormat,
-        const Microsoft::WRL::ComPtr<IDWriteFactory2>& newWriteFactory,
-        const Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>& newBrush) {
-    deviceContext2d_ = newDeviceContext2d;
-    textFormat_ = newTextFormat;
-    brush_ = newBrush;
-    writeFactory_ = newWriteFactory;
+#include <Ui/Engine2d.hpp>
+#include <Ui/TextManager2d.hpp>
+
+Result Text2d::Init(const Engine2d& engine) {
+    deviceContext2d_ = engine.GetDeviceContext2d();
+
+    TextManager2d textManager = engine.GetTextManager();
+    textFormat_ = textManager.GetFpsTextFormat();
+    brush_ = textManager.GetFpsBrush();
+    writeFactory_ = textManager.GetWriteFactory();
 
     return Result{};
 }
 
-Result Text2d::RenderFps() {
-    Result renderResult{};
-
+void Text2d::Render() {
     if (!textLayout_) {
-        return renderResult;
+        return;
     }
-
-    // TODO: Move begin/end out into the Engine2d, so it's only called once per frame, not once per object.
-    deviceContext2d_->BeginDraw();
 
     deviceContext2d_->DrawTextLayout(D2D1::Point2F(5.0f, 5.0f), textLayout_.Get(), brush_.Get());
-
-    HRESULT hr = deviceContext2d_->EndDraw();
-    if (FAILED(hr)) {
-        renderResult.AppendError("Text2d::RenderFps() : Could not finish drawing text.");
-    }
-
-    return renderResult;
 }
 
 Result Text2d::SetText(const std::wstring& newText) {

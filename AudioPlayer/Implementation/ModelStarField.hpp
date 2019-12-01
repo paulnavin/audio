@@ -9,7 +9,7 @@ public:
     ~ModelStarField() = default;
 
 public:
-    virtual Result Init() {
+    Result Init() override {
         for (size_t i = 0; i < STAR_FIELD_SIZE; ++i) {
             starField_[i].x = randomPosition();
             starField_[i].y = randomPosition();
@@ -22,13 +22,13 @@ public:
     }
 
 public:
-    virtual const size_t GetVertexCount() const {
+    const size_t GetVertexCount() const override {
         return starField_.size();
     }
-    virtual const uint8_t* GetVertexData() const {
+    const uint8_t* GetVertexData() const override {
         return reinterpret_cast<const uint8_t*>(starField_.data());
     }
-    virtual const VertexType GetVertexType() const {
+    const VertexType GetVertexType() const override {
         return VertexType::Point;
     }
 

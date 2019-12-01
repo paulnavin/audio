@@ -5,6 +5,8 @@
 
 #include <Ui/Result.hpp>
 
+class Engine2d;
+
 class Rectangle2d {
 
 public:
@@ -12,9 +14,8 @@ public:
     ~Rectangle2d() = default;
 
 public:
-    Result Init(
-        const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& newDeviceContext2d);
-    Result Render();
+    Result Init(const Engine2d& engine);
+    void Render();
     Result SetColour(const Colour& newColour);
 
 private:

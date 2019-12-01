@@ -1,10 +1,15 @@
 #include <Ui/Engine2d.hpp>
 
 #include <Ui/Engine3d.hpp>
+#include <Ui/Model2d.hpp>
 #include <Ui/Window.hpp>
 
 const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& Engine2d::GetDeviceContext2d() const {
     return deviceContext2d_;
+}
+
+const TextManager2d& Engine2d::GetTextManager() const {
+    return textManager2d_;
 }
 
 Result Engine2d::Init(const Window& newWindow, const Engine3d& newEngine) {
@@ -25,7 +30,26 @@ Result Engine2d::Init(const Window& newWindow, const Engine3d& newEngine) {
         return initResult;
     }
 
+    initResult = textManager2d_.Init(newWindow, *this);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 2D text manager.");
+        return initResult;
+    }
+
     return initResult;
+}
+
+Result Engine2d::InitGraphics(Model2d* model) {
+    model_ = model;
+    return Result{};
+}
+
+void Engine2d::RenderModel() {
+    deviceContext2d_->BeginDraw();
+
+    model_->Render();
+
+    (void)deviceContext2d_->EndDraw();
 }
 
 Result Engine2d::CreateDevice() {

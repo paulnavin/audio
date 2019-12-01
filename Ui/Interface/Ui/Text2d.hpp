@@ -4,6 +4,8 @@
 
 #include <Ui/Result.hpp>
 
+class Engine2d;
+
 class Text2d {
 
 public:
@@ -11,12 +13,8 @@ public:
     ~Text2d() = default;
 
 public:
-    Result Init(
-        const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& newDeviceContext2d,
-        const Microsoft::WRL::ComPtr<IDWriteTextFormat>& newTextFormat,
-        const Microsoft::WRL::ComPtr<IDWriteFactory2>& newWriteFactory,
-        const Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>& newBrush);
-    Result RenderFps();
+    Result Init(const Engine2d& engine);
+    void Render();
     Result SetText(const std::wstring& newText);
 
 private:

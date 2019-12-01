@@ -9,7 +9,7 @@ public:
     ~ModelTriangle() = default;
 
 public:
-    virtual Result Init() {
+    Result Init() override {
         triangleVertices[0] = Vertex{ 0.0f, 0.1f, 0.3f, 1.0f, 1.0f, 0.0f, 1.0f };
         triangleVertices[1] = Vertex{ 0.11f, -0.1f, 0.3f, 1.0f, 1.0f, 0.0f, 1.0f };
         triangleVertices[2] = Vertex{ -0.11f, -0.1f, 0.3f, 1.0f, 1.0f, 0.0f, 1.0f };
@@ -17,13 +17,13 @@ public:
     }
 
 public:
-    virtual const size_t GetVertexCount() const {
+    const size_t GetVertexCount() const override {
         return 3;
     }
-    virtual const uint8_t* GetVertexData() const {
+    const uint8_t* GetVertexData() const override {
         return reinterpret_cast<const uint8_t*>(triangleVertices.data());
     }
-    virtual const VertexType GetVertexType() const {
+    const VertexType GetVertexType() const override {
         return VertexType::Triangle;
     }
 

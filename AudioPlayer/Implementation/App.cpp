@@ -7,6 +7,9 @@
 #include <Ui/WindowConfig.hpp>
 #include <Ui/Window.hpp>
 
+#include "ModelBasic2d.hpp"
+#include "ModelStarField.hpp"
+#include "ModelTriangle.hpp"
 #include "Resource.h"
 #include "WindowManager.hpp"
 
@@ -54,37 +57,6 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
-    initResult = engine2d_.Init(*mainWindow_, engine3d_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 2D controller.");
-        return initResult;
-    }
-
-    initResult = textManager2d_.Init(*mainWindow_, engine2d_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 2D text manager.");
-        return initResult;
-    }
-
-    initResult = fpsText_.Init(
-        engine2d_.GetDeviceContext2d(),
-        textManager2d_.GetFpsTextFormat(),
-        textManager2d_.GetWriteFactory(),
-        textManager2d_.GetFpsBrush());
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 2D FPS text.");
-        return initResult;
-    }
-
-    initResult = rectangle_.Init(engine2d_.GetDeviceContext2d());
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 2D rectangle.");
-        return initResult;
-    }
-    rectangle_.SetColour(Colour{1.0f, 0.0f, 1.0f, 1.0f});
-
-    acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
-
     //model3d_ = new ModelStarField();
     model3d_ = new ModelTriangle();
     initResult = model3d_->Init();
@@ -95,9 +67,31 @@ Result App::Init(const HINSTANCE& appInstance) {
 
     initResult = engine3d_.InitGraphics(*model3d_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 3D vertex buffer.");
+        initResult.AppendError("Window::Init() : Error initialising 3D graphics.");
         return initResult;
     }
+
+    initResult = engine2d_.Init(*mainWindow_, engine3d_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 2D controller.");
+        return initResult;
+    }
+
+    model2d_ = new ModelBasic2d();
+    initResult = model2d_->Init(engine2d_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 2D model.");
+        return initResult;
+    }
+    model2d_->SetShowFps(showFps_);
+
+    initResult = engine2d_.InitGraphics(model2d_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 2D graphics.");
+        return initResult;
+    }
+
+    acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
 
     LOG(INFO) << "App::Init() : Successful!";
 
@@ -184,13 +178,7 @@ Result App::Render(const double& dt) {
     engine3d_.RenderVertices();
 
     // (3) Draw any 2D stuff on top of the 3D stuff.
-    rectangle_.Render();
-    if (showFps_ == true) {
-        renderResult = RenderFps();
-        if (renderResult.HasErrors()) {
-            return renderResult;
-        }
-    }
+    engine2d_.RenderModel();
 
     // (4) Present the buffers to the screen.
     return engine3d_.Present();
@@ -199,28 +187,18 @@ Result App::Render(const double& dt) {
 void App::ShutDown() {
     // mainWindow_ will be destroyed by the WindowManager.
     LOG(INFO) << "App::ShutDown() : Shut down!";
+
     mainWindow_ = nullptr;
+
     if (model3d_ != nullptr) {
         delete model3d_;
     }
     model3d_ = nullptr;
-}
 
-Result App::RenderFps() {
-    return fpsText_.RenderFps();
-}
-
-Result App::SetFpsText(const int64_t& newFps) {
-    std::wostringstream fpsString{};
-    fpsString.precision(6);
-    fpsString << "FPS: " << newFps << std::endl;
-
-    Result setTextResult = fpsText_.SetText(fpsString.str());
-    if (setTextResult.HasErrors()) {
-        setTextResult.AppendError("App::SetFpsText() : Could not set text on Text2d.");
+    if (model2d_ != nullptr) {
+        delete model2d_;
     }
-
-    return setTextResult;
+    model2d_ = nullptr;
 }
 
 Result App::UpdateFps() {
@@ -233,7 +211,7 @@ Result App::UpdateFps() {
 
         totalAppFrames_ = 0;
         lastFpsCalculationTime_ += 1;
-        return SetFpsText(fps_);
+        model2d_->SetFps(fps_);
     }
 
     return Result{};
