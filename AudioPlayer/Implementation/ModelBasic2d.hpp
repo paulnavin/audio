@@ -26,7 +26,7 @@ public:
             initResult.AppendError("Window::Init() : Error initialising 2D ellipse.");
             return initResult;
         }
-        ellipse_.SetColour(Colour{ 0.0f, 1.0f, 0.0f, 0.5f });
+        ellipse_.SetColour(Colour{ 1.0f, 1.0f, 1.0f, 1.0f });
 
         initResult = fpsText_.Init(engine);
         if (initResult.HasErrors()) {
