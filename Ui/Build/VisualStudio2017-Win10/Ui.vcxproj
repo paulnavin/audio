@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\Implementation\Engine2d.cpp" />
     <ClCompile Include="..\..\Implementation\Engine3d.cpp" />
     <ClCompile Include="..\..\Implementation\ErrorDisplay.cpp" />
+    <ClCompile Include="..\..\Implementation\Rectangle2d.cpp" />
     <ClCompile Include="..\..\Implementation\Result.cpp" />
     <ClCompile Include="..\..\Implementation\StringUtil.cpp" />
     <ClCompile Include="..\..\Implementation\Text2d.cpp" />
@@ -45,6 +46,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Interface\Ui\Colour.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Config.hpp" />
     <ClInclude Include="..\..\Interface\Ui\DirectXInterface.hpp" />
     <ClInclude Include="..\..\Interface\Ui\EasyLogging++.hpp" />
@@ -52,7 +54,9 @@
     <ClInclude Include="..\..\Interface\Ui\Engine3d.hpp" />
     <ClInclude Include="..\..\Interface\Ui\ErrorDisplay.hpp" />
     <ClInclude Include="..\..\Interface\Ui\IniReader.hpp" />
+    <ClInclude Include="..\..\Interface\Ui\Model2d.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Model3d.hpp" />
+    <ClInclude Include="..\..\Interface\Ui\Rectangle2d.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Result.hpp" />
     <ClInclude Include="..\..\Interface\Ui\ShaderBuffer.hpp" />
     <ClInclude Include="..\..\Interface\Ui\StlWrapper.hpp" />

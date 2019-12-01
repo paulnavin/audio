@@ -76,6 +76,13 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
+    initResult = rectangle_.Init(engine2d_.GetDeviceContext2d());
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 2D rectangle.");
+        return initResult;
+    }
+    rectangle_.SetColour(Colour{1.0f, 0.0f, 1.0f, 1.0f});
+
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
 
     //model3d_ = new ModelStarField();
@@ -177,6 +184,7 @@ Result App::Render(const double& dt) {
     engine3d_.RenderVertices();
 
     // (3) Draw any 2D stuff on top of the 3D stuff.
+    rectangle_.Render();
     if (showFps_ == true) {
         renderResult = RenderFps();
         if (renderResult.HasErrors()) {

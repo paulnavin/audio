@@ -3,6 +3,7 @@
 #include <Ui/Config.hpp>
 #include <Ui/Engine2d.hpp>
 #include <Ui/Engine3d.hpp>
+#include <Ui/Rectangle2d.hpp>
 #include <Ui/Result.hpp>
 #include <Ui/Text2d.hpp>
 #include <Ui/TextManager2d.hpp>
@@ -42,6 +43,7 @@ private:
     Text2d fpsText_;  // TODO: Provide this as a renderable object, instead of a raw object.
     double lastFpsCalculationTime_;
     Model3d* model3d_;
+    Rectangle2d rectangle_;
     bool showFps_ = true;
     TextManager2d textManager2d_;
     AppTimer timer_;
