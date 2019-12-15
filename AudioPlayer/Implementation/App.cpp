@@ -106,12 +106,8 @@ Result App::Run() {
 
     // Loop taken from: https://gamedev.stackexchange.com/a/138780
 
-    static constexpr DWORD FRAMES_PER_SECOND = 60;
-    static constexpr DWORD MS_PER_SECOND = 1000;
-    static constexpr DWORD MS_PER_FRAME = MS_PER_SECOND / FRAMES_PER_SECOND;
-    static constexpr int32_t MAX_SKIP_FRAMES = 10;
-
     timer_.Start();
+    timer_.Update();
 
     double accumulatedTime = 0.0;       // stores the time accumulated by the rendered
     int32_t loopCount = 0;              // the number of completed loops while updating the game
@@ -146,7 +142,9 @@ Result App::Run() {
                 }
             }
 
-            accumulatedTime += timer_.GetTimeBetweenFramesInS();
+            accumulatedTime += timer_.GetTimeBetweenFramesInMs();
+
+            // TODO: Is this actually right???
             loopCount = 0;
             while (accumulatedTime >= MS_PER_FRAME && loopCount < MAX_SKIP_FRAMES) {
                 Update(MS_PER_FRAME);
@@ -154,6 +152,7 @@ Result App::Run() {
                 ++loopCount;
             }
 
+            // TODO: Is this actually right???
             // peek into the future and generate the output
             Result renderResult = Render(accumulatedTime / MS_PER_FRAME);
             if (renderResult.HasErrors()) {
@@ -166,7 +165,7 @@ Result App::Run() {
 }
 
 void App::Update(const double& dt) {
-    UNREFERENCED_PARAMETER(dt);
+    model2d_->Update(dt);
 }
 
 Result App::Render(const double& dt) {
@@ -180,7 +179,7 @@ Result App::Render(const double& dt) {
     engine3d_.RenderVertices();
 
     // (3) Draw any 2D stuff on top of the 3D stuff.
-    engine2d_.RenderModel();
+    engine2d_.RenderModel(dt);
 
     // (4) Present the buffers to the screen.
     return engine3d_.Present();
@@ -208,11 +207,11 @@ Result App::UpdateFps() {
     double currentTime = timer_.GetTotalRunningTimeInS();
 
     // Update once per second.
-    if ((currentTime - lastFpsCalculationTime_) >= 1) {
+    if ((currentTime - lastFpsCalculationTime_) >= MS_PER_SECOND) {
         fps_ = totalAppFrames_;
 
         totalAppFrames_ = 0;
-        lastFpsCalculationTime_ += 1;
+        lastFpsCalculationTime_ += MS_PER_SECOND;
         model2d_->SetFps(fps_);
     }
 

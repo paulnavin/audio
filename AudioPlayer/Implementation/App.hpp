@@ -27,6 +27,12 @@ public:
     void ShutDown();
 
 private:
+    static constexpr DWORD FRAMES_PER_SECOND = 60;
+    static constexpr DWORD MS_PER_SECOND = 1000;
+    static constexpr DWORD MS_PER_FRAME = MS_PER_SECOND / FRAMES_PER_SECOND;
+    static constexpr int32_t MAX_SKIP_FRAMES = 10;
+
+private:
     void Update(const double& dt);
     Result Render(const double& dt);
     Result UpdateFps();

@@ -2,6 +2,7 @@
 
 #include <Ui/Engine2d.hpp>
 #include <Ui/Ellipse2d.hpp>
+#include <Ui/JogWheel.hpp>
 #include <Ui/Model2d.hpp>
 #include <Ui/Rectangle2d.hpp>
 #include <Ui/StlWrapper.hpp>
@@ -30,6 +31,14 @@ public:
         openFile2Button_.SetColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
         openFile2Button_.SetDimensions(900.0f, 0.0f, 50.0f, 50.0f);
 
+        initResult = jogWheel1_.Init(engine);
+        if (initResult.HasErrors()) {
+            initResult.AppendError("Window::Init() : Error initialising 2D jog wheel.");
+            return initResult;
+        }
+        jogWheel1_.SetSlipmatColour(Colour{ 1.0f, 0.5f, 0.5f, 1.0f });
+        jogWheel1_.SetPositionColour(Colour{ 0.0f, 0.0f, 0.6f, 1.0f });
+
         initResult = fpsText_.Init(engine);
         if (initResult.HasErrors()) {
             initResult.AppendError("Window::Init() : Error initialising 2D FPS text.");
@@ -41,9 +50,14 @@ public:
         return Result{};
     }
 
-    void Render() {
+    void Update(const double& dt) override {
+        jogWheel1_.Update(dt);
+    }
+
+    void Render(const double& dt) override {
         openFile1Button_.Render();
         openFile2Button_.Render();
+        jogWheel1_.Render(dt);
         fpsText_.Render();
     }
 
@@ -60,8 +74,10 @@ public:
     }
 
 private:
+    JogWheel jogWheel1_;
     Rectangle2d openFile1Button_;
     Rectangle2d openFile2Button_;
+
     Text2d fpsText_;
     bool showFpsText_;
 };

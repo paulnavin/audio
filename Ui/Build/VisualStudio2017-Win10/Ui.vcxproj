@@ -25,6 +25,7 @@
     <ClCompile Include="..\..\Implementation\Engine2d.cpp" />
     <ClCompile Include="..\..\Implementation\Engine3d.cpp" />
     <ClCompile Include="..\..\Implementation\ErrorDisplay.cpp" />
+    <ClCompile Include="..\..\Implementation\JogWheel.cpp" />
     <ClCompile Include="..\..\Implementation\Rectangle2d.cpp" />
     <ClCompile Include="..\..\Implementation\Result.cpp" />
     <ClCompile Include="..\..\Implementation\StringUtil.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="..\..\Interface\DirectX\Ui\Ellipse2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Ui\Engine2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Ui\Engine3d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\JogWheel.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Ui\Rectangle2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Ui\ShaderBuffer.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Ui\StringUtil.hpp" />

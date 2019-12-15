@@ -16,7 +16,7 @@ public:
     Result Init();
 
 public:
-    const double GetTimeBetweenFramesInS() const;
+    const double GetTimeBetweenFramesInMs() const;
     const double GetTotalRunningTimeInS() const;
 
 public:
@@ -32,8 +32,8 @@ private:
     int64_t totalIdleTime_;
 
     LARGE_INTEGER cpuFrequency_;
-    double secondsPerCpuCount_;
-    double timeBetweenFrames_;
+    double msPerCpuCount_;
+    double msBetweenFrames_;
 
     bool running_;
 };

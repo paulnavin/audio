@@ -21,7 +21,7 @@ Result Ellipse2d::SetColour(const Colour& newColour) {
         D2D1::ColorF(colour_.red, colour_.green, colour_.blue, colour_.alpha), &brush_);
     Result setResult{};
     if (FAILED(hr)) {
-        setResult.AppendError("TextManager2d::InitialiseTextFormats() : Could not create brush for rectangle.");
+        setResult.AppendError("Ellipse2d::SetColour() : Could not set colour for Ellipse 2D.");
     }
     return setResult;
 }

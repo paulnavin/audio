@@ -63,6 +63,9 @@
     <ClCompile Include="..\..\Implementation\Ellipse2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Implementation\JogWheel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Interface\DirectX\Ui\DirectXInterface.hpp">
@@ -136,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Interface\Common\Ui\WindowConfig.hpp">
       <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\JogWheel.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

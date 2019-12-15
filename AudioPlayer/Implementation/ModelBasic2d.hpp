@@ -39,7 +39,12 @@ public:
         return Result{};
     }
 
-    void Render() {
+    void Update(const double& dt) override {
+        UNREFERENCED_PARAMETER(dt);
+    }
+
+    void Render(const double& dt) override {
+        UNREFERENCED_PARAMETER(dt);
         ellipse_.Render();
         rectangle_.Render();
         fpsText_.Render();

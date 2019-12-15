@@ -8,6 +8,10 @@ const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& Engine2d::GetDeviceContext2d(
     return deviceContext2d_;
 }
 
+const Microsoft::WRL::ComPtr<ID2D1Factory2>& Engine2d::GetFactory() const {
+    return factory2d_;
+}
+
 const TextManager2d& Engine2d::GetTextManager() const {
     return textManager2d_;
 }
@@ -44,10 +48,10 @@ Result Engine2d::InitGraphics(Model2d* model) {
     return Result{};
 }
 
-void Engine2d::RenderModel() {
+void Engine2d::RenderModel(const double& dt) {
     deviceContext2d_->BeginDraw();
 
-    model_->Render();
+    model_->Render(dt);
 
     (void)deviceContext2d_->EndDraw();
 }

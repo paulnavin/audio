@@ -8,32 +8,35 @@ Result AppTimer::Init() {
         return initResult;
     }
 
+    // Gives back frequency in counts per second.
     if (QueryPerformanceFrequency(&cpuFrequency_) == FALSE) {
         initResult.AppendError("AppTimer::Init() : Could not initialise timer.");
         return initResult;
     }
 
-    double frequency = static_cast<double>(cpuFrequency_.QuadPart);
-    secondsPerCpuCount_ = 1 / frequency;
+    // Get the frequency in counts per ms.
+    double frequency = static_cast<double>(cpuFrequency_.QuadPart / 1000);
+    msPerCpuCount_ = 1 / frequency;
     currentTime_ = 0;
     lastFrameTime_ = 0;
     lastPausedTime_ = 0;
     startTime_ = 0;
     totalIdleTime_ = 0;
+    msBetweenFrames_ = 0;
     running_ = false;
     return initResult;
 }
 
-const double AppTimer::GetTimeBetweenFramesInS() const {
-    return timeBetweenFrames_;
+const double AppTimer::GetTimeBetweenFramesInMs() const {
+    return msBetweenFrames_;
 }
 
 const double AppTimer::GetTotalRunningTimeInS() const {
     if (running_ == false) {
-        return (lastPausedTime_ - startTime_ - totalIdleTime_) * secondsPerCpuCount_;
+        return (lastPausedTime_ - startTime_ - totalIdleTime_) * msPerCpuCount_;
     }
         
-    return (currentTime_ - startTime_ - totalIdleTime_) * secondsPerCpuCount_;
+    return (currentTime_ - startTime_ - totalIdleTime_) * msPerCpuCount_;
 }
 
 Result AppTimer::Start() {
@@ -61,7 +64,7 @@ Result AppTimer::Start() {
 Result AppTimer::Update() {
     Result updateResult;
     if (running_ == false) {
-        timeBetweenFrames_ = 0;
+        msBetweenFrames_ = 0;
         return updateResult;
     }
 
@@ -72,10 +75,10 @@ Result AppTimer::Update() {
     }
 
     currentTime_ = currentTime.QuadPart;
-    timeBetweenFrames_ = (currentTime_ - lastFrameTime_) * secondsPerCpuCount_;
+    msBetweenFrames_ = static_cast<double>(currentTime_ - lastFrameTime_) * msPerCpuCount_;
     lastFrameTime_ = currentTime_;
-    if (timeBetweenFrames_ < 0) {
-        timeBetweenFrames_ = 0;
+    if (msBetweenFrames_ < 0) {
+        msBetweenFrames_ = 0;
     }
 
     return updateResult;
