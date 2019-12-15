@@ -1,16 +1,17 @@
 #pragma once
 
+#include <Ui/DirectXInterface.hpp>
+
 #include <Ui/Colour.hpp>
 #include <Ui/Result.hpp>
 
-class Ellipse2dInternals;
 class Engine2d;
 
 class Ellipse2d {
 
 public:
-    Ellipse2d();
-    ~Ellipse2d();
+    Ellipse2d() = default;
+    ~Ellipse2d() = default;
 
 public:
     Result Init(const Engine2d& engine);
@@ -18,5 +19,7 @@ public:
     Result SetColour(const Colour& newColour);
 
 private:
-    Ellipse2dInternals* internals_;
+    Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> brush_;
+    Colour colour_;
+    Microsoft::WRL::ComPtr<ID2D1DeviceContext1>  deviceContext2d_;
 };
