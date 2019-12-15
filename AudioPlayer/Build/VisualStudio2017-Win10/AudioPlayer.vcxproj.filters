@@ -42,6 +42,9 @@
     <ClInclude Include="..\..\Implementation\ModelBasic2d.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Implementation\ModelDj.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc">

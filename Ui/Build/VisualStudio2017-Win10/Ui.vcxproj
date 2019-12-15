@@ -35,6 +35,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Interface\Ui\Colour.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Config.hpp" />
+    <ClInclude Include="..\..\Interface\Ui\Dimension2d.hpp" />
     <ClInclude Include="..\..\Interface\Ui\DirectXInterface.hpp" />
     <ClInclude Include="..\..\Interface\Ui\EasyLogging++.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Ellipse2d.hpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="..\..\Interface\Ui\IniReader.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Model2d.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Model3d.hpp" />
+    <ClInclude Include="..\..\Interface\Ui\Position2d.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Rectangle2d.hpp" />
     <ClInclude Include="..\..\Interface\Ui\Result.hpp" />
     <ClInclude Include="..\..\Interface\Ui\ShaderBuffer.hpp" />
@@ -139,6 +141,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -156,6 +159,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -175,6 +179,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -196,6 +201,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

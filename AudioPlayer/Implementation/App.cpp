@@ -8,6 +8,7 @@
 #include <Ui/Window.hpp>
 
 #include "ModelBasic2d.hpp"
+#include "ModelDj.hpp"
 #include "ModelStarField.hpp"
 #include "ModelTriangle.hpp"
 #include "Resource.h"
@@ -57,8 +58,8 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
-    //model3d_ = new ModelStarField();
-    model3d_ = new ModelTriangle();
+    model3d_ = new ModelStarField();
+    //model3d_ = new ModelTriangle();
     initResult = model3d_->Init();
     if (initResult.HasErrors()) {
         initResult.AppendError("Window::Init() : Error initialising 3D model.");
@@ -77,7 +78,8 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
-    model2d_ = new ModelBasic2d();
+    //model2d_ = new ModelBasic2d();
+    model2d_ = new ModelDj();
     initResult = model2d_->Init(engine2d_);
     if (initResult.HasErrors()) {
         initResult.AppendError("Window::Init() : Error initialising 2D model.");

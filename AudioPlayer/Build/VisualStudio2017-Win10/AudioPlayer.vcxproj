@@ -182,6 +182,7 @@
     <ClInclude Include="..\..\Implementation\App.hpp" />
     <ClInclude Include="..\..\Implementation\AppTimer.hpp" />
     <ClInclude Include="..\..\Implementation\ModelBasic2d.hpp" />
+    <ClInclude Include="..\..\Implementation\ModelDj.hpp" />
     <ClInclude Include="..\..\Implementation\ModelStarField.hpp" />
     <ClInclude Include="..\..\Implementation\ModelTriangle.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />

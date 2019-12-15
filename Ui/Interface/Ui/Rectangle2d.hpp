@@ -18,6 +18,7 @@ public:
     Result Init(const Engine2d& engine);
     void Render();
     Result SetColour(const Colour& newColour);
+    Result SetDimensions(const float& x, const float& y, const float& width, const float& height);
 
 private:
     Rectangle2dInternals* internals_;

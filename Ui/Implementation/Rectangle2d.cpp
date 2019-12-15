@@ -6,16 +6,14 @@ class Rectangle2dInternals {
 public:
     Result Init(const Engine2d& engine) {
         deviceContext2d_ = engine.GetDeviceContext2d();
+        rectangle_ = { 300, 300, 50, 50 };
         return Result{};
     }
 
     void Render() {
         Result renderResult{};
 
-        D2D1_RECT_F rect = { 100,100, 150, 400 };
-        highlightBrush_->SetStartPoint(D2D1_POINT_2F({ 100, 100 }));
-        highlightBrush_->SetEndPoint(D2D1_POINT_2F({ 150, 100 }));
-        deviceContext2d_->FillRectangle(&rect, highlightBrush_.Get());
+        deviceContext2d_->FillRectangle(&rectangle_, brush_.Get());
     }
 
     Result SetColour(const Colour& newColour) {
@@ -50,11 +48,17 @@ public:
         return setResult;
     }
 
+    Result SetDimensions(const float& x, const float& y, const float& width, const float& height) {
+        rectangle_ = { x, y, x + width, y + height };
+        return Result{};
+    }
+
 private:
     Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> brush_;
     Colour colour_;
     Microsoft::WRL::ComPtr<ID2D1DeviceContext1>  deviceContext2d_;
     Microsoft::WRL::ComPtr<ID2D1LinearGradientBrush> highlightBrush_;
+    D2D1_RECT_F rectangle_;
 };
 
 Rectangle2d::Rectangle2d() {
@@ -75,4 +79,8 @@ void Rectangle2d::Render() {
 
 Result Rectangle2d::SetColour(const Colour& newColour) {
     return internals_->SetColour(newColour);
+}
+
+Result Rectangle2d::SetDimensions(const float& x, const float& y, const float& width, const float& height) {
+    return internals_->SetDimensions(x, y, width, height);
 }
