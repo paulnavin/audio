@@ -33,30 +33,30 @@
     <ClCompile Include="..\..\Implementation\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\Ui\Colour.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Config.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Dimension2d.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\DirectXInterface.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\EasyLogging++.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Ellipse2d.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Engine2d.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Engine3d.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\ErrorDisplay.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\IniReader.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Model2d.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Model3d.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Position2d.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Rectangle2d.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Result.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\ShaderBuffer.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\StlWrapper.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\StringUtil.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Text2d.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\TextManager2d.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Vertex.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\Window.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\WindowConfig.hpp" />
-    <ClInclude Include="..\..\Interface\Ui\WindowsInterface.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\Colour.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\Config.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\Dimension2d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\EasyLogging++.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\ErrorDisplay.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\IniReader.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\Model2d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\Model3d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\Position2d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\Result.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\StlWrapper.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\Vertex.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Ui\WindowConfig.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\DirectXInterface.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Ellipse2d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Engine2d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Engine3d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Rectangle2d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\ShaderBuffer.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\StringUtil.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Text2d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\TextManager2d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Window.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Ui\WindowsInterface.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -138,7 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -158,7 +158,7 @@
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -178,7 +178,7 @@
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -198,7 +198,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>

@@ -2,6 +2,8 @@
 
 #include <Ui/StringUtil.hpp>
 
+#include <Ui/WindowsInterface.hpp>
+
 namespace ErrorDisplay {
 
     void ShowErrors(const Result& result) {

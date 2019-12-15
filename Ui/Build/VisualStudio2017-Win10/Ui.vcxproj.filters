@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\DirectX">
+      <UniqueIdentifier>{c4447d5d-81d4-415b-a300-6a38050d6dc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{ee5b17f2-0388-4995-9a3a-509926ec2456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DirectX">
+      <UniqueIdentifier>{db82a71c-30f2-46e2-9fa7-6403c2737294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{3eb94546-f864-424b-9b76-fd946ea07130}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Config.cpp">
@@ -53,77 +65,77 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\Ui\Config.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\DirectXInterface.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\DirectXInterface.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Ellipse2d.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\EasyLogging++.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Engine2d.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Engine2d.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Engine3d.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Engine3d.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Rectangle2d.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\ErrorDisplay.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\ShaderBuffer.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\IniReader.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\StringUtil.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Model3d.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Text2d.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Result.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\TextManager2d.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\ShaderBuffer.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\Window.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\StlWrapper.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\DirectX\Ui\WindowsInterface.hpp">
+      <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\StringUtil.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\Colour.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Text2d.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\Config.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\TextManager2d.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\Dimension2d.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Vertex.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\EasyLogging++.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Window.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\ErrorDisplay.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\WindowConfig.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\IniReader.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\WindowsInterface.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\Model2d.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Model2d.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\Model3d.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Rectangle2d.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\Position2d.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Colour.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\Result.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Ellipse2d.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\StlWrapper.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Position2d.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\Vertex.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Ui\Dimension2d.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Interface\Common\Ui\WindowConfig.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
