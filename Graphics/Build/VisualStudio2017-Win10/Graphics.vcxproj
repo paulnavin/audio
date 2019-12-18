@@ -18,35 +18,59 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Ellipse2d.cpp" />
+    <ClCompile Include="..\..\Implementation\Engine2d.cpp" />
+    <ClCompile Include="..\..\Implementation\Engine3d.cpp" />
+    <ClCompile Include="..\..\Implementation\Rectangle2d.cpp" />
+    <ClCompile Include="..\..\Implementation\Text2d.cpp" />
+    <ClCompile Include="..\..\Implementation\TextManager2d.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Interface\Common\Graphics\Colour.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Graphics\Dimension2d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Graphics\Model2d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Graphics\Model3d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Graphics\Position2d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Graphics\Vertex.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\DirectXInterface.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\Ellipse2d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\Engine2d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\Engine3d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\Rectangle2d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\ShaderBuffer.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\Text2d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\TextManager2d.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{ACED53E8-4FEE-4754-9F4A-57CD68A0B121}</ProjectGuid>
+    <ProjectGuid>{3A9CB240-3652-4781-B835-53B0D2F7F526}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>AudioPlayer</RootNamespace>
+    <RootNamespace>Graphics</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -70,12 +94,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\Binaries\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\..\Output\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\Binaries\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\..\Output\$(Platform)\$(Configuration)\</IntDir>
@@ -90,44 +114,40 @@
     <OutDir>$(ProjectDir)..\..\Binaries\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\..\Output\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\Utility\Interface;$(ProjectDir)..\..\Implementation</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <ExceptionHandling>false</ExceptionHandling>
-      <DisableSpecificWarnings>4820</DisableSpecificWarnings>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Utility\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Graphics.lib;UserInterface.lib;UserConfiguration.lib;Utility.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>EnableAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\Utility\Interface;$(ProjectDir)..\..\Implementation</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <ExceptionHandling>false</ExceptionHandling>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\Utility\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Utility\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Graphics.lib;UserInterface.lib;UserConfiguration.lib;Utility.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\Utility\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4820</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,11 +158,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\Utility\Interface;$(ProjectDir)..\..\Implementation</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <ExceptionHandling>false</ExceptionHandling>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\Utility\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -150,8 +170,6 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Utility\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Graphics.lib;UserInterface.lib;UserConfiguration.lib;Utility.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,11 +180,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\Utility\Interface;$(ProjectDir)..\..\Implementation</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <ExceptionHandling>false</ExceptionHandling>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\Utility\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -174,54 +192,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Utility\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Graphics.lib;UserInterface.lib;UserConfiguration.lib;Utility.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Implementation\App.hpp" />
-    <ClInclude Include="..\..\Implementation\AppTimer.hpp" />
-    <ClInclude Include="..\..\Implementation\JogWheel.hpp" />
-    <ClInclude Include="..\..\Implementation\ModelBasic2d.hpp" />
-    <ClInclude Include="..\..\Implementation\ModelDj.hpp" />
-    <ClInclude Include="..\..\Implementation\ModelStarField.hpp" />
-    <ClInclude Include="..\..\Implementation\ModelTriangle.hpp" />
-    <ClInclude Include="..\..\Implementation\Resource.h" />
-    <ClInclude Include="..\..\Implementation\targetver.h" />
-    <ClInclude Include="..\..\Implementation\WindowManager.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Implementation\App.cpp" />
-    <ClCompile Include="..\..\Implementation\AppTimer.cpp" />
-    <ClCompile Include="..\..\Implementation\JogWheel.cpp" />
-    <ClCompile Include="..\..\Implementation\main.cpp" />
-    <ClCompile Include="..\..\Implementation\WindowManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\Resources\AudioPlayer.ico" />
-    <Image Include="..\..\Resources\MonkeyIcon.ico" />
-    <Image Include="..\..\Resources\small.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\Resources\DarkOxygenCursorNormal.cur" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="..\..\Implementation\PixelShader.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-    </FxCompile>
-    <FxCompile Include="..\..\Implementation\VertexShader.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-    </FxCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

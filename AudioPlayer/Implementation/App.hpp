@@ -1,14 +1,14 @@
 #pragma once
 
-#include <Ui/Config.hpp>
-#include <Ui/Engine2d.hpp>
-#include <Ui/Engine3d.hpp>
-#include <Ui/Rectangle2d.hpp>
-#include <Ui/Result.hpp>
-#include <Ui/Text2d.hpp>
-#include <Ui/TextManager2d.hpp>
-#include <Ui/Vertex.hpp>
-#include <Ui/WindowsInterface.hpp>
+#include <UserConfiguration/Config.hpp>
+#include <Graphics/Engine2d.hpp>
+#include <Graphics/Engine3d.hpp>
+#include <Graphics/Rectangle2d.hpp>
+#include <Graphics/Text2d.hpp>
+#include <Graphics/TextManager2d.hpp>
+#include <Graphics/Vertex.hpp>
+#include <UserInterface/WindowsInterface.hpp>
+#include <Utility/Result.hpp>
 
 #include "AppTimer.hpp"
 
@@ -40,7 +40,7 @@ private:
 private:
     HACCEL acceleratorTable_;
     HINSTANCE appInstance_;
-    ::Config::Config config_;
+    ::uc::ConfigStore config_;
     Engine2d engine2d_;
     Engine3d engine3d_;
     int64_t fps_;

@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Ui/Engine2d.hpp>
-#include <Ui/Ellipse2d.hpp>
-#include <Ui/Model2d.hpp>
-#include <Ui/Rectangle2d.hpp>
-#include <Ui/StlWrapper.hpp>
-#include <Ui/Text2d.hpp>
+#include <Graphics/Engine2d.hpp>
+#include <Graphics/Ellipse2d.hpp>
+#include <Graphics/Model2d.hpp>
+#include <Graphics/Rectangle2d.hpp>
+#include <Graphics/Text2d.hpp>
+#include <Utility/StlWrapper.hpp>
 
 class ModelBasic2d : public Model2d {
 public:

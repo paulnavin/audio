@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Ui/Model3d.hpp>
-#include <Ui/StlWrapper.hpp>
+#include <Graphics/Model3d.hpp>
+#include <Utility/StlWrapper.hpp>
 
 class ModelStarField : public Model3d {
 public:

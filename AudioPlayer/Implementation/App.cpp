@@ -1,11 +1,9 @@
 #include "App.hpp"
 
-#include <Ui/EasyLogging++.hpp>
-#include <Ui/Result.hpp>
-#include <Ui/StringUtil.hpp>
-#include <Ui/Vertex.hpp>
-#include <Ui/WindowConfig.hpp>
-#include <Ui/Window.hpp>
+#include <UserInterface/WindowConfig.hpp>
+#include <UserInterface/Window.hpp>
+#include <Utility/EasyLogging++.hpp>
+#include <Utility/Result.hpp>
 
 #include "ModelBasic2d.hpp"
 #include "ModelDj.hpp"

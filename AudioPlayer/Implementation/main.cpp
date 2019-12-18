@@ -1,7 +1,7 @@
-#include <Ui/WindowsInterface.hpp>
-#include <Ui/EasyLogging++.hpp>
-#include <Ui/ErrorDisplay.hpp>
-#include <Ui/Result.hpp>
+#include <UserInterface/WindowsInterface.hpp>
+#include <UserInterface/ErrorDisplay.hpp>
+#include <Utility/EasyLogging++.hpp>
+#include <Utility/Result.hpp>
 
 #include "App.hpp"
 
