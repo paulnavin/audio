@@ -1,8 +1,6 @@
 .vs
-AudioPlayer/Binaries
-AudioPlayer/Output
-Ui/Binaries
-Ui/Output
+Binaries
+Output
 *.user
 myeasylog.log
 *.aps
