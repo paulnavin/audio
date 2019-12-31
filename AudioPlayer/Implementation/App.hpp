@@ -1,14 +1,15 @@
 #pragma once
 
 #include <UserConfiguration/Config.hpp>
+#include <UserInput/InputManager.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/Engine3d.hpp>
 #include <Graphics/Rectangle2d.hpp>
 #include <Graphics/Text2d.hpp>
 #include <Graphics/TextManager2d.hpp>
 #include <Graphics/Vertex.hpp>
-#include <UserInterface/WindowsInterface.hpp>
 #include <Utility/Result.hpp>
+#include <Utility/WindowsInterface.hpp>
 
 #include "AppTimer.hpp"
 
@@ -44,6 +45,7 @@ private:
     Engine2d engine2d_;
     Engine3d engine3d_;
     int64_t fps_;
+    InputManager inputManager_;
     double lastFpsCalculationTime_;
     Model3d* model3d_;
     Model2d* model2d_;

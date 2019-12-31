@@ -1,10 +1,9 @@
 #pragma once
 
-#include <Utility/StlWrapper.hpp>
-#include <UserInterface/WindowsInterface.hpp>
-
-#include <Utility/Result.hpp>
 #include <UserInterface/Window.hpp>
+#include <Utility/StlWrapper.hpp>
+#include <Utility/Result.hpp>
+#include <Utility/WindowsInterface.hpp>
 
 struct WindowConfig;
 

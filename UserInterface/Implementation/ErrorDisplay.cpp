@@ -2,7 +2,7 @@
 
 #include "StringUtil.hpp"
 
-#include <UserInterface/WindowsInterface.hpp>
+#include <Utility/WindowsInterface.hpp>
 
 namespace ErrorDisplay {
 

@@ -18,6 +18,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Interface\UserInput\CoreCommands.hpp" />
+    <ClInclude Include="..\..\Interface\UserInput\InputManager.hpp" />
+    <ClInclude Include="..\..\Interface\UserInput\KeyBinding.hpp" />
+    <ClInclude Include="..\..\Interface\UserInput\Command.hpp" />
+    <ClInclude Include="..\..\Interface\UserInput\KeyState.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Command.cpp" />
+    <ClCompile Include="..\..\Implementation\InputManager.cpp" />
+    <ClCompile Include="..\..\Implementation\KeyBinding.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{33362B03-B0CA-45A2-B01E-1DBD5015EB5C}</ProjectGuid>
@@ -74,21 +86,25 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\Binaries\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\..\Output\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)..\..\..\Utility\Interface;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\Binaries\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\..\Output\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)..\..\..\Utility\Interface;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\Binaries\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\..\Output\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)..\..\..\Utility\Interface;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\Binaries\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\..\Output\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)..\..\..\Utility\Interface;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -100,6 +116,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;$(ProjectDir)..\..\..\Utility\Interface\Common;$(ProjectDir)..\..\..\Utility\Interface\Win10</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -116,6 +133,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;$(ProjectDir)..\..\..\Utility\Interface\Common;$(ProjectDir)..\..\..\Utility\Interface\Win10</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -134,6 +152,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;$(ProjectDir)..\..\..\Utility\Interface\Common;$(ProjectDir)..\..\..\Utility\Interface\Win10</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,6 +173,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;$(ProjectDir)..\..\..\Utility\Interface\Common;$(ProjectDir)..\..\..\Utility\Interface\Win10</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

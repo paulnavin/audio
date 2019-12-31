@@ -19,13 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\Result.hpp" />
-    <ClInclude Include="..\..\Interface\Utility\EasyLogging++.hpp" />
-    <ClInclude Include="..\..\Interface\Utility\StlWrapper.hpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\Implementation\EasyLogging++.cpp" />
     <ClCompile Include="..\..\Implementation\Result.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Interface\Common\Utility\EasyLogging++.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Utility\Result.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Utility\StlWrapper.hpp" />
+    <ClInclude Include="..\..\Interface\Win10\Utility\WindowsInterface.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -109,7 +110,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\Utility\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\Utility\Interface\Common;$(ProjectDir)..\..\..\Utility\Interface\Win10</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -126,7 +127,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\Utility\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\Utility\Interface\Common;$(ProjectDir)..\..\..\Utility\Interface\Win10</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -145,7 +146,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\Utility\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\Utility\Interface\Common;$(ProjectDir)..\..\..\Utility\Interface\Win10</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -166,7 +167,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\Utility\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\Utility\Interface\Common;$(ProjectDir)..\..\..\Utility\Interface\Win10</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -164,6 +164,7 @@ Result App::Run() {
 
 void App::Update(const double& dt) {
     model2d_->Update(dt);
+    inputManager_.Update();
 }
 
 Result App::Render(const double& dt) {

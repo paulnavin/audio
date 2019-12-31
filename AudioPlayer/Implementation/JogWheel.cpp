@@ -1,7 +1,7 @@
 #include "JogWheel.hpp"
 
 #include <Graphics/Engine2d.hpp>
-#include <UserInterface/WindowsInterface.hpp>
+#include <Utility/WindowsInterface.hpp>
 
 Result JogWheel::Init(const Engine2d& engine) {
     deviceContext2d_ = engine.GetDeviceContext2d();

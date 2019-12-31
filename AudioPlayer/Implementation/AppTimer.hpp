@@ -1,6 +1,6 @@
 #pragma once
 
-#include <UserInterface/WindowsInterface.hpp>
+#include <Utility/WindowsInterface.hpp>
 
 #pragma warning(push)
 #pragma warning( disable : 4577)

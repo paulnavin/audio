@@ -1,8 +1,7 @@
 #pragma once
 
-#include <UserInterface/WindowsInterface.hpp>
-
 #include <Utility/Result.hpp>
+#include <Utility/WindowsInterface.hpp>
 
 struct WindowConfig;
 
