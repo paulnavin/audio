@@ -59,7 +59,9 @@ public:
         openFile1Button_.Render();
         openFile2Button_.Render();
         jogWheel1_.Render(dt);
-        fpsText_.Render();
+        if (showFpsText_ == true) {
+            fpsText_.Render();
+        }
     }
 
     void SetFps(const int64_t& newFps) override {

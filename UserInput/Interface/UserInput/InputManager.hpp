@@ -6,10 +6,14 @@
 
 class InputManager {
 public:
+    using CommandMap = std::map<Command::Id, Command*>;
+
+public:
     InputManager();
     ~InputManager();
 
 public:
+    const CommandMap* GetActiveKeyMap() const;
     const KeyState GetStateForKey(const unsigned int keyCode) const;
     const bool IsKeyPressed(const uint16_t& keyCode) const;
 
@@ -18,7 +22,6 @@ public:
     void Update();
 
 private:
-    using CommandMap = std::map<Command::Id, Command*>;
     static constexpr size_t KEY_COUNT = 256;
 private:
     CommandMap activeKeyMap_;

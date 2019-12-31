@@ -2,6 +2,7 @@
 
 #include <UserInterface/WindowConfig.hpp>
 #include <UserInterface/Window.hpp>
+#include <UserInput/CoreCommands.hpp>
 #include <Utility/EasyLogging++.hpp>
 #include <Utility/Result.hpp>
 
@@ -165,6 +166,12 @@ Result App::Run() {
 void App::Update(const double& dt) {
     model2d_->Update(dt);
     inputManager_.Update();
+
+    const InputManager::CommandMap* activeCommands = inputManager_.GetActiveKeyMap();
+    if (activeCommands->find(ToggleFps) != activeCommands->end()) {
+        showFps_ = !showFps_;
+        model2d_->SetShowFps(showFps_);
+    }
 }
 
 Result App::Render(const double& dt) {
@@ -174,7 +181,6 @@ Result App::Render(const double& dt) {
     engine3d_.ClearBuffers();
 
     // (2) Draw any 3D stuff.
-    UNREFERENCED_PARAMETER(dt);
     engine3d_.RenderVertices();
 
     // (3) Draw any 2D stuff on top of the 3D stuff.

@@ -18,14 +18,13 @@ InputManager::InputManager() {
 }
 
 InputManager::~InputManager() {
-    CommandMap::iterator commandFinder = coreKeyMap_.begin();
-    CommandMap::iterator commandEnd = coreKeyMap_.end();
-    while (commandFinder != commandEnd) {
-        delete commandFinder->second;
-
-        // Loop incrementer;
-        ++commandFinder;
+    for (auto command : coreKeyMap_) {
+        delete command.second;
     }
+}
+
+const InputManager::CommandMap* InputManager::GetActiveKeyMap() const {
+    return &activeKeyMap_;
 }
 
 const KeyState InputManager::GetStateForKey(const unsigned int keyCode) const {
@@ -64,17 +63,17 @@ void InputManager::Update() {
     activeKeyMap_.clear();
 
     // Go through all the possible bindings to see if they're active.
-    for (auto x : coreKeyMap_) {
+    for (auto command : coreKeyMap_) {
         isActive = true;
         // For each binding, check whether all the key combinations are active.
-        for (auto y : x.second->keyCombo) {
-            if (GetStateForKey(y.keyCode) != y.keyState) {
+        for (auto binding : command.second->keyCombo) {
+            if (GetStateForKey(binding.keyCode) != binding.keyState) {
                 isActive = false;
                 break;
             }
         }
         if (isActive == true) {
-            activeKeyMap_.insert(std::pair<Command::Id, Command*>(x.first, x.second));
+            activeKeyMap_.insert(std::pair<Command::Id, Command*>(command.first, command.second));
         }
     }
 }
