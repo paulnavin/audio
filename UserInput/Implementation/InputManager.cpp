@@ -12,6 +12,12 @@ InputManager::InputManager() {
     toggleFpsBindings.push_back(KeyBinding('F', KeyState::JustPressed));
     coreKeyMap_[ToggleFps] = new Command("Toggle FPS", toggleFpsBindings);
 
+    std::vector<KeyBinding> toggleMousePositionBindings;
+    toggleMousePositionBindings.push_back(KeyBinding(VK_SHIFT, KeyState::StillPressed));
+    toggleMousePositionBindings.push_back(KeyBinding(VK_CONTROL, KeyState::StillPressed));
+    toggleMousePositionBindings.push_back(KeyBinding('M', KeyState::JustPressed));
+    coreKeyMap_[ToggleMousePosition] = new Command("Toggle FPS", toggleMousePositionBindings);
+
     std::vector<KeyBinding> quitBindings;
     quitBindings.push_back(KeyBinding(VK_ESCAPE, KeyState::JustPressed));
     coreKeyMap_[Quit] = new Command("Quit", quitBindings);

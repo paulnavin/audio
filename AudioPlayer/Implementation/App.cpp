@@ -167,9 +167,14 @@ void App::Update(const double& dt) {
     inputManager_.Update();
 
     const InputManager::CommandMap* activeCommands = inputManager_.GetActiveKeyMap();
-    if (activeCommands->find(ToggleFps) != activeCommands->end()) {
-        showFps_ = !showFps_;
-        model2d_->SetShowFps(showFps_);
+    for (auto command : *activeCommands) {
+        if (command.first == ToggleFps) {
+            showFps_ = !showFps_;
+            model2d_->SetShowFps(showFps_);
+        } else if (command.first == ToggleMousePosition) {
+            showMousePosition_ = !showMousePosition_;
+            model2d_->SetShowMousePosition(showMousePosition_);
+        }
     }
 
     model2d_->SetMousePosition(inputManager_.GetMouseXPos(), inputManager_.GetMouseYPos());

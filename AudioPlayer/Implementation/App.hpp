@@ -50,6 +50,7 @@ private:
     Model3d* model3d_;
     Model2d* model2d_;
     bool showFps_ = true;
+    bool showMousePosition_ = true;
     AppTimer timer_;
     int64_t totalAppFrames_;
     Window* mainWindow_;
