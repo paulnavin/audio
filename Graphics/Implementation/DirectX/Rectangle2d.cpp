@@ -2,13 +2,17 @@
 
 #include <Graphics/Engine2d.hpp>
 
+Rectangle2d::Rectangle2d(Element* parent) : Element (parent) {
+
+}
+
 Result Rectangle2d::Init(const Engine2d& engine) {
     deviceContext2d_ = engine.GetDeviceContext2d();
-    rectangle_ = { 300, 300, 50, 50 };
     return Result{};
 }
 
-void Rectangle2d::Render() {
+void Rectangle2d::Render(const double&) {
+    rectangle_ = { position_.x, position_.y, position_.x + dimensions_.width, position_.y + dimensions_.height };
     deviceContext2d_->FillRectangle(&rectangle_, brush_.Get());
 }
 
@@ -42,9 +46,4 @@ Result Rectangle2d::SetColour(const Colour& newColour) {
     }
 
     return setResult;
-}
-
-Result Rectangle2d::SetDimensions(const float& x, const float& y, const float& width, const float& height) {
-    rectangle_ = { x, y, x + width, y + height };
-    return Result{};
 }

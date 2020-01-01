@@ -77,7 +77,6 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
-    //model2d_ = new ModelBasic2d();
     djModel2d_ = new ModelDj();
     initResult = djModel2d_->Init(engine2d_);
     if (initResult.HasErrors()) {
@@ -94,8 +93,7 @@ Result App::Init(const HINSTANCE& appInstance) {
     }
     basicModel2d_->SetShowFps(showFps_);
 
-    active2dModel_ = djModel2d_;
-    engine2d_.SetModel(active2dModel_);
+    SetActive2dModel(djModel2d_);
 
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
 
@@ -181,11 +179,10 @@ void App::Update(const double& dt) {
             active2dModel_->SetShowMousePosition(showMousePosition_);
         } else if (command.first == Toggle2dModel) {
             if (active2dModel_ == djModel2d_) {
-                active2dModel_ = basicModel2d_;
+                SetActive2dModel(basicModel2d_);
             } else {
-                active2dModel_ = djModel2d_;
+                SetActive2dModel(djModel2d_);
             }
-            engine2d_.SetModel(active2dModel_);
         }
     }
 
@@ -229,6 +226,11 @@ void App::ShutDown() {
         delete basicModel2d_;
     }
     basicModel2d_ = nullptr;
+}
+
+void App::SetActive2dModel(Model2d* newActiveModel) {
+    active2dModel_ = newActiveModel;
+    engine2d_.SetModel(active2dModel_);
 }
 
 Result App::UpdateFps() {

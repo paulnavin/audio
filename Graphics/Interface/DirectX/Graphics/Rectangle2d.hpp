@@ -2,22 +2,22 @@
 
 #include <Graphics/Colour.hpp>
 #include <Graphics/DirectXInterface.hpp>
+#include <Graphics/Element.hpp>
 
 #include <Utility/Result.hpp>
 
 class Engine2d;
 
-class Rectangle2d {
+class Rectangle2d : public Element {
 
 public:
-    Rectangle2d() = default;
+    Rectangle2d(Element* parent);
     ~Rectangle2d() = default;
 
 public:
-    Result Init(const Engine2d& engine);
-    void Render();
+    Result Init(const Engine2d& engine) override;
+    void Render(const double& dt);
     Result SetColour(const Colour& newColour);
-    Result SetDimensions(const float& x, const float& y, const float& width, const float& height);
 
 private:
     Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> brush_;

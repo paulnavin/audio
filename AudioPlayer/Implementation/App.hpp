@@ -36,6 +36,7 @@ private:
 private:
     void Update(const double& dt);
     Result Render(const double& dt);
+    void SetActive2dModel(Model2d* newActiveModel);
     Result UpdateFps();
 
 private:

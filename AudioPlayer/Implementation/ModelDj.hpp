@@ -11,7 +11,7 @@
 
 class ModelDj : public Model2d {
 public:
-    ModelDj() : fpsText_(nullptr), mousePositionText_(nullptr) {};
+    ModelDj() : Model2d(), openFile1Button_(nullptr), openFile2Button_(nullptr), fpsText_(nullptr), mousePositionText_(nullptr) {};
     ~ModelDj() = default;
 
 public:
@@ -22,7 +22,8 @@ public:
             return initResult;
         }
         openFile1Button_.SetColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
-        openFile1Button_.SetDimensions(0.0f, 0.0f, 50.0f, 50.0f);
+        openFile1Button_.SetPosition(0.0f, 0.0f);
+        openFile1Button_.SetDimensions(50.0f, 50.0f);
 
         initResult = openFile2Button_.Init(engine);
         if (initResult.HasErrors()) {
@@ -30,7 +31,8 @@ public:
             return initResult;
         }
         openFile2Button_.SetColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
-        openFile2Button_.SetDimensions(900.0f, 0.0f, 50.0f, 50.0f);
+        openFile2Button_.SetPosition(900.0f, 0.0f);
+        openFile2Button_.SetDimensions(50.0f, 50.0f);
 
         initResult = jogWheel1_.Init(engine);
         if (initResult.HasErrors()) {
@@ -66,8 +68,8 @@ public:
     }
 
     void Render(const double& dt) override {
-        openFile1Button_.Render();
-        openFile2Button_.Render();
+        openFile1Button_.Render(dt);
+        openFile2Button_.Render(dt);
         jogWheel1_.Render(dt);
 
         if (showFps_ == true) {

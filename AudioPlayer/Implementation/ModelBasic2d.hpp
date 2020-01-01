@@ -9,7 +9,7 @@
 
 class ModelBasic2d : public Model2d {
 public:
-    explicit ModelBasic2d() : Model2d(), fpsText_(nullptr) {};
+    explicit ModelBasic2d() : Model2d(), rectangle_(nullptr), fpsText_(nullptr) {};
     ~ModelBasic2d() = default;
 
 public:
@@ -20,6 +20,8 @@ public:
             return initResult;
         }
         rectangle_.SetColour(Colour{ 1.0f, 0.0f, 1.0f, 1.0f });
+        rectangle_.SetPosition(300.0f, 300.0f);
+        rectangle_.SetDimensions(50.0f, 50.0f);
 
         initResult = ellipse_.Init(engine);
         if (initResult.HasErrors()) {
@@ -45,7 +47,7 @@ public:
 
     void Render(const double& dt) override {
         ellipse_.Render();
-        rectangle_.Render();
+        rectangle_.Render(dt);
         if (showFps_ == true) {
             fpsText_.Render(dt);
         }
