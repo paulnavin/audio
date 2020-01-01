@@ -47,8 +47,8 @@ public:
     Result LoadConfig(const std::string& fileName) {
         fileName_ = fileName;
         ConfigInternals::KeyValueMap newMap;
-        newMap["width"] = "1024";
-        newMap["height"] = "768";
+        newMap["width"] = "1600";
+        newMap["height"] = "900";
         allConfigs_[fileName] = newMap;
         return Result{};
     }

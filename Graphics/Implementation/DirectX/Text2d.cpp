@@ -11,6 +11,8 @@ Result Text2d::Init(const Engine2d& engine) {
     brush_ = textManager.GetFpsBrush();
     writeFactory_ = textManager.GetWriteFactory();
 
+    textPosition_ = D2D1::Point2F(5.0f, 5.0f);
+
     return Result{};
 }
 
@@ -19,7 +21,12 @@ void Text2d::Render() {
         return;
     }
 
-    deviceContext2d_->DrawTextLayout(D2D1::Point2F(5.0f, 5.0f), textLayout_.Get(), brush_.Get());
+    deviceContext2d_->DrawTextLayout(textPosition_, textLayout_.Get(), brush_.Get());
+}
+
+Result Text2d::SetPosition(const float& newX, const float& newY) {
+    textPosition_ = D2D1::Point2F(newX, newY);
+    return Result{};
 }
 
 Result Text2d::SetText(const std::wstring& newText) {

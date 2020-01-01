@@ -27,6 +27,14 @@ const InputManager::CommandMap* InputManager::GetActiveKeyMap() const {
     return &activeKeyMap_;
 }
 
+const int32_t InputManager::GetMouseXPos() const {
+    return mouseXPos_;
+}
+
+const int32_t InputManager::GetMouseYPos() const {
+    return mouseYPos_;
+}
+
 const KeyState InputManager::GetStateForKey(const unsigned int keyCode) const {
     if (keyboardStatePrevious_[keyCode] == true) {
         if (keyboardStateCurrent_[keyCode] == true) {
@@ -56,8 +64,16 @@ void InputManager::RefreshKeyboardState() {
     }
 }
 
+void InputManager::RefreshMouseState() {
+    POINT mousePoint;
+    GetCursorPos(&mousePoint);
+    mouseXPos_ = mousePoint.x;
+    mouseYPos_ = mousePoint.y;
+}
+
 void InputManager::Update() {
     RefreshKeyboardState();
+    RefreshMouseState();
 
     bool isActive = false;
     activeKeyMap_.clear();

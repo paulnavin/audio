@@ -27,26 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\Ellipse2d.cpp">
-      <Filter>Source Files\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Engine2d.cpp">
-      <Filter>Source Files\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Engine3d.cpp">
-      <Filter>Source Files\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Rectangle2d.cpp">
-      <Filter>Source Files\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Text2d.cpp">
-      <Filter>Source Files\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\TextManager2d.cpp">
-      <Filter>Source Files\DirectX</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\Interface\DirectX\Graphics\DirectXInterface.hpp">
       <Filter>Header Files\DirectX</Filter>
     </ClInclude>
@@ -89,5 +69,28 @@
     <ClInclude Include="..\..\Interface\Common\Graphics\Vertex.hpp">
       <Filter>Header Files\Common</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Common\Model2d.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\Ellipse2d.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\Engine2d.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\Engine3d.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\Rectangle2d.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\Text2d.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\TextManager2d.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

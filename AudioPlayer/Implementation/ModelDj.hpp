@@ -18,7 +18,7 @@ public:
     virtual Result Init(const Engine2d& engine) override {
         Result initResult = openFile1Button_.Init(engine);
         if (initResult.HasErrors()) {
-            initResult.AppendError("Window::Init() : Error initialising 2D rectangle.");
+            initResult.AppendError("ModelDj::Init() : Error initialising 2D rectangle.");
             return initResult;
         }
         openFile1Button_.SetColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
@@ -26,7 +26,7 @@ public:
 
         initResult = openFile2Button_.Init(engine);
         if (initResult.HasErrors()) {
-            initResult.AppendError("Window::Init() : Error initialising 2D rectangle.");
+            initResult.AppendError("ModelDj::Init() : Error initialising 2D rectangle.");
             return initResult;
         }
         openFile2Button_.SetColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
@@ -34,7 +34,7 @@ public:
 
         initResult = jogWheel1_.Init(engine);
         if (initResult.HasErrors()) {
-            initResult.AppendError("Window::Init() : Error initialising 2D jog wheel.");
+            initResult.AppendError("ModelDj::Init() : Error initialising 2D jog wheel.");
             return initResult;
         }
         jogWheel1_.SetSlipmatColour(Colour{ 1.0f, 0.5f, 0.5f, 1.0f });
@@ -42,11 +42,25 @@ public:
 
         initResult = fpsText_.Init(engine);
         if (initResult.HasErrors()) {
-            initResult.AppendError("Window::Init() : Error initialising 2D FPS text.");
+            initResult.AppendError("ModelDj::Init() : Error initialising 2D FPS text.");
             return initResult;
         }
 
-        showFpsText_ = true;
+        showFps_ = true;
+
+        initResult = mousePositionText_.Init(engine);
+        if (initResult.HasErrors()) {
+            initResult.AppendError("ModelDj::Init() : Error initialising 2D mouse position text.");
+            return initResult;
+        }
+
+        initResult = mousePositionText_.SetPosition(5.0f, 35.0f);
+        if (initResult.HasErrors()) {
+            initResult.AppendError("ModelDj::Init() : Error initialising 2D mouse position text.");
+            return initResult;
+        }
+
+        showMousePosition_ = true;
 
         return Result{};
     }
@@ -59,21 +73,34 @@ public:
         openFile1Button_.Render();
         openFile2Button_.Render();
         jogWheel1_.Render(dt);
-        if (showFpsText_ == true) {
+
+        if (showFps_ == true) {
             fpsText_.Render();
+        }
+
+        if (showMousePosition_ == true) {
+            mousePositionText_.Render();
         }
     }
 
     void SetFps(const int64_t& newFps) override {
+        Model2d::SetFps(newFps);
+
         std::wostringstream fpsString{};
         fpsString.precision(6);
-        fpsString << "FPS: " << newFps << std::endl;
+        fpsString << "FPS: " << fps_ << std::endl;
 
         fpsText_.SetText(fpsString.str());
     }
 
-    void SetShowFps(const bool show) override {
-        showFpsText_ = show;
+    void SetMousePosition(const int32_t& x, const int32_t& y) override {
+        Model2d::SetMousePosition(x, y);
+
+        std::wostringstream outputString{};
+        outputString.precision(6);
+        outputString << "Mouse: " << x << ", " << y << std::endl;
+
+        mousePositionText_.SetText(outputString.str());
     }
 
 private:
@@ -82,6 +109,6 @@ private:
     Rectangle2d openFile2Button_;
 
     Text2d fpsText_;
-    bool showFpsText_;
+    Text2d mousePositionText_;
 };
 

@@ -19,14 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\Ellipse2d.cpp" />
-    <ClCompile Include="..\..\Implementation\Engine2d.cpp" />
-    <ClCompile Include="..\..\Implementation\Engine3d.cpp" />
-    <ClCompile Include="..\..\Implementation\Rectangle2d.cpp" />
-    <ClCompile Include="..\..\Implementation\Text2d.cpp" />
-    <ClCompile Include="..\..\Implementation\TextManager2d.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\Interface\Common\Graphics\Colour.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Dimension2d.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Model2d.hpp" />
@@ -41,6 +33,15 @@
     <ClInclude Include="..\..\Interface\DirectX\Graphics\ShaderBuffer.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Text2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\TextManager2d.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Common\Model2d.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\Ellipse2d.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\Engine2d.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\Engine3d.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\Rectangle2d.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\Text2d.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\TextManager2d.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

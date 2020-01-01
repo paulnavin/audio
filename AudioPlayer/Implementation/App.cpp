@@ -164,7 +164,6 @@ Result App::Run() {
 }
 
 void App::Update(const double& dt) {
-    model2d_->Update(dt);
     inputManager_.Update();
 
     const InputManager::CommandMap* activeCommands = inputManager_.GetActiveKeyMap();
@@ -172,6 +171,9 @@ void App::Update(const double& dt) {
         showFps_ = !showFps_;
         model2d_->SetShowFps(showFps_);
     }
+
+    model2d_->SetMousePosition(inputManager_.GetMouseXPos(), inputManager_.GetMouseYPos());
+    model2d_->Update(dt);
 }
 
 Result App::Render(const double& dt) {

@@ -34,7 +34,7 @@ public:
             return initResult;
         }
 
-        showFpsText_ = true;
+        showFps_ = true;
 
         return Result{};
     }
@@ -47,25 +47,24 @@ public:
         UNREFERENCED_PARAMETER(dt);
         ellipse_.Render();
         rectangle_.Render();
-        fpsText_.Render();
+        if (showFps_ == true) {
+            fpsText_.Render();
+        }
     }
 
     void SetFps(const int64_t& newFps) override {
+        Model2d::SetFps(newFps);
+
         std::wostringstream fpsString{};
         fpsString.precision(6);
-        fpsString << "FPS: " << newFps << std::endl;
+        fpsString << "FPS: " << fps_ << std::endl;
 
         fpsText_.SetText(fpsString.str());
-    }
-
-    void SetShowFps(const bool show) override {
-        showFpsText_ = show;
     }
 
 private:
     Ellipse2d ellipse_;
     Rectangle2d rectangle_;
     Text2d fpsText_;
-    bool showFpsText_;
 };
 
