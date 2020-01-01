@@ -11,7 +11,13 @@
 
 class ModelDj : public Model2d {
 public:
-    ModelDj() : Model2d(), openFile1Button_(nullptr), openFile2Button_(nullptr), fpsText_(nullptr), mousePositionText_(nullptr) {};
+    ModelDj()
+        : Model2d()
+        , jogWheel1_(nullptr)
+        , openFile1Button_(nullptr)
+        , openFile2Button_(nullptr)
+        , fpsText_(nullptr)
+        , mousePositionText_(nullptr) {};
     ~ModelDj() = default;
 
 public:
@@ -60,6 +66,7 @@ public:
 
         showMousePosition_ = true;
 
+        elements_.insert(&jogWheel1_);
         elements_.insert(&openFile1Button_);
         elements_.insert(&openFile2Button_);
 
@@ -71,14 +78,6 @@ public:
 
     void Update(const double& dt) override {
         jogWheel1_.Update(dt);
-    }
-
-    void Render(const double& dt) override {
-        jogWheel1_.Render(dt);
-
-        for (Element* element : elements_) {
-            element->Render(dt);
-        }
     }
 
     void SetFps(const int64_t& newFps) override {

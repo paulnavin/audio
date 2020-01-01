@@ -1,5 +1,11 @@
 #include <Graphics/Model2d.hpp>
 
+void Model2d::Render(const double& dt) {
+    for (Element* element : elements_) {
+        element->Render(dt);
+    }
+}
+
 void Model2d::SetFps(const int64_t& newFps) {
     fps_ = newFps;
 }

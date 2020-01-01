@@ -18,7 +18,7 @@ public:
     virtual void Update(const double& dt) = 0;
 
     // Note: No Result passing in Render, for performance reasons.
-    virtual void Render(const double& dt) = 0;
+    void Render(const double& dt);
 
     virtual void SetFps(const int64_t& newFps);
     virtual void SetShowFps(const bool show);

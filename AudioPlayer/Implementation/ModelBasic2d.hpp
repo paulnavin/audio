@@ -40,19 +40,16 @@ public:
 
         showFps_ = true;
 
+        elements_.insert(&ellipse_);
+        elements_.insert(&rectangle_);
+
+        SetFpsElement(&fpsText_);
+
         return Result{};
     }
 
     void Update(const double& dt) override {
         UNREFERENCED_PARAMETER(dt);
-    }
-
-    void Render(const double& dt) override {
-        ellipse_.Render(dt);
-        rectangle_.Render(dt);
-        if (showFps_ == true) {
-            fpsText_.Render(dt);
-        }
     }
 
     void SetFps(const int64_t& newFps) override {

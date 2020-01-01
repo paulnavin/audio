@@ -3,6 +3,10 @@
 #include <Graphics/Engine2d.hpp>
 #include <Utility/WindowsInterface.hpp>
 
+JogWheel::JogWheel(Element* parent) : Element(parent) {
+
+}
+
 Result JogWheel::Init(const Engine2d& engine) {
     deviceContext2d_ = engine.GetDeviceContext2d();
 
