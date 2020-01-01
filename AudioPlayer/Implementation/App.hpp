@@ -48,7 +48,9 @@ private:
     InputManager inputManager_;
     double lastFpsCalculationTime_;
     Model3d* model3d_;
-    Model2d* model2d_;
+    Model2d* djModel2d_;
+    Model2d* basicModel2d_;
+    Model2d* active2dModel_;
     bool showFps_ = true;
     bool showMousePosition_ = true;
     AppTimer timer_;

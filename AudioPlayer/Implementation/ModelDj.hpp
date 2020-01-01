@@ -11,7 +11,7 @@
 
 class ModelDj : public Model2d {
 public:
-    ModelDj() = default;
+    ModelDj() : fpsText_(nullptr), mousePositionText_(nullptr) {};
     ~ModelDj() = default;
 
 public:
@@ -54,11 +54,7 @@ public:
             return initResult;
         }
 
-        initResult = mousePositionText_.SetPosition(5.0f, 35.0f);
-        if (initResult.HasErrors()) {
-            initResult.AppendError("ModelDj::Init() : Error initialising 2D mouse position text.");
-            return initResult;
-        }
+        mousePositionText_.SetPosition(5.0f, 35.0f);
 
         showMousePosition_ = true;
 
@@ -75,11 +71,11 @@ public:
         jogWheel1_.Render(dt);
 
         if (showFps_ == true) {
-            fpsText_.Render();
+            fpsText_.Render(dt);
         }
 
         if (showMousePosition_ == true) {
-            mousePositionText_.Render();
+            mousePositionText_.Render(dt);
         }
     }
 

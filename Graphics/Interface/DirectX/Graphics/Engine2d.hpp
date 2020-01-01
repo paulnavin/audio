@@ -21,8 +21,8 @@ public:
 
 public:
     Result Init(const Window& newWindow, const Engine3d& newEngine);
-    Result InitGraphics(Model2d* model);
     void RenderModel(const double& dt);
+    void SetModel(Model2d* model);
 
 private:
     Result CreateDevice();

@@ -78,19 +78,24 @@ Result App::Init(const HINSTANCE& appInstance) {
     }
 
     //model2d_ = new ModelBasic2d();
-    model2d_ = new ModelDj();
-    initResult = model2d_->Init(engine2d_);
+    djModel2d_ = new ModelDj();
+    initResult = djModel2d_->Init(engine2d_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 2D model.");
+        initResult.AppendError("Window::Init() : Error initialising DJ 2D model.");
         return initResult;
     }
-    model2d_->SetShowFps(showFps_);
+    djModel2d_->SetShowFps(showFps_);
 
-    initResult = engine2d_.InitGraphics(model2d_);
+    basicModel2d_ = new ModelBasic2d();
+    initResult = basicModel2d_->Init(engine2d_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 2D graphics.");
+        initResult.AppendError("Window::Init() : Error initialising basic 2D model.");
         return initResult;
     }
+    basicModel2d_->SetShowFps(showFps_);
+
+    active2dModel_ = djModel2d_;
+    engine2d_.SetModel(active2dModel_);
 
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
 
@@ -170,15 +175,22 @@ void App::Update(const double& dt) {
     for (auto command : *activeCommands) {
         if (command.first == ToggleFps) {
             showFps_ = !showFps_;
-            model2d_->SetShowFps(showFps_);
+            active2dModel_->SetShowFps(showFps_);
         } else if (command.first == ToggleMousePosition) {
             showMousePosition_ = !showMousePosition_;
-            model2d_->SetShowMousePosition(showMousePosition_);
+            active2dModel_->SetShowMousePosition(showMousePosition_);
+        } else if (command.first == Toggle2dModel) {
+            if (active2dModel_ == djModel2d_) {
+                active2dModel_ = basicModel2d_;
+            } else {
+                active2dModel_ = djModel2d_;
+            }
+            engine2d_.SetModel(active2dModel_);
         }
     }
 
-    model2d_->SetMousePosition(inputManager_.GetMouseXPos(), inputManager_.GetMouseYPos());
-    model2d_->Update(dt);
+    active2dModel_->SetMousePosition(inputManager_.GetMouseXPos(), inputManager_.GetMouseYPos());
+    active2dModel_->Update(dt);
 }
 
 Result App::Render(const double& dt) {
@@ -208,10 +220,15 @@ void App::ShutDown() {
     }
     model3d_ = nullptr;
 
-    if (model2d_ != nullptr) {
-        delete model2d_;
+    if (djModel2d_ != nullptr) {
+        delete djModel2d_;
     }
-    model2d_ = nullptr;
+    djModel2d_ = nullptr;
+
+    if (basicModel2d_ != nullptr) {
+        delete basicModel2d_;
+    }
+    basicModel2d_ = nullptr;
 }
 
 Result App::UpdateFps() {
@@ -224,7 +241,7 @@ Result App::UpdateFps() {
 
         totalAppFrames_ = 0;
         lastFpsCalculationTime_ += MS_PER_SECOND;
-        model2d_->SetFps(fps_);
+        active2dModel_->SetFps(fps_);
     }
 
     return Result{};

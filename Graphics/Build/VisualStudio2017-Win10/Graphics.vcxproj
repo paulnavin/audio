@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Interface\Common\Graphics\Colour.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Dimension2d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Graphics\Element.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Model2d.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Model3d.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Position2d.hpp" />
@@ -35,6 +36,7 @@
     <ClInclude Include="..\..\Interface\DirectX\Graphics\TextManager2d.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Common\Element.cpp" />
     <ClCompile Include="..\..\Implementation\Common\Model2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Ellipse2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Engine2d.cpp" />

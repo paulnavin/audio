@@ -1,21 +1,23 @@
 #pragma once
 
 #include <Graphics/DirectXInterface.hpp>
+#include <Graphics/Element.hpp>
 
 #include <Utility/Result.hpp>
 
 class Engine2d;
 
-class Text2d {
+class Text2d : public Element {
 
 public:
-    Text2d() = default;
+    Text2d(Element* parent);
     ~Text2d() = default;
 
 public:
-    Result Init(const Engine2d& engine);
-    void Render();
-    Result SetPosition(const float& newX, const float& newY);
+    Result Init(const Engine2d& engine) override;
+    void Render(const double& dt) override;
+
+public:
     Result SetText(const std::wstring& newText);
 
 private:

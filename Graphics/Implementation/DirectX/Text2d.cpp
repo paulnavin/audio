@@ -3,6 +3,9 @@
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/TextManager2d.hpp>
 
+Text2d::Text2d(Element* parent) : Element(parent) {
+}
+
 Result Text2d::Init(const Engine2d& engine) {
     deviceContext2d_ = engine.GetDeviceContext2d();
 
@@ -11,22 +14,18 @@ Result Text2d::Init(const Engine2d& engine) {
     brush_ = textManager.GetFpsBrush();
     writeFactory_ = textManager.GetWriteFactory();
 
-    textPosition_ = D2D1::Point2F(5.0f, 5.0f);
-
     return Result{};
 }
 
-void Text2d::Render() {
+void Text2d::Render(const double& dt) {
+    UNREFERENCED_PARAMETER(dt);
+
     if (!textLayout_) {
         return;
     }
 
+    textPosition_ = D2D1::Point2F(position_.x, position_.y);
     deviceContext2d_->DrawTextLayout(textPosition_, textLayout_.Get(), brush_.Get());
-}
-
-Result Text2d::SetPosition(const float& newX, const float& newY) {
-    textPosition_ = D2D1::Point2F(newX, newY);
-    return Result{};
 }
 
 Result Text2d::SetText(const std::wstring& newText) {
@@ -40,8 +39,8 @@ Result Text2d::SetText(const std::wstring& newText) {
         newText.c_str(),
         static_cast<UINT32>(newText.size()),
         textFormat_.Get(),
-        static_cast<float>(MAX_TEXT_WIDTH),
-        static_cast<float>(MAX_TEXT_HEIGHT),
+        static_cast<float>(dimensions_.width),
+        static_cast<float>(dimensions_.height),
         &textLayout_);
 
     if (FAILED(hr)) {

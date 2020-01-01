@@ -43,9 +43,8 @@ Result Engine2d::Init(const Window& newWindow, const Engine3d& newEngine) {
     return initResult;
 }
 
-Result Engine2d::InitGraphics(Model2d* model) {
+void Engine2d::SetModel(Model2d* model) {
     model_ = model;
-    return Result{};
 }
 
 void Engine2d::RenderModel(const double& dt) {

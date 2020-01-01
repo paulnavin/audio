@@ -9,7 +9,7 @@
 
 class ModelBasic2d : public Model2d {
 public:
-    ModelBasic2d() = default;
+    explicit ModelBasic2d() : Model2d(), fpsText_(nullptr) {};
     ~ModelBasic2d() = default;
 
 public:
@@ -44,11 +44,10 @@ public:
     }
 
     void Render(const double& dt) override {
-        UNREFERENCED_PARAMETER(dt);
         ellipse_.Render();
         rectangle_.Render();
         if (showFps_ == true) {
-            fpsText_.Render();
+            fpsText_.Render(dt);
         }
     }
 
