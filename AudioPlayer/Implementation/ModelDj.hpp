@@ -60,6 +60,12 @@ public:
 
         showMousePosition_ = true;
 
+        elements_.insert(&openFile1Button_);
+        elements_.insert(&openFile2Button_);
+
+        SetFpsElement(&fpsText_);
+        SetMousePositionElement(&mousePositionText_);
+
         return Result{};
     }
 
@@ -68,16 +74,10 @@ public:
     }
 
     void Render(const double& dt) override {
-        openFile1Button_.Render(dt);
-        openFile2Button_.Render(dt);
         jogWheel1_.Render(dt);
 
-        if (showFps_ == true) {
-            fpsText_.Render(dt);
-        }
-
-        if (showMousePosition_ == true) {
-            mousePositionText_.Render(dt);
+        for (Element* element : elements_) {
+            element->Render(dt);
         }
     }
 

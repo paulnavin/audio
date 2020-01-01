@@ -19,10 +19,12 @@
 
 #include <array>
 #include <cstdint>
+#include <list>
 #include <map>
+#include <set>
+#include <vector>
+#include <string>
 #include <fstream>
 #include <sstream>
-#include <string>
-#include <vector>
 
 #pragma warning(pop)    // Turn back on all warnings.
