@@ -2,7 +2,7 @@
 
 #include <Graphics/Engine2d.hpp>
 
-Rectangle2d::Rectangle2d(Element* parent) : Element (parent) {
+Rectangle2d::Rectangle2d(Element* parent) : Element(parent) {
 
 }
 

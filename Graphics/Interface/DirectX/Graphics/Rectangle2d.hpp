@@ -16,7 +16,9 @@ public:
 
 public:
     Result Init(const Engine2d& engine) override;
-    void Render(const double& dt);
+    void Render(const double& dt) override;
+
+public:
     Result SetColour(const Colour& newColour);
 
 private:
