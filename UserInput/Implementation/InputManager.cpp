@@ -23,6 +23,10 @@ InputManager::InputManager() {
     toggleMousePositionBindings.push_back(KeyBinding(VK_RBUTTON, KeyState::JustReleased));
     coreKeyMap_[ToggleMousePosition] = new Command("Toggle Mouse Position", toggleMousePositionBindings);
 
+    std::vector<KeyBinding> mouseClickedBindings;
+    mouseClickedBindings.push_back(KeyBinding(VK_LBUTTON, KeyState::JustReleased));
+    coreKeyMap_[MouseClicked] = new Command("Left Click", mouseClickedBindings);
+
     std::vector<KeyBinding> quitBindings;
     quitBindings.push_back(KeyBinding(VK_ESCAPE, KeyState::JustPressed));
     coreKeyMap_[Quit] = new Command("Quit", quitBindings);

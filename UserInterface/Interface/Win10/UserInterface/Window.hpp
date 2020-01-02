@@ -12,6 +12,8 @@ public:
 
 public:
     const HWND GetHandle() const;
+    const float GetXPosition() const;
+    const float GetYPosition() const;
 
 public:
     Result Init(const WNDCLASSEXW& wcex, const WindowConfig& config);
@@ -25,4 +27,5 @@ private:
 private:
     HINSTANCE appInstance_;
     HWND windowHandle_;
+    RECT windowRectangle_;
 };

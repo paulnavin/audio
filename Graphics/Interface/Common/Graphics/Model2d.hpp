@@ -20,6 +20,8 @@ public:
     // Note: No Result passing in Render, for performance reasons.
     void Render(const double& dt);
 
+    void OnMouseClicked(const float& x, const float& y);
+
     virtual void SetFps(const int64_t& newFps);
     virtual void SetShowFps(const bool show);
     void SetFpsElement(Element* newElement);

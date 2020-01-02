@@ -183,6 +183,10 @@ void App::Update(const double& dt) {
             } else {
                 SetActive2dModel(djModel2d_);
             }
+        } else if (command.first == MouseClicked) {
+            active2dModel_->OnMouseClicked(
+                static_cast<float>(inputManager_.GetMouseXPos()) - mainWindow_->GetXPosition(),
+                static_cast<float>(inputManager_.GetMouseYPos()) - mainWindow_->GetYPosition());
         }
     }
 

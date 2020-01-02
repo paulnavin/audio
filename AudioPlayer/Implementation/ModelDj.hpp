@@ -47,12 +47,16 @@ public:
         }
         jogWheel1_.SetSlipmatColour(Colour{ 1.0f, 0.5f, 0.5f, 1.0f });
         jogWheel1_.SetPositionColour(Colour{ 0.0f, 0.0f, 0.6f, 1.0f });
+        jogWheel1_.SetPosition(256.0f, 300.0f);
+        jogWheel1_.SetDimensions(75.0f, 75.0f);
 
         initResult = fpsText_.Init(engine);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D FPS text.");
             return initResult;
         }
+        fpsText_.SetPosition(5.0f, 5.0f);
+        fpsText_.SetDimensions(20.0f, 100.0f);
 
         showFps_ = true;
 
@@ -63,6 +67,7 @@ public:
         }
 
         mousePositionText_.SetPosition(5.0f, 35.0f);
+        mousePositionText_.SetDimensions(20.0f, 100.0f);
 
         showMousePosition_ = true;
 

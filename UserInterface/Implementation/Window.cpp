@@ -19,9 +19,16 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
     return (INT_PTR)FALSE;
 }
 
-
 const HWND Window::GetHandle() const {
     return windowHandle_;
+}
+
+const float Window::GetXPosition() const {
+    return static_cast<float>(windowRectangle_.left);
+}
+
+const float Window::GetYPosition() const {
+    return static_cast<float>(windowRectangle_.top);
 }
 
 Result Window::Init(const WNDCLASSEXW& wcex, const WindowConfig& config) {
@@ -36,6 +43,10 @@ Result Window::Init(const WNDCLASSEXW& wcex, const WindowConfig& config) {
     if (windowHandle_ == nullptr) {
         initResult.AppendError("Window::Init() : Error creating window!");
     }
+
+    RECT clientRect;
+    GetWindowRect(windowHandle_, &windowRectangle_);
+    GetClientRect(windowHandle_, &clientRect);
 
     return initResult;
 }

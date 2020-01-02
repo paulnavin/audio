@@ -9,6 +9,14 @@ Element::Element(Element* parent) {
     }
 }
 
+const Position2d& Element::GetPosition() const {
+    return position_;
+}
+
+const Dimension2d& Element::GetDimensions() const {
+    return dimensions_;
+}
+
 void Element::SetDimensions(const float& heightInPixels, const float& widthInPixels) {
     dimensions_.height = heightInPixels;
     dimensions_.width = widthInPixels;

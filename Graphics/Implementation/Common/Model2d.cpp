@@ -6,6 +6,21 @@ void Model2d::Render(const double& dt) {
     }
 }
 
+void Model2d::OnMouseClicked(const float& x, const float& y) {
+    Position2d position;
+    Dimension2d dimensions;
+    for (Element* element : elements_) {
+        position = element->GetPosition();
+        dimensions = element->GetDimensions();
+        if ((x >= position.x) &&
+            (x <= position.x + dimensions.width) &&
+            (y >= position.y) &&
+            (y <= position.y + dimensions.height)) {
+            element->OnClick();
+        }
+    }
+}
+
 void Model2d::SetFps(const int64_t& newFps) {
     fps_ = newFps;
 }

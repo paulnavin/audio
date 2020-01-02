@@ -19,6 +19,14 @@ public:
     // Note: No Result passing in Render, for performance reasons.
     virtual void Render(const double&) {};
 
+    virtual void OnClick() {
+        
+    };
+
+public:
+    const Position2d& GetPosition() const;
+    const Dimension2d& GetDimensions() const;
+
 public:
     void SetDimensions(const float& heightInPixels, const float& widthInPixels);
     void SetPosition(const float& newX, const float& newY);
