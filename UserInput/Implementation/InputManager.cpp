@@ -3,6 +3,7 @@
 #include <UserInput/CoreCommands.hpp>
 #include <UserInput/KeyBinding.hpp>
 #include <UserInput/KeyState.hpp>
+#include <UserInterface/Window.hpp>
 #include <Utility/WindowsInterface.hpp>
 
 InputManager::InputManager() {
@@ -79,16 +80,17 @@ void InputManager::RefreshKeyboardState() {
     }
 }
 
-void InputManager::RefreshMouseState() {
+void InputManager::RefreshMouseState(const Window& targetWindow) {
     POINT mousePoint;
     GetCursorPos(&mousePoint);
+    ScreenToClient(targetWindow.GetHandle(), &mousePoint);
     mouseXPos_ = mousePoint.x;
     mouseYPos_ = mousePoint.y;
 }
 
-void InputManager::Update() {
+void InputManager::Update(const Window& targetWindow) {
     RefreshKeyboardState();
-    RefreshMouseState();
+    RefreshMouseState(targetWindow);
 
     bool isActive = false;
     activeKeyMap_.clear();

@@ -167,7 +167,7 @@ Result App::Run() {
 }
 
 void App::Update(const double& dt) {
-    inputManager_.Update();
+    inputManager_.Update(*mainWindow_);
 
     const InputManager::CommandMap* activeCommands = inputManager_.GetActiveKeyMap();
     for (auto command : *activeCommands) {
@@ -185,8 +185,8 @@ void App::Update(const double& dt) {
             }
         } else if (command.first == MouseClicked) {
             active2dModel_->OnMouseClicked(
-                static_cast<float>(inputManager_.GetMouseXPos()) - mainWindow_->GetXPosition(),
-                static_cast<float>(inputManager_.GetMouseYPos()) - mainWindow_->GetYPosition());
+                static_cast<float>(inputManager_.GetMouseXPos()),
+                static_cast<float>(inputManager_.GetMouseYPos()));
         }
     }
 

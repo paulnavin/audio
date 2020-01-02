@@ -4,6 +4,8 @@
 
 #include <Utility/StlWrapper.hpp>
 
+class Window;
+
 class InputManager {
 public:
     using CommandMap = std::map<Command::Id, Command*>;
@@ -21,8 +23,8 @@ public:
 
 public:
     void RefreshKeyboardState();
-    void RefreshMouseState();
-    void Update();
+    void RefreshMouseState(const Window& targetWindow);
+    void Update(const Window& targetWindow);
 
 private:
     static constexpr size_t KEY_COUNT = 256;

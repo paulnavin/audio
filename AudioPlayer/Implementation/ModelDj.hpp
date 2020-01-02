@@ -47,8 +47,8 @@ public:
         }
         jogWheel1_.SetSlipmatColour(Colour{ 1.0f, 0.5f, 0.5f, 1.0f });
         jogWheel1_.SetPositionColour(Colour{ 0.0f, 0.0f, 0.6f, 1.0f });
-        jogWheel1_.SetPosition(256.0f, 300.0f);
-        jogWheel1_.SetDimensions(75.0f, 75.0f);
+        jogWheel1_.SetPosition(181.0f, 225.0f);  // Note: This doesn't match the JogWheel code, cos for click detection need origin at top left.
+        jogWheel1_.SetDimensions(150.0f, 150.0f);
 
         initResult = fpsText_.Init(engine);
         if (initResult.HasErrors()) {
