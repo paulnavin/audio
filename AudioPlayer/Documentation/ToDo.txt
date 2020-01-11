@@ -1,0 +1,10 @@
+Mouse position on screen for click
+Sprites
+Storage location
+Loading data
+Loading app resources
+Full screen mode
+Resizing
+Saving/loading configuration to disk (protobuffers?)
+Scenes
+Move key combos out of UserInput
