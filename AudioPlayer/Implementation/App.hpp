@@ -39,6 +39,11 @@ private:
     void SetActive2dModel(Model2d* newActiveModel);
     Result UpdateFps();
 
+    void Destroy3dModel();
+    void Destroy2dModel();
+    Result Create3dModel();
+    Result Create2dModel();
+
 private:
     HACCEL acceleratorTable_;
     HINSTANCE appInstance_;

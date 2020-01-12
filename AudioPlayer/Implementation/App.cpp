@@ -1,5 +1,6 @@
 #include "App.hpp"
 
+#include <UserInterface/ErrorDisplay.hpp>
 #include <UserInterface/WindowConfig.hpp>
 #include <UserInterface/Window.hpp>
 #include <UserInput/CoreCommands.hpp>
@@ -57,43 +58,23 @@ Result App::Init(const HINSTANCE& appInstance) {
         return initResult;
     }
 
-    model3d_ = new ModelStarField();
-    //model3d_ = new ModelTriangle();
-    initResult = model3d_->Init();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 3D model.");
-        return initResult;
-    }
-
-    initResult = engine3d_.InitGraphics(*model3d_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 3D graphics.");
-        return initResult;
-    }
-
     initResult = engine2d_.Init(*mainWindow_, engine3d_);
     if (initResult.HasErrors()) {
         initResult.AppendError("Window::Init() : Error initialising 2D controller.");
         return initResult;
     }
 
-    djModel2d_ = new ModelDj();
-    initResult = djModel2d_->Init(engine2d_);
+    initResult = Create3dModel();
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising DJ 2D model.");
+        initResult.AppendError("Window::Init() : Error creating 3D model.");
         return initResult;
     }
-    djModel2d_->SetShowFps(showFps_);
 
-    basicModel2d_ = new ModelBasic2d();
-    initResult = basicModel2d_->Init(engine2d_);
+    initResult = Create2dModel();
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising basic 2D model.");
+        initResult.AppendError("Window::Init() : Error creating 2D model.");
         return initResult;
     }
-    basicModel2d_->SetShowFps(showFps_);
-
-    SetActive2dModel(djModel2d_);
 
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
 
@@ -187,6 +168,25 @@ void App::Update(const double& dt) {
             active2dModel_->OnMouseClicked(
                 static_cast<float>(inputManager_.GetMouseXPos()),
                 static_cast<float>(inputManager_.GetMouseYPos()));
+        } else if (command.first == RecreateModel) {
+            Destroy3dModel();
+
+            Destroy2dModel();
+
+            Result initResult = Create3dModel();
+            if (initResult.HasErrors()) {
+                initResult.AppendError("Window::Init() : Error creating 3D model.");
+                ErrorDisplay::ShowErrors(initResult);
+                return;
+            }
+
+            initResult = Create2dModel();
+            if (initResult.HasErrors()) {
+                initResult.AppendError("Window::Init() : Error creating 2D model.");
+                ErrorDisplay::ShowErrors(initResult);
+                return;
+            }
+
         }
     }
 
@@ -216,20 +216,8 @@ void App::ShutDown() {
 
     mainWindow_ = nullptr;
 
-    if (model3d_ != nullptr) {
-        delete model3d_;
-    }
-    model3d_ = nullptr;
-
-    if (djModel2d_ != nullptr) {
-        delete djModel2d_;
-    }
-    djModel2d_ = nullptr;
-
-    if (basicModel2d_ != nullptr) {
-        delete basicModel2d_;
-    }
-    basicModel2d_ = nullptr;
+    Destroy3dModel();
+    Destroy2dModel();
 }
 
 void App::SetActive2dModel(Model2d* newActiveModel) {
@@ -251,4 +239,66 @@ Result App::UpdateFps() {
     }
 
     return Result{};
+}
+
+void App::Destroy3dModel() {
+    if (model3d_ != nullptr) {
+        delete model3d_;
+    }
+    model3d_ = nullptr;
+}
+
+void App::Destroy2dModel() {
+    if (djModel2d_ != nullptr) {
+        delete djModel2d_;
+    }
+    djModel2d_ = nullptr;
+
+    if (basicModel2d_ != nullptr) {
+        delete basicModel2d_;
+    }
+    basicModel2d_ = nullptr;
+}
+
+Result App::Create3dModel() {
+    model3d_ = new ModelStarField();
+    //model3d_ = new ModelTriangle();
+
+    Result initResult = model3d_->Init();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 3D model.");
+        return initResult;
+    }
+
+    initResult = engine3d_.InitGraphics(*model3d_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising 3D graphics.");
+        return initResult;
+    }
+
+    return initResult;
+}
+
+Result App::Create2dModel() {
+
+    djModel2d_ = new ModelDj();
+    Result initResult = djModel2d_->Init(engine2d_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising DJ 2D model.");
+        return initResult;
+    }
+    djModel2d_->SetShowFps(showFps_);
+
+    basicModel2d_ = new ModelBasic2d();
+    initResult = basicModel2d_->Init(engine2d_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error initialising basic 2D model.");
+        return initResult;
+    }
+
+    basicModel2d_->SetShowFps(showFps_);
+    
+    SetActive2dModel(djModel2d_);
+
+    return initResult;
 }

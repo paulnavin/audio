@@ -19,6 +19,12 @@ InputManager::InputManager() {
     toggleModelBindings.push_back(KeyBinding('2', KeyState::JustPressed));
     coreKeyMap_[Toggle2dModel] = new Command("Toggle 2D Model", toggleModelBindings);
 
+    std::vector<KeyBinding> recreateModelBindings;
+    recreateModelBindings.push_back(KeyBinding(VK_SHIFT, KeyState::StillPressed));
+    recreateModelBindings.push_back(KeyBinding(VK_CONTROL, KeyState::StillPressed));
+    recreateModelBindings.push_back(KeyBinding('R', KeyState::JustPressed));
+    coreKeyMap_[RecreateModel] = new Command("Recreate Models", recreateModelBindings);
+
 
     std::vector<KeyBinding> toggleMousePositionBindings;
     toggleMousePositionBindings.push_back(KeyBinding(VK_RBUTTON, KeyState::JustReleased));
