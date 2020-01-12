@@ -1,6 +1,7 @@
 #include <UserInterface/Window.hpp>
 
 #include <UserInterface/WindowConfig.hpp>
+#include <UserInterface/WindowMessageHandler.hpp>
 
 // Message handler for about box.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
@@ -63,55 +64,42 @@ void Window::Show() {
 //  WM_MENUCHAR - Menu is open, and user pressed a key.
 //  WM_SIZE     - Window got resized.
 LRESULT Window::ProcessMessage(const UINT& message, const WPARAM& wParam, const LPARAM& lParam) {
-
-    switch (message) {
-        case WM_COMMAND:
-        {
-            return DefWindowProc(windowHandle_, message, wParam, lParam);
-            //int wmId = LOWORD(wParam);
-            //// Parse the menu selections:
-            //switch (wmId) {
-            //case IDM_ABOUT:
-            //    DialogBox(appInstance_, MAKEINTRESOURCE(IDD_ABOUTBOX), windowHandle_, About);
-            //    break;
-            //default:
-            //    return DefWindowProc(windowHandle_, message, wParam, lParam);
-            //}
+    if (messageHandler_ != nullptr) {
+        switch (message) {
+            case WM_ACTIVATE: { messageHandler_->OnActivate(); return 0; }
+            case WM_CLOSE: { messageHandler_->OnClose(); return 0; }
+            case WM_SIZE: { return HandleSizeMessage(wParam); }
+            case WM_ENTERSIZEMOVE: { isResizing_ = true; messageHandler_->OnStartSizeOrMove(); return 0; }
+            case WM_EXITSIZEMOVE: { isResizing_ = false; messageHandler_->OnFinishSizeOrMove(); return 0; }
         }
-        break;
-        case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(windowHandle_, &ps);
-
-            UNREFERENCED_PARAMETER(hdc);
-
-            // TODO: Add any drawing code that uses hdc here...
-        
-            EndPaint(windowHandle_, &ps);
-        }
-        break;
-        case WM_KEYUP:
-        {
-            HandleKeyUp(wParam);
-            break;
-        }
-        default:
-            return DefWindowProc(windowHandle_, message, wParam, lParam);
     }
-    return 0;
+
+    return DefWindowProc(windowHandle_, message, wParam, lParam);
+}
+
+void Window::SetWindowMessageHandler(WindowMessageHandler* newHandler) {
+    messageHandler_ = newHandler;
 }
 
 void Window::Destroy() {
     DestroyWindow(windowHandle_);
 }
 
-void Window::HandleKeyUp(const WPARAM& wParam) {
-    switch (wParam) {
-        case VK_ESCAPE:
-            PostMessage(windowHandle_, WM_CLOSE, 0, 0);
-            break;
-
-        default: break;
+LRESULT Window::HandleSizeMessage(const WPARAM& wParam) {
+    if (wParam == SIZE_MINIMIZED) {
+        isMinimised_ = true;
+        isMaximised_ = false;
+        messageHandler_->OnMinimise();
+    } else if (wParam == SIZE_MAXIMIZED) {
+        isMinimised_ = false;
+        isMaximised_ = true;
+        messageHandler_->OnMaximise();
+    } else if (wParam == SIZE_RESTORED) {
+        isMinimised_ = false;
+        isMaximised_ = false;
+        if (isResizing_ == false) {
+            messageHandler_->OnRestore();
+        }
     }
+    return 0;
 }

@@ -4,6 +4,7 @@
 #include <Utility/WindowsInterface.hpp>
 
 struct WindowConfig;
+class WindowMessageHandler;
 
 class Window {
 public:
@@ -19,13 +20,18 @@ public:
     Result Init(const WNDCLASSEXW& wcex, const WindowConfig& config);
     void Show();
     LRESULT ProcessMessage(const UINT& message, const WPARAM& wParam, const LPARAM& lParam);
+    void SetWindowMessageHandler(WindowMessageHandler* newHandler);
     void Destroy();
 
 private:
-    void HandleKeyUp(const WPARAM& wParam);
+    LRESULT HandleSizeMessage(const WPARAM& wParam);
 
 private:
     HINSTANCE appInstance_;
+    bool isMinimised_;
+    bool isMaximised_;
+    bool isResizing_;
     HWND windowHandle_;
     RECT windowRectangle_;
+    WindowMessageHandler* messageHandler_;
 };

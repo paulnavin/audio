@@ -51,6 +51,7 @@ Result App::Init(const HINSTANCE& appInstance) {
         initResult.AppendError("App::Init() : Error creating main window.");
         return initResult;
     }
+    mainWindow_->SetWindowMessageHandler(this);
 
     initResult = engine3d_.Init(*mainWindow_);
     if (initResult.HasErrors()) {
@@ -96,15 +97,14 @@ Result App::Run() {
     int32_t loopCount = 0;              // the number of completed loops while updating the game
 
     MSG msg = {};
-    bool finished = false;
 
-    while (finished == false) {
+    while (finished_ == false) {
         // Note: If you pass in the HWND to the main window instead of nullptr here, you
         //       won't get all messages, only those directly related to the window. So
         //       you'll miss things like if the user clicks the cross in the top corner.
         while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
             if (WM_QUIT == msg.message) {
-                finished = true;
+                finished_ = true;
                 PostQuitMessage(0);
                 break;
             } else {
@@ -115,7 +115,7 @@ Result App::Run() {
             }
         };
 
-        if (finished == false) {
+        if (finished_ == false) {
             timer_.Update();
 
             if (showFps_ == true) {
@@ -145,6 +145,50 @@ Result App::Run() {
     }
 
     return Result{};
+}
+
+void App::ShutDown() {
+    // mainWindow_ will be destroyed by the WindowManager.
+    LOG(INFO) << "App::ShutDown() : Shut down!";
+
+    mainWindow_ = nullptr;
+
+    Destroy3dModel();
+    Destroy2dModel();
+}
+
+void App::OnActivate() {
+    LOG(INFO) << "App::OnActivate() : Boogie woogie!";
+}
+
+void App::OnClose() {
+    LOG(INFO) << "App::OnClose() : Boogie woogie!";
+    finished_ = true;
+    PostQuitMessage(0);
+}
+
+void App::OnResize() {
+    LOG(INFO) << "App::OnResize() : Boogie woogie!";
+}
+
+void App::OnMinimise() {
+    LOG(INFO) << "App::OnMinimise() : Boogie woogie!";
+}
+
+void App::OnMaximise() {
+    LOG(INFO) << "App::OnMaximise() : Boogie woogie!";
+}
+
+void App::OnRestore() {
+    LOG(INFO) << "App::OnRestore() : Boogie woogie!";
+}
+
+void App::OnStartSizeOrMove() {
+    LOG(INFO) << "App::OnStartSizeOrMove() : Boogie woogie!";
+}
+
+void App::OnFinishSizeOrMove() {
+    LOG(INFO) << "App::OnFinishSizeOrMove() : Boogie woogie!";
 }
 
 void App::Update(const double& dt) {
@@ -208,16 +252,6 @@ Result App::Render(const double& dt) {
 
     // (4) Present the buffers to the screen.
     return engine3d_.Present();
-}
-
-void App::ShutDown() {
-    // mainWindow_ will be destroyed by the WindowManager.
-    LOG(INFO) << "App::ShutDown() : Shut down!";
-
-    mainWindow_ = nullptr;
-
-    Destroy3dModel();
-    Destroy2dModel();
 }
 
 void App::SetActive2dModel(Model2d* newActiveModel) {

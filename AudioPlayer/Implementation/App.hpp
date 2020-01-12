@@ -1,13 +1,14 @@
 #pragma once
 
-#include <UserConfiguration/Config.hpp>
-#include <UserInput/InputManager.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/Engine3d.hpp>
 #include <Graphics/Rectangle2d.hpp>
 #include <Graphics/Text2d.hpp>
 #include <Graphics/TextManager2d.hpp>
 #include <Graphics/Vertex.hpp>
+#include <UserConfiguration/Config.hpp>
+#include <UserInput/InputManager.hpp>
+#include <UserInterface/WindowMessageHandler.hpp>
 #include <Utility/Result.hpp>
 #include <Utility/WindowsInterface.hpp>
 
@@ -17,7 +18,7 @@ class Model2d;
 class Model3d;
 class Window;
 
-class App {
+class App : public WindowMessageHandler {
 public:
     App() = default;
     ~App() = default;
@@ -26,6 +27,16 @@ public:
     Result Init(const HINSTANCE& appInstance);
     Result Run();
     void ShutDown();
+
+public:
+    virtual void OnActivate() override;
+    virtual void OnClose() override;
+    virtual void OnResize() override;
+    virtual void OnMinimise() override;
+    virtual void OnMaximise() override;
+    virtual void OnRestore() override;
+    virtual void OnStartSizeOrMove() override;
+    virtual void OnFinishSizeOrMove() override;
 
 private:
     static constexpr DWORD FRAMES_PER_SECOND = 60;
@@ -50,6 +61,7 @@ private:
     ::uc::ConfigStore config_;
     Engine2d engine2d_;
     Engine3d engine3d_;
+    bool finished_ = false;
     int64_t fps_;
     InputManager inputManager_;
     double lastFpsCalculationTime_;

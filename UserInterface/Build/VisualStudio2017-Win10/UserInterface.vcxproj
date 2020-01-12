@@ -27,6 +27,7 @@
     <ClInclude Include="..\..\Implementation\StringUtil.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\ErrorDisplay.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\WindowConfig.hpp" />
+    <ClInclude Include="..\..\Interface\Common\UserInterface\WindowMessageHandler.hpp" />
     <ClInclude Include="..\..\Interface\Win10\UserInterface\Window.hpp" />
     <ClInclude Include="..\..\Interface\Win10\UserInterface\WindowsInterface.hpp" />
   </ItemGroup>

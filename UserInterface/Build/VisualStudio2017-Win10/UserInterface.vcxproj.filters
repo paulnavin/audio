@@ -47,5 +47,8 @@
     <ClInclude Include="..\..\Interface\Win10\UserInterface\WindowsInterface.hpp">
       <Filter>Header Files\Win10</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\UserInterface\WindowMessageHandler.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
