@@ -25,6 +25,7 @@ public:
 
 private:
     void HandleSizeMessage(const WPARAM& wParam);
+    LRESULT DisableAnnoyingMenuBeepingSound();
 
 private:
     HINSTANCE appInstance_;

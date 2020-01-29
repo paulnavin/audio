@@ -3,23 +3,6 @@
 #include <UserInterface/WindowConfig.hpp>
 #include <UserInterface/WindowMessageHandler.hpp>
 
-// Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
-    UNREFERENCED_PARAMETER(lParam);
-    switch (message) {
-    case WM_INITDIALOG:
-        return (INT_PTR)TRUE;
-
-    case WM_COMMAND:
-        if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL) {
-            EndDialog(hDlg, LOWORD(wParam));
-            return (INT_PTR)TRUE;
-        }
-        break;
-    }
-    return (INT_PTR)FALSE;
-}
-
 const HWND Window::GetHandle() const {
     return windowHandle_;
 }
@@ -71,6 +54,7 @@ LRESULT Window::ProcessMessage(const UINT& message, const WPARAM& wParam, const 
             case WM_SIZE: { HandleSizeMessage(wParam); return 0; }
             case WM_ENTERSIZEMOVE: { isResizing_ = true; messageHandler_->OnStartSizeOrMove(); return 0; }
             case WM_EXITSIZEMOVE: { isResizing_ = false; messageHandler_->OnFinishSizeOrMove(); return 0; }
+            case WM_MENUCHAR: { return DisableAnnoyingMenuBeepingSound(); }
         }
     }
 
@@ -101,4 +85,8 @@ void Window::HandleSizeMessage(const WPARAM& wParam) {
             messageHandler_->OnRestore();
         }
     }
+}
+
+LRESULT Window::DisableAnnoyingMenuBeepingSound() {
+    return MAKELRESULT(0, MNC_CLOSE);
 }
