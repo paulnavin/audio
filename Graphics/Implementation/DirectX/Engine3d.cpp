@@ -106,7 +106,7 @@ Result Engine3d::RenderVertices() {
 
 Result Engine3d::Resize() {
     Result resizeResult;
-    DXGI_MODE_DESC currentModeDescription = supportedDisplayModes_[121];//currentModeDescription;
+    DXGI_MODE_DESC currentModeDescription = supportedDisplayModes_[107];//currentModeDescription;
     DXGI_MODE_DESC zeroRefreshRate = currentModeDescription;
     zeroRefreshRate.RefreshRate.Numerator = 0;
     zeroRefreshRate.RefreshRate.Denominator = 0;
@@ -282,6 +282,19 @@ Result Engine3d::CreateDxgiResources() {
         dxgiResult.AppendError("Engine3d::CreateDxgiResources() : Couldn't create swap chain.");
         return dxgiResult;
     }
+
+    // Use MakeWindowAssociation() to turn off DirectX direct Alt+Enter handling.
+    // Annoyingly you can't just reuse the factory from above, you have to get the
+    // factory again from the swap chain.
+    // https://www.gamedev.net/forums/topic/634235-dxgidisabling-altenter/?do=findComment&comment=4999990
+    Microsoft::WRL::ComPtr<IDXGIFactory> parentFactory;
+    hr = swapChain_->GetParent(__uuidof(parentFactory), (void **)&parentFactory);
+    if (FAILED(hr)) {
+        dxgiResult.AppendError("Engine3d::CreateDxgiResources() : Couldn't get swap chain parent.");
+        return dxgiResult;
+    }
+    
+    parentFactory->MakeWindowAssociation(windowHandle_, DXGI_MWA_NO_WINDOW_CHANGES | DXGI_MWA_NO_ALT_ENTER);
 
     dxgiResult = InitSupportedDisplayModes();
 

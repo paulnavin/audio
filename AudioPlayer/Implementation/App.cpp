@@ -181,6 +181,9 @@ void App::OnResize() {
 
 void App::OnMinimise() {
     LOG(INFO) << "App::OnMinimise() : Boogie woogie!";
+
+    paused_ = true;
+    resizeRequired_ = true;
 }
 
 void App::OnMaximise() {
