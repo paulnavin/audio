@@ -115,7 +115,11 @@ Result App::Run() {
             }
         };
         
-        if (resizeRequired_ == true) {
+        if (resizeRequired_ == true || toggleFullScreen_ == true) {
+            if (toggleFullScreen_ == true) {
+                engine3d_.ToggleFullScreen();
+                toggleFullScreen_ = false;
+            }
             engine2d_.PrepareForResize();
             engine3d_.Resize();
             engine2d_.Resize();
@@ -231,6 +235,9 @@ void App::Update(const double& dt) {
             active2dModel_->OnMouseClicked(
                 static_cast<float>(inputManager_.GetMouseXPos()),
                 static_cast<float>(inputManager_.GetMouseYPos()));
+        } else if (command.first == ToggleFullScreen) {
+            paused_ = true;
+            toggleFullScreen_ = true;
         } else if (command.first == RecreateModel) {
             Destroy3dModel();
 

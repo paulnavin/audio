@@ -223,6 +223,27 @@ Result Engine3d::Resize() {
     return resizeResult;
 }
 
+Result Engine3d::ToggleFullScreen() {
+    Result toggleResult{};
+    // TODO: De-duplicate the code in these if statements.
+    if (currentlyInFullScreenMode_ == FALSE) {
+        // Switch to full screen.
+        HRESULT hr = swapChain_->SetFullscreenState(true, nullptr);
+        if (FAILED(hr)) {
+            toggleResult.AppendError("Engine3d::ToggleFullScreen() : Couldn't set full screen state on swap chain.");
+        }
+        currentlyInFullScreenMode_ = true;
+    } else {
+        // Switch to window mode.
+        HRESULT hr = swapChain_->SetFullscreenState(false, nullptr);
+        if (FAILED(hr)) {
+            toggleResult.AppendError("Engine3d::ToggleFullScreen() : Couldn't set full screen state on swap chain.");
+        }
+        currentlyInFullScreenMode_ = false;
+    }
+    return toggleResult;
+}
+
 Result Engine3d::CreateDxgiResources() {
     colourFormat_ = DXGI_FORMAT_B8G8R8A8_UNORM;
 

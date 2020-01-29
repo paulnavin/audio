@@ -8,3 +8,5 @@ Resizing
 Saving/loading configuration to disk (protobuffers?)
 Scenes
 Move key combos out of UserInput
+Move TextManager2D up into App
+Once Engine2d, Engine3d and TextManager2d are in App, move them into a new Graphics class.

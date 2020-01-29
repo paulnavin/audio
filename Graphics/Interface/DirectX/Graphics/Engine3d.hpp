@@ -26,6 +26,7 @@ public:
     Result Present();
     Result RenderVertices();
     Result Resize();
+    Result ToggleFullScreen();
 
 private:
     Result CreateDxgiResources();
