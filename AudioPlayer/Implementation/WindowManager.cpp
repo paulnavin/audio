@@ -33,7 +33,6 @@ Result WindowManager::Init(const HINSTANCE& hInstance) {
     wcex_.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_AUDIOPLAYER));
     wcex_.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_DARK_OXYGEN_CURSOR_NORMAL));
     wcex_.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex_.lpszMenuName = MAKEINTRESOURCEW(IDC_AUDIOPLAYER);
     wcex_.lpszClassName = szWindowClass;
     wcex_.hIconSm = LoadIcon(wcex_.hInstance, MAKEINTRESOURCE(IDI_MONKEY_ICON));
 
@@ -62,16 +61,7 @@ Result WindowManager::CreateNewWindow(const WindowConfig& config, Window** windo
 
 //  WM_COMMAND  - process the application menu
 //  WM_DESTROY  - post a quit message and return
-LRESULT WindowManager::ProcessMessage(const HWND& hWnd, const UINT& message, const WPARAM& wParam, const LPARAM& lParam) {
-    // The user chose "Exit" from the menu, so quit everything.
-    if (message == WM_COMMAND) {
-        int wmId = LOWORD(wParam);
-        if (wmId == IDM_EXIT) {
-            PostQuitMessage(0);
-            return 0;
-        }
-    }
-    
+LRESULT WindowManager::ProcessMessage(const HWND& hWnd, const UINT& message, const WPARAM& wParam, const LPARAM& lParam) {    
     HandleToWindowMap::iterator windowFinder = windows_.find(hWnd);
     if (windowFinder != windows_.end()) {
         Window* window = windowFinder->second;

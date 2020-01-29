@@ -30,9 +30,9 @@ Result Engine3d::Init(const Window& newWindow) {
 
     Result initResult;
     if (FAILED(hr)) {
-        initResult.AppendError("Direct3dController::Init() : Couldn't create Direct3D context.");
+        initResult.AppendError("Engine3d::Init() : Couldn't create Direct3D context.");
     } else if (featureLevel < D3D_FEATURE_LEVEL_11_0) {
-        initResult.AppendError("Direct3dController::Init() : DirectX 11 isn't supported.");
+        initResult.AppendError("Engine3d::Init() : DirectX 11 isn't supported.");
     }
 
     initResult = CreateDxgiResources();
@@ -65,7 +65,7 @@ Result Engine3d::InitGraphics(const Model3d& model) {
     Result initResult{};
     HRESULT hr = device_->CreateBuffer(&bd, &srd, &vertexBuffer_);
     if (FAILED(hr)) {
-        initResult.AppendError("Direct3dController::InitGraphics() : Couldn't create vertex buffer.");
+        initResult.AppendError("Engine3d::InitGraphics() : Couldn't create vertex buffer.");
     }
 
     return Result{};
@@ -81,7 +81,7 @@ Result Engine3d::Present() {
     Result presentResult{};
     HRESULT hr = swapChain_->Present(0, DXGI_PRESENT_DO_NOT_WAIT);
     if (FAILED(hr) && hr != DXGI_ERROR_WAS_STILL_DRAWING) {
-        presentResult.AppendError("Direct3dController::Present() : Couldn't present rebuttal.");
+        presentResult.AppendError("Engine3d::Present() : Couldn't present rebuttal.");
         return presentResult;
     }
 
@@ -119,20 +119,20 @@ Result Engine3d::Resize() {
             // switch from window to full screen -> Microsoft recommends resizing the target before going into fullscreen
             HRESULT hr = swapChain_->ResizeTarget(&zeroRefreshRate);
             if (FAILED(hr)) {
-                resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize target.");
+                resizeResult.AppendError("Engine3d::Resize() : Couldn't resize target.");
                 return resizeResult;
             }
 
             hr = swapChain_->SetFullscreenState(true, nullptr);
             if (FAILED(hr)) {
-                resizeResult.AppendError("Direct3dController::Resize() : Couldn't switch to full screen mode.");
+                resizeResult.AppendError("Engine3d::Resize() : Couldn't switch to full screen mode.");
                 return resizeResult;
             }
         } else {
             // switched to windowed -> simply set fullscreen mode to false
             HRESULT hr = swapChain_->SetFullscreenState(false, nullptr);
             if (FAILED(hr)) {
-                resizeResult.AppendError("Direct3dController::Resize() : Couldn't switch to windowed mode.");
+                resizeResult.AppendError("Engine3d::Resize() : Couldn't switch to windowed mode.");
                 return resizeResult;
             }
 
@@ -140,7 +140,7 @@ Result Engine3d::Resize() {
             RECT rect = { 0, 0, (long)currentModeDescription.Width,  (long)currentModeDescription.Height };
             hr = AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, false, WS_EX_OVERLAPPEDWINDOW);
             if (FAILED(hr)) {
-                resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize window.");
+                resizeResult.AppendError("Engine3d::Resize() : Couldn't resize window.");
                 return resizeResult;
             }
             SetWindowPos(windowHandle_, HWND_TOP, 0, 0, rect.right - rect.left, rect.bottom - rect.top, SWP_NOMOVE);
@@ -152,7 +152,7 @@ Result Engine3d::Resize() {
 
     HRESULT hr = swapChain_->ResizeTarget(&zeroRefreshRate);
     if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize target.");
+        resizeResult.AppendError("Engine3d::Resize() : Couldn't resize target.");
         return resizeResult;
     }
 
@@ -163,7 +163,7 @@ Result Engine3d::Resize() {
     // Should this FORMAT_UNKNOWN be colourFormat_?
     hr = swapChain_->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH);
     if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize swap chain buffers.");
+        resizeResult.AppendError("Engine3d::Resize() : Couldn't resize swap chain buffers.");
         return resizeResult;
     }
 
@@ -172,14 +172,14 @@ Result Engine3d::Resize() {
     const IID& textureId = __uuidof(ID3D11Texture2D);
     hr = swapChain_->GetBuffer(0, textureId, reinterpret_cast<void**>(backBufferPointer));
     if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't get the back buffer.");
+        resizeResult.AppendError("Engine3d::Resize() : Couldn't get the back buffer.");
         return resizeResult;
     }
 
     ID3D11Texture2D* backBufferTexture = backBuffer.Get();
     hr = device_->CreateRenderTargetView(backBufferTexture, 0, &renderTargetView_);
     if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a render target view.");
+        resizeResult.AppendError("Engine3d::Resize() : Couldn't create a render target view.");
         return resizeResult;
     }
 
@@ -192,13 +192,13 @@ Result Engine3d::Resize() {
 
     hr = device_->CreateTexture2D(&depthStencilDescriptor, nullptr, depthStencilBuffer.GetAddressOf());
     if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a depth/stencil buffer.");
+        resizeResult.AppendError("Engine3d::Resize() : Couldn't create a depth/stencil buffer.");
         return resizeResult;
     }
 
     hr = device_->CreateDepthStencilView(depthStencilBuffer.Get(), nullptr, depthStencilView_.GetAddressOf());
     if (FAILED(hr)) {
-        resizeResult.AppendError("Direct3dController::Resize() : Couldn't create a depth/stencil view.");
+        resizeResult.AppendError("Engine3d::Resize() : Couldn't create a depth/stencil view.");
         return resizeResult;
     }
 
@@ -250,21 +250,28 @@ Result Engine3d::CreateDxgiResources() {
     Result dxgiResult{};
     HRESULT hr = device_.As(&dxgiDevice);
     if (FAILED(hr)) {
-        dxgiResult.AppendError("Direct3dController::CreateDxgiResources() : Couldn't get DXGI device.");
+        dxgiResult.AppendError("Engine3d::CreateDxgiResources() : Couldn't get DXGI device.");
         return dxgiResult;
     }
 
     IDXGIAdapter** adapterPointer = dxgiAdapter.GetAddressOf();
     hr = dxgiDevice->GetAdapter(adapterPointer);
     if (FAILED(hr)) {
-        dxgiResult.AppendError("Direct3dController::CreateDxgiResources() : Couldn't get DXGI adapter.");
+        dxgiResult.AppendError("Engine3d::CreateDxgiResources() : Couldn't get DXGI adapter.");
         return dxgiResult;
     }
 
     const IID& factoryId = __uuidof(IDXGIFactory);
     hr = dxgiAdapter->GetParent(factoryId, &dxgiFactory);
     if (FAILED(hr)) {
-        dxgiResult.AppendError("Direct3dController::CreateDxgiResources() : Couldn't get DXGI factory.");
+        dxgiResult.AppendError("Engine3d::CreateDxgiResources() : Couldn't get DXGI factory.");
+        return dxgiResult;
+    }
+
+    // Turn off ALT-Enter and Print Screen being handled internally.
+    hr = dxgiFactory->MakeWindowAssociation(windowHandle_, DXGI_MWA_NO_WINDOW_CHANGES);
+    if (FAILED(hr)) {
+        dxgiResult.AppendError("Engine3d::CreateDxgiResources() : Couldn't turn off associations.");
         return dxgiResult;
     }
 
@@ -272,7 +279,7 @@ Result Engine3d::CreateDxgiResources() {
     ID3D11Device* devicePointer = device_.Get();
     hr = dxgiFactory->CreateSwapChain(devicePointer, &swapChainDescriptor, swapChainPointer);
     if (FAILED(hr)) {
-        dxgiResult.AppendError("Direct3dController::CreateDxgiResources() : Couldn't create swap chain.");
+        dxgiResult.AppendError("Engine3d::CreateDxgiResources() : Couldn't create swap chain.");
         return dxgiResult;
     }
 
@@ -281,7 +288,7 @@ Result Engine3d::CreateDxgiResources() {
     if (startInFullscreen_ == true) {
         hr = swapChain_->SetFullscreenState(true, nullptr);
         if (FAILED(hr)) {
-            dxgiResult.AppendError("Direct3dController::CreateDxgiResources() : Couldn't switch to full screen mode.");
+            dxgiResult.AppendError("Engine3d::CreateDxgiResources() : Couldn't switch to full screen mode.");
             return dxgiResult;
         }
         currentlyInFullScreenMode_ = true;
@@ -289,7 +296,7 @@ Result Engine3d::CreateDxgiResources() {
 
     dxgiResult = Resize();
     if (dxgiResult.HasErrors()) {
-        dxgiResult.AppendError("Direct3dController::CreateDxgiResources() : Couldn't resize swap chain.");
+        dxgiResult.AppendError("Engine3d::CreateDxgiResources() : Couldn't resize swap chain.");
         return dxgiResult;
     }
 
@@ -315,7 +322,7 @@ Result Engine3d::InitShaders() {
     HRESULT hr = device_->CreatePixelShader(pixelShaderBuffer.buffer, pixelShaderBuffer.size, nullptr, &pixelShader_);
 
     if (FAILED(hr)) {
-        initResult.AppendError("Direct3dController::InitShaders() : Couldn't create pixel shader.");
+        initResult.AppendError("Engine3d::InitShaders() : Couldn't create pixel shader.");
         return initResult;
     }
     deviceContext_->PSSetShader(pixelShader_.Get(), NULL, 0);
@@ -335,7 +342,7 @@ Result Engine3d::InitShaders() {
 
     hr = device_->CreateVertexShader(vertexShaderBuffer.buffer, vertexShaderBuffer.size, nullptr, &vertexShader_);
     if (FAILED(hr)) {
-        initResult.AppendError("Direct3dController::InitShaders() : Couldn't create vertex shader.");
+        initResult.AppendError("Engine3d::InitShaders() : Couldn't create vertex shader.");
         return initResult;
     }
 
@@ -351,7 +358,7 @@ Result Engine3d::InitShaders() {
     Microsoft::WRL::ComPtr<ID3D11InputLayout> inputLayout;
     hr = device_->CreateInputLayout(ied, ARRAYSIZE(ied), vertexShaderBuffer.buffer, vertexShaderBuffer.size, &inputLayout);
     if (FAILED(hr)) {
-        initResult.AppendError("Direct3dController::InitShaders() : Couldn't create input layout.");
+        initResult.AppendError("Engine3d::InitShaders() : Couldn't create input layout.");
         return initResult;
     }
 
@@ -401,14 +408,14 @@ Result Engine3d::InitSupportedDisplayModes() {
     IDXGIOutput *output = nullptr;
     HRESULT hr = swapChain_->GetContainingOutput(&output);
     if (FAILED(hr)) {
-        initResult.AppendError("Direct3dController::InitSupportedDisplayModes() : Couldn't get output adapter.");
+        initResult.AppendError("Engine3d::InitSupportedDisplayModes() : Couldn't get output adapter.");
         return initResult;
     }
 
     UINT supportedModeCount = 0;
     hr = output->GetDisplayModeList(colourFormat_, 0, &supportedModeCount, NULL);
     if (FAILED(hr)) {
-        initResult.AppendError("Direct3dController::InitSupportedDisplayModes() : Couldn't get supported display mode count.");
+        initResult.AppendError("Engine3d::InitSupportedDisplayModes() : Couldn't get supported display mode count.");
         return initResult;
     }
 
@@ -417,7 +424,7 @@ Result Engine3d::InitSupportedDisplayModes() {
 
     hr = output->GetDisplayModeList(colourFormat_, 0, &supportedModeCount, supportedDisplayModes_);
     if (FAILED(hr)) {
-        initResult.AppendError("Direct3dController::InitSupportedDisplayModes() : Couldn't get supported display modes.");
+        initResult.AppendError("Engine3d::InitSupportedDisplayModes() : Couldn't get supported display modes.");
         return initResult;
     }
 

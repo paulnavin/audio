@@ -114,6 +114,14 @@ Result App::Run() {
                 }
             }
         };
+        
+        if (resizeRequired_ == true) {
+            engine2d_.PrepareForResize();
+            engine3d_.Resize();
+            engine2d_.Resize();
+            resizeRequired_ = false;
+            paused_ = false;
+        }
 
         if ((finished_ == false) && (paused_ == false)) {
             timer_.Update();
@@ -178,12 +186,15 @@ void App::OnMinimise() {
 void App::OnMaximise() {
     LOG(INFO) << "App::OnMaximise() : Boogie woogie!";
 
-    //Set paused, and maybe set resizeRequired to ?
-    //engine3d_.Resize();
+    paused_ = true;
+    resizeRequired_ = true;
 }
 
 void App::OnRestore() {
     LOG(INFO) << "App::OnRestore() : Boogie woogie!";
+
+    paused_ = true;
+    resizeRequired_ = true;
 }
 
 void App::OnStartSizeOrMove() {
@@ -193,10 +204,7 @@ void App::OnStartSizeOrMove() {
 
 void App::OnFinishSizeOrMove() {
     LOG(INFO) << "App::OnFinishSizeOrMove() : Boogie woogie!";
-    engine2d_.PrepareForResize();
-    engine3d_.Resize();
-    engine2d_.Resize();
-    paused_ = false;
+    resizeRequired_ = true;
 }
 
 void App::Update(const double& dt) {
