@@ -68,7 +68,7 @@ LRESULT Window::ProcessMessage(const UINT& message, const WPARAM& wParam, const 
         switch (message) {
             case WM_ACTIVATE: { messageHandler_->OnActivate(); return 0; }
             case WM_CLOSE: { messageHandler_->OnClose(); return 0; }
-            case WM_SIZE: { return HandleSizeMessage(wParam); }
+            case WM_SIZE: { HandleSizeMessage(wParam); return 0; }
             case WM_ENTERSIZEMOVE: { isResizing_ = true; messageHandler_->OnStartSizeOrMove(); return 0; }
             case WM_EXITSIZEMOVE: { isResizing_ = false; messageHandler_->OnFinishSizeOrMove(); return 0; }
         }
@@ -85,7 +85,7 @@ void Window::Destroy() {
     DestroyWindow(windowHandle_);
 }
 
-LRESULT Window::HandleSizeMessage(const WPARAM& wParam) {
+void Window::HandleSizeMessage(const WPARAM& wParam) {
     if (wParam == SIZE_MINIMIZED) {
         isMinimised_ = true;
         isMaximised_ = false;
@@ -101,5 +101,4 @@ LRESULT Window::HandleSizeMessage(const WPARAM& wParam) {
             messageHandler_->OnRestore();
         }
     }
-    return 0;
 }

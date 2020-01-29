@@ -23,6 +23,7 @@ public:
     Result Init(const Window& newWindow, const Engine2d& newEngine);
     Result InitialiseFactory();
     Result InitialiseTextFormats();
+    Result Resize();
 
 private:
     Microsoft::WRL::ComPtr<ID2D1DeviceContext1>  deviceContext2d_;

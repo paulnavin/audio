@@ -115,7 +115,7 @@ Result App::Run() {
             }
         };
 
-        if (finished_ == false) {
+        if ((finished_ == false) && (paused_ == false)) {
             timer_.Update();
 
             if (showFps_ == true) {
@@ -177,6 +177,9 @@ void App::OnMinimise() {
 
 void App::OnMaximise() {
     LOG(INFO) << "App::OnMaximise() : Boogie woogie!";
+
+    //Set paused, and maybe set resizeRequired to ?
+    //engine3d_.Resize();
 }
 
 void App::OnRestore() {
@@ -185,10 +188,15 @@ void App::OnRestore() {
 
 void App::OnStartSizeOrMove() {
     LOG(INFO) << "App::OnStartSizeOrMove() : Boogie woogie!";
+    paused_ = true;
 }
 
 void App::OnFinishSizeOrMove() {
     LOG(INFO) << "App::OnFinishSizeOrMove() : Boogie woogie!";
+    engine2d_.PrepareForResize();
+    engine3d_.Resize();
+    engine2d_.Resize();
+    paused_ = false;
 }
 
 void App::Update(const double& dt) {

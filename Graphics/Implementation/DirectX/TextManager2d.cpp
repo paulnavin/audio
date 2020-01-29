@@ -25,11 +25,12 @@ Result TextManager2d::Init(const Window& newWindow, const Engine2d& newEngine) {
         return initResult;
     }
 
-    initResult = InitialiseTextFormats();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("TextManager2d::Init() : Could not initialise text formats.");
-        return initResult;
-    }
+    // TODO: Is this right, that TextManager's resize is called by the Engine2d?
+    //initResult = Resize();
+    //if (initResult.HasErrors()) {
+    //    initResult.AppendError("TextManager2d::Init() : Could not resize.");
+    //    return initResult;
+    //}
 
     return initResult;
 }
@@ -41,6 +42,8 @@ Result TextManager2d::InitialiseFactory() {
         initFactoryResult.AppendError("TextManager2d::CreateDevice() : Could not create Write Factory.");
         return initFactoryResult;
     }
+
+    deviceContext2d_->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
 
     return initFactoryResult;
 }
@@ -75,3 +78,14 @@ Result TextManager2d::InitialiseTextFormats() {
     return initTextFormatResult;
 }
 
+Result TextManager2d::Resize() {
+    Result resizeResult{};
+
+    resizeResult = InitialiseTextFormats();
+
+    if (resizeResult.HasErrors()) {
+        resizeResult.AppendError("TextManager2d::Resize() : Could not initialise text formats.");
+    }
+
+    return resizeResult;
+}

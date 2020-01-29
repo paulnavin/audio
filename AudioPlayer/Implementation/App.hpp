@@ -62,6 +62,7 @@ private:
     Engine2d engine2d_;
     Engine3d engine3d_;
     bool finished_ = false;
+    bool paused_ = false;
     int64_t fps_;
     InputManager inputManager_;
     double lastFpsCalculationTime_;

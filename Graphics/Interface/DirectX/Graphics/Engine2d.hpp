@@ -21,12 +21,15 @@ public:
 
 public:
     Result Init(const Window& newWindow, const Engine3d& newEngine);
+    Result PrepareForResize();
+    Result Resize();
     void RenderModel(const double& dt);
     void SetModel(Model2d* model);
 
 private:
     Result CreateDevice();
     Result CreateBitmapRenderTarget();
+    Result CreateImageFactory();
 
 private:
     Microsoft::WRL::ComPtr<ID3D11Device> device3d_;
@@ -37,6 +40,9 @@ private:
     Microsoft::WRL::ComPtr<ID2D1Factory2> factory2d_;
 
     TextManager2d textManager2d_;
+
+    // TODO: Pull this Windows Imaging Component out into an ImageManager?
+    Microsoft::WRL::ComPtr<IWICImagingFactory> imageFactory_;
 
     Model2d* model_;
 

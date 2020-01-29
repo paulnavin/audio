@@ -21,30 +21,57 @@ Result Engine2d::Init(const Window& newWindow, const Engine3d& newEngine) {
     device3d_ = newEngine.GetDirect3dDevice();
     swapChain3d_ = newEngine.GetDirect3dSwapChain();
 
+    // TODO: Check the CoInitialize() return value and deal with it?
+    CoInitialize(NULL);
+
     Result initResult{};
     initResult = CreateDevice();
     if (initResult.HasErrors()) {
-        initResult.AppendError("Direct2dController::Init() : Could not create device.");
+        initResult.AppendError("Engine2d::Init() : Could not create device.");
         return initResult;
     }
 
-    initResult = CreateBitmapRenderTarget();
+    initResult = CreateImageFactory();
     if (initResult.HasErrors()) {
-        initResult.AppendError("Direct2dController::Init() : Could not create bitmap render target.");
+        initResult.AppendError("Engine2d::Init() : Could not create image factory.");
         return initResult;
     }
 
     initResult = textManager2d_.Init(newWindow, *this);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 2D text manager.");
+        initResult.AppendError("Engine2d::Init() : Error initialising 2D text manager.");
+        return initResult;
+    }
+
+    initResult = Resize();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Engine2d::Init() : Could not resize.");
         return initResult;
     }
 
     return initResult;
 }
 
-void Engine2d::SetModel(Model2d* model) {
-    model_ = model;
+Result Engine2d::PrepareForResize() {
+    deviceContext2d_->SetTarget(nullptr);
+    return Result{};
+}
+
+Result Engine2d::Resize() {
+    Result resizeResult{};
+
+    resizeResult = CreateBitmapRenderTarget();
+    if (resizeResult.HasErrors()) {
+        resizeResult.AppendError("Engine2d::Resize() : Could not create bitmap render target.");
+        return resizeResult;
+    }
+
+    resizeResult = textManager2d_.Resize();
+    if (resizeResult.HasErrors()) {
+        resizeResult.AppendError("Engine2d::Resize() : Could not resize 2D text manager.");
+    }
+
+    return resizeResult;
 }
 
 void Engine2d::RenderModel(const double& dt) {
@@ -53,6 +80,10 @@ void Engine2d::RenderModel(const double& dt) {
     model_->Render(dt);
 
     (void)deviceContext2d_->EndDraw();
+}
+
+void Engine2d::SetModel(Model2d* model) {
+    model_ = model;
 }
 
 Result Engine2d::CreateDevice() {
@@ -121,4 +152,15 @@ Result Engine2d::CreateBitmapRenderTarget() {
     deviceContext2d_->SetTarget(targetBitmap.Get());
 
     return createRenderTargetResult;
+}
+
+Result Engine2d::CreateImageFactory() {
+    HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory2, NULL, CLSCTX_INPROC_SERVER, IID_IWICImagingFactory2, &imageFactory_);
+   
+    Result creationResult{};
+    if (FAILED(hr)) {
+        creationResult.AppendError("Engine2d::CreateImageFactory() : Could not create WIC factory.");
+    }
+
+    return creationResult;
 }

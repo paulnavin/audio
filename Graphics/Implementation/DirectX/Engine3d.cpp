@@ -11,6 +11,10 @@ const Microsoft::WRL::ComPtr<IDXGISwapChain>& Engine3d::GetDirect3dSwapChain() c
     return swapChain_;
 }
 
+Engine3d::~Engine3d() {
+    delete[] supportedDisplayModes_;
+}
+
 Result Engine3d::Init(const Window& newWindow) {
     windowHandle_ = newWindow.GetHandle();
 
@@ -101,12 +105,63 @@ Result Engine3d::RenderVertices() {
 }
 
 Result Engine3d::Resize() {
+    Result resizeResult;
+    DXGI_MODE_DESC currentModeDescription = supportedDisplayModes_[121];//currentModeDescription;
+    DXGI_MODE_DESC zeroRefreshRate = currentModeDescription;
+    zeroRefreshRate.RefreshRate.Numerator = 0;
+    zeroRefreshRate.RefreshRate.Denominator = 0;
+
+    BOOL alreadyInFullScreenMode = false;
+    swapChain_->GetFullscreenState(&alreadyInFullScreenMode, NULL);
+
+    if (currentlyInFullScreenMode_ != alreadyInFullScreenMode) {
+        if (alreadyInFullScreenMode) {
+            // switch from window to full screen -> Microsoft recommends resizing the target before going into fullscreen
+            HRESULT hr = swapChain_->ResizeTarget(&zeroRefreshRate);
+            if (FAILED(hr)) {
+                resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize target.");
+                return resizeResult;
+            }
+
+            hr = swapChain_->SetFullscreenState(true, nullptr);
+            if (FAILED(hr)) {
+                resizeResult.AppendError("Direct3dController::Resize() : Couldn't switch to full screen mode.");
+                return resizeResult;
+            }
+        } else {
+            // switched to windowed -> simply set fullscreen mode to false
+            HRESULT hr = swapChain_->SetFullscreenState(false, nullptr);
+            if (FAILED(hr)) {
+                resizeResult.AppendError("Direct3dController::Resize() : Couldn't switch to windowed mode.");
+                return resizeResult;
+            }
+
+            // recompute client area and set new window size
+            RECT rect = { 0, 0, (long)currentModeDescription.Width,  (long)currentModeDescription.Height };
+            hr = AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, false, WS_EX_OVERLAPPEDWINDOW);
+            if (FAILED(hr)) {
+                resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize window.");
+                return resizeResult;
+            }
+            SetWindowPos(windowHandle_, HWND_TOP, 0, 0, rect.right - rect.left, rect.bottom - rect.top, SWP_NOMOVE);
+        }
+
+        // change fullscreen mode
+        currentlyInFullScreenMode_ = !currentlyInFullScreenMode_;
+    }
+
+    HRESULT hr = swapChain_->ResizeTarget(&zeroRefreshRate);
+    if (FAILED(hr)) {
+        resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize target.");
+        return resizeResult;
+    }
+
     deviceContext_->ClearState();
     renderTargetView_ = nullptr;
     depthStencilView_ = nullptr;
 
-    HRESULT hr = swapChain_->ResizeBuffers(0, 0, 0, colourFormat_, 0);
-    Result resizeResult;
+    // Should this FORMAT_UNKNOWN be colourFormat_?
+    hr = swapChain_->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH);
     if (FAILED(hr)) {
         resizeResult.AppendError("Direct3dController::Resize() : Couldn't resize swap chain buffers.");
         return resizeResult;
@@ -160,7 +215,12 @@ Result Engine3d::Resize() {
     viewPort.MaxDepth = 1.0f;
     deviceContext_->RSSetViewports(1, &viewPort);
 
-    return InitShaders();
+    resizeResult = InitShaders();
+    if (resizeResult.HasErrors()) {
+        resizeResult.AppendError("Engine3d::Resize() : Couldn't initialise shaders.");
+    }
+
+    return resizeResult;
 }
 
 Result Engine3d::CreateDxgiResources() {
@@ -214,6 +274,17 @@ Result Engine3d::CreateDxgiResources() {
     if (FAILED(hr)) {
         dxgiResult.AppendError("Direct3dController::CreateDxgiResources() : Couldn't create swap chain.");
         return dxgiResult;
+    }
+
+    dxgiResult = InitSupportedDisplayModes();
+
+    if (startInFullscreen_ == true) {
+        hr = swapChain_->SetFullscreenState(true, nullptr);
+        if (FAILED(hr)) {
+            dxgiResult.AppendError("Direct3dController::CreateDxgiResources() : Couldn't switch to full screen mode.");
+            return dxgiResult;
+        }
+        currentlyInFullScreenMode_ = true;
     }
 
     dxgiResult = Resize();
@@ -322,4 +393,35 @@ Result Engine3d::LoadShader(const std::wstring& fileName, ShaderBuffer* shaderBu
     }
 
     return loadResult;
+}
+
+Result Engine3d::InitSupportedDisplayModes() {
+    Result initResult{};
+
+    IDXGIOutput *output = nullptr;
+    HRESULT hr = swapChain_->GetContainingOutput(&output);
+    if (FAILED(hr)) {
+        initResult.AppendError("Direct3dController::InitSupportedDisplayModes() : Couldn't get output adapter.");
+        return initResult;
+    }
+
+    UINT supportedModeCount = 0;
+    hr = output->GetDisplayModeList(colourFormat_, 0, &supportedModeCount, NULL);
+    if (FAILED(hr)) {
+        initResult.AppendError("Direct3dController::InitSupportedDisplayModes() : Couldn't get supported display mode count.");
+        return initResult;
+    }
+
+    supportedDisplayModes_ = new DXGI_MODE_DESC[supportedModeCount];
+    ZeroMemory(supportedDisplayModes_, sizeof(DXGI_MODE_DESC) * supportedModeCount);
+
+    hr = output->GetDisplayModeList(colourFormat_, 0, &supportedModeCount, supportedDisplayModes_);
+    if (FAILED(hr)) {
+        initResult.AppendError("Direct3dController::InitSupportedDisplayModes() : Couldn't get supported display modes.");
+        return initResult;
+    }
+
+    output->Release();
+
+    return initResult;
 }

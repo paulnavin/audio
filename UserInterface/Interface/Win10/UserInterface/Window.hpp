@@ -24,7 +24,7 @@ public:
     void Destroy();
 
 private:
-    LRESULT HandleSizeMessage(const WPARAM& wParam);
+    void HandleSizeMessage(const WPARAM& wParam);
 
 private:
     HINSTANCE appInstance_;

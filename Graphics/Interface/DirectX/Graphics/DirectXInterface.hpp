@@ -32,4 +32,7 @@
 #include <dwrite_2.h>
 #pragma comment (lib, "dwrite.lib")
 
+#include <wincodec.h>
+#pragma comment (lib, "Windowscodecs.lib")
+
 #pragma warning(pop)    // Turn back on all warnings.
