@@ -19,9 +19,7 @@ public:
     // Note: No Result passing in Render, for performance reasons.
     virtual void Render(const double&) {};
 
-    virtual void OnClick() {
-        
-    };
+    virtual void OnClick() {};
 
 public:
     const Position2d& GetPosition() const;
