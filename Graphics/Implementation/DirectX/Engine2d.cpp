@@ -12,10 +12,6 @@ const Microsoft::WRL::ComPtr<ID2D1Factory2>& Engine2d::GetFactory() const {
     return factory2d_;
 }
 
-const TextManager2d& Engine2d::GetTextManager() const {
-    return textManager2d_;
-}
-
 Result Engine2d::Init(const Window& newWindow, const Engine3d& newEngine) {
     windowHandle_ = newWindow.GetHandle();
     device3d_ = newEngine.GetDirect3dDevice();
@@ -34,12 +30,6 @@ Result Engine2d::Init(const Window& newWindow, const Engine3d& newEngine) {
     initResult = CreateImageFactory();
     if (initResult.HasErrors()) {
         initResult.AppendError("Engine2d::Init() : Could not create image factory.");
-        return initResult;
-    }
-
-    initResult = textManager2d_.Init(newWindow, *this);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Engine2d::Init() : Error initialising 2D text manager.");
         return initResult;
     }
 
@@ -64,11 +54,6 @@ Result Engine2d::Resize() {
     if (resizeResult.HasErrors()) {
         resizeResult.AppendError("Engine2d::Resize() : Could not create bitmap render target.");
         return resizeResult;
-    }
-
-    resizeResult = textManager2d_.Resize();
-    if (resizeResult.HasErrors()) {
-        resizeResult.AppendError("Engine2d::Resize() : Could not resize 2D text manager.");
     }
 
     return resizeResult;

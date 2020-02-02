@@ -15,7 +15,7 @@ public:
     ~Ellipse2d() = default;
 
 public:
-    Result Init(const Engine2d& engine) override;
+    Result Init(const Engine2d& engine, const TextManager2d& textManager) override;
     void Render(const double& dt) override;
 
 public:

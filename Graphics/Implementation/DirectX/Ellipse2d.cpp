@@ -6,7 +6,7 @@ Ellipse2d::Ellipse2d(Element* parent) : Element(parent) {
 
 }
 
-Result Ellipse2d::Init(const Engine2d& engine) {
+Result Ellipse2d::Init(const Engine2d& engine, const TextManager2d& /*textManager*/) {
     deviceContext2d_ = engine.GetDeviceContext2d();
     return Result{};
 }

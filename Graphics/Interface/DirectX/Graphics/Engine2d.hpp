@@ -39,8 +39,6 @@ private:
     Microsoft::WRL::ComPtr<ID2D1DeviceContext1> deviceContext2d_;
     Microsoft::WRL::ComPtr<ID2D1Factory2> factory2d_;
 
-    TextManager2d textManager2d_;
-
     // TODO: Pull this Windows Imaging Component out into an ImageManager?
     Microsoft::WRL::ComPtr<IWICImagingFactory> imageFactory_;
 

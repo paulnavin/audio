@@ -1,10 +1,8 @@
 #pragma once
 
-#include <Graphics/Engine2d.hpp>
-#include <Graphics/Engine3d.hpp>
+#include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Rectangle2d.hpp>
 #include <Graphics/Text2d.hpp>
-#include <Graphics/TextManager2d.hpp>
 #include <Graphics/Vertex.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInput/InputManager.hpp>
@@ -75,8 +73,7 @@ private:
     HACCEL acceleratorTable_;
     HINSTANCE appInstance_;
     ::uc::ConfigStore config_;
-    Engine2d engine2d_;
-    Engine3d engine3d_;
+    GraphicsEngine graphicsEngine_;
     bool finished_ = false;
     bool paused_ = false;
     bool resizeRequired_ = false;

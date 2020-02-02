@@ -13,7 +13,7 @@ public:
     virtual ~Model2d() = default;
 
 public:
-    virtual Result Init(const Engine2d& engine) = 0;
+    virtual Result Init(const Engine2d& engine, const TextManager2d& textManager) = 0;
 
     virtual void Update(const double& dt) = 0;
 

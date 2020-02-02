@@ -6,10 +6,9 @@
 Text2d::Text2d(Element* parent) : Element(parent) {
 }
 
-Result Text2d::Init(const Engine2d& engine) {
+Result Text2d::Init(const Engine2d& engine, const TextManager2d& textManager) {
     deviceContext2d_ = engine.GetDeviceContext2d();
 
-    TextManager2d textManager = engine.GetTextManager();
     textFormat_ = textManager.GetFpsTextFormat();
     brush_ = textManager.GetFpsBrush();
     writeFactory_ = textManager.GetWriteFactory();

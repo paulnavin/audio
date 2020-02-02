@@ -6,7 +6,7 @@ Rectangle2d::Rectangle2d(Element* parent) : Element(parent) {
 
 }
 
-Result Rectangle2d::Init(const Engine2d& engine) {
+Result Rectangle2d::Init(const Engine2d& engine, const TextManager2d& /*textManager*/) {
     deviceContext2d_ = engine.GetDeviceContext2d();
     return Result{};
 }

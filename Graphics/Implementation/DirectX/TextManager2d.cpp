@@ -25,12 +25,11 @@ Result TextManager2d::Init(const Window& newWindow, const Engine2d& newEngine) {
         return initResult;
     }
 
-    // TODO: Is this right, that TextManager's resize is called by the Engine2d?
-    //initResult = Resize();
-    //if (initResult.HasErrors()) {
-    //    initResult.AppendError("TextManager2d::Init() : Could not resize.");
-    //    return initResult;
-    //}
+    initResult = Resize();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("TextManager2d::Init() : Could not resize.");
+        return initResult;
+    }
 
     return initResult;
 }

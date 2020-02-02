@@ -13,8 +13,8 @@ public:
     ~ModelBasic2d() = default;
 
 public:
-    virtual Result Init(const Engine2d& engine) override {
-        Result initResult = rectangle_.Init(engine);
+    virtual Result Init(const Engine2d& engine, const TextManager2d& textManager) override {
+        Result initResult = rectangle_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("Window::Init() : Error initialising 2D rectangle.");
             return initResult;
@@ -23,7 +23,7 @@ public:
         rectangle_.SetPosition(300.0f, 300.0f);
         rectangle_.SetDimensions(50.0f, 50.0f);
 
-        initResult = ellipse_.Init(engine);
+        initResult = ellipse_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("Window::Init() : Error initialising 2D ellipse.");
             return initResult;
@@ -32,7 +32,7 @@ public:
         ellipse_.SetPosition(700.0f, 500.0f);
         ellipse_.SetDimensions(75.0f, 200.0f);
 
-        initResult = fpsText_.Init(engine);
+        initResult = fpsText_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("Window::Init() : Error initialising 2D FPS text.");
             return initResult;

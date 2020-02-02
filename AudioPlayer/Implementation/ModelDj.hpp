@@ -21,8 +21,8 @@ public:
     ~ModelDj() = default;
 
 public:
-    virtual Result Init(const Engine2d& engine) override {
-        Result initResult = openFile1Button_.Init(engine);
+    virtual Result Init(const Engine2d& engine, const TextManager2d& textManager) override {
+        Result initResult = openFile1Button_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D rectangle.");
             return initResult;
@@ -31,7 +31,7 @@ public:
         openFile1Button_.SetPosition(0.0f, 0.0f);
         openFile1Button_.SetDimensions(50.0f, 50.0f);
 
-        initResult = openFile2Button_.Init(engine);
+        initResult = openFile2Button_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D rectangle.");
             return initResult;
@@ -40,7 +40,7 @@ public:
         openFile2Button_.SetPosition(900.0f, 0.0f);
         openFile2Button_.SetDimensions(50.0f, 50.0f);
 
-        initResult = jogWheel1_.Init(engine);
+        initResult = jogWheel1_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D jog wheel.");
             return initResult;
@@ -50,7 +50,7 @@ public:
         jogWheel1_.SetPosition(181.0f, 225.0f);  // Note: This doesn't match the JogWheel code, cos for click detection need origin at top left.
         jogWheel1_.SetDimensions(150.0f, 150.0f);
 
-        initResult = fpsText_.Init(engine);
+        initResult = fpsText_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D FPS text.");
             return initResult;
@@ -60,7 +60,7 @@ public:
 
         showFps_ = true;
 
-        initResult = mousePositionText_.Init(engine);
+        initResult = mousePositionText_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D mouse position text.");
             return initResult;

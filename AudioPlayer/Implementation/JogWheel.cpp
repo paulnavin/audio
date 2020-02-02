@@ -7,7 +7,7 @@ JogWheel::JogWheel(Element* parent) : Element(parent) {
 
 }
 
-Result JogWheel::Init(const Engine2d& engine) {
+Result JogWheel::Init(const Engine2d& engine, const TextManager2d& /*textManager*/) {
     deviceContext2d_ = engine.GetDeviceContext2d();
 
     centrePoint_ = { 256.0f, 300.0f };

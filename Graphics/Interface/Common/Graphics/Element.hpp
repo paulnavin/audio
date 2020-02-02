@@ -7,6 +7,7 @@
 #include "Position2d.hpp"
 
 class Engine2d;
+class TextManager2d;
 
 class Element {
 public:
@@ -14,7 +15,7 @@ public:
     virtual ~Element() = default;
 
 public:
-    virtual Result Init(const Engine2d&) { return Result{}; };
+    virtual Result Init(const Engine2d& /*engine*/, const TextManager2d& /*textManager*/) { return Result{}; };
 
     // Note: No Result passing in Render, for performance reasons.
     virtual void Render(const double&) {};

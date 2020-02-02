@@ -52,15 +52,9 @@ Result App::Init(const HINSTANCE& appInstance) {
     }
     mainWindow_->SetWindowMessageHandler(this);
 
-    initResult = engine3d_.Init(*mainWindow_);
+    initResult = graphicsEngine_.Init(*mainWindow_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising 3D controller.");
-        return initResult;
-    }
-
-    initResult = engine2d_.Init(*mainWindow_, engine3d_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising 2D controller.");
+        initResult.AppendError("App::Init() : Error initialising graphics engine.");
         return initResult;
     }
 
@@ -122,12 +116,10 @@ Result App::Run() {
         
         if (resizeRequired_ == true || toggleFullScreen_ == true) {
             if (toggleFullScreen_ == true) {
-                engine3d_.ToggleFullScreen();
+                graphicsEngine_.ToggleFullScreen();
                 toggleFullScreen_ = false;
             }
-            engine2d_.PrepareForResize();
-            engine3d_.Resize();
-            engine2d_.Resize();
+            graphicsEngine_.Resize();
             resizeRequired_ = false;
             paused_ = false;
         }
@@ -154,10 +146,7 @@ Result App::Run() {
 
             // TODO: Is this actually right???
             // peek into the future and generate the output
-            Result renderResult = Render(accumulatedTime / MS_PER_FRAME);
-            if (renderResult.HasErrors()) {
-                return renderResult;
-            }
+            graphicsEngine_.Render(accumulatedTime / MS_PER_FRAME);
         }
     }
 
@@ -222,13 +211,13 @@ void App::OnCommandMouseClicked(const float& x, const float& y) {
 void App::OnCommandNextDisplayConfig() {
     paused_ = true;
     resizeRequired_ = true;
-    engine3d_.NextDisplayConfig();
+    graphicsEngine_.NextDisplayConfig();
 }
 
 void App::OnCommandPreviousDisplayConfig() {
     paused_ = true;
     resizeRequired_ = true;
-    engine3d_.PreviousDisplayConfig();
+    graphicsEngine_.PreviousDisplayConfig();
 }
 
 void App::OnCommandQuit() {
@@ -238,7 +227,7 @@ void App::OnCommandQuit() {
 void App::OnCommandResetDisplayConfig() {
     paused_ = true;
     resizeRequired_ = true;
-    engine3d_.ResetDisplayConfig();
+    graphicsEngine_.ResetDisplayConfig();
 }
 
 void App::OnCommandShowFps() {
@@ -292,25 +281,9 @@ void App::Update(const double& dt) {
     active2dModel_->Update(dt);
 }
 
-Result App::Render(const double& dt) {
-    Result renderResult{};
-
-    // (1) Clear the screen.
-    engine3d_.ClearBuffers();
-
-    // (2) Draw any 3D stuff.
-    engine3d_.RenderVertices();
-
-    // (3) Draw any 2D stuff on top of the 3D stuff.
-    engine2d_.RenderModel(dt);
-
-    // (4) Present the buffers to the screen.
-    return engine3d_.Present();
-}
-
 void App::SetActive2dModel(Model2d* newActiveModel) {
     active2dModel_ = newActiveModel;
-    engine2d_.SetModel(active2dModel_);
+    graphicsEngine_.Set2dModel(active2dModel_);
 }
 
 Result App::UpdateFps() {
@@ -354,13 +327,13 @@ Result App::Create3dModel() {
 
     Result initResult = model3d_->Init();
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 3D model.");
+        initResult.AppendError("App::Create3dModel() : Error initialising 3D model.");
         return initResult;
     }
 
-    initResult = engine3d_.InitGraphics(*model3d_);
+    initResult = graphicsEngine_.Set3dModel(*model3d_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 3D graphics.");
+        initResult.AppendError("App::Create3dModel() : Error setting 3D model.");
         return initResult;
     }
 
@@ -368,19 +341,18 @@ Result App::Create3dModel() {
 }
 
 Result App::Create2dModel() {
-
     djModel2d_ = new ModelDj();
-    Result initResult = djModel2d_->Init(engine2d_);
+    Result initResult = graphicsEngine_.Init2dModel(djModel2d_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising DJ 2D model.");
+        initResult.AppendError("App::Create2dModel : Error initialising DJ 2D model.");
         return initResult;
     }
     djModel2d_->SetShowFps(showFps_);
 
     basicModel2d_ = new ModelBasic2d();
-    initResult = basicModel2d_->Init(engine2d_);
+    initResult = graphicsEngine_.Init2dModel(basicModel2d_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising basic 2D model.");
+        initResult.AppendError("App::Create2dModel : Error initialising basic 2D model.");
         return initResult;
     }
 

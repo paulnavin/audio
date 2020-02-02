@@ -30,6 +30,7 @@
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Ellipse2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Engine2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Engine3d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\GraphicsEngine.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Rectangle2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\ShaderBuffer.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Text2d.hpp" />
@@ -41,6 +42,7 @@
     <ClCompile Include="..\..\Implementation\DirectX\Ellipse2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Engine2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Engine3d.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\GraphicsEngine.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Rectangle2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Text2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\TextManager2d.cpp" />
