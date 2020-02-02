@@ -13,6 +13,7 @@
 #include <Utility/WindowsInterface.hpp>
 
 #include "AppTimer.hpp"
+#include "AppUserInput.hpp"
 
 class Model2d;
 class Model3d;
@@ -29,6 +30,7 @@ public:
     void ShutDown();
 
 public:
+    // Window Handling
     virtual void OnActivate() override;
     virtual void OnClose() override;
     virtual void OnResize() override;
@@ -37,6 +39,16 @@ public:
     virtual void OnRestore() override;
     virtual void OnStartSizeOrMove() override;
     virtual void OnFinishSizeOrMove() override;
+
+    // User Input Commands
+    void OnCommandShowFps();
+    void OnCommandShowMousePosition();
+    void OnCommandMouseClicked(const float& x, const float& y);
+    void OnCommandToggle2dModel();
+    void OnCommandToggleFullScreen();
+    void OnCommandRecreateModels();
+
+    void UpdateMousePosition(const float& x, const float& y);
 
 private:
     static constexpr DWORD FRAMES_PER_SECOND = 60;
@@ -50,6 +62,7 @@ private:
     void SetActive2dModel(Model2d* newActiveModel);
     Result UpdateFps();
 
+    // Modelling
     void Destroy3dModel();
     void Destroy2dModel();
     Result Create3dModel();
@@ -66,7 +79,6 @@ private:
     bool resizeRequired_ = false;
     bool toggleFullScreen_ = false;
     int64_t fps_;
-    InputManager inputManager_;
     double lastFpsCalculationTime_;
     Model3d* model3d_;
     Model2d* djModel2d_;
@@ -77,4 +89,5 @@ private:
     AppTimer timer_;
     int64_t totalAppFrames_;
     Window* mainWindow_;
+    AppUserInput userInputHandler_;
 };

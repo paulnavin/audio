@@ -3,7 +3,6 @@
 #include <UserInterface/ErrorDisplay.hpp>
 #include <UserInterface/WindowConfig.hpp>
 #include <UserInterface/Window.hpp>
-#include <UserInput/CoreCommands.hpp>
 #include <Utility/EasyLogging++.hpp>
 #include <Utility/Result.hpp>
 
@@ -55,29 +54,35 @@ Result App::Init(const HINSTANCE& appInstance) {
 
     initResult = engine3d_.Init(*mainWindow_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 3D controller.");
+        initResult.AppendError("App::Init() : Error initialising 3D controller.");
         return initResult;
     }
 
     initResult = engine2d_.Init(*mainWindow_, engine3d_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error initialising 2D controller.");
+        initResult.AppendError("App::Init() : Error initialising 2D controller.");
         return initResult;
     }
 
     initResult = Create3dModel();
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error creating 3D model.");
+        initResult.AppendError("App::Init() : Error creating 3D model.");
         return initResult;
     }
 
     initResult = Create2dModel();
     if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error creating 2D model.");
+        initResult.AppendError("App::Init() : Error creating 2D model.");
         return initResult;
     }
 
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
+
+    initResult = userInputHandler_.Init(this);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error initialising user input.");
+        return initResult;
+    }
 
     LOG(INFO) << "App::Init() : Successful!";
 
@@ -214,53 +219,58 @@ void App::OnFinishSizeOrMove() {
     resizeRequired_ = true;
 }
 
-void App::Update(const double& dt) {
-    inputManager_.Update(*mainWindow_);
+void App::OnCommandShowFps() {
+    showFps_ = !showFps_;
+    active2dModel_->SetShowFps(showFps_);
+}
 
-    const InputManager::CommandMap* activeCommands = inputManager_.GetActiveKeyMap();
-    for (auto command : *activeCommands) {
-        if (command.first == ToggleFps) {
-            showFps_ = !showFps_;
-            active2dModel_->SetShowFps(showFps_);
-        } else if (command.first == ToggleMousePosition) {
-            showMousePosition_ = !showMousePosition_;
-            active2dModel_->SetShowMousePosition(showMousePosition_);
-        } else if (command.first == Toggle2dModel) {
-            if (active2dModel_ == djModel2d_) {
-                SetActive2dModel(basicModel2d_);
-            } else {
-                SetActive2dModel(djModel2d_);
-            }
-        } else if (command.first == MouseClicked) {
-            active2dModel_->OnMouseClicked(
-                static_cast<float>(inputManager_.GetMouseXPos()),
-                static_cast<float>(inputManager_.GetMouseYPos()));
-        } else if (command.first == ToggleFullScreen) {
-            paused_ = true;
-            toggleFullScreen_ = true;
-        } else if (command.first == RecreateModel) {
-            Destroy3dModel();
+void App::OnCommandShowMousePosition() {
+    showMousePosition_ = !showMousePosition_;
+    active2dModel_->SetShowMousePosition(showMousePosition_);
+}
 
-            Destroy2dModel();
+void App::OnCommandMouseClicked(const float& x, const float& y) {
+    active2dModel_->OnMouseClicked(x, y);
+}
 
-            Result initResult = Create3dModel();
-            if (initResult.HasErrors()) {
-                initResult.AppendError("Window::Init() : Error creating 3D model.");
-                ErrorDisplay::ShowErrors(initResult);
-                return;
-            }
+void App::OnCommandToggle2dModel() {
+    if (active2dModel_ == djModel2d_) {
+        SetActive2dModel(basicModel2d_);
+    } else {
+        SetActive2dModel(djModel2d_);
+    }
+}
 
-            initResult = Create2dModel();
-            if (initResult.HasErrors()) {
-                initResult.AppendError("Window::Init() : Error creating 2D model.");
-                ErrorDisplay::ShowErrors(initResult);
-                return;
-            }
+void App::OnCommandToggleFullScreen() {
+    paused_ = true;
+    toggleFullScreen_ = true;
+}
 
-        }
+void App::OnCommandRecreateModels() {
+    Destroy3dModel();
+    Destroy2dModel();
+
+    Result initResult = Create3dModel();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error creating 3D model.");
+        ErrorDisplay::ShowErrors(initResult);
+        return;
     }
 
-    active2dModel_->SetMousePosition(inputManager_.GetMouseXPos(), inputManager_.GetMouseYPos());
+    initResult = Create2dModel();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Window::Init() : Error creating 2D model.");
+        ErrorDisplay::ShowErrors(initResult);
+        return;
+    }
+}
+
+void App::UpdateMousePosition(const float& x, const float& y) {
+    active2dModel_->SetMousePosition(x, y);
+}
+
+void App::Update(const double& dt) {
+    userInputHandler_.Update(*mainWindow_);
     active2dModel_->Update(dt);
 }
 

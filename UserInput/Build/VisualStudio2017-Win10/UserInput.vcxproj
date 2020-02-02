@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\UserInput\CoreCommands.hpp" />
     <ClInclude Include="..\..\Interface\UserInput\InputManager.hpp" />
     <ClInclude Include="..\..\Interface\UserInput\KeyBinding.hpp" />
     <ClInclude Include="..\..\Interface\UserInput\Command.hpp" />

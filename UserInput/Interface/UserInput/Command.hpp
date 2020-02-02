@@ -10,9 +10,10 @@ public:
     using KeyBindingVector = std::vector<KeyBinding>;
 
 public:
-    Command(const std::string& newName, const KeyBindingVector& newBindings);
+    Command(const Id& newId, const std::string& newName, const KeyBindingVector& newBindings);
 
 public:
+    Id id;
     std::string name;
     KeyBindingVector keyCombo;
 };

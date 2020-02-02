@@ -44,7 +44,7 @@ void Model2d::SetFpsElement(Element* newElement) {
     SetShowFps(showFps_);
 }
 
-void Model2d::SetMousePosition(const int32_t& x, const int32_t& y) {
+void Model2d::SetMousePosition(const float& x, const float& y) {
     mouseXPosition_ = x;
     mouseYPosition_ = y;
 }

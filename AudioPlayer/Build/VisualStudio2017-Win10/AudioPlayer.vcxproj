@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Implementation\App.hpp" />
     <ClInclude Include="..\..\Implementation\AppTimer.hpp" />
+    <ClInclude Include="..\..\Implementation\AppUserInput.hpp" />
     <ClInclude Include="..\..\Implementation\JogWheel.hpp" />
     <ClInclude Include="..\..\Implementation\ModelBasic2d.hpp" />
     <ClInclude Include="..\..\Implementation\ModelDj.hpp" />
@@ -188,11 +189,13 @@
     <ClInclude Include="..\..\Implementation\ModelTriangle.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
     <ClInclude Include="..\..\Implementation\targetver.h" />
+    <ClInclude Include="..\..\Implementation\UserInputCommands.hpp" />
     <ClInclude Include="..\..\Implementation\WindowManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\App.cpp" />
     <ClCompile Include="..\..\Implementation\AppTimer.cpp" />
+    <ClCompile Include="..\..\Implementation\AppUserInput.cpp" />
     <ClCompile Include="..\..\Implementation\JogWheel.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
     <ClCompile Include="..\..\Implementation\WindowManager.cpp" />
@@ -221,6 +224,9 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\Documentation\ToDo.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -95,7 +95,7 @@ public:
         fpsText_.SetText(fpsString.str());
     }
 
-    void SetMousePosition(const int32_t& x, const int32_t& y) override {
+    void SetMousePosition(const float& x, const float& y) override {
         Model2d::SetMousePosition(x, y);
 
         std::wostringstream outputString{};

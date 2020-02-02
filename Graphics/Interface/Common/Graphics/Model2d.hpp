@@ -26,7 +26,7 @@ public:
     virtual void SetShowFps(const bool show);
     void SetFpsElement(Element* newElement);
 
-    virtual void SetMousePosition(const int32_t& x, const int32_t& y);
+    virtual void SetMousePosition(const float& x, const float& y);
     virtual void SetShowMousePosition(const bool show);
     void SetMousePositionElement(Element* newElement);
 
@@ -41,7 +41,7 @@ protected:
     Element* fpsElement_;
 
     bool showMousePosition_;
-    int32_t mouseXPosition_;
-    int32_t mouseYPosition_;
+    float mouseXPosition_;
+    float mouseYPosition_;
     Element* mousePositionElement_;
 };

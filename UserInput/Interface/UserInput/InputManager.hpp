@@ -11,7 +11,7 @@ public:
     using CommandMap = std::map<Command::Id, Command*>;
 
 public:
-    InputManager();
+    InputManager() = default;
     ~InputManager();
 
 public:
@@ -22,6 +22,7 @@ public:
     const bool IsKeyPressed(const uint16_t& keyCode) const;
 
 public:
+    void AddCommand(Command* command);
     void RefreshKeyboardState();
     void RefreshMouseState(const Window& targetWindow);
     void Update(const Window& targetWindow);
