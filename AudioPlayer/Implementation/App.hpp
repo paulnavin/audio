@@ -33,7 +33,6 @@ public:
     // Window Handling
     virtual void OnActivate() override;
     virtual void OnClose() override;
-    virtual void OnResize() override;
     virtual void OnMinimise() override;
     virtual void OnMaximise() override;
     virtual void OnRestore() override;

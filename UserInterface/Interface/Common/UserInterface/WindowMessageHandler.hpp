@@ -4,7 +4,6 @@ class WindowMessageHandler {
 public:
     virtual void OnActivate() = 0;
     virtual void OnClose() = 0;
-    virtual void OnResize() = 0;
     virtual void OnMinimise() = 0;
     virtual void OnMaximise() = 0;
     virtual void OnRestore() = 0;

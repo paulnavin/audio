@@ -184,10 +184,6 @@ void App::OnClose() {
     PostQuitMessage(0);
 }
 
-void App::OnResize() {
-    LOG(INFO) << "App::OnResize() : Boogie woogie!";
-}
-
 void App::OnMinimise() {
     LOG(INFO) << "App::OnMinimise() : Boogie woogie!";
 
