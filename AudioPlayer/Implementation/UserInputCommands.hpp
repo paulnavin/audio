@@ -9,3 +9,6 @@ static constexpr Command::Id Toggle2dModel = ToggleMousePosition + 1;
 static constexpr Command::Id RecreateModels = Toggle2dModel + 1;
 static constexpr Command::Id MouseClicked = RecreateModels + 1;
 static constexpr Command::Id ToggleFullScreen = MouseClicked + 1;
+static constexpr Command::Id NextDisplayConfig = ToggleFullScreen + 1;
+static constexpr Command::Id PreviousDisplayConfig = NextDisplayConfig + 1;
+static constexpr Command::Id ResetDisplayConfig = PreviousDisplayConfig + 1;

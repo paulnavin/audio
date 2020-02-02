@@ -17,6 +17,7 @@ Engine3d::~Engine3d() {
 
 Result Engine3d::Init(const Window& newWindow) {
     windowHandle_ = newWindow.GetHandle();
+    currentDisplayMode_ = 107;
 
     // D3D11_CREATE_DEVICE_BGRA_SUPPORT is needed to do both 3D and 2D.
     UINT deviceCreationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
@@ -106,7 +107,7 @@ Result Engine3d::RenderVertices() {
 
 Result Engine3d::Resize() {
     Result resizeResult;
-    DXGI_MODE_DESC currentModeDescription = supportedDisplayModes_[107];//currentModeDescription;
+    DXGI_MODE_DESC currentModeDescription = supportedDisplayModes_[currentDisplayMode_];
     DXGI_MODE_DESC zeroRefreshRate = currentModeDescription;
     zeroRefreshRate.RefreshRate.Numerator = 0;
     zeroRefreshRate.RefreshRate.Denominator = 0;
@@ -243,6 +244,19 @@ Result Engine3d::ToggleFullScreen() {
     }
     return toggleResult;
 }
+
+void Engine3d::NextDisplayConfig() {
+    currentDisplayMode_ = (currentDisplayMode_ + 1) % supportedDisplayModeCount_;
+}
+
+void Engine3d::PreviousDisplayConfig() {
+    currentDisplayMode_ = (currentDisplayMode_ - 1) % supportedDisplayModeCount_;
+}
+
+void Engine3d::ResetDisplayConfig() {
+    currentDisplayMode_ = 107;
+}
+
 
 Result Engine3d::CreateDxgiResources() {
     colourFormat_ = DXGI_FORMAT_B8G8R8A8_UNORM;
@@ -453,7 +467,8 @@ Result Engine3d::InitSupportedDisplayModes() {
         return initResult;
     }
 
-    supportedDisplayModes_ = new DXGI_MODE_DESC[supportedModeCount];
+    supportedDisplayModeCount_ = static_cast<size_t>(supportedModeCount);
+    supportedDisplayModes_ = new DXGI_MODE_DESC[supportedDisplayModeCount_];
     ZeroMemory(supportedDisplayModes_, sizeof(DXGI_MODE_DESC) * supportedModeCount);
 
     hr = output->GetDisplayModeList(colourFormat_, 0, &supportedModeCount, supportedDisplayModes_);

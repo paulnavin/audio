@@ -7,39 +7,51 @@
 Result AppUserInput::Init(App* newApp) {
     app_ = newApp;
 
-    std::vector<KeyBinding> toggleFpsBindings;
-    toggleFpsBindings.push_back(KeyBinding(VK_SHIFT, KeyState::StillPressed));
-    toggleFpsBindings.push_back(KeyBinding(VK_CONTROL, KeyState::StillPressed));
-    toggleFpsBindings.push_back(KeyBinding('F', KeyState::JustPressed));
-    inputManager_.AddCommand(new Command(ToggleFps, "Toggle FPS", toggleFpsBindings));
+    std::vector<KeyBinding> bindings;
 
-    std::vector<KeyBinding> toggleModelBindings;
-    toggleModelBindings.push_back(KeyBinding(VK_SHIFT, KeyState::StillPressed));
-    toggleModelBindings.push_back(KeyBinding(VK_CONTROL, KeyState::StillPressed));
-    toggleModelBindings.push_back(KeyBinding('2', KeyState::JustPressed));
-    inputManager_.AddCommand(new Command(Toggle2dModel, "Toggle 2D Model", toggleModelBindings));
+    bindings.push_back(KeyBinding('F', KeyState::JustPressed));
+    inputManager_.AddCommand(new Command(ToggleFps, "Toggle FPS", bindings));
+    bindings.clear();
 
-    std::vector<KeyBinding> recreateModelBindings;
-    recreateModelBindings.push_back(KeyBinding(VK_SHIFT, KeyState::StillPressed));
-    recreateModelBindings.push_back(KeyBinding(VK_CONTROL, KeyState::StillPressed));
-    recreateModelBindings.push_back(KeyBinding('R', KeyState::JustPressed));
-    inputManager_.AddCommand(new Command(RecreateModels, "Recreate Models", recreateModelBindings));
+    bindings.push_back(KeyBinding(VK_SHIFT, KeyState::StillPressed));
+    bindings.push_back(KeyBinding(VK_CONTROL, KeyState::StillPressed));
+    bindings.push_back(KeyBinding('2', KeyState::JustPressed));
+    inputManager_.AddCommand(new Command(Toggle2dModel, "Toggle 2D Model", bindings));
+    bindings.clear();
 
-    std::vector<KeyBinding> toggleMousePositionBindings;
-    toggleMousePositionBindings.push_back(KeyBinding(VK_RBUTTON, KeyState::JustReleased));
-    inputManager_.AddCommand(new Command(ToggleMousePosition, "Toggle Mouse Position", toggleMousePositionBindings));
+    bindings.push_back(KeyBinding(VK_SHIFT, KeyState::StillPressed));
+    bindings.push_back(KeyBinding(VK_CONTROL, KeyState::StillPressed));
+    bindings.push_back(KeyBinding('R', KeyState::JustPressed));
+    inputManager_.AddCommand(new Command(RecreateModels, "Recreate Models", bindings));
+    bindings.clear();
 
-    std::vector<KeyBinding> mouseClickedBindings;
-    mouseClickedBindings.push_back(KeyBinding(VK_LBUTTON, KeyState::JustReleased));
-    inputManager_.AddCommand(new Command(MouseClicked, "Left Click", mouseClickedBindings));
+    bindings.push_back(KeyBinding(VK_RBUTTON, KeyState::JustReleased));
+    inputManager_.AddCommand(new Command(ToggleMousePosition, "Toggle Mouse Position", bindings));
+    bindings.clear();
 
-    std::vector<KeyBinding> toggleFullScreenBindings;
-    toggleFullScreenBindings.push_back(KeyBinding('T', KeyState::JustReleased));
-    inputManager_.AddCommand(new Command(ToggleFullScreen, "Toggle Full Screen", toggleFullScreenBindings));
+    bindings.push_back(KeyBinding(VK_LBUTTON, KeyState::JustReleased));
+    inputManager_.AddCommand(new Command(MouseClicked, "Left Click", bindings));
+    bindings.clear();
 
-    std::vector<KeyBinding> quitBindings;
-    quitBindings.push_back(KeyBinding(VK_ESCAPE, KeyState::JustPressed));
-    inputManager_.AddCommand(new Command(Quit, "Quit", quitBindings));
+    bindings.push_back(KeyBinding('T', KeyState::JustReleased));
+    inputManager_.AddCommand(new Command(ToggleFullScreen, "Toggle Full Screen", bindings));
+    bindings.clear();
+
+    bindings.push_back(KeyBinding(VK_ESCAPE, KeyState::JustPressed));
+    inputManager_.AddCommand(new Command(Quit, "Quit", bindings));
+    bindings.clear();
+
+    bindings.push_back(KeyBinding('P', KeyState::JustPressed));
+    inputManager_.AddCommand(new Command(NextDisplayConfig, "Next Display Config", bindings));
+    bindings.clear();
+
+    bindings.push_back(KeyBinding('I', KeyState::JustPressed));
+    inputManager_.AddCommand(new Command(PreviousDisplayConfig, "Previous Display Config", bindings));
+    bindings.clear();
+
+    bindings.push_back(KeyBinding('O', KeyState::JustPressed));
+    inputManager_.AddCommand(new Command(ResetDisplayConfig, "Reset Display Config", bindings));
+    bindings.clear();
 
     return Result{};
 };
@@ -54,12 +66,16 @@ void AppUserInput::Update(const Window& targetWindow) {
     const InputManager::CommandMap* activeCommands = inputManager_.GetActiveKeyMap();
     for (auto command : *activeCommands) {
         switch (command.first) {
+        case Quit: {app_->OnCommandQuit(); return; }
         case RecreateModels: { app_->OnCommandRecreateModels(); return; }
         case Toggle2dModel: { app_->OnCommandToggle2dModel(); return; }
         case ToggleFps: { app_->OnCommandShowFps(); return; }
         case ToggleFullScreen: { app_->OnCommandToggleFullScreen(); return; }
         case ToggleMousePosition: { app_->OnCommandShowMousePosition(); return; }
         case MouseClicked: { app_->OnCommandMouseClicked(mouseXPosition, mouseYPosition); return; }
+        case NextDisplayConfig: { app_->OnCommandNextDisplayConfig(); return; }
+        case PreviousDisplayConfig: { app_->OnCommandPreviousDisplayConfig(); return; }
+        case ResetDisplayConfig: { app_->OnCommandResetDisplayConfig(); return; }
         }
     }
 }

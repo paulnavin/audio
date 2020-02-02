@@ -28,6 +28,10 @@ public:
     Result Resize();
     Result ToggleFullScreen();
 
+    void NextDisplayConfig();
+    void PreviousDisplayConfig();
+    void ResetDisplayConfig();
+
 private:
     Result CreateDxgiResources();
     Result InitShaders();
@@ -44,6 +48,8 @@ private:
     Microsoft::WRL::ComPtr<ID3D11RenderTargetView> renderTargetView_;
     bool startInFullscreen_ = false;
     DXGI_MODE_DESC* supportedDisplayModes_;
+    size_t supportedDisplayModeCount_;
+    size_t currentDisplayMode_;
     Microsoft::WRL::ComPtr<IDXGISwapChain> swapChain_;
     Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer_;
     size_t vertexCount_;

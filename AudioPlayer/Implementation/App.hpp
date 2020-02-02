@@ -40,12 +40,16 @@ public:
     virtual void OnFinishSizeOrMove() override;
 
     // User Input Commands
+    void OnCommandMouseClicked(const float& x, const float& y);
+    void OnCommandNextDisplayConfig();
+    void OnCommandPreviousDisplayConfig();
+    void OnCommandQuit();
+    void OnCommandRecreateModels();
+    void OnCommandResetDisplayConfig();
     void OnCommandShowFps();
     void OnCommandShowMousePosition();
-    void OnCommandMouseClicked(const float& x, const float& y);
     void OnCommandToggle2dModel();
     void OnCommandToggleFullScreen();
-    void OnCommandRecreateModels();
 
     void UpdateMousePosition(const float& x, const float& y);
 

@@ -215,6 +215,32 @@ void App::OnFinishSizeOrMove() {
     resizeRequired_ = true;
 }
 
+void App::OnCommandMouseClicked(const float& x, const float& y) {
+    active2dModel_->OnMouseClicked(x, y);
+}
+
+void App::OnCommandNextDisplayConfig() {
+    paused_ = true;
+    resizeRequired_ = true;
+    engine3d_.NextDisplayConfig();
+}
+
+void App::OnCommandPreviousDisplayConfig() {
+    paused_ = true;
+    resizeRequired_ = true;
+    engine3d_.PreviousDisplayConfig();
+}
+
+void App::OnCommandQuit() {
+    OnClose();
+}
+
+void App::OnCommandResetDisplayConfig() {
+    paused_ = true;
+    resizeRequired_ = true;
+    engine3d_.ResetDisplayConfig();
+}
+
 void App::OnCommandShowFps() {
     showFps_ = !showFps_;
     active2dModel_->SetShowFps(showFps_);
@@ -223,10 +249,6 @@ void App::OnCommandShowFps() {
 void App::OnCommandShowMousePosition() {
     showMousePosition_ = !showMousePosition_;
     active2dModel_->SetShowMousePosition(showMousePosition_);
-}
-
-void App::OnCommandMouseClicked(const float& x, const float& y) {
-    active2dModel_->OnMouseClicked(x, y);
 }
 
 void App::OnCommandToggle2dModel() {
