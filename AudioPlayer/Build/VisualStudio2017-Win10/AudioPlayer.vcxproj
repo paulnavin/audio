@@ -190,7 +190,6 @@
     <ClInclude Include="..\..\Implementation\Resource.h" />
     <ClInclude Include="..\..\Implementation\targetver.h" />
     <ClInclude Include="..\..\Implementation\UserInputCommands.hpp" />
-    <ClInclude Include="..\..\Implementation\WindowManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\App.cpp" />
@@ -198,7 +197,6 @@
     <ClCompile Include="..\..\Implementation\AppUserInput.cpp" />
     <ClCompile Include="..\..\Implementation\JogWheel.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
-    <ClCompile Include="..\..\Implementation\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc" />

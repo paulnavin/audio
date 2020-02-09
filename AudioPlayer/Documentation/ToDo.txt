@@ -1,9 +1,6 @@
-Mouse position on screen for click
 Sprites
 Storage location
 Loading data
 Loading app resources
 Saving/loading configuration to disk (protobuffers?)
 Scenes
-Move TextManager2D up into App
-Once Engine2d, Engine3d and TextManager2d are in App, move them into a new Graphics class.

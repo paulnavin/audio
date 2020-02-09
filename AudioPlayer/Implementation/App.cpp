@@ -1,8 +1,9 @@
 #include "App.hpp"
 
 #include <UserInterface/ErrorDisplay.hpp>
-#include <UserInterface/WindowConfig.hpp>
 #include <UserInterface/Window.hpp>
+#include <UserInterface/WindowConfig.hpp>
+#include <UserInterface/WindowManager.hpp>
 #include <Utility/EasyLogging++.hpp>
 #include <Utility/Result.hpp>
 
@@ -11,13 +12,29 @@
 #include "ModelStarField.hpp"
 #include "ModelTriangle.hpp"
 #include "Resource.h"
-#include "WindowManager.hpp"
 
 Result App::Init(const HINSTANCE& appInstance) {
     appInstance_ = appInstance;
+    Result initResult{};
+
+    initResult = config_.LoadConfig("someRubbish.ini");
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error loading app config.");
+        return initResult;
+    }
 
     WindowManager& windowManager = WindowManager::GetInstance();
-    Result initResult = windowManager.Init(appInstance_);
+
+    WindowConfig newWindowConfig{};
+    newWindowConfig.height = config_.GetInt32("height", 200);
+    newWindowConfig.width = config_.GetInt32("width", 300);
+    LoadStringW(appInstance_, IDS_APP_TITLE, newWindowConfig.title.data(), WindowConfig::MAX_RESOURCE_NAME_LENGTH);
+    LoadStringW(appInstance_, IDC_AUDIOPLAYER, newWindowConfig.mainWindowClassName_.data(), WindowConfig::MAX_RESOURCE_NAME_LENGTH);
+    newWindowConfig.appIcon_.Init(appInstance_, MAKEINTRESOURCE(IDI_AUDIOPLAYER));
+    newWindowConfig.smallAppIcon_.Init(appInstance_, MAKEINTRESOURCE(IDI_MONKEY_ICON));
+    newWindowConfig.mouseCursor_.Init(appInstance_, MAKEINTRESOURCE(IDC_DARK_OXYGEN_CURSOR_NORMAL));
+
+    initResult = windowManager.Init(appInstance_, newWindowConfig);
 
     if (initResult.HasErrors()) {
         initResult.AppendError("App::Init() : Error initialising WindowManager.");
@@ -29,21 +46,6 @@ Result App::Init(const HINSTANCE& appInstance) {
         initResult.AppendError("App::Init() : Error initialising app timer.");
         return initResult;
     }
-
-    initResult = config_.LoadConfig("someRubbish.ini");
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error loading app config.");
-        return initResult;
-    }
-
-    static constexpr size_t MAX_LOADSTRING = 100;
-    WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
-    LoadStringW(appInstance_, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-
-    WindowConfig newWindowConfig{};
-    newWindowConfig.height = config_.GetInt32("height", 200);
-    newWindowConfig.width = config_.GetInt32("width", 300);
-    newWindowConfig.title = std::wstring(szTitle);
 
     initResult = windowManager.CreateNewWindow(newWindowConfig, &mainWindow_);
     if (initResult.HasErrors()) {

@@ -20,7 +20,7 @@ Result Window::Init(const WNDCLASSEXW& wcex, const WindowConfig& config) {
 
     // Note: This function results in a message being called through to WindowManager's
     //       ProcessMessage() function, before the HWND is valid.
-    windowHandle_ = CreateWindowW(wcex.lpszClassName, config.title.c_str(), WS_OVERLAPPEDWINDOW,
+    windowHandle_ = CreateWindowW(wcex.lpszClassName, config.title.data(), WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT, config.width, config.height, nullptr, nullptr, appInstance_, nullptr);
 
     Result initResult{};

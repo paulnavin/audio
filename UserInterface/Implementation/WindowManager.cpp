@@ -1,9 +1,6 @@
-#include "WindowManager.hpp"
+#include <UserInterface/WindowManager.hpp>
 
-#include "Resource.h"
-
-static constexpr size_t MAX_LOADSTRING = 100;
-WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
+#include <UserInterface/WindowConfig.hpp>
 
 //
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
@@ -18,11 +15,8 @@ WindowManager& WindowManager::GetInstance() {
     return instance;               // Instantiated on first use.
 }
 
-Result WindowManager::Init(const HINSTANCE& hInstance) {
+Result WindowManager::Init(const HINSTANCE& hInstance, const WindowConfig& windowConfig) {
     Result returnValue = {};
-    // Initialize global strings
-    LoadStringW(hInstance, IDC_AUDIOPLAYER, szWindowClass, MAX_LOADSTRING);
-    
     wcex_.cbSize = sizeof(WNDCLASSEX);
 
     wcex_.style = CS_HREDRAW | CS_VREDRAW;
@@ -30,11 +24,11 @@ Result WindowManager::Init(const HINSTANCE& hInstance) {
     wcex_.cbClsExtra = 0;
     wcex_.cbWndExtra = 0;
     wcex_.hInstance = hInstance;
-    wcex_.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_AUDIOPLAYER));
-    wcex_.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_DARK_OXYGEN_CURSOR_NORMAL));
+    wcex_.hIcon = windowConfig.appIcon_.GetHandle();
+    wcex_.hCursor = windowConfig.mouseCursor_.GetHandle();
     wcex_.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex_.lpszClassName = szWindowClass;
-    wcex_.hIconSm = LoadIcon(wcex_.hInstance, MAKEINTRESOURCE(IDI_MONKEY_ICON));
+    wcex_.lpszClassName = windowConfig.mainWindowClassName_.data();
+    wcex_.hIconSm = windowConfig.smallAppIcon_.GetHandle();
 
     if (!RegisterClassExW(&wcex_)) {
         returnValue.AppendError("WindowManager::Init() : Error registering window class.");

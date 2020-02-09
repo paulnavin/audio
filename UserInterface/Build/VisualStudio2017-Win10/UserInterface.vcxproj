@@ -19,17 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Cursor.cpp" />
     <ClCompile Include="..\..\Implementation\ErrorDisplay.cpp" />
+    <ClCompile Include="..\..\Implementation\Icon.cpp" />
     <ClCompile Include="..\..\Implementation\StringUtil.cpp" />
     <ClCompile Include="..\..\Implementation\Window.cpp" />
+    <ClCompile Include="..\..\Implementation\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Implementation\StringUtil.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\ErrorDisplay.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\WindowConfig.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\WindowMessageHandler.hpp" />
+    <ClInclude Include="..\..\Interface\Win10\UserInterface\Cursor.hpp" />
+    <ClInclude Include="..\..\Interface\Win10\UserInterface\Icon.hpp" />
     <ClInclude Include="..\..\Interface\Win10\UserInterface\Window.hpp" />
-    <ClInclude Include="..\..\Interface\Win10\UserInterface\WindowsInterface.hpp" />
+    <ClInclude Include="..\..\Interface\Win10\UserInterface\WindowManager.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
