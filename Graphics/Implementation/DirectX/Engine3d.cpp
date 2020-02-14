@@ -2,6 +2,8 @@
 
 #include <Graphics/ShaderBuffer.hpp>
 #include <UserInterface/Window.hpp>
+#include <Utility/ResourceManager.hpp>
+#include <Utility/StringUtil.hpp>
 
 const Microsoft::WRL::ComPtr<ID3D11Device>& Engine3d::GetDirect3dDevice() const {
     return device_;
@@ -15,9 +17,16 @@ Engine3d::~Engine3d() {
     delete[] supportedDisplayModes_;
 }
 
-Result Engine3d::Init(const Window& newWindow) {
+Result Engine3d::Init(const Window& newWindow, const ResourceManager& resourceManager) {
     windowHandle_ = newWindow.GetHandle();
     currentDisplayMode_ = 107;
+
+    std::string shaderFileName = resourceManager.GetShaderDirectoryName();
+    pixelShaderFileName_ = StringUtil::StringToWideString(shaderFileName);
+    vertexShaderFileName_ = pixelShaderFileName_;
+
+    pixelShaderFileName_.append(L"pixelShader.cso");
+    vertexShaderFileName_.append(L"vertexShader.cso");
 
     // D3D11_CREATE_DEVICE_BGRA_SUPPORT is needed to do both 3D and 2D.
     UINT deviceCreationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
@@ -357,11 +366,7 @@ Result Engine3d::InitShaders() {
     // Pixel shaders
     ShaderBuffer pixelShaderBuffer;
 
-#ifdef _DEBUG
-    initResult = LoadShader(L"../../Binaries/x64/Debug/pixelShader.cso", &pixelShaderBuffer);
-#else
-    initResult = LoadShader(L"../../Binaries/x64/Release/pixelShader.cso", &pixelShaderBuffer_);
-#endif
+    initResult = LoadShader(pixelShaderFileName_, &pixelShaderBuffer);
     if (initResult.HasErrors()) {
         initResult.AppendError("Engine3d::InitShaders() : Couldn't load pixel shader.");
         return initResult;
@@ -378,11 +383,7 @@ Result Engine3d::InitShaders() {
     // Vertex shaders
     ShaderBuffer vertexShaderBuffer;
 
-#ifdef _DEBUG
-    initResult = LoadShader(L"../../Binaries/x64/Debug/vertexShader.cso", &vertexShaderBuffer);
-#else
-    initResult = LoadShader(L"../../Binaries/x64/Release/vertexShader.cso", &vertexShaderBuffer_);
-#endif
+    initResult = LoadShader(vertexShaderFileName_, &vertexShaderBuffer);
     if (initResult.HasErrors()) {
         initResult.AppendError("Engine3d::InitShaders() : Couldn't load vertex shader.");
         return initResult;

@@ -15,6 +15,7 @@
 
 class Model2d;
 class Model3d;
+class ResourceManager;
 class Window;
 
 class App : public WindowMessageHandler {
@@ -23,7 +24,7 @@ public:
     ~App() = default;
 
 public:
-    Result Init(const HINSTANCE& appInstance);
+    Result Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager);
     Result Run();
     void ShutDown();
 

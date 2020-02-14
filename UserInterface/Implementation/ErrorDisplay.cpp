@@ -1,7 +1,6 @@
 #include <UserInterface/ErrorDisplay.hpp>
 
-#include "StringUtil.hpp"
-
+#include <Utility/StringUtil.hpp>
 #include <Utility/WindowsInterface.hpp>
 
 namespace ErrorDisplay {

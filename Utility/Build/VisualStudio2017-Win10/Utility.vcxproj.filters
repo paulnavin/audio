@@ -27,6 +27,12 @@
     <ClCompile Include="..\..\Implementation\Result.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Implementation\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\StringUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Interface\Common\Utility\EasyLogging++.hpp">
@@ -40,6 +46,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Interface\Win10\Utility\WindowsInterface.hpp">
       <Filter>Header Files\Win10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Utility\ResourceManager.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Utility\StringUtil.hpp">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

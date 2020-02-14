@@ -34,6 +34,8 @@
 
 #include <Utility/EasyLogging++.hpp>
 
+#define ELPP_NO_DEFAULT_LOG_FILE true
+
 #if defined(AUTO_INITIALIZE_EASYLOGGINGPP)
 INITIALIZE_EASYLOGGINGPP
 #endif

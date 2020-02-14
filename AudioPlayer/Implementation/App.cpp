@@ -5,6 +5,7 @@
 #include <UserInterface/WindowConfig.hpp>
 #include <UserInterface/WindowManager.hpp>
 #include <Utility/EasyLogging++.hpp>
+#include <Utility/ResourceManager.hpp>
 #include <Utility/Result.hpp>
 
 #include "ModelBasic2d.hpp"
@@ -13,7 +14,7 @@
 #include "ModelTriangle.hpp"
 #include "Resource.h"
 
-Result App::Init(const HINSTANCE& appInstance) {
+Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager) {
     appInstance_ = appInstance;
     Result initResult{};
 
@@ -54,7 +55,7 @@ Result App::Init(const HINSTANCE& appInstance) {
     }
     mainWindow_->SetWindowMessageHandler(this);
 
-    initResult = graphicsEngine_.Init(*mainWindow_);
+    initResult = graphicsEngine_.Init(*mainWindow_, resourceManager);
     if (initResult.HasErrors()) {
         initResult.AppendError("App::Init() : Error initialising graphics engine.");
         return initResult;

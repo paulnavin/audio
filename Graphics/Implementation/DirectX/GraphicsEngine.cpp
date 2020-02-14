@@ -3,11 +3,12 @@
 #include <Graphics/Model2d.hpp>
 #include <UserInterface/ErrorDisplay.hpp>
 #include <UserInterface/Window.hpp>
+#include <Utility/ResourceManager.hpp>
 
-Result GraphicsEngine::Init(const Window& targetWindow) {
+Result GraphicsEngine::Init(const Window& targetWindow, const ResourceManager& resourceManager) {
     Result initResult{};
 
-    initResult = engine3d_.Init(targetWindow);
+    initResult = engine3d_.Init(targetWindow, resourceManager);
     if (initResult.HasErrors()) {
         initResult.AppendError("GraphicsEngine::Init() : Error initialising 3D controller.");
         return initResult;

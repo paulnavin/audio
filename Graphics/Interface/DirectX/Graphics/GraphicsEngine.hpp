@@ -8,6 +8,7 @@
 
 class Model2d;
 class Model3d;
+class ResourceManager;
 class Window;
 
 class GraphicsEngine {
@@ -17,7 +18,7 @@ public:
     ~GraphicsEngine() = default;
 
 public:
-    Result Init(const Window& targetWindow);
+    Result Init(const Window& targetWindow, const ResourceManager& resourceManager);
     Result Init2dModel(Model2d* model);
     void NextDisplayConfig();
     void PreviousDisplayConfig();

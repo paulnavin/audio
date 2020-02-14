@@ -1,4 +1,4 @@
-#include "StringUtil.hpp"
+#include <Utility/StringUtil.hpp>
 
 #include <Utility/WindowsInterface.hpp>
 

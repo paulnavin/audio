@@ -20,12 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\EasyLogging++.cpp" />
+    <ClCompile Include="..\..\Implementation\ResourceManager.cpp" />
     <ClCompile Include="..\..\Implementation\Result.cpp" />
+    <ClCompile Include="..\..\Implementation\StringUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Interface\Common\Utility\EasyLogging++.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Utility\ResourceManager.hpp" />
     <ClInclude Include="..\..\Interface\Common\Utility\Result.hpp" />
     <ClInclude Include="..\..\Interface\Common\Utility\StlWrapper.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Utility\StringUtil.hpp" />
     <ClInclude Include="..\..\Interface\Win10\Utility\WindowsInterface.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

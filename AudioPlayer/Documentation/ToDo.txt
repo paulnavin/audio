@@ -1,5 +1,4 @@
 Sprites
-Storage location
 Loading data
 Loading app resources
 Saving/loading configuration to disk (protobuffers?)

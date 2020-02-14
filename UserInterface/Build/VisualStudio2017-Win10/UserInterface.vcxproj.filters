@@ -27,9 +27,6 @@
     <ClCompile Include="..\..\Implementation\ErrorDisplay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\StringUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Implementation\Icon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -41,9 +38,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Implementation\StringUtil.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Interface\Common\UserInterface\ErrorDisplay.hpp">
       <Filter>Header Files\Common</Filter>
     </ClInclude>

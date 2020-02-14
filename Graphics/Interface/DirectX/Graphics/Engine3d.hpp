@@ -7,6 +7,7 @@
 #include <Utility/Result.hpp>
 #include <Utility/StlWrapper.hpp>
 
+class ResourceManager;
 class Window;
 
 class Engine3d {
@@ -20,7 +21,7 @@ public:
     const Microsoft::WRL::ComPtr<IDXGISwapChain>& GetDirect3dSwapChain() const;
 
 public:
-    Result Init(const Window& newWindow);
+    Result Init(const Window& newWindow, const ResourceManager& resourceManager);
     Result InitGraphics(const Model3d& model);
     void ClearBuffers();
     Result Present();
@@ -45,6 +46,7 @@ private:
     Microsoft::WRL::ComPtr<ID3D11Device> device_;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> deviceContext_;
     Microsoft::WRL::ComPtr<ID3D11PixelShader> pixelShader_;
+    std::wstring pixelShaderFileName_;
     Microsoft::WRL::ComPtr<ID3D11RenderTargetView> renderTargetView_;
     bool startInFullscreen_ = false;
     DXGI_MODE_DESC* supportedDisplayModes_;
@@ -55,5 +57,6 @@ private:
     size_t vertexCount_;
     VertexType vertexType_;
     Microsoft::WRL::ComPtr<ID3D11VertexShader> vertexShader_;
+    std::wstring vertexShaderFileName_;
     HWND windowHandle_;
 };
