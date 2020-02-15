@@ -12,6 +12,7 @@ struct WindowConfig {
     int32_t width;
     Icon appIcon_;
     Cursor mouseCursor_;
+    bool showCursor_ = true;
     Icon smallAppIcon_;
     std::array<WCHAR, MAX_RESOURCE_NAME_LENGTH> mainWindowClassName_;
 };

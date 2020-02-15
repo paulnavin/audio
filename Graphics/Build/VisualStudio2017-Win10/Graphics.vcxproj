@@ -33,6 +33,7 @@
     <ClInclude Include="..\..\Interface\DirectX\Graphics\GraphicsEngine.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Rectangle2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\ShaderBuffer.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\Sprite.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Text2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\TextManager2d.hpp" />
   </ItemGroup>
@@ -44,6 +45,7 @@
     <ClCompile Include="..\..\Implementation\DirectX\Engine3d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\GraphicsEngine.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Rectangle2d.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\Sprite.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Text2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\TextManager2d.cpp" />
   </ItemGroup>

@@ -4,6 +4,7 @@
 #include <Graphics/Ellipse2d.hpp>
 #include <Graphics/Model2d.hpp>
 #include <Graphics/Rectangle2d.hpp>
+#include <Graphics/Sprite.hpp>
 #include <Graphics/Text2d.hpp>
 #include <Utility/StlWrapper.hpp>
 
@@ -16,12 +17,13 @@ public:
         , jogWheel1_(nullptr)
         , openFile1Button_(nullptr)
         , openFile2Button_(nullptr)
+        , mouseCursor_(nullptr)
         , fpsText_(nullptr)
         , mousePositionText_(nullptr) {};
     ~ModelDj() = default;
 
 public:
-    virtual Result Init(const Engine2d& engine, const TextManager2d& textManager) override {
+    virtual Result Init(const Engine2d& engine, const TextManager2d& textManager, const ResourceManager& resourceManager) override {
         Result initResult = openFile1Button_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D rectangle.");
@@ -60,6 +62,19 @@ public:
 
         showFps_ = true;
 
+        initResult = mouseCursor_.Init(engine, textManager);
+        if (initResult.HasErrors()) {
+            initResult.AppendError("ModelDj::Init() : Error initialising mouse cursor sprite.");
+            return initResult;
+        }
+
+        std::string spriteFileName = resourceManager.GetFullCursorFileName("BlueArrow.png");
+        initResult = mouseCursor_.SetSourceFileName(spriteFileName);
+        if (initResult.HasErrors()) {
+            initResult.AppendError("ModelDj::Init() : Error setting mouse cursor file name.");
+            return initResult;
+        }
+
         initResult = mousePositionText_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D mouse position text.");
@@ -74,6 +89,7 @@ public:
         elements_.insert(&jogWheel1_);
         elements_.insert(&openFile1Button_);
         elements_.insert(&openFile2Button_);
+        elements_.insert(&mouseCursor_);
 
         SetFpsElement(&fpsText_);
         SetMousePositionElement(&mousePositionText_);
@@ -103,12 +119,16 @@ public:
         outputString << "Mouse: " << x << ", " << y << std::endl;
 
         mousePositionText_.SetText(outputString.str());
+
+        mouseCursor_.SetPosition(x, y);
     }
 
 private:
     JogWheel jogWheel1_;
     Rectangle2d openFile1Button_;
     Rectangle2d openFile2Button_;
+
+    Sprite mouseCursor_;
 
     Text2d fpsText_;
     Text2d mousePositionText_;

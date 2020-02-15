@@ -3,10 +3,11 @@
 #include <Graphics/Model2d.hpp>
 #include <UserInterface/ErrorDisplay.hpp>
 #include <UserInterface/Window.hpp>
-#include <Utility/ResourceManager.hpp>
 
 Result GraphicsEngine::Init(const Window& targetWindow, const ResourceManager& resourceManager) {
     Result initResult{};
+
+    resourceManager_ = resourceManager;
 
     initResult = engine3d_.Init(targetWindow, resourceManager);
     if (initResult.HasErrors()) {
@@ -30,7 +31,7 @@ Result GraphicsEngine::Init(const Window& targetWindow, const ResourceManager& r
 }
 
 Result GraphicsEngine::Init2dModel(Model2d* model) {
-    return model->Init(engine2d_, textManager2d_);
+    return model->Init(engine2d_, textManager2d_, resourceManager_);
 }
 
 void GraphicsEngine::NextDisplayConfig() {

@@ -2,6 +2,17 @@
 
 #include <Utility/ResourceManager.hpp>
 
+const std::string ResourceManager::GetCursorDirectoryName() const {
+    return "..\\..\\..\\Resources\\Cursors";
+}
+
+const std::string ResourceManager::GetFullCursorFileName(const std::string& fileName) const {
+    std::string fullName = GetCursorDirectoryName();
+    fullName.append("\\");
+    fullName.append(fileName);
+    return fullName;
+}
+
 const std::string ResourceManager::GetLogDirectoryName() const {
     return ".\\Resources\\Logging";
 }

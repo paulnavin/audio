@@ -3,7 +3,7 @@
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/Engine3d.hpp>
 #include <Graphics/TextManager2d.hpp>
-
+#include <Utility/ResourceManager.hpp>
 #include <Utility/Result.hpp>
 
 class Model2d;
@@ -32,5 +32,6 @@ public:
 private:
     Engine2d engine2d_;
     Engine3d engine3d_;
+    ResourceManager resourceManager_;
     TextManager2d textManager2d_;
 };

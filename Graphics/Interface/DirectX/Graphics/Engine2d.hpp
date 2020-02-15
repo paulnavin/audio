@@ -17,6 +17,7 @@ public:
 public:
     const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& GetDeviceContext2d() const;
     const Microsoft::WRL::ComPtr<ID2D1Factory2>& GetFactory() const;
+    const Microsoft::WRL::ComPtr<IWICImagingFactory>& GetImageFactory() const;
     const TextManager2d& GetTextManager() const;
 
 public:

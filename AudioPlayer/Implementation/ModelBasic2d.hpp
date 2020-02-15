@@ -13,7 +13,7 @@ public:
     ~ModelBasic2d() = default;
 
 public:
-    virtual Result Init(const Engine2d& engine, const TextManager2d& textManager) override {
+    virtual Result Init(const Engine2d& engine, const TextManager2d& textManager, const ResourceManager& /*resourceManager*/) override {
         Result initResult = rectangle_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("Window::Init() : Error initialising 2D rectangle.");

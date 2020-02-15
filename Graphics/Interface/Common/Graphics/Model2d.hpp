@@ -6,6 +6,7 @@
 #include "Element.hpp"
 
 class Engine2d;
+class ResourceManager;
 
 class Model2d {
 public:
@@ -13,7 +14,7 @@ public:
     virtual ~Model2d() = default;
 
 public:
-    virtual Result Init(const Engine2d& engine, const TextManager2d& textManager) = 0;
+    virtual Result Init(const Engine2d& engine, const TextManager2d& textManager, const ResourceManager& resourceManager) = 0;
 
     virtual void Update(const double& dt) = 0;
 

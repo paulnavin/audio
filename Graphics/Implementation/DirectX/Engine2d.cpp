@@ -12,6 +12,10 @@ const Microsoft::WRL::ComPtr<ID2D1Factory2>& Engine2d::GetFactory() const {
     return factory2d_;
 }
 
+const Microsoft::WRL::ComPtr<IWICImagingFactory>& Engine2d::GetImageFactory() const {
+    return imageFactory_;
+}
+
 Result Engine2d::Init(const Window& newWindow, const Engine3d& newEngine) {
     windowHandle_ = newWindow.GetHandle();
     device3d_ = newEngine.GetDirect3dDevice();

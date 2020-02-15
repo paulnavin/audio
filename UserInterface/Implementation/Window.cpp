@@ -28,9 +28,13 @@ Result Window::Init(const WNDCLASSEXW& wcex, const WindowConfig& config) {
         initResult.AppendError("Window::Init() : Error creating window!");
     }
 
+    ShowCursor(config.showCursor_);
+
     RECT clientRect;
     GetWindowRect(windowHandle_, &windowRectangle_);
     GetClientRect(windowHandle_, &clientRect);
+
+        
 
     return initResult;
 }

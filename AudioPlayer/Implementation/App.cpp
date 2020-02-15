@@ -29,6 +29,7 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceMa
     WindowConfig newWindowConfig{};
     newWindowConfig.height = config_.GetInt32("height", 200);
     newWindowConfig.width = config_.GetInt32("width", 300);
+    newWindowConfig.showCursor_ = false;
     LoadStringW(appInstance_, IDS_APP_TITLE, newWindowConfig.title.data(), WindowConfig::MAX_RESOURCE_NAME_LENGTH);
     LoadStringW(appInstance_, IDC_AUDIOPLAYER, newWindowConfig.mainWindowClassName_.data(), WindowConfig::MAX_RESOURCE_NAME_LENGTH);
     newWindowConfig.appIcon_.Init(appInstance_, MAKEINTRESOURCE(IDI_AUDIOPLAYER));
