@@ -28,17 +28,17 @@ public:
         AnimatedSpriteCycleData cycle;
         cycle.name = "Explosion";
         cycle.startFrame = 0;
-        cycle.numberOfFrames = 81;
-        cycle.framesPerRow = 10;
-        cycle.width = 97;
-        cycle.height = 98;
-        cycle.paddingWidth = 6;
-        cycle.paddingHeight = 4;
-        cycle.borderPaddingHeight = cycle.borderPaddingWidth = 0;
+        cycle.numberOfFrames = 5;
+        cycle.framesPerRow = 5;
+        cycle.width = 25;
+        cycle.height = 64;
+        cycle.paddingWidth = 0;
+        cycle.paddingHeight = 1;
+        cycle.borderPaddingHeight = cycle.borderPaddingWidth = 1;
         cycle.rotationCenterX = cycle.rotationCenterY = 0.5f;
         explosionAnimationCycles.push_back(cycle);
 
-        std::string animatedSpriteFileName = resourceManager.GetFullAnimatedSpriteFileName("explosion.png");
+        std::string animatedSpriteFileName = resourceManager.GetFullAnimatedSpriteFileName("wolfy.png");
         initResult = animatedSprite_.SetSourceFileName(animatedSpriteFileName);
         if (initResult.HasErrors()) {
             initResult.AppendError("ExplosionAnimation::Init() : Error setting animated sprite file name.");
