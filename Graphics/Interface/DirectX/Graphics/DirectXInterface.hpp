@@ -27,6 +27,7 @@
 // Direct2D
 #include <d2d1_2.h>
 #pragma comment (lib, "d2d1.lib")
+#pragma comment (lib, "dxguid.lib")
 
 // DirectWrite
 #include <dwrite_2.h>

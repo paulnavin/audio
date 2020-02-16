@@ -26,6 +26,9 @@
     <ClInclude Include="..\..\Interface\Common\Graphics\Model3d.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Position2d.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Vertex.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\AnimatedSprite.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\AnimatedSpriteAnimationData.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\AnimatedSpriteCycleData.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\DirectXInterface.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Ellipse2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Engine2d.hpp" />
@@ -40,6 +43,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Common\Element.cpp" />
     <ClCompile Include="..\..\Implementation\Common\Model2d.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\AnimatedSprite.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Ellipse2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Engine2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Engine3d.cpp" />

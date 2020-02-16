@@ -8,6 +8,8 @@ public:
     ~ResourceManager() = default;
 
 public:
+    const std::string GetAnimatedSpriteDirectoryName() const;
+    const std::string GetFullAnimatedSpriteFileName(const std::string& fileName) const;
     const std::string GetCursorDirectoryName() const;
     const std::string GetFullCursorFileName(const std::string& fileName) const;
     const std::string GetLogDirectoryName() const;

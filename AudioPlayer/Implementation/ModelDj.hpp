@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Graphics/AnimatedSprite.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/Ellipse2d.hpp>
 #include <Graphics/Model2d.hpp>
@@ -8,6 +9,7 @@
 #include <Graphics/Text2d.hpp>
 #include <Utility/StlWrapper.hpp>
 
+#include "ExplosionAnimation.hpp"
 #include "JogWheel.hpp"
 
 class ModelDj : public Model2d {
@@ -18,6 +20,7 @@ public:
         , openFile1Button_(nullptr)
         , openFile2Button_(nullptr)
         , mouseCursor_(nullptr)
+        , explosion_(nullptr)
         , fpsText_(nullptr)
         , mousePositionText_(nullptr) {};
     ~ModelDj() = default;
@@ -87,9 +90,17 @@ public:
 
         showMousePosition_ = true;
 
+        explosion_.SetPosition(400.0f, 400.0f);
+        initResult = explosion_.Init(engine, textManager, resourceManager);
+        if (initResult.HasErrors()) {
+            initResult.AppendError("ModelDj::Init() : Error initialising explosion.");
+            return initResult;
+        }
+
         elements_.insert(&jogWheel1_);
         elements_.insert(&openFile1Button_);
         elements_.insert(&openFile2Button_);
+        elements_.insert(&explosion_);
         elements_.insert(&mouseCursor_);
 
         SetFpsElement(&fpsText_);
@@ -100,6 +111,7 @@ public:
 
     void Update(const double& dt) override {
         jogWheel1_.Update(dt);
+        explosion_.Update(dt);
     }
 
     void SetFps(const int64_t& newFps) override {
@@ -130,6 +142,7 @@ private:
     Rectangle2d openFile2Button_;
 
     Sprite mouseCursor_;
+    ExplosionAnimation explosion_;
 
     Text2d fpsText_;
     Text2d mousePositionText_;

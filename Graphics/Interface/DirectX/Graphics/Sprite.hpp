@@ -19,9 +19,9 @@ public:
     void OnClick() override;
 
 public:
-    Result SetSourceFileName(const std::string& fileName);
+    virtual Result SetSourceFileName(const std::string& fileName);
 
-private:
+protected:
     Microsoft::WRL::ComPtr<ID2D1Bitmap1> bitmap_;
     Microsoft::WRL::ComPtr<ID2D1DeviceContext1>  deviceContext2d_;
     Microsoft::WRL::ComPtr<IWICImagingFactory> imageFactory_;
