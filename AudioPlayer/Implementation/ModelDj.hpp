@@ -74,6 +74,7 @@ public:
             initResult.AppendError("ModelDj::Init() : Error setting mouse cursor file name.");
             return initResult;
         }
+        mouseCursor_.SetDimensions(48.0f, 48.0f);
 
         initResult = mousePositionText_.Init(engine, textManager);
         if (initResult.HasErrors()) {

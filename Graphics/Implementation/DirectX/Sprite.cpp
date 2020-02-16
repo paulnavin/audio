@@ -19,11 +19,11 @@ Result Sprite::Init(const Engine2d& engine, const TextManager2d& /*textManager*/
 void Sprite::Render(const double&) {
     D2D1_SIZE_U size = bitmap_->GetPixelSize();
 
-    // set suitable destination rectangle
-    D2D1_RECT_F rect = { position_.x, position_.y, position_.x + size.width, position_.y + size.height };
+    D2D1_RECT_F sourceRect = { 0.0f, 0.0f, (float)size.width, (float)size.height };
+    D2D1_RECT_F destRect = { position_.x, position_.y, position_.x + dimensions_.width, position_.y + dimensions_.height };
     D2D1_BITMAP_INTERPOLATION_MODE interPol = D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR;
     float opacity = 1.0f;
-    deviceContext2d_->DrawBitmap(bitmap_.Get(), rect, opacity, interPol, nullptr);
+    deviceContext2d_->DrawBitmap(bitmap_.Get(), destRect, opacity, interPol, sourceRect);
 }
 
 void Sprite::OnClick() {
