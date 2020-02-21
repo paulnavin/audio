@@ -1,0 +1,9 @@
+2020-02-17 21:24:20,480 INFO [default] App::OnActivate() : Boogie woogie!
+2020-02-17 21:24:20,495 INFO [default] App::OnRestore() : Boogie woogie!
+2020-02-17 21:24:20,506 INFO [default] App::OnActivate() : Boogie woogie!
+2020-02-17 21:27:56,498 INFO [default] App::OnActivate() : Boogie woogie!
+2020-02-17 21:27:56,501 INFO [default] App::OnRestore() : Boogie woogie!
+2020-02-17 21:27:56,508 INFO [default] App::OnActivate() : Boogie woogie!
+2020-02-17 21:28:18,589 INFO [default] App::OnActivate() : Boogie woogie!
+2020-02-17 21:28:18,602 INFO [default] App::OnRestore() : Boogie woogie!
+2020-02-17 21:28:18,611 INFO [default] App::OnActivate() : Boogie woogie!

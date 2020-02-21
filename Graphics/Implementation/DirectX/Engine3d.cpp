@@ -19,14 +19,13 @@ Engine3d::~Engine3d() {
 
 Result Engine3d::Init(const Window& newWindow, const ResourceManager& resourceManager) {
     windowHandle_ = newWindow.GetHandle();
-    currentDisplayMode_ = 107;
 
     std::string shaderFileName = resourceManager.GetShaderDirectoryName();
     pixelShaderFileName_ = StringUtil::StringToWideString(shaderFileName);
     vertexShaderFileName_ = pixelShaderFileName_;
 
-    pixelShaderFileName_.append(L"pixelShader.cso");
-    vertexShaderFileName_.append(L"vertexShader.cso");
+    pixelShaderFileName_.append(L"PixelShader.cso");
+    vertexShaderFileName_.append(L"VertexShader.cso");
 
     // D3D11_CREATE_DEVICE_BGRA_SUPPORT is needed to do both 3D and 2D.
     UINT deviceCreationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
@@ -469,6 +468,7 @@ Result Engine3d::InitSupportedDisplayModes() {
     }
 
     supportedDisplayModeCount_ = static_cast<size_t>(supportedModeCount);
+    currentDisplayMode_ = supportedDisplayModeCount_ - 1;
     supportedDisplayModes_ = new DXGI_MODE_DESC[supportedDisplayModeCount_];
     ZeroMemory(supportedDisplayModes_, sizeof(DXGI_MODE_DESC) * supportedModeCount);
 
