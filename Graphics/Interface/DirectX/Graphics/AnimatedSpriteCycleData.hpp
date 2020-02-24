@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/StlWrapper.hpp>
+#include <Stl/StlWrapper.hpp>
 
 struct AnimatedSpriteCycleData {
     std::string name;					// name of the animation

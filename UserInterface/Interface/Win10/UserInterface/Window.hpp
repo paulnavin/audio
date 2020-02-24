@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Utility/Result.hpp>
-#include <Utility/WindowsInterface.hpp>
+#include <ErrorHandling/Result.hpp>
+#include <Platform/WindowsInterface.hpp>
 
 struct WindowConfig;
 class WindowMessageHandler;

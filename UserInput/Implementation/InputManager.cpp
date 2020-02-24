@@ -3,7 +3,7 @@
 #include <UserInput/KeyBinding.hpp>
 #include <UserInput/KeyState.hpp>
 #include <UserInterface/Window.hpp>
-#include <Utility/WindowsInterface.hpp>
+#include <Platform/WindowsInterface.hpp>
 
 InputManager::~InputManager() {
     for (auto command : coreKeyMap_) {

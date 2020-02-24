@@ -4,8 +4,8 @@
 #include <Graphics/Model3d.hpp>
 #include <Graphics/ShaderBuffer.hpp>
 #include <Graphics/Vertex.hpp>
-#include <Utility/Result.hpp>
-#include <Utility/StlWrapper.hpp>
+#include <ErrorHandling/Result.hpp>
+#include <Stl/StlWrapper.hpp>
 
 class ResourceManager;
 class Window;

@@ -2,8 +2,8 @@
 
 #include <Graphics/AnimatedSprite.hpp>
 #include <Graphics/Element.hpp>
-#include <Utility/ResourceManager.hpp>
-#include <Utility/StlWrapper.hpp>
+#include <FileSystem/ResourceManager.hpp>
+#include <Stl/StlWrapper.hpp>
 
 class ExplosionAnimation : public Element {
 public:

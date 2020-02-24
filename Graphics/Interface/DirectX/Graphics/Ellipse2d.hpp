@@ -4,7 +4,7 @@
 #include <Graphics/DirectXInterface.hpp>
 #include <Graphics/Element.hpp>
 
-#include <Utility/Result.hpp>
+#include <ErrorHandling/Result.hpp>
 
 class Engine2d;
 

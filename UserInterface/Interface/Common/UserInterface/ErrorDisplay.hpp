@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Utility/StlWrapper.hpp>
+#include <Stl/StlWrapper.hpp>
 
-#include <Utility/Result.hpp>
+#include <ErrorHandling/Result.hpp>
 
 namespace ErrorDisplay {
 

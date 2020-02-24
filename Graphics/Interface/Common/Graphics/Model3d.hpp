@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Graphics/Vertex.hpp>
-#include <Utility/Result.hpp>
-#include <Utility/StlWrapper.hpp>
+#include <ErrorHandling/Result.hpp>
+#include <Stl/StlWrapper.hpp>
 
 enum class VertexType {
     Point,

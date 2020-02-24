@@ -5,7 +5,7 @@
 #include <Graphics/Model2d.hpp>
 #include <Graphics/Rectangle2d.hpp>
 #include <Graphics/Text2d.hpp>
-#include <Utility/StlWrapper.hpp>
+#include <Stl/StlWrapper.hpp>
 
 class ModelBasic2d : public Model2d {
 public:

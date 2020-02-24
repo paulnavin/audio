@@ -1,7 +1,7 @@
 #include "JogWheel.hpp"
 
 #include <Graphics/Engine2d.hpp>
-#include <Utility/WindowsInterface.hpp>
+#include <Platform/WindowsInterface.hpp>
 
 JogWheel::JogWheel(Element* parent) : Element(parent) {
 

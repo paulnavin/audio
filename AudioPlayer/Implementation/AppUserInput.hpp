@@ -1,7 +1,7 @@
 #pragma once
 
 #include <UserInput/InputManager.hpp>
-#include <Utility/Result.hpp>
+#include <ErrorHandling/Result.hpp>
 
 class App;
 

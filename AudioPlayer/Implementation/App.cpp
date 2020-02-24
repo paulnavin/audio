@@ -4,9 +4,9 @@
 #include <UserInterface/Window.hpp>
 #include <UserInterface/WindowConfig.hpp>
 #include <UserInterface/WindowManager.hpp>
-#include <Utility/EasyLogging++.hpp>
-#include <Utility/ResourceManager.hpp>
-#include <Utility/Result.hpp>
+#include <Logging/EasyLogging++.hpp>
+#include <FileSystem/ResourceManager.hpp>
+#include <ErrorHandling/Result.hpp>
 
 #include "ModelBasic2d.hpp"
 #include "ModelDj.hpp"

@@ -2,8 +2,8 @@
 
 #include <Graphics/AnimatedSpriteCycleData.hpp>
 #include <Graphics/DirectXInterface.hpp>
-#include <Utility/Result.hpp>
-#include <Utility/StlWrapper.hpp>
+#include <ErrorHandling/Result.hpp>
+#include <Stl/StlWrapper.hpp>
 
 class Engine2d;
 class TextManager2d;

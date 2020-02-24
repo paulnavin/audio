@@ -7,7 +7,7 @@
 #include <Graphics/Rectangle2d.hpp>
 #include <Graphics/Sprite.hpp>
 #include <Graphics/Text2d.hpp>
-#include <Utility/StlWrapper.hpp>
+#include <Stl/StlWrapper.hpp>
 
 #include "ExplosionAnimation.hpp"
 #include "JogWheel.hpp"

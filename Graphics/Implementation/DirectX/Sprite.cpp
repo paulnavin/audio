@@ -1,7 +1,7 @@
 #include <Graphics/Sprite.hpp>
 
 #include <Graphics/Engine2d.hpp>
-#include <Utility/StringUtil.hpp>
+#include <StringHandling/StringUtil.hpp>
 
 Sprite::Sprite(Element* parent) : Element(parent) {
 

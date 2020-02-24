@@ -3,8 +3,8 @@
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/Engine3d.hpp>
 #include <Graphics/TextManager2d.hpp>
-#include <Utility/ResourceManager.hpp>
-#include <Utility/Result.hpp>
+#include <FileSystem/ResourceManager.hpp>
+#include <ErrorHandling/Result.hpp>
 
 class Model2d;
 class Model3d;

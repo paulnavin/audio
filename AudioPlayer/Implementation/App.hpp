@@ -7,8 +7,8 @@
 #include <UserConfiguration/Config.hpp>
 #include <UserInput/InputManager.hpp>
 #include <UserInterface/WindowMessageHandler.hpp>
-#include <Utility/Result.hpp>
-#include <Utility/WindowsInterface.hpp>
+#include <ErrorHandling/Result.hpp>
+#include <Platform/WindowsInterface.hpp>
 
 #include "AppTimer.hpp"
 #include "AppUserInput.hpp"

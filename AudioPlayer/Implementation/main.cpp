@@ -1,8 +1,8 @@
 #include <UserInterface/ErrorDisplay.hpp>
-#include <Utility/EasyLogging++.hpp>
-#include <Utility/ResourceManager.hpp>
-#include <Utility/Result.hpp>
-#include <Utility/WindowsInterface.hpp>
+#include <Logging/EasyLogging++.hpp>
+#include <FileSystem/ResourceManager.hpp>
+#include <ErrorHandling/Result.hpp>
+#include <Platform/WindowsInterface.hpp>
 
 #include "App.hpp"
 

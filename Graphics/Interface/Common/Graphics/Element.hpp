@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Utility/Result.hpp>
-#include <Utility/StlWrapper.hpp>
+#include <ErrorHandling/Result.hpp>
+#include <Stl/StlWrapper.hpp>
 
 #include "Dimension2d.hpp"
 #include "Position2d.hpp"
