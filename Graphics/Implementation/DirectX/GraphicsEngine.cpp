@@ -4,6 +4,18 @@
 #include <UserInterface/ErrorDisplay.hpp>
 #include <UserInterface/Window.hpp>
 
+const Engine2d& GraphicsEngine::GetEngine2d() const {
+    return engine2d_;
+}
+
+const ResourceManager& GraphicsEngine::GetResourceManager() const {
+    return resourceManager_;
+}
+
+const TextManager2d& GraphicsEngine::GetTextManager2d() const {
+    return textManager2d_;
+}
+
 Result GraphicsEngine::Init(const Window& targetWindow, const ResourceManager& resourceManager) {
     Result initResult{};
 
@@ -31,7 +43,7 @@ Result GraphicsEngine::Init(const Window& targetWindow, const ResourceManager& r
 }
 
 Result GraphicsEngine::Init2dModel(Model2d* model) {
-    return model->Init(engine2d_, textManager2d_, resourceManager_);
+    return model->Init(*this);
 }
 
 void GraphicsEngine::NextDisplayConfig() {

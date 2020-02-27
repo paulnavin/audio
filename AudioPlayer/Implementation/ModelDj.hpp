@@ -26,7 +26,11 @@ public:
     ~ModelDj() = default;
 
 public:
-    virtual Result Init(const Engine2d& engine, const TextManager2d& textManager, const ResourceManager& resourceManager) override {
+    virtual Result Init(const GraphicsEngine& gfx) override {
+        const Engine2d& engine = gfx.GetEngine2d();
+        const TextManager2d& textManager = gfx.GetTextManager2d();
+        const ResourceManager& resourceManager = gfx.GetResourceManager();
+
         Result initResult = openFile1Button_.Init(engine, textManager);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D rectangle.");

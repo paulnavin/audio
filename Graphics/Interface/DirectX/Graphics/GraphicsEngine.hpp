@@ -18,6 +18,11 @@ public:
     ~GraphicsEngine() = default;
 
 public:
+    const Engine2d& GetEngine2d() const;
+    const ResourceManager& GetResourceManager() const;
+    const TextManager2d& GetTextManager2d() const;
+
+public:
     Result Init(const Window& targetWindow, const ResourceManager& resourceManager);
     Result Init2dModel(Model2d* model);
     void NextDisplayConfig();
