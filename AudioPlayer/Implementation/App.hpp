@@ -13,8 +13,7 @@
 #include "AppTimer.hpp"
 #include "AppUserInput.hpp"
 
-class Model2d;
-class Model3d;
+class Scene1Dj;
 class ResourceManager;
 class Window;
 
@@ -39,14 +38,10 @@ public:
     virtual void OnFinishSizeOrMove() override;
 
     // User Input Commands
-    void OnCommandMouseClicked(const float& x, const float& y);
     void OnCommandNextDisplayConfig();
     void OnCommandPreviousDisplayConfig();
     void OnCommandQuit();
-    void OnCommandRecreateModels();
     void OnCommandResetDisplayConfig();
-    void OnCommandShowFps();
-    void OnCommandShowMousePosition();
     void OnCommandToggle2dModel();
     void OnCommandToggleFullScreen();
 
@@ -60,15 +55,7 @@ private:
 
 private:
     void Update(const double& dt);
-    Result Render(const double& dt);
-    void SetActive2dModel(Model2d* newActiveModel);
     Result UpdateFps();
-
-    // Modelling
-    void Destroy3dModel();
-    void Destroy2dModel();
-    Result Create3dModel();
-    Result Create2dModel();
 
 private:
     HACCEL acceleratorTable_;
@@ -81,14 +68,11 @@ private:
     bool toggleFullScreen_ = false;
     int64_t fps_;
     double lastFpsCalculationTime_;
-    Model3d* model3d_;
-    Model2d* djModel2d_;
-    Model2d* basicModel2d_;
-    Model2d* active2dModel_;
     bool showFps_ = true;
     bool showMousePosition_ = true;
     AppTimer timer_;
     int64_t totalAppFrames_;
     Window* mainWindow_;
     AppUserInput userInputHandler_;
+    Scene1Dj* initialScene_;
 };

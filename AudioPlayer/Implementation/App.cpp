@@ -8,10 +8,7 @@
 #include <FileSystem/ResourceManager.hpp>
 #include <ErrorHandling/Result.hpp>
 
-#include "ModelBasic2d.hpp"
-#include "ModelDj.hpp"
-#include "ModelStarField.hpp"
-#include "ModelTriangle.hpp"
+#include "Scene1Dj.hpp"
 #include "Resource.h"
 
 Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager) {
@@ -62,15 +59,10 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceMa
         return initResult;
     }
 
-    initResult = Create3dModel();
+    initialScene_ = new Scene1Dj();
+    initResult = initialScene_->Init(&graphicsEngine_, &config_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error creating 3D model.");
-        return initResult;
-    }
-
-    initResult = Create2dModel();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error creating 2D model.");
+        initResult.AppendError("App::Init() : Error initialising initial scene.");
         return initResult;
     }
 
@@ -161,10 +153,11 @@ void App::ShutDown() {
     // mainWindow_ will be destroyed by the WindowManager.
     LOG(INFO) << "App::ShutDown() : Shut down!";
 
-    mainWindow_ = nullptr;
+    initialScene_->ShutDown();
+    delete initialScene_;
+    initialScene_ = nullptr;
 
-    Destroy3dModel();
-    Destroy2dModel();
+    mainWindow_ = nullptr;
 }
 
 void App::OnActivate() {
@@ -208,10 +201,6 @@ void App::OnFinishSizeOrMove() {
     resizeRequired_ = true;
 }
 
-void App::OnCommandMouseClicked(const float& x, const float& y) {
-    active2dModel_->OnMouseClicked(x, y);
-}
-
 void App::OnCommandNextDisplayConfig() {
     paused_ = true;
     resizeRequired_ = true;
@@ -234,22 +223,13 @@ void App::OnCommandResetDisplayConfig() {
     graphicsEngine_.ResetDisplayConfig();
 }
 
-void App::OnCommandShowFps() {
-    showFps_ = !showFps_;
-    active2dModel_->SetShowFps(showFps_);
-}
-
-void App::OnCommandShowMousePosition() {
-    showMousePosition_ = !showMousePosition_;
-    active2dModel_->SetShowMousePosition(showMousePosition_);
-}
-
 void App::OnCommandToggle2dModel() {
-    if (active2dModel_ == djModel2d_) {
+   /* if (active2dModel_ == djModel2d_) {
         SetActive2dModel(basicModel2d_);
     } else {
         SetActive2dModel(djModel2d_);
-    }
+    }*/
+    // TODO: Toggle scene instead.
 }
 
 void App::OnCommandToggleFullScreen() {
@@ -257,38 +237,15 @@ void App::OnCommandToggleFullScreen() {
     toggleFullScreen_ = true;
 }
 
-void App::OnCommandRecreateModels() {
-    Destroy3dModel();
-    Destroy2dModel();
-
-    Result initResult = Create3dModel();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error creating 3D model.");
-        ErrorDisplay::ShowErrors(initResult);
-        return;
-    }
-
-    initResult = Create2dModel();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Window::Init() : Error creating 2D model.");
-        ErrorDisplay::ShowErrors(initResult);
-        return;
-    }
-}
-
 void App::UpdateMousePosition(const float& x, const float& y) {
-    active2dModel_->SetMousePosition(x, y);
+    initialScene_->UpdateMousePosition(x, y);
 }
 
 void App::Update(const double& dt) {
     userInputHandler_.Update(*mainWindow_);
-    active2dModel_->Update(dt);
+    initialScene_->Update(dt);
 }
 
-void App::SetActive2dModel(Model2d* newActiveModel) {
-    active2dModel_ = newActiveModel;
-    graphicsEngine_.Set2dModel(active2dModel_);
-}
 
 Result App::UpdateFps() {
     ++totalAppFrames_;
@@ -300,69 +257,8 @@ Result App::UpdateFps() {
 
         totalAppFrames_ = 0;
         lastFpsCalculationTime_ += MS_PER_SECOND;
-        active2dModel_->SetFps(fps_);
+        initialScene_->UpdateFps(fps_);
     }
 
     return Result{};
-}
-
-void App::Destroy3dModel() {
-    if (model3d_ != nullptr) {
-        delete model3d_;
-    }
-    model3d_ = nullptr;
-}
-
-void App::Destroy2dModel() {
-    if (djModel2d_ != nullptr) {
-        delete djModel2d_;
-    }
-    djModel2d_ = nullptr;
-
-    if (basicModel2d_ != nullptr) {
-        delete basicModel2d_;
-    }
-    basicModel2d_ = nullptr;
-}
-
-Result App::Create3dModel() {
-    model3d_ = new ModelStarField();
-    //model3d_ = new ModelTriangle();
-
-    Result initResult = model3d_->Init();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Create3dModel() : Error initialising 3D model.");
-        return initResult;
-    }
-
-    initResult = graphicsEngine_.Set3dModel(*model3d_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Create3dModel() : Error setting 3D model.");
-        return initResult;
-    }
-
-    return initResult;
-}
-
-Result App::Create2dModel() {
-    djModel2d_ = new ModelDj();
-    Result initResult = graphicsEngine_.Init2dModel(djModel2d_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Create2dModel : Error initialising DJ 2D model.");
-        return initResult;
-    }
-    djModel2d_->SetShowFps(showFps_);
-
-    basicModel2d_ = new ModelBasic2d();
-    initResult = graphicsEngine_.Init2dModel(basicModel2d_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Create2dModel : Error initialising basic 2D model.");
-        return initResult;
-    }
-
-    basicModel2d_->SetShowFps(showFps_);
-    
-    SetActive2dModel(djModel2d_);
-
-    return initResult;
 }

@@ -67,12 +67,12 @@ void AppUserInput::Update(const Window& targetWindow) {
     for (auto command : *activeCommands) {
         switch (command.first) {
         case Quit: {app_->OnCommandQuit(); return; }
-        case RecreateModels: { app_->OnCommandRecreateModels(); return; }
+        //case RecreateModels: { app_->OnCommandRecreateModels(); return; }
         case Toggle2dModel: { app_->OnCommandToggle2dModel(); return; }
-        case ToggleFps: { app_->OnCommandShowFps(); return; }
+        //case ToggleFps: { app_->OnCommandShowFps(); return; }
         case ToggleFullScreen: { app_->OnCommandToggleFullScreen(); return; }
-        case ToggleMousePosition: { app_->OnCommandShowMousePosition(); return; }
-        case MouseClicked: { app_->OnCommandMouseClicked(mouseXPosition, mouseYPosition); return; }
+        //case ToggleMousePosition: { app_->OnCommandShowMousePosition(); return; }
+        //case MouseClicked: { app_->OnCommandMouseClicked(mouseXPosition, mouseYPosition); return; }
         case NextDisplayConfig: { app_->OnCommandNextDisplayConfig(); return; }
         case PreviousDisplayConfig: { app_->OnCommandPreviousDisplayConfig(); return; }
         case ResetDisplayConfig: { app_->OnCommandResetDisplayConfig(); return; }
