@@ -1,9 +1,10 @@
 #pragma once
 
-#include <UserInput/InputManager.hpp>
 #include <ErrorHandling/Result.hpp>
 
 class App;
+class InputManager;
+class Window;
 
 class AppUserInput {
 public:
@@ -11,12 +12,11 @@ public:
     ~AppUserInput() = default;
 
 public:
-    Result Init(App* newApp);
-    void Update(const Window& targetWindow);
+    Result Init(App* newApp, InputManager* inputManager);
+    void Update();
 
 private:
     App* app_;
-    InputManager inputManager_;
-    Window* window_;
+    InputManager* inputManager_;
 };
 

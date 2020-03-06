@@ -73,6 +73,7 @@ private:
     AppTimer timer_;
     int64_t totalAppFrames_;
     Window* mainWindow_;
+    InputManager inputManager_;
     AppUserInput userInputHandler_;
     Scene1Dj* initialScene_;
 };

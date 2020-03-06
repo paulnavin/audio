@@ -190,6 +190,7 @@
     <ClInclude Include="..\..\Implementation\ModelTriangle.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
     <ClInclude Include="..\..\Implementation\Scene1Dj.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1UserInput.hpp" />
     <ClInclude Include="..\..\Implementation\targetver.h" />
     <ClInclude Include="..\..\Implementation\UserInputCommands.hpp" />
   </ItemGroup>
@@ -200,6 +201,7 @@
     <ClCompile Include="..\..\Implementation\JogWheel.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1UserInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc" />

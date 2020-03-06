@@ -11,6 +11,14 @@ InputManager::~InputManager() {
     }
 }
 
+Result InputManager::Init(Window* targetWindow) {
+    Result initResult{};
+
+    targetWindow_ = targetWindow;
+
+    return initResult;
+}
+
 const InputManager::CommandMap* InputManager::GetActiveKeyMap() const {
     return &activeKeyMap_;
 }
@@ -56,17 +64,17 @@ void InputManager::RefreshKeyboardState() {
     }
 }
 
-void InputManager::RefreshMouseState(const Window& targetWindow) {
+void InputManager::RefreshMouseState() {
     POINT mousePoint;
     GetCursorPos(&mousePoint);
-    ScreenToClient(targetWindow.GetHandle(), &mousePoint);
+    ScreenToClient(targetWindow_->GetHandle(), &mousePoint);
     mouseXPos_ = mousePoint.x;
     mouseYPos_ = mousePoint.y;
 }
 
-void InputManager::Update(const Window& targetWindow) {
+void InputManager::Update() {
     RefreshKeyboardState();
-    RefreshMouseState(targetWindow);
+    RefreshMouseState();
 
     bool isActive = false;
     activeKeyMap_.clear();

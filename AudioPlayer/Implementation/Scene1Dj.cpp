@@ -12,10 +12,16 @@
 #include "ModelStarField.hpp"
 #include "Resource.h"
 
-Result Scene1Dj::Init(GraphicsEngine* gfx, ::uc::ConfigStore* /*config*/) {
+Result Scene1Dj::Init(GraphicsEngine* gfx, ::uc::ConfigStore* /*config*/, InputManager* inputManager) {
     Result initResult{};
 
     graphicsEngine_ = gfx;
+
+    initResult = userInputHandler_.Init(this, inputManager);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Scene1Dj::Init() : Error initialising user input handler.");
+        return initResult;
+    }
 
     initResult = Create3dModel();
     if (initResult.HasErrors()) {
@@ -57,6 +63,7 @@ void Scene1Dj::OnCommandShowMousePosition() {
 }
 
 void Scene1Dj::OnCommandRecreateModels() {
+    // TODO: Fix this, needs to pause scene first.
     Destroy3dModel();
     Destroy2dModel();
 
@@ -80,7 +87,7 @@ void Scene1Dj::UpdateMousePosition(const float& x, const float& y) {
 }
 
 void Scene1Dj::Update(const double& dt) {
-    //userInputHandler_.Update(*mainWindow_);
+    userInputHandler_.Update();
     djModel2d_->Update(dt);
 }
 

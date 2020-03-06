@@ -59,8 +59,14 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceMa
         return initResult;
     }
 
+    initResult = inputManager_.Init(mainWindow_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error initialising input manager.");
+        return initResult;
+    }
+
     initialScene_ = new Scene1Dj();
-    initResult = initialScene_->Init(&graphicsEngine_, &config_);
+    initResult = initialScene_->Init(&graphicsEngine_, &config_, &inputManager_);
     if (initResult.HasErrors()) {
         initResult.AppendError("App::Init() : Error initialising initial scene.");
         return initResult;
@@ -68,7 +74,7 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceMa
 
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
 
-    initResult = userInputHandler_.Init(this);
+    initResult = userInputHandler_.Init(this, &inputManager_);
     if (initResult.HasErrors()) {
         initResult.AppendError("App::Init() : Error initialising user input.");
         return initResult;
@@ -242,7 +248,8 @@ void App::UpdateMousePosition(const float& x, const float& y) {
 }
 
 void App::Update(const double& dt) {
-    userInputHandler_.Update(*mainWindow_);
+    inputManager_.Update();
+    userInputHandler_.Update();
     initialScene_->Update(dt);
 }
 

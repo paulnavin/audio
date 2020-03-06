@@ -2,6 +2,7 @@
 
 #include "Command.hpp"
 
+#include <ErrorHandling/Result.hpp>
 #include <Stl/StlWrapper.hpp>
 
 class Window;
@@ -23,9 +24,10 @@ public:
 
 public:
     void AddCommand(Command* command);
+    Result Init(Window* targetWindow);
     void RefreshKeyboardState();
-    void RefreshMouseState(const Window& targetWindow);
-    void Update(const Window& targetWindow);
+    void RefreshMouseState();
+    void Update();
 
 private:
     static constexpr size_t KEY_COUNT = 256;
@@ -39,4 +41,6 @@ private:
 
     int32_t mouseXPos_;
     int32_t mouseYPos_;
+
+    Window* targetWindow_;
 };

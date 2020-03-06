@@ -60,6 +60,9 @@
     <ClInclude Include="..\..\Implementation\Scene1Dj.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1UserInput.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc">
@@ -94,6 +97,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene1Dj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene1UserInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

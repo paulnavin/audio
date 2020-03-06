@@ -10,7 +10,7 @@
 #include <ErrorHandling/Result.hpp>
 #include <Platform/WindowsInterface.hpp>
 
-#include "AppUserInput.hpp"
+#include "Scene1UserInput.hpp"
 
 class Model2d;
 class Model3d;
@@ -23,7 +23,7 @@ public:
     ~Scene1Dj() = default;
 
 public:
-    Result Init(GraphicsEngine* gfx, ::uc::ConfigStore* config);
+    Result Init(GraphicsEngine* gfx, ::uc::ConfigStore* config, InputManager* inputManager);
     void ShutDown();
 
 public:
@@ -53,5 +53,5 @@ private:
     bool showFps_ = true;
     bool showMousePosition_ = true;
     Window* mainWindow_;
-    //AppUserInput userInputHandler_;
+    Scene1UserInput userInputHandler_;
 };
