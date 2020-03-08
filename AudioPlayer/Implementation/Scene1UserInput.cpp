@@ -3,20 +3,13 @@
 #include "Scene1Dj.hpp"
 #include "UserInputCommands.hpp"
 
-Result Scene1UserInput::Init(Scene1Dj* newApp, InputManager* inputManager) {
-    app_ = newApp;
-    inputManager_ = inputManager;
+Result Scene1UserInput::Init(Scene* newScene, InputManager* inputManager) {
+    SceneUserInput::Init(newScene, inputManager);
 
     std::vector<KeyBinding> bindings;
 
     bindings.push_back(KeyBinding('F', KeyState::JustPressed));
     inputManager_->AddCommand(new Command(ToggleFps, "Toggle FPS", bindings));
-    bindings.clear();
-
-    bindings.push_back(KeyBinding(VK_SHIFT, KeyState::StillPressed));
-    bindings.push_back(KeyBinding(VK_CONTROL, KeyState::StillPressed));
-    bindings.push_back(KeyBinding('R', KeyState::JustPressed));
-    inputManager_->AddCommand(new Command(RecreateModels, "Recreate Models", bindings));
     bindings.clear();
 
     bindings.push_back(KeyBinding(VK_RBUTTON, KeyState::JustReleased));
@@ -31,17 +24,13 @@ Result Scene1UserInput::Init(Scene1Dj* newApp, InputManager* inputManager) {
 };
 
 void Scene1UserInput::Update() {
-    float mouseXPosition = static_cast<float>(inputManager_->GetMouseXPos());
-    float mouseYPosition = static_cast<float>(inputManager_->GetMouseYPos());
-    app_->UpdateMousePosition(mouseXPosition, mouseYPosition);
+    SceneUserInput::Update();
 
     const InputManager::CommandMap* activeCommands = inputManager_->GetActiveKeyMap();
     for (auto command : *activeCommands) {
         switch (command.first) {
-            //case RecreateModels: { app_->OnCommandRecreateModels(); return; } // TODO: Fix this, needs to pause scene first.
-            case ToggleFps: { app_->OnCommandShowFps(); return; }
-            case ToggleMousePosition: { app_->OnCommandShowMousePosition(); return; }
-            case MouseClicked: { app_->OnCommandMouseClicked(mouseXPosition, mouseYPosition); return; }
+            case ToggleFps: { dynamic_cast<Scene1Dj*>(scene_)->OnCommandShowFps(); return; }
+            case ToggleMousePosition: { dynamic_cast<Scene1Dj*>(scene_)->OnCommandShowMousePosition(); return; }
         }
     }
 }

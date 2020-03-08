@@ -3,19 +3,17 @@
 #include <UserInput/InputManager.hpp>
 #include <ErrorHandling/Result.hpp>
 
+#include "SceneUserInput.hpp"
+
 class Scene1Dj;
 
-class Scene1UserInput {
+class Scene1UserInput : public SceneUserInput {
 public:
     Scene1UserInput() = default;
-    ~Scene1UserInput() = default;
+    virtual ~Scene1UserInput() = default;
 
 public:
-    Result Init(Scene1Dj* newApp, InputManager* inputManager);
-    void Update();
-
-private:
-    Scene1Dj* app_;
-    InputManager* inputManager_;
+    virtual Result Init(Scene* newScene, InputManager* inputManager) override;
+    virtual void Update() override;
 };
 

@@ -10,6 +10,7 @@
 #include <ErrorHandling/Result.hpp>
 #include <Platform/WindowsInterface.hpp>
 
+#include "Scene.hpp"
 #include "Scene1UserInput.hpp"
 
 class Model2d;
@@ -17,27 +18,25 @@ class Model3d;
 class ResourceManager;
 class Window;
 
-class Scene1Dj {
+class Scene1Dj : public Scene {
 public:
     Scene1Dj() = default;
     ~Scene1Dj() = default;
 
 public:
-    Result Init(GraphicsEngine* gfx, ::uc::ConfigStore* config, InputManager* inputManager);
-    void ShutDown();
+    virtual Result Init(GraphicsEngine* gfx, ::uc::ConfigStore* config, InputManager* inputManager) override;
+    virtual void ShutDown() override;
+    virtual void UpdateMousePosition(const float& x, const float& y) override;
+    virtual void Update(const double& dt) override;
+    virtual Result UpdateFps(const int64_t& newFps) override;
+
+    virtual void OnCommandMouseClicked(const float& x, const float& y) override;
 
 public:
     // User Input Commands
-    void OnCommandMouseClicked(const float& x, const float& y);
     void OnCommandRecreateModels();
     void OnCommandShowFps();
     void OnCommandShowMousePosition();
-
-    void UpdateMousePosition(const float& x, const float& y);
-
-public:
-    void Update(const double& dt);
-    Result UpdateFps(const int64_t& newFps);
 
 private:
     // Modelling
