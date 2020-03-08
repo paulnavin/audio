@@ -4,10 +4,10 @@
 
 #include "SceneUserInput.hpp"
 
-class Scene1UserInput : public SceneUserInput {
+class Scene2UserInput : public SceneUserInput {
 public:
-    Scene1UserInput() = default;
-    virtual ~Scene1UserInput() = default;
+    Scene2UserInput() = default;
+    virtual ~Scene2UserInput() = default;
 
 public:
     virtual Result Init(Scene* newScene, InputManager* inputManager) override;

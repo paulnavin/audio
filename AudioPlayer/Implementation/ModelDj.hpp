@@ -3,6 +3,7 @@
 #include <Graphics/AnimatedSprite.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/Ellipse2d.hpp>
+#include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Model2d.hpp>
 #include <Graphics/Rectangle2d.hpp>
 #include <Graphics/Sprite.hpp>

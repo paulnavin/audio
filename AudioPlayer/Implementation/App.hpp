@@ -13,7 +13,7 @@
 #include "AppTimer.hpp"
 #include "AppUserInput.hpp"
 
-class Scene1Dj;
+class Scene;
 class ResourceManager;
 class Window;
 
@@ -42,16 +42,19 @@ public:
     void OnCommandPreviousDisplayConfig();
     void OnCommandQuit();
     void OnCommandResetDisplayConfig();
-    void OnCommandToggle2dModel();
+    void OnCommandToggleScene();
     void OnCommandToggleFullScreen();
 
     void UpdateMousePosition(const float& x, const float& y);
+
+    Result SelectScene(const uint8_t& newSceneId);
 
 private:
     static constexpr DWORD FRAMES_PER_SECOND = 60;
     static constexpr DWORD MS_PER_SECOND = 1000;
     static constexpr DWORD MS_PER_FRAME = MS_PER_SECOND / FRAMES_PER_SECOND;
     static constexpr int32_t MAX_SKIP_FRAMES = 10;
+    static constexpr uint8_t SCENE_COUNT = 2;
 
 private:
     void Update(const double& dt);
@@ -75,5 +78,6 @@ private:
     Window* mainWindow_;
     InputManager inputManager_;
     AppUserInput userInputHandler_;
-    Scene1Dj* initialScene_;
+    Scene* scenes_[SCENE_COUNT];
+    uint8_t currentSceneId_ = UINT8_MAX;
 };

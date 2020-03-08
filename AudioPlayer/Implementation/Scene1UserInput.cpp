@@ -1,5 +1,8 @@
 #include "Scene1UserInput.hpp"
 
+#include <UserInput/InputManager.hpp>
+#include <Platform/WindowsInterface.hpp>
+
 #include "Scene1Dj.hpp"
 #include "UserInputCommands.hpp"
 

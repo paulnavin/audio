@@ -192,6 +192,8 @@
     <ClInclude Include="..\..\Implementation\Scene.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1UserInput.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene2Basic.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene2UserInput.hpp" />
     <ClInclude Include="..\..\Implementation\SceneUserInput.hpp" />
     <ClInclude Include="..\..\Implementation\targetver.h" />
     <ClInclude Include="..\..\Implementation\UserInputCommands.hpp" />
@@ -202,8 +204,11 @@
     <ClCompile Include="..\..\Implementation\AppUserInput.cpp" />
     <ClCompile Include="..\..\Implementation\JogWheel.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1UserInput.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene2Basic.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene2UserInput.cpp" />
     <ClCompile Include="..\..\Implementation\SceneUserInput.cpp" />
   </ItemGroup>
   <ItemGroup>

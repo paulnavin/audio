@@ -9,6 +9,7 @@
 #include <ErrorHandling/Result.hpp>
 
 #include "Scene1Dj.hpp"
+#include "Scene2Basic.hpp"
 #include "Resource.h"
 
 Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager) {
@@ -65,18 +66,20 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceMa
         return initResult;
     }
 
-    initialScene_ = new Scene1Dj();
-    initResult = initialScene_->Init(&graphicsEngine_, &config_, &inputManager_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising initial scene.");
-        return initResult;
-    }
-
     acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
 
     initResult = userInputHandler_.Init(this, &inputManager_);
     if (initResult.HasErrors()) {
         initResult.AppendError("App::Init() : Error initialising user input.");
+        return initResult;
+    }
+
+    scenes_[0] = new Scene1Dj();
+    scenes_[1] = new Scene2Basic();
+
+    initResult = SelectScene(0);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error initialising scene1.");
         return initResult;
     }
 
@@ -159,9 +162,13 @@ void App::ShutDown() {
     // mainWindow_ will be destroyed by the WindowManager.
     LOG(INFO) << "App::ShutDown() : Shut down!";
 
-    initialScene_->ShutDown();
-    delete initialScene_;
-    initialScene_ = nullptr;
+    for (uint8_t i = 0; i < SCENE_COUNT; ++i) {
+        if (i == currentSceneId_) {
+            scenes_[i]->ShutDown();
+        }
+        delete scenes_[i];
+        scenes_[i] = nullptr;
+    }
 
     mainWindow_ = nullptr;
 }
@@ -229,13 +236,15 @@ void App::OnCommandResetDisplayConfig() {
     graphicsEngine_.ResetDisplayConfig();
 }
 
-void App::OnCommandToggle2dModel() {
-   /* if (active2dModel_ == djModel2d_) {
-        SetActive2dModel(basicModel2d_);
-    } else {
-        SetActive2dModel(djModel2d_);
-    }*/
-    // TODO: Toggle scene instead.
+void App::OnCommandToggleScene() {
+    paused_ = true;
+    resizeRequired_ = true;
+
+    scenes_[currentSceneId_]->ShutDown();
+
+    currentSceneId_ = static_cast<uint8_t>((currentSceneId_ + 1) % SCENE_COUNT);
+
+    SelectScene(currentSceneId_);
 }
 
 void App::OnCommandToggleFullScreen() {
@@ -244,13 +253,29 @@ void App::OnCommandToggleFullScreen() {
 }
 
 void App::UpdateMousePosition(const float& x, const float& y) {
-    initialScene_->UpdateMousePosition(x, y);
+    scenes_[currentSceneId_]->UpdateMousePosition(x, y);
+}
+
+Result App::SelectScene(const uint8_t& newSceneId) {
+    if (currentSceneId_ != UINT8_MAX) {
+        scenes_[currentSceneId_]->ShutDown();
+    }
+
+    Result initResult = scenes_[newSceneId]->Init(&graphicsEngine_, &config_, &inputManager_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error initialising scene1.");
+        return initResult;
+    }
+
+    currentSceneId_ = newSceneId;
+
+    return initResult;
 }
 
 void App::Update(const double& dt) {
     inputManager_.Update();
     userInputHandler_.Update();
-    initialScene_->Update(dt);
+    scenes_[currentSceneId_]->Update(dt);
 }
 
 
@@ -264,7 +289,7 @@ Result App::UpdateFps() {
 
         totalAppFrames_ = 0;
         lastFpsCalculationTime_ += MS_PER_SECOND;
-        initialScene_->UpdateFps(fps_);
+        scenes_[currentSceneId_]->UpdateFps(fps_);
     }
 
     return Result{};
