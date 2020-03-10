@@ -2,7 +2,7 @@
 
 #include <UserInput/InputManager.hpp>
 #include "App.hpp"
-#include "UserInputCommands.hpp"
+#include <App/AppUserInputCommands.hpp>
 
 Result AppUserInput::Init(App* newApp, InputManager* inputManager) {
     app_ = newApp;

@@ -98,7 +98,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\App\Interface;</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
@@ -106,8 +106,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInput\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\StringHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Logging\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\ErrorHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\FileSystem\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Graphics.lib;UserInput.lib;UserInterface.lib;UserConfiguration.lib;FileSystem.lib;Logging.lib;ErrorHandling.lib;StringHandling.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInput\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\StringHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Logging\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\ErrorHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\FileSystem\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\App\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>App.lib;Graphics.lib;UserInput.lib;UserInterface.lib;UserConfiguration.lib;FileSystem.lib;Logging.lib;ErrorHandling.lib;StringHandling.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\App\Interface;</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
@@ -126,8 +126,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInput\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\StringHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Logging\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\ErrorHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\FileSystem\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Graphics.lib;UserInput.lib;UserInterface.lib;UserConfiguration.lib;FileSystem.lib;Logging.lib;ErrorHandling.lib;StringHandling.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInput\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\StringHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Logging\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\ErrorHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\FileSystem\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\App\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>App.lib;Graphics.lib;UserInput.lib;UserInterface.lib;UserConfiguration.lib;FileSystem.lib;Logging.lib;ErrorHandling.lib;StringHandling.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -140,7 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\App\Interface;</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
@@ -150,8 +150,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInput\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\StringHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Logging\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\ErrorHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\FileSystem\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Graphics.lib;UserInput.lib;UserInterface.lib;UserConfiguration.lib;FileSystem.lib;Logging.lib;ErrorHandling.lib;StringHandling.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInput\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\StringHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Logging\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\ErrorHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\FileSystem\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\App\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>App.lib;Graphics.lib;UserInput.lib;UserInterface.lib;UserConfiguration.lib;FileSystem.lib;Logging.lib;ErrorHandling.lib;StringHandling.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -164,7 +164,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\App\Interface;</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
@@ -174,8 +174,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInput\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\StringHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Logging\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\ErrorHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\FileSystem\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Graphics.lib;UserInput.lib;UserInterface.lib;UserConfiguration.lib;FileSystem.lib;Logging.lib;ErrorHandling.lib;StringHandling.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInput\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\StringHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Logging\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\ErrorHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\FileSystem\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\App\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>App.lib;Graphics.lib;UserInput.lib;UserInterface.lib;UserConfiguration.lib;FileSystem.lib;Logging.lib;ErrorHandling.lib;StringHandling.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -189,14 +189,12 @@
     <ClInclude Include="..\..\Implementation\ModelStarField.hpp" />
     <ClInclude Include="..\..\Implementation\ModelTriangle.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
-    <ClInclude Include="..\..\Implementation\Scene.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1UserInput.hpp" />
     <ClInclude Include="..\..\Implementation\Scene2Basic.hpp" />
     <ClInclude Include="..\..\Implementation\Scene2UserInput.hpp" />
-    <ClInclude Include="..\..\Implementation\SceneUserInput.hpp" />
     <ClInclude Include="..\..\Implementation\targetver.h" />
-    <ClInclude Include="..\..\Implementation\UserInputCommands.hpp" />
+    <ClInclude Include="..\..\Implementation\AudioPlayerUserInputCommands.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\App.cpp" />
@@ -204,12 +202,10 @@
     <ClCompile Include="..\..\Implementation\AppUserInput.cpp" />
     <ClCompile Include="..\..\Implementation\JogWheel.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
-    <ClCompile Include="..\..\Implementation\Scene.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1UserInput.cpp" />
     <ClCompile Include="..\..\Implementation\Scene2Basic.cpp" />
     <ClCompile Include="..\..\Implementation\Scene2UserInput.cpp" />
-    <ClCompile Include="..\..\Implementation\SceneUserInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc" />

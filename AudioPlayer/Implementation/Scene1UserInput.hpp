@@ -2,7 +2,7 @@
 
 #include <ErrorHandling/Result.hpp>
 
-#include "SceneUserInput.hpp"
+#include <App/SceneUserInput.hpp>
 
 class Scene1UserInput : public SceneUserInput {
 public:

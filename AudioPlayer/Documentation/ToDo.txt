@@ -1,5 +1,3 @@
-Sprites
 Loading data
 Loading app resources
 Saving/loading configuration to disk (protobuffers?)
-Scenes

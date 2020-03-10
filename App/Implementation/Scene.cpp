@@ -1,12 +1,11 @@
-#include "Scene.hpp"
+#include <App/Scene.hpp>
 
-#include <UserConfiguration/Config.hpp>
+#include <App/SceneUserInput.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Model2d.hpp>
 #include <Graphics/Model3d.hpp>
 #include <Logging/EasyLogging++.hpp>
-
-#include "SceneUserInput.hpp"
+#include <UserConfiguration/Config.hpp>
 
 Result Scene::Init(GraphicsEngine* gfx, ::uc::ConfigStore* /*config*/, InputManager* inputManager) {
     Result initResult{};

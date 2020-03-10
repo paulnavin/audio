@@ -4,7 +4,7 @@
 #include <Platform/WindowsInterface.hpp>
 
 #include "Scene1Dj.hpp"
-#include "UserInputCommands.hpp"
+#include <App/AppUserInputCommands.hpp>
 
 Result Scene1UserInput::Init(Scene* newScene, InputManager* inputManager) {
     SceneUserInput::Init(newScene, inputManager);

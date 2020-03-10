@@ -1,7 +1,5 @@
 #include "Scene2UserInput.hpp"
 
-#include "UserInputCommands.hpp"
-
 Result Scene2UserInput::Init(Scene* newScene, InputManager* inputManager) {
     return SceneUserInput::Init(newScene, inputManager);
 

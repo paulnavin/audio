@@ -1,9 +1,9 @@
-#include "SceneUserInput.hpp"
+#include <App/SceneUserInput.hpp>
 
 #include <UserInput/InputManager.hpp>
 
-#include "Scene.hpp"
-#include "UserInputCommands.hpp"
+#include <App/Scene.hpp>
+#include <App/AppUserInputCommands.hpp>
 
 Result SceneUserInput::Init(Scene* newScene, InputManager* inputManager) {
     scene_ = newScene;
