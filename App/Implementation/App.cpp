@@ -46,14 +46,11 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceMa
         return initResult;
     }
 
-    // TODO: Load accelerators?  Or just get rid of this?
-    // acceleratorTable_ = LoadAccelerators(appInstance_, MAKEINTRESOURCE(IDC_AUDIOPLAYER));
-
-    //initResult = userInputHandler_.Init(this, &inputManager_);
-    //if (initResult.HasErrors()) {
-    //    initResult.AppendError("App::Init() : Error initialising user input.");
-    //    return initResult;
-    //}
+    initResult = userInputHandler_.Init(this, &inputManager_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error initialising user input.");
+        return initResult;
+    }
 
     initResult = SelectScene(0);
     if (initResult.HasErrors()) {
@@ -87,13 +84,10 @@ Result App::Run() {
         while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
             if (WM_QUIT == msg.message) {
                 finished_ = true;
-                PostQuitMessage(0);
                 break;
             } else {
-                if (!TranslateAccelerator(msg.hwnd, acceleratorTable_, &msg)) {
-                    TranslateMessage(&msg);
-                    DispatchMessage(&msg);
-                }
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
             }
         };
         
@@ -266,8 +260,7 @@ Result App::InitConfig(const std::string& fileName) {
 void App::Update(const double& dt) {
     inputManager_.Update();
     
-    // TODO: Handle user input from App.
-    // userInputHandler_.Update();
+    userInputHandler_.Update();
     scenes_[currentSceneId_]->Update(dt);
 }
 

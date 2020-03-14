@@ -1,6 +1,7 @@
 #pragma once
 
 #include <App/AppTimer.hpp>
+#include <App/AppUserInput.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Rectangle2d.hpp>
 #include <Graphics/Text2d.hpp>
@@ -67,7 +68,6 @@ protected:
     Scene* scenes_[SCENE_COUNT];
 
 private:
-    HACCEL acceleratorTable_;
     GraphicsEngine graphicsEngine_;
     bool finished_ = false;
     bool paused_ = false;
@@ -82,7 +82,6 @@ private:
     Window* mainWindow_;
     WindowConfig mainWindowConfig_;
     InputManager inputManager_;
-    // TODO: Abstractify UserInputHandler.
-    //AppUserInput userInputHandler_;
+    AppUserInput userInputHandler_;
     uint8_t currentSceneId_ = UINT8_MAX;
 };
