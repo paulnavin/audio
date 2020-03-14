@@ -1,12 +1,14 @@
 #include <Graphics/Text2d.hpp>
 
-#include <Graphics/Engine2d.hpp>
+#include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/TextManager2d.hpp>
 
 Text2d::Text2d(Element* parent) : Element(parent) {
 }
 
-Result Text2d::Init(const Engine2d& engine, const TextManager2d& textManager) {
+Result Text2d::Init(const GraphicsEngine& gfx) {
+    const Engine2d& engine = gfx.GetEngine2d();
+    const TextManager2d& textManager = gfx.GetTextManager2d();
     deviceContext2d_ = engine.GetDeviceContext2d();
 
     textFormat_ = textManager.GetFpsTextFormat();

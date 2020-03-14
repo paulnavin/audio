@@ -25,11 +25,7 @@ public:
 
 public:
     virtual Result Init(const GraphicsEngine& gfx) override {
-        const Engine2d& engine = gfx.GetEngine2d();
-        const TextManager2d& textManager = gfx.GetTextManager2d();
-        const ResourceManager& resourceManager = gfx.GetResourceManager();
-
-        Result initResult = openFile1Button_.Init(engine, textManager);
+        Result initResult = openFile1Button_.Init(gfx);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D rectangle.");
             return initResult;
@@ -38,7 +34,7 @@ public:
         openFile1Button_.SetPosition(0.0f, 0.0f);
         openFile1Button_.SetDimensions(50.0f, 50.0f);
 
-        initResult = openFile2Button_.Init(engine, textManager);
+        initResult = openFile2Button_.Init(gfx);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D rectangle.");
             return initResult;
@@ -47,7 +43,7 @@ public:
         openFile2Button_.SetPosition(900.0f, 0.0f);
         openFile2Button_.SetDimensions(50.0f, 50.0f);
 
-        initResult = jogWheel1_.Init(engine, textManager);
+        initResult = jogWheel1_.Init(gfx);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D jog wheel.");
             return initResult;
@@ -58,7 +54,7 @@ public:
         jogWheel1_.SetDimensions(150.0f, 150.0f);
 
         explosion_.SetPosition(400.0f, 400.0f);
-        initResult = explosion_.Init(engine, textManager, resourceManager);
+        initResult = explosion_.Init(gfx);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising explosion.");
             return initResult;

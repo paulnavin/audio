@@ -1,13 +1,14 @@
 #include <Graphics/Rectangle2d.hpp>
 
 #include <Graphics/Engine2d.hpp>
+#include <Graphics/GraphicsEngine.hpp>
 
 Rectangle2d::Rectangle2d(Element* parent) : Element(parent) {
 
 }
 
-Result Rectangle2d::Init(const Engine2d& engine, const TextManager2d& /*textManager*/) {
-    deviceContext2d_ = engine.GetDeviceContext2d();
+Result Rectangle2d::Init(const GraphicsEngine& gfx) {
+    deviceContext2d_ = gfx.GetEngine2d().GetDeviceContext2d();
     return Result{};
 }
 

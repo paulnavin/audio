@@ -1,14 +1,15 @@
 #include <Graphics/AnimatedSprite.hpp>
 
 #include <Graphics/Engine2d.hpp>
+#include <Graphics/GraphicsEngine.hpp>
 #include <StringHandling/StringUtil.hpp>
 
 AnimatedSprite::AnimatedSprite(Element* parent) : Sprite(parent) {
 
 }
 
-Result AnimatedSprite::Init(const Engine2d& engine, const TextManager2d& textManager) {
-    return Sprite::Init(engine, textManager);
+Result AnimatedSprite::Init(const GraphicsEngine& gfx) {
+    return Sprite::Init(gfx);
 }
 
 void AnimatedSprite::Render(const double& /*dt*/) {

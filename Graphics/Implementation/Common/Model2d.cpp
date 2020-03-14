@@ -10,17 +10,15 @@ Model2d::Model2d()
 }
 
 Result Model2d::Init(const GraphicsEngine& gfx) {
-    const Engine2d& engine = gfx.GetEngine2d();
-    const TextManager2d& textManager = gfx.GetTextManager2d();
     const ResourceManager& resourceManager = gfx.GetResourceManager();
     
-    Result initResult = debugElement_.Init(engine, textManager);
+    Result initResult = debugElement_.Init(gfx);
     if (initResult.HasErrors()) {
         initResult.AppendError("Model2d::Init() : Error initialising debug info.");
         return initResult;
     }
 
-    initResult = mouseCursor_.Init(engine, textManager);
+    initResult = mouseCursor_.Init(gfx);
     if (initResult.HasErrors()) {
         initResult.AppendError("Model2d::Init() : Error initialising mouse cursor sprite.");
         return initResult;

@@ -1,12 +1,9 @@
 #pragma once
 
+#include <ErrorHandling/Result.hpp>
 #include <Graphics/AnimatedSpriteCycleData.hpp>
 #include <Graphics/DirectXInterface.hpp>
 #include <Graphics/Sprite.hpp>
-#include <ErrorHandling/Result.hpp>
-
-class Engine2d;
-class TextManager2d;
 
 class AnimatedSprite : public Sprite {
 
@@ -15,7 +12,7 @@ public:
     ~AnimatedSprite() = default;
 
 public:
-    Result Init(const Engine2d& engine, const TextManager2d& textManager) override;
+    Result Init(const GraphicsEngine& gfx) override;
     void Render(const double& dt) override;
     void OnClick() override;
 

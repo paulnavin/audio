@@ -11,13 +11,12 @@ public:
     ~ExplosionAnimation() = default;
 
 public:
-    virtual Result Init(const Engine2d& /*engine*/, const TextManager2d& /*textManager*/) override {
-        return Result{};
-    }
+    Result Init(const GraphicsEngine& gfx) {
+        const ResourceManager& resourceManager = gfx.GetResourceManager();
 
-    Result Init(const Engine2d& engine, const TextManager2d& textManager, const ResourceManager& resourceManager) {
         Result initResult{};
-        initResult = animatedSprite_.Init(engine, textManager);
+        
+        initResult = animatedSprite_.Init(gfx);
         if (initResult.HasErrors()) {
             initResult.AppendError("ExplosionAnimation::Init() : Error initialising animated sprite.");
             return initResult;

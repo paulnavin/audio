@@ -6,8 +6,7 @@
 #include "Dimension2d.hpp"
 #include "Position2d.hpp"
 
-class Engine2d;
-class TextManager2d;
+class GraphicsEngine;
 
 class Element {
 public:
@@ -15,10 +14,10 @@ public:
     virtual ~Element() = default;
 
 public:
-    virtual Result Init(const Engine2d& /*engine*/, const TextManager2d& /*textManager*/) { return Result{}; };
+    virtual Result Init(const GraphicsEngine& gfx) = 0;
 
     // Note: No Result passing in Render, for performance reasons.
-    virtual void Render(const double&) {};
+    virtual void Render(const double&) = 0;
 
     virtual void OnClick() {};
 

@@ -1,11 +1,8 @@
 #pragma once
 
+#include <ErrorHandling/Result.hpp>
 #include <Graphics/DirectXInterface.hpp>
 #include <Graphics/Element.hpp>
-
-#include <ErrorHandling/Result.hpp>
-
-class Engine2d;
 
 class Text2d : public Element {
 
@@ -14,7 +11,7 @@ public:
     ~Text2d() = default;
 
 public:
-    Result Init(const Engine2d& engine, const TextManager2d& textManager) override;
+    Result Init(const GraphicsEngine& gfx) override;
     void Render(const double& dt) override;
 
 public:

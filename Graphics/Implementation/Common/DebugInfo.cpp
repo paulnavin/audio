@@ -1,6 +1,8 @@
 #include <Graphics/DebugInfo.hpp>
 
 #include <Graphics/Engine2d.hpp>
+#include <Graphics/GraphicsEngine.hpp>
+#include <Graphics/TextManager2d.hpp>
 #include <Platform/WindowsInterface.hpp>
 
 DebugInfo::DebugInfo(Element* parent)
@@ -9,8 +11,8 @@ DebugInfo::DebugInfo(Element* parent)
     , mousePositionText_(nullptr) {
 }
 
-Result DebugInfo::Init(const Engine2d& engine, const TextManager2d& textManager) {
-    Result initResult = fpsText_.Init(engine, textManager);
+Result DebugInfo::Init(const GraphicsEngine& gfx) {
+    Result initResult = fpsText_.Init(gfx);
     if (initResult.HasErrors()) {
         initResult.AppendError("ModelDj::Init() : Error initialising 2D FPS text.");
         return initResult;
@@ -18,7 +20,7 @@ Result DebugInfo::Init(const Engine2d& engine, const TextManager2d& textManager)
     fpsText_.SetPosition(5.0f, 5.0f);
     fpsText_.SetDimensions(20.0f, 100.0f);
 
-    initResult = mousePositionText_.Init(engine, textManager);
+    initResult = mousePositionText_.Init(gfx);
     if (initResult.HasErrors()) {
         initResult.AppendError("Model2d::Init() : Error initialising 2D mouse position text.");
         return initResult;
@@ -27,12 +29,10 @@ Result DebugInfo::Init(const Engine2d& engine, const TextManager2d& textManager)
     mousePositionText_.SetPosition(5.0f, 35.0f);
     mousePositionText_.SetDimensions(20.0f, 100.0f);
 
-    return Result{};
+    return initResult;
 }
 
 void DebugInfo::Render(const double& dt) {
-    UNREFERENCED_PARAMETER(dt);
-
     fpsText_.Render(dt);
     mousePositionText_.Render(dt);
 }

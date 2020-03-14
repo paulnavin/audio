@@ -1,5 +1,6 @@
 #include "JogWheel.hpp"
 
+#include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Platform/WindowsInterface.hpp>
 
@@ -7,22 +8,27 @@ JogWheel::JogWheel(Element* parent) : Element(parent) {
 
 }
 
-Result JogWheel::Init(const Engine2d& engine, const TextManager2d& /*textManager*/) {
+Result JogWheel::Init(const GraphicsEngine& gfx) {
+    const Engine2d& engine = gfx.GetEngine2d();
+    Microsoft::WRL::ComPtr<ID2D1Factory2> factory = engine.GetFactory();
+
     deviceContext2d_ = engine.GetDeviceContext2d();
+
+    Result initResult{};
 
     centrePoint_ = { 256.0f, 300.0f };
     D2D1_ELLIPSE unitEllipse = { centrePoint_, 75.0f, 75.0f };
-    Result initResult{};
-    Microsoft::WRL::ComPtr<ID2D1Factory2> factory = engine.GetFactory();
     HRESULT hr = factory->CreateEllipseGeometry(&unitEllipse, slipmatGeometry_.GetAddressOf());
     if (FAILED(hr)) {
         initResult.AppendError("RotatableEllipse2d::Init() : Could not create geometry for slipmat.");
+        return initResult;
     }
 
     D2D1_ELLIPSE positionEllipse = { {256.0f, 378.0f} , 10.0f, 10.0f };
     hr = factory->CreateEllipseGeometry(&positionEllipse, positionGeometry_.GetAddressOf());
     if (FAILED(hr)) {
         initResult.AppendError("RotatableEllipse2d::Init() : Could not create geometry for position indicator.");
+        return initResult;
     }
 
     geometries_[0] = slipmatGeometry_.Get();
@@ -33,7 +39,7 @@ Result JogWheel::Init(const Engine2d& engine, const TextManager2d& /*textManager
         initResult.AppendError("RotatableEllipse2d::Init() : Could not create geometry  group for jog wheel.");
     }
 
-    return Result{};
+    return initResult;
 }
 
 void JogWheel::Update(const double& dt) {

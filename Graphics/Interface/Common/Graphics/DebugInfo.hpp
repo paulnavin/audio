@@ -4,9 +4,6 @@
 #include <Graphics/Element.hpp>
 #include <Graphics/Text2d.hpp>
 
-class Engine2d;
-class TextManager2d;
-
 class DebugInfo : public Element {
 
 public:
@@ -14,7 +11,7 @@ public:
     virtual ~DebugInfo() = default;
 
 public:
-    Result Init(const Engine2d& engine, const TextManager2d& textManager) override;
+    Result Init(const GraphicsEngine& gfx) override;
     void Render(const double& dt) override;
 
 public:

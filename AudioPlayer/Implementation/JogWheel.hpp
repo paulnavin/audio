@@ -1,12 +1,9 @@
 #pragma once
 
+#include <ErrorHandling/Result.hpp>
 #include <Graphics/Colour.hpp>
 #include <Graphics/DirectXInterface.hpp>
 #include <Graphics/Element.hpp>
-
-#include <ErrorHandling/Result.hpp>
-
-class Engine2d;
 
 class JogWheel : public Element {
 
@@ -15,7 +12,7 @@ public:
     ~JogWheel() = default;
 
 public:
-    Result Init(const Engine2d& engine, const TextManager2d& textManager) override;
+    Result Init(const GraphicsEngine& gfx) override;
     void Render(const double& dt) override;
 
 public:

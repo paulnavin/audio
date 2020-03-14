@@ -1,17 +1,19 @@
 #include <Graphics/Sprite.hpp>
 
 #include <Graphics/Engine2d.hpp>
+#include <Graphics/GraphicsEngine.hpp>
+#include <Graphics/Position2d.hpp>
 #include <StringHandling/StringUtil.hpp>
 
 Sprite::Sprite(Element* parent) : Element(parent) {
 
 }
 
-Result Sprite::Init(const Engine2d& engine, const TextManager2d& /*textManager*/) {
-    deviceContext2d_ = engine.GetDeviceContext2d();
-
-    imageFactory_ = engine.GetImageFactory();
+Result Sprite::Init(const GraphicsEngine& gfx) {
+    const Engine2d& engine = gfx.GetEngine2d();
     
+    deviceContext2d_ = engine.GetDeviceContext2d();
+    imageFactory_ = engine.GetImageFactory();
 
     return Result{};
 }

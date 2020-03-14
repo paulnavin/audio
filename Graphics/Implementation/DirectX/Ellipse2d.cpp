@@ -1,13 +1,14 @@
 #include <Graphics/Ellipse2d.hpp>
 
 #include <Graphics/Engine2d.hpp>
+#include <Graphics/GraphicsEngine.hpp>
 
 Ellipse2d::Ellipse2d(Element* parent) : Element(parent) {
 
 }
 
-Result Ellipse2d::Init(const Engine2d& engine, const TextManager2d& /*textManager*/) {
-    deviceContext2d_ = engine.GetDeviceContext2d();
+Result Ellipse2d::Init(const GraphicsEngine& gfx) {
+    deviceContext2d_ = gfx.GetEngine2d().GetDeviceContext2d();
     return Result{};
 }
 

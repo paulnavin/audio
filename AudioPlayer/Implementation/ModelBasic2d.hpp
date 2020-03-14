@@ -5,8 +5,6 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Model2d.hpp>
 #include <Graphics/Rectangle2d.hpp>
-#include <Graphics/Text2d.hpp>
-#include <Stl/StlWrapper.hpp>
 
 class ModelBasic2d : public Model2d {
 public:
@@ -18,10 +16,7 @@ public:
 
 public:
     virtual Result Init(const GraphicsEngine& gfx) override {
-        const Engine2d& engine = gfx.GetEngine2d();
-        const TextManager2d& textManager = gfx.GetTextManager2d();
-
-        Result initResult = rectangle_.Init(engine, textManager);
+        Result initResult = rectangle_.Init(gfx);
         if (initResult.HasErrors()) {
             initResult.AppendError("Window::Init() : Error initialising 2D rectangle.");
             return initResult;
@@ -30,7 +25,7 @@ public:
         rectangle_.SetPosition(300.0f, 300.0f);
         rectangle_.SetDimensions(50.0f, 50.0f);
 
-        initResult = ellipse_.Init(engine, textManager);
+        initResult = ellipse_.Init(gfx);
         if (initResult.HasErrors()) {
             initResult.AppendError("Window::Init() : Error initialising 2D ellipse.");
             return initResult;
