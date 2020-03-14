@@ -12,6 +12,5 @@ public:
 public:
     virtual Result Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager) override;
 
-    // TODO: Handle app user input.
     AudioPlayerUserInput userInputHandler_;
 };

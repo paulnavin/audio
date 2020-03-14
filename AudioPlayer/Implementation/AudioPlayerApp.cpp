@@ -12,7 +12,7 @@ Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceManager&
 
     initResult = InitConfig("someRubbish.ini");
     if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error loading app config.");
+        initResult.AppendError("AudioPlayerApp::Init() : Error loading app config.");
         return initResult;
     }
 

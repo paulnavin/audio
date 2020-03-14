@@ -18,7 +18,7 @@ public:
     virtual Result Init(const GraphicsEngine& gfx) override {
         Result initResult = rectangle_.Init(gfx);
         if (initResult.HasErrors()) {
-            initResult.AppendError("Window::Init() : Error initialising 2D rectangle.");
+            initResult.AppendError("ModelBasic2d::Init() : Error initialising 2D rectangle.");
             return initResult;
         }
         rectangle_.SetColour(Colour{ 1.0f, 0.0f, 1.0f, 1.0f });
@@ -27,7 +27,7 @@ public:
 
         initResult = ellipse_.Init(gfx);
         if (initResult.HasErrors()) {
-            initResult.AppendError("Window::Init() : Error initialising 2D ellipse.");
+            initResult.AppendError("ModelBasic2d::Init() : Error initialising 2D ellipse.");
             return initResult;
         }
         ellipse_.SetColour(Colour{ 1.0f, 1.0f, 1.0f, 1.0f });
@@ -44,4 +44,3 @@ private:
     Ellipse2d ellipse_;
     Rectangle2d rectangle_;
 };
-

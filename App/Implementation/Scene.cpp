@@ -32,7 +32,7 @@ Result Scene::Init(GraphicsEngine* gfx, ::uc::ConfigStore* /*config*/, InputMana
 
     initResult = graphicsEngine_->Init2dModel(model2d_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Scene::Create2dModel : Error initialising DJ 2D model.");
+        initResult.AppendError("Scene::Create2dModel : Error initialising 2D model.");
         return initResult;
     }
 

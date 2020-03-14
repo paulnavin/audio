@@ -43,7 +43,6 @@ private:
     }
 
 private:
-    // TODO: Move this stuff out of the Engine, into the App.
     static constexpr size_t STAR_FIELD_SIZE = 1000;
     std::array<Vertex, STAR_FIELD_SIZE> starField_;
 };
