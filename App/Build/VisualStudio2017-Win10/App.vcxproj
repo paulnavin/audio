@@ -19,11 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Interface\App\App.hpp" />
+    <ClInclude Include="..\..\Interface\App\AppTimer.hpp" />
     <ClInclude Include="..\..\Interface\App\AppUserInputCommands.hpp" />
     <ClInclude Include="..\..\Interface\App\Scene.hpp" />
     <ClInclude Include="..\..\Interface\App\SceneUserInput.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\App.cpp" />
+    <ClCompile Include="..\..\Implementation\AppTimer.cpp" />
     <ClCompile Include="..\..\Implementation\Scene.cpp" />
     <ClCompile Include="..\..\Implementation\SceneUserInput.cpp" />
   </ItemGroup>

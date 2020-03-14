@@ -1,13 +1,7 @@
 #pragma once
 
-#include <Platform/WindowsInterface.hpp>
-
-#pragma warning(push)
-#pragma warning( disable : 4577)
-#include <cstdint>
-#pragma warning(pop)
-
 #include <ErrorHandling/Result.hpp>
+#include <Platform/WindowsInterface.hpp>
 
 class AppTimer {
 public:

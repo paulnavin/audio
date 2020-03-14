@@ -4,7 +4,7 @@
 #include <ErrorHandling/Result.hpp>
 #include <Platform/WindowsInterface.hpp>
 
-#include "App.hpp"
+#include "AudioPlayerApp.hpp"
 
 INITIALIZE_EASYLOGGINGPP
 
@@ -18,6 +18,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(nCmdShow);
 
     //START_EASYLOGGINGPP(__argc, __argv);
+    // TODO: Should this be here?  Or in App?
     ResourceManager resourceManager;
 
     el::Configurations loggingConfig;
@@ -25,7 +26,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     el::Loggers::reconfigureLogger("default", loggingConfig);
     el::Loggers::reconfigureAllLoggers(loggingConfig);
 
-    App app;
+    AudioPlayerApp app;
     
     Result appInitResult = app.Init(hInstance, resourceManager);
     if (appInitResult.HasErrors()) {
