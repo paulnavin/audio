@@ -35,7 +35,6 @@ Result Scene::Init(GraphicsEngine* gfx, ::uc::ConfigStore* /*config*/, InputMana
         initResult.AppendError("Scene::Create2dModel : Error initialising DJ 2D model.");
         return initResult;
     }
-    model2d_->SetShowFps(showFps_);
 
     graphicsEngine_->Set2dModel(model2d_);
     graphicsEngine_->Set3dModel(*model3d_);
@@ -64,14 +63,8 @@ void Scene::OnCommandMouseClicked(const float& x, const float& y) {
     model2d_->OnMouseClicked(x, y);
 }
 
-void Scene::OnCommandShowFps() {
-    showFps_ = !showFps_;
-    model2d_->SetShowFps(showFps_);
-}
-
-void Scene::OnCommandShowMousePosition() {
-    showMousePosition_ = !showMousePosition_;
-    model2d_->SetShowMousePosition(showMousePosition_);
+void Scene::OnCommandToggleDebugInfo() {
+    model2d_->ToggleDebugInfo();
 }
 
 void Scene::UpdateMousePosition(const float& x, const float& y) {

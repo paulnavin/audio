@@ -11,12 +11,8 @@ Result SceneUserInput::Init(Scene* newScene, InputManager* inputManager) {
 
     std::vector<KeyBinding> bindings;
 
-    bindings.push_back(KeyBinding('F', KeyState::JustPressed));
-    inputManager_->AddCommand(new Command(ToggleFps, "Toggle FPS", bindings));
-    bindings.clear();
-
-    bindings.push_back(KeyBinding(VK_RBUTTON, KeyState::JustReleased));
-    inputManager_->AddCommand(new Command(ToggleMousePosition, "Toggle Mouse Position", bindings));
+    bindings.push_back(KeyBinding('D', KeyState::JustPressed));
+    inputManager_->AddCommand(new Command(ToggleDebugInfo, "Toggle Debug Info", bindings));
     bindings.clear();
 
     bindings.push_back(KeyBinding(VK_LBUTTON, KeyState::JustReleased));
@@ -35,8 +31,7 @@ void SceneUserInput::Update() {
     for (auto command : *activeCommands) {
         switch (command.first) {
         case MouseClicked: { scene_->OnCommandMouseClicked(mouseXPosition, mouseYPosition); return; }
-        case ToggleFps: { scene_->OnCommandShowFps(); return; }
-        case ToggleMousePosition: { scene_->OnCommandShowMousePosition(); return; }
+        case ToggleDebugInfo: { scene_->OnCommandToggleDebugInfo(); return; }
         }
     }
 }

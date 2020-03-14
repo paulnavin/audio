@@ -87,6 +87,9 @@
     <ClInclude Include="..\..\Interface\DirectX\Graphics\AnimatedSpriteAnimationData.hpp">
       <Filter>Header Files\DirectX</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Graphics\DebugInfo.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Common\Model2d.cpp">
@@ -121,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Implementation\DirectX\AnimatedSprite.cpp">
       <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Common\DebugInfo.cpp">
+      <Filter>Source Files\Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

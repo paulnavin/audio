@@ -1,3 +1,4 @@
 Loading data
 Loading app resources
 Saving/loading configuration to disk (protobuffers?)
+Make Element's Init() take a GraphicsEngine.

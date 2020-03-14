@@ -26,15 +26,12 @@ public:
     Result UpdateFps(const int64_t& newFps);
 
     void OnCommandMouseClicked(const float& x, const float& y);
-    void OnCommandShowFps();
-    void OnCommandShowMousePosition();
+    void OnCommandToggleDebugInfo();
 
 protected:
     GraphicsEngine* graphicsEngine_;
     Window* mainWindow_;
     Model3d* model3d_;
     Model2d* model2d_;
-    bool showFps_ = true;
-    bool showMousePosition_ = true;
     SceneUserInput* userInputHandler_;
 };
