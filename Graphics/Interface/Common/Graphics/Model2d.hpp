@@ -1,22 +1,23 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
+#include <Graphics/Sprite.hpp>
+#include <Graphics/Text2d.hpp>
 #include <Stl/StlWrapper.hpp>
 
-#include "Element.hpp"
-
+class Element;
 class GraphicsEngine;
 class ResourceManager;
 
 class Model2d {
 public:
-    Model2d() = default;
+    Model2d();
     virtual ~Model2d() = default;
 
 public:
-    virtual Result Init(const GraphicsEngine& gfx) = 0;
+    virtual Result Init(const GraphicsEngine& gfx);
 
-    virtual void Update(const double& dt) = 0;
+    virtual void Update(const double& dt);
 
     // Note: No Result passing in Render, for performance reasons.
     void Render(const double& dt);
@@ -45,4 +46,9 @@ protected:
     float mouseXPosition_;
     float mouseYPosition_;
     Element* mousePositionElement_;
+
+    // TODO: Move this all into a debug element.
+    Sprite mouseCursor_;
+    Text2d fpsText_;
+    Text2d mousePositionText_;
 };

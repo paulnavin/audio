@@ -10,7 +10,10 @@
 
 class ModelBasic2d : public Model2d {
 public:
-    explicit ModelBasic2d() : Model2d(), ellipse_(nullptr), rectangle_(nullptr), fpsText_(nullptr) {};
+    explicit ModelBasic2d()
+        : Model2d()
+        , ellipse_(nullptr)
+        , rectangle_(nullptr) {};
     ~ModelBasic2d() = default;
 
 public:
@@ -36,39 +39,14 @@ public:
         ellipse_.SetPosition(700.0f, 500.0f);
         ellipse_.SetDimensions(75.0f, 200.0f);
 
-        initResult = fpsText_.Init(engine, textManager);
-        if (initResult.HasErrors()) {
-            initResult.AppendError("Window::Init() : Error initialising 2D FPS text.");
-            return initResult;
-        }
-
-        showFps_ = true;
-
         elements_.insert(&ellipse_);
         elements_.insert(&rectangle_);
 
-        SetFpsElement(&fpsText_);
-
-        return Result{};
-    }
-
-    void Update(const double& dt) override {
-        UNREFERENCED_PARAMETER(dt);
-    }
-
-    void SetFps(const int64_t& newFps) override {
-        Model2d::SetFps(newFps);
-
-        std::wostringstream fpsString{};
-        fpsString.precision(6);
-        fpsString << "FPS: " << fps_ << std::endl;
-
-        fpsText_.SetText(fpsString.str());
+        return Model2d::Init(gfx);
     }
 
 private:
     Ellipse2d ellipse_;
     Rectangle2d rectangle_;
-    Text2d fpsText_;
 };
 
