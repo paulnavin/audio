@@ -16,12 +16,6 @@ public:
 
         Result initResult{};
         
-        //initResult = animatedSprite_.Init(gfx);
-        //if (initResult.HasErrors()) {
-        //    initResult.AppendError("ExplosionAnimation::Init() : Error initialising animated sprite.");
-        //    return initResult;
-        //}
-
         AnimatedSpriteCycleDataVector explosionAnimationCycles;
 
         AnimatedSpriteCycleData cycle;

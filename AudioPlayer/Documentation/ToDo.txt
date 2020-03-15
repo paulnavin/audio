@@ -1,4 +1,4 @@
 Loading data
 Loading app resources
 Saving/loading configuration to disk (protobuffers?)
-Make Element's Init() take a GraphicsEngine.
+Fix bug in ExplosionAnimation where animatedSprite_.SetPosition() doesn't set the position properly, because the actual position on screen hasn't been calculated yet.
