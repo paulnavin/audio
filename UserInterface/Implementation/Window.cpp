@@ -7,12 +7,12 @@ const HWND Window::GetHandle() const {
     return windowHandle_;
 }
 
-const float Window::GetXPosition() const {
-    return static_cast<float>(windowRectangle_.left);
+const float Window::GetWidth() const {
+    return width_;
 }
 
-const float Window::GetYPosition() const {
-    return static_cast<float>(windowRectangle_.top);
+const float Window::GetHeight() const {
+    return height_;
 }
 
 Result Window::Init(const WNDCLASSEXW& wcex, const WindowConfig& config) {
@@ -30,12 +30,8 @@ Result Window::Init(const WNDCLASSEXW& wcex, const WindowConfig& config) {
 
     ShowCursor(config.showCursor_);
 
-    RECT clientRect;
-    GetWindowRect(windowHandle_, &windowRectangle_);
-    GetClientRect(windowHandle_, &clientRect);
-
-        
-
+    UpdateSizes();
+    
     return initResult;
 }
 
@@ -86,6 +82,7 @@ void Window::HandleSizeMessage(const WPARAM& wParam) {
         isMinimised_ = false;
         isMaximised_ = false;
         if (isResizing_ == false) {
+            UpdateSizes();
             messageHandler_->OnRestore();
         }
     }
@@ -93,4 +90,11 @@ void Window::HandleSizeMessage(const WPARAM& wParam) {
 
 LRESULT Window::DisableAnnoyingMenuBeepingSound() {
     return MAKELRESULT(0, MNC_CLOSE);
+}
+
+void Window::UpdateSizes() {
+    GetClientRect(windowHandle_, &clientArea_);
+
+    width_ = static_cast<float>(clientArea_.right - clientArea_.left);
+    height_ = static_cast<float>(clientArea_.bottom - clientArea_.top);
 }

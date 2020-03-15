@@ -7,7 +7,7 @@
 class DebugInfo : public Element {
 
 public:
-    DebugInfo(Element* parent);
+    DebugInfo() = default;
     virtual ~DebugInfo() = default;
 
 public:
@@ -19,7 +19,9 @@ public:
     void SetMousePosition(const float& x, const float& y);
 
 private:
-    int64_t fps_;
+    Result UpdateDetails();
+
+private:
     Text2d fpsText_;
     Text2d mousePositionText_;
 };

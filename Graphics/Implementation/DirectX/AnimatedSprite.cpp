@@ -4,20 +4,16 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <StringHandling/StringUtil.hpp>
 
-AnimatedSprite::AnimatedSprite(Element* parent) : Sprite(parent) {
-
-}
-
 Result AnimatedSprite::Init(const GraphicsEngine& gfx) {
     return Sprite::Init(gfx);
 }
 
 void AnimatedSprite::Render(const double& /*dt*/) {
     AnimatedSpriteCycleData cycleData = cycleData_[0];
-    D2D1_RECT_F destRect = { position_.x - (cycleData.width*cycleData.rotationCenterX),
-                    position_.y - (cycleData.height*cycleData.rotationCenterY),
-                    position_.x + (cycleData.width*(1.0f - cycleData.rotationCenterX)),
-                    position_.y + (cycleData.height*(1.0f - cycleData.rotationCenterY)) };
+    D2D1_RECT_F destRect = { positionOnScreen_.x - (cycleData.width*cycleData.rotationCenterX),
+                    positionOnScreen_.y - (cycleData.height*cycleData.rotationCenterY),
+                    positionOnScreen_.x + (cycleData.width*(1.0f - cycleData.rotationCenterX)),
+                    positionOnScreen_.y + (cycleData.height*(1.0f - cycleData.rotationCenterY)) };
     D2D1_SIZE_U size = bitmap_->GetPixelSize();
 
     size_t startingRow = activeAnimationFrame_ / cycleData.framesPerRow;

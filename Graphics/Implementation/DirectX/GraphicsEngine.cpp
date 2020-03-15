@@ -16,10 +16,15 @@ const TextManager2d& GraphicsEngine::GetTextManager2d() const {
     return textManager2d_;
 }
 
+const Window* GraphicsEngine::GetTargetWindow() const {
+    return targetWindow_;
+}
+
 Result GraphicsEngine::Init(const Window& targetWindow, const ResourceManager& resourceManager) {
     Result initResult{};
 
     resourceManager_ = resourceManager;
+    targetWindow_ = &targetWindow;
 
     initResult = engine3d_.Init(targetWindow, resourceManager);
     if (initResult.HasErrors()) {

@@ -7,8 +7,8 @@
 class Text2d : public Element {
 
 public:
-    Text2d(Element* parent);
-    ~Text2d() = default;
+    Text2d() = default;
+    virtual ~Text2d() = default;
 
 public:
     Result Init(const GraphicsEngine& gfx) override;
@@ -18,8 +18,12 @@ public:
     Result SetText(const std::wstring& newText);
 
 private:
+    Result UpdateDetails();
+
+private:
     Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> brush_;
     Microsoft::WRL::ComPtr<ID2D1DeviceContext1>  deviceContext2d_;
+    std::wstring                                 text_;
     Microsoft::WRL::ComPtr<IDWriteTextFormat>    textFormat_;
     Microsoft::WRL::ComPtr<IDWriteTextLayout>    textLayout_;
     D2D1_POINT_2F                                textPosition_;

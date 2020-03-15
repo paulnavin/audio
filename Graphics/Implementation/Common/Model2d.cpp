@@ -3,10 +3,8 @@
 #include <Graphics/Element.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 
-Model2d::Model2d() 
-    : mouseCursor_ (nullptr)
-    , showDebugInfo_(false)
-    , debugElement_(nullptr) {
+Model2d::Model2d()
+    : showDebugInfo_(false) {
 }
 
 Result Model2d::Init(const GraphicsEngine& gfx) {
@@ -18,12 +16,6 @@ Result Model2d::Init(const GraphicsEngine& gfx) {
         return initResult;
     }
 
-    initResult = mouseCursor_.Init(gfx);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Model2d::Init() : Error initialising mouse cursor sprite.");
-        return initResult;
-    }
-
     std::string spriteFileName = resourceManager.GetFullCursorFileName("BlueArrow.png");
     initResult = mouseCursor_.SetSourceFileName(spriteFileName);
     if (initResult.HasErrors()) {
@@ -31,6 +23,12 @@ Result Model2d::Init(const GraphicsEngine& gfx) {
         return initResult;
     }
     mouseCursor_.SetDimensions(48.0f, 48.0f);
+
+    initResult = mouseCursor_.Init(gfx);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Model2d::Init() : Error initialising mouse cursor sprite.");
+        return initResult;
+    }
 
     return initResult;
 }
@@ -81,4 +79,8 @@ void Model2d::SetMousePosition(const float& x, const float& y) {
 
     mouseCursor_.SetPosition(x, y);
     debugElement_.SetMousePosition(x, y);
+}
+
+void Model2d::SetWindow(Window* window) {
+    window_ = window;
 }

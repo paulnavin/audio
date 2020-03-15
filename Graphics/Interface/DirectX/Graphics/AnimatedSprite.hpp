@@ -8,8 +8,8 @@
 class AnimatedSprite : public Sprite {
 
 public:
-    AnimatedSprite(Element* parent);
-    ~AnimatedSprite() = default;
+    AnimatedSprite() = default;
+    virtual ~AnimatedSprite() = default;
 
 public:
     Result Init(const GraphicsEngine& gfx) override;

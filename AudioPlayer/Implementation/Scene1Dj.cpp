@@ -15,9 +15,7 @@ Result Scene1Dj::Init(GraphicsEngine* gfx, ::uc::ConfigStore* config, InputManag
     model2d_ = new ModelDj();
     userInputHandler_ = new Scene1UserInput();
 
-    Scene::Init(gfx, config, inputManager);
+    LOG(INFO) << "Scene1Dj::Init() : Created successfully!";
 
-    LOG(INFO) << "Scene1Dj::Init() : Successful!";
-
-    return Result{};
+    return Scene::Init(gfx, config, inputManager);
 }

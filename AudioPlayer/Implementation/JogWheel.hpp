@@ -8,8 +8,8 @@
 class JogWheel : public Element {
 
 public:
-    JogWheel(Element* parent);
-    ~JogWheel() = default;
+    JogWheel() = default;
+    virtual ~JogWheel() = default;
 
 public:
     Result Init(const GraphicsEngine& gfx) override;
@@ -20,6 +20,9 @@ public:
 
     Result SetPositionColour(const Colour& newColour);
     Result SetSlipmatColour(const Colour& newColour);
+
+private:
+    Result UpdateDetails();
 
 private:
     Microsoft::WRL::ComPtr<ID2D1DeviceContext1>  deviceContext2d_;

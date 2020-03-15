@@ -30,7 +30,8 @@ Result Scene::Init(GraphicsEngine* gfx, ::uc::ConfigStore* /*config*/, InputMana
         return initResult;
     }
 
-    initResult = graphicsEngine_->Init2dModel(model2d_);
+
+    initResult = model2d_->Init(*gfx);
     if (initResult.HasErrors()) {
         initResult.AppendError("Scene::Create2dModel : Error initialising 2D model.");
         return initResult;

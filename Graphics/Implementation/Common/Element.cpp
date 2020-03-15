@@ -1,12 +1,14 @@
 #include <Graphics/Element.hpp>
 
-Element::Element(Element* parent) {
-    parent_ = parent;
-    if (parent_ == nullptr) {
-        // TODO: Add ability to add a Window as parent, and get dimensions from Window.
-        dimensions_.height = 900;
-        dimensions_.width = 1600;
-    }
+Result Element::Init(const GraphicsEngine& /*gfx*/) {
+    UpdatePositionOnScreen();
+    UpdateDimensionsOnScreen();
+    isInitialised_ = true;
+    return Result{};
+}
+
+const bool Element::IsInitialised() const {
+    return isInitialised_;
 }
 
 const Position2d& Element::GetPosition() const {
@@ -14,25 +16,51 @@ const Position2d& Element::GetPosition() const {
 }
 
 const Dimension2d& Element::GetDimensions() const {
-    return dimensions_;
+    return dimensionsOnScreen_;
 }
 
 void Element::SetDimensions(const float& heightInPixels, const float& widthInPixels) {
-    dimensions_.height = heightInPixels;
-    dimensions_.width = widthInPixels;
+    dimensionsOnScreen_.height = heightInPixels;
+    dimensionsOnScreen_.width = widthInPixels;
+    relativeDimensions_ = false;
+}
+
+void Element::SetParent(const Element* parent) {
+    parent_ = parent;
 }
 
 void Element::SetPosition(const float& newX, const float& newY) {
     position_.x = newX;
     position_.y = newY;
+
+    if (IsInitialised()) {
+        UpdatePositionOnScreen();
+    }
 }
 
 void Element::SetDimensionsAsPercentage(const float& height, const float& width) {
-    if (parent_ == nullptr) {
-        // TODO: Add ability to set percentage of Window.
-        return;
-    }
+    dimensions_.height = height;
+    dimensions_.width = width;
+    relativeDimensions_ = true;
 
-    dimensions_.height = parent_->dimensions_.height * (height / 100.0f);
-    dimensions_.width = parent_->dimensions_.width * (width / 100.0f);
+    if (IsInitialised()) {
+        UpdateDimensionsOnScreen();
+    }
+}
+
+void Element::UpdatePositionOnScreen() {
+    if (parent_ != nullptr) {
+        positionOnScreen_.x = parent_->positionOnScreen_.x + position_.x;
+        positionOnScreen_.y = parent_->positionOnScreen_.y + position_.y;
+    } else {
+        positionOnScreen_.x = position_.x;
+        positionOnScreen_.y = position_.y;
+    }
+}
+
+void Element::UpdateDimensionsOnScreen() {
+    if ((relativeDimensions_ == true) &&(parent_ != nullptr)) {
+        dimensionsOnScreen_.height = parent_->dimensionsOnScreen_.height * (dimensions_.height / 100.0f);
+        dimensionsOnScreen_.width = parent_->dimensionsOnScreen_.width * (dimensions_.width / 100.0f);
+    }
 }

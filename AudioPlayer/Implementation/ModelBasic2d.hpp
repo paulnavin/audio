@@ -9,9 +9,7 @@
 class ModelBasic2d : public Model2d {
 public:
     explicit ModelBasic2d()
-        : Model2d()
-        , ellipse_(nullptr)
-        , rectangle_(nullptr) {};
+        : Model2d() {};
     ~ModelBasic2d() = default;
 
 public:

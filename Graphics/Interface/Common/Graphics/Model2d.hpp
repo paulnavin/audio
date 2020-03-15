@@ -8,7 +8,7 @@
 
 class Element;
 class GraphicsEngine;
-class ResourceManager;
+class Window;
 
 class Model2d {
 public:
@@ -24,6 +24,7 @@ public:
 
     void SetFps(const int64_t& newFps);
     void SetMousePosition(const float& x, const float& y);
+    void SetWindow(Window* window);
     void ToggleDebugInfo();
 
 protected:
@@ -38,4 +39,6 @@ protected:
 
     bool showDebugInfo_;
     DebugInfo debugElement_;
+
+    Window* window_;
 };

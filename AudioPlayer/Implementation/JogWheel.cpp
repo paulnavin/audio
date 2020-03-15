@@ -4,10 +4,6 @@
 #include <Graphics/Engine2d.hpp>
 #include <Platform/WindowsInterface.hpp>
 
-JogWheel::JogWheel(Element* parent) : Element(parent) {
-
-}
-
 Result JogWheel::Init(const GraphicsEngine& gfx) {
     const Engine2d& engine = gfx.GetEngine2d();
     Microsoft::WRL::ComPtr<ID2D1Factory2> factory = engine.GetFactory();
@@ -20,14 +16,14 @@ Result JogWheel::Init(const GraphicsEngine& gfx) {
     D2D1_ELLIPSE unitEllipse = { centrePoint_, 75.0f, 75.0f };
     HRESULT hr = factory->CreateEllipseGeometry(&unitEllipse, slipmatGeometry_.GetAddressOf());
     if (FAILED(hr)) {
-        initResult.AppendError("RotatableEllipse2d::Init() : Could not create geometry for slipmat.");
+        initResult.AppendError("JogWheel::Init() : Could not create geometry for slipmat.");
         return initResult;
     }
 
     D2D1_ELLIPSE positionEllipse = { {256.0f, 378.0f} , 10.0f, 10.0f };
     hr = factory->CreateEllipseGeometry(&positionEllipse, positionGeometry_.GetAddressOf());
     if (FAILED(hr)) {
-        initResult.AppendError("RotatableEllipse2d::Init() : Could not create geometry for position indicator.");
+        initResult.AppendError("JogWheel::Init() : Could not create geometry for position indicator.");
         return initResult;
     }
 
@@ -36,10 +32,16 @@ Result JogWheel::Init(const GraphicsEngine& gfx) {
 
     hr = factory->CreateGeometryGroup(D2D1_FILL_MODE_WINDING, geometries_, ARRAYSIZE(geometries_), jogWheel_.GetAddressOf());
     if (FAILED(hr)) {
-        initResult.AppendError("RotatableEllipse2d::Init() : Could not create geometry  group for jog wheel.");
+        initResult.AppendError("JogWheel::Init() : Could not create geometry group for jog wheel.");
+        return initResult;
     }
 
-    return initResult;
+    Result updateResult = UpdateDetails();
+    if (updateResult.HasErrors()) {
+        updateResult.AppendError("JogWheel::Init() : Couldn't update details in Init()");
+        return updateResult;
+    }
+    return Element::Init(gfx);
 }
 
 void JogWheel::Update(const double& dt) {
@@ -69,23 +71,37 @@ void JogWheel::Render(const double& dt) {
 Result JogWheel::SetPositionColour(const Colour& newColour) {
     positionColour_ = newColour;
 
-    HRESULT hr = deviceContext2d_->CreateSolidColorBrush(
-        D2D1::ColorF(positionColour_.red, positionColour_.green, positionColour_.blue, positionColour_.alpha), &positionBrush_);
-    Result setResult{};
-    if (FAILED(hr)) {
-        setResult.AppendError("RotatableEllipse2d::SetColour() : Could not create brush for position indicator.");
+    if (IsInitialised() == true) {
+        return UpdateDetails();
     }
-    return setResult;
+    return Result{};
 }
 
 Result JogWheel::SetSlipmatColour(const Colour& newColour) {
     slipmatColour_ = newColour;
 
+    if (IsInitialised() == true) {
+        return UpdateDetails();
+    }
+    return Result{};
+}
+
+Result JogWheel::UpdateDetails() {
+    Result updateResult{};
+
     HRESULT hr = deviceContext2d_->CreateSolidColorBrush(
         D2D1::ColorF(slipmatColour_.red, slipmatColour_.green, slipmatColour_.blue, slipmatColour_.alpha), &slipmatBrush_);
-    Result setResult{};
     if (FAILED(hr)) {
-        setResult.AppendError("RotatableEllipse2d::SetColour() : Could not create brush for slipmat.");
+        updateResult.AppendError("JogWheel::UpdateDetails() : Could not create brush for slipmat.");
+        return updateResult;
     }
-    return setResult;
+
+    hr = deviceContext2d_->CreateSolidColorBrush(
+        D2D1::ColorF(positionColour_.red, positionColour_.green, positionColour_.blue, positionColour_.alpha), &positionBrush_);
+    if (FAILED(hr)) {
+        updateResult.AppendError("JogWheel::UpdateDetails() : Could not create brush for position indicator.");
+        return updateResult;
+    }
+
+    return Result{};
 }

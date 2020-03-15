@@ -8,8 +8,8 @@
 class Rectangle2d : public Element {
 
 public:
-    Rectangle2d(Element* parent);
-    ~Rectangle2d() = default;
+    Rectangle2d() = default;
+    virtual ~Rectangle2d() = default;
 
 public:
     Result Init(const GraphicsEngine& gfx) override;
@@ -18,6 +18,9 @@ public:
 
 public:
     Result SetColour(const Colour& newColour);
+
+private:
+    Result UpdateDetails();
 
 private:
     Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> brush_;

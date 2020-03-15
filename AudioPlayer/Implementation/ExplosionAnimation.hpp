@@ -7,8 +7,8 @@
 
 class ExplosionAnimation : public Element {
 public:
-    ExplosionAnimation(Element* parent) : Element(parent), animatedSprite_(parent){ }
-    ~ExplosionAnimation() = default;
+    ExplosionAnimation() = default;
+    virtual ~ExplosionAnimation() = default;
 
 public:
     Result Init(const GraphicsEngine& gfx) {
@@ -16,11 +16,11 @@ public:
 
         Result initResult{};
         
-        initResult = animatedSprite_.Init(gfx);
-        if (initResult.HasErrors()) {
-            initResult.AppendError("ExplosionAnimation::Init() : Error initialising animated sprite.");
-            return initResult;
-        }
+        //initResult = animatedSprite_.Init(gfx);
+        //if (initResult.HasErrors()) {
+        //    initResult.AppendError("ExplosionAnimation::Init() : Error initialising animated sprite.");
+        //    return initResult;
+        //}
 
         AnimatedSpriteCycleDataVector explosionAnimationCycles;
 
@@ -38,13 +38,21 @@ public:
         explosionAnimationCycles.push_back(cycle);
 
         std::string animatedSpriteFileName = resourceManager.GetFullAnimatedSpriteFileName("BlueCrystal.png");
+
+        animatedSprite_.SetParent(this);
+        animatedSprite_.SetCycleData(explosionAnimationCycles);
+        animatedSprite_.SetPosition(GetPosition().x, GetPosition().y);
         initResult = animatedSprite_.SetSourceFileName(animatedSpriteFileName);
         if (initResult.HasErrors()) {
             initResult.AppendError("ExplosionAnimation::Init() : Error setting animated sprite file name.");
             return initResult;
         }
-        animatedSprite_.SetCycleData(explosionAnimationCycles);
-        animatedSprite_.SetPosition(GetPosition().x, GetPosition().y);
+
+        initResult = animatedSprite_.Init(gfx);
+        if (initResult.HasErrors()) {
+            initResult.AppendError("ExplosionAnimation::Init() : Error initialising animated sprite.");
+            return initResult;
+        }
 
         return Result{};
     }

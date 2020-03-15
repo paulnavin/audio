@@ -21,6 +21,7 @@ public:
     const Engine2d& GetEngine2d() const;
     const ResourceManager& GetResourceManager() const;
     const TextManager2d& GetTextManager2d() const;
+    const Window* GetTargetWindow() const;
 
 public:
     Result Init(const Window& targetWindow, const ResourceManager& resourceManager);
@@ -39,4 +40,5 @@ private:
     Engine3d engine3d_;
     ResourceManager resourceManager_;
     TextManager2d textManager2d_;
+    const Window* targetWindow_;
 };

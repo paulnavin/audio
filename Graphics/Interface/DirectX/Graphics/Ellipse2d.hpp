@@ -8,8 +8,8 @@
 class Ellipse2d : public Element {
 
 public:
-    Ellipse2d(Element* parent);
-    ~Ellipse2d() = default;
+    Ellipse2d() = default;
+    virtual ~Ellipse2d() = default;
 
 public:
     Result Init(const GraphicsEngine& gfx) override;
@@ -17,6 +17,9 @@ public:
 
 public:
     Result SetColour(const Colour& newColour);
+
+private:
+    Result UpdateDetails();
 
 private:
     Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> brush_;

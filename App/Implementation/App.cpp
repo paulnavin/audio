@@ -134,7 +134,7 @@ void App::ShutDown() {
     // mainWindow_ will be destroyed by the WindowManager.
     LOG(INFO) << "App::ShutDown() : Shut down!";
 
-    for (uint8_t i = 0; i < SCENE_COUNT; ++i) {
+    for (uint8_t i = 0; i < ACTUAL_SCENE_COUNT; ++i) {
         if (i == currentSceneId_) {
             scenes_[i]->ShutDown();
         }
@@ -214,7 +214,7 @@ void App::OnCommandToggleScene() {
 
     scenes_[currentSceneId_]->ShutDown();
 
-    currentSceneId_ = static_cast<uint8_t>((currentSceneId_ + 1) % SCENE_COUNT);
+    currentSceneId_ = static_cast<uint8_t>((currentSceneId_ + 1) % ACTUAL_SCENE_COUNT);
 
     SelectScene(currentSceneId_);
 }

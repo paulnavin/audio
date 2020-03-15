@@ -4,32 +4,38 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/TextManager2d.hpp>
 #include <Platform/WindowsInterface.hpp>
-
-DebugInfo::DebugInfo(Element* parent)
-    : Element(parent)
-    , fpsText_(nullptr)
-    , mousePositionText_(nullptr) {
-}
+#include <UserInterface/Window.hpp>
 
 Result DebugInfo::Init(const GraphicsEngine& gfx) {
-    Result initResult = fpsText_.Init(gfx);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("ModelDj::Init() : Error initialising 2D FPS text.");
-        return initResult;
-    }
+    SetPosition(0.0f, 0.0f);
+    SetDimensions(gfx.GetTargetWindow()->GetHeight(), gfx.GetTargetWindow()->GetWidth());
+    SetFps(0);
+    SetMousePosition(0.0f, 0.0f);
+
+    fpsText_.SetParent(this);
     fpsText_.SetPosition(5.0f, 5.0f);
     fpsText_.SetDimensions(20.0f, 100.0f);
-
-    initResult = mousePositionText_.Init(gfx);
+    Result initResult = fpsText_.Init(gfx);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Model2d::Init() : Error initialising 2D mouse position text.");
+        initResult.AppendError("DebugInfo::Init() : Error initialising 2D FPS text.");
         return initResult;
     }
 
+    mousePositionText_.SetParent(this);
     mousePositionText_.SetPosition(5.0f, 35.0f);
     mousePositionText_.SetDimensions(20.0f, 100.0f);
+    initResult = mousePositionText_.Init(gfx);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("DebugInfo::Init() : Error initialising 2D mouse position text.");
+        return initResult;
+    }
 
-    return initResult;
+    Result updateResult = UpdateDetails();
+    if (updateResult.HasErrors()) {
+        updateResult.AppendError("DebugInfo::Init() : Couldn't update details in Init()");
+        return updateResult;
+    }
+    return Element::Init(gfx);
 }
 
 void DebugInfo::Render(const double& dt) {
@@ -51,4 +57,10 @@ void DebugInfo::SetMousePosition(const float& x, const float& y) {
     outputString << "Mouse: " << x << ", " << y << std::endl;
 
     mousePositionText_.SetText(outputString.str());
+}
+
+Result DebugInfo::UpdateDetails() {
+    // Nothing here at the moment...
+    // TODO: Maybe store FPS and mouse position values, and SetText here?
+    return Result{};
 }

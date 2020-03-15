@@ -13,8 +13,9 @@ public:
 
 public:
     const HWND GetHandle() const;
-    const float GetXPosition() const;
-    const float GetYPosition() const;
+
+    const float GetWidth() const;
+    const float GetHeight() const;
 
 public:
     Result Init(const WNDCLASSEXW& wcex, const WindowConfig& config);
@@ -26,13 +27,17 @@ public:
 private:
     void HandleSizeMessage(const WPARAM& wParam);
     LRESULT DisableAnnoyingMenuBeepingSound();
+    void UpdateSizes();
 
 private:
     HINSTANCE appInstance_;
+    RECT clientArea_;
+    float height_;
     bool isMinimised_;
     bool isMaximised_;
     bool isResizing_;
+    float width_;
     HWND windowHandle_;
-    RECT windowRectangle_;
+    RECT windowArea_;
     WindowMessageHandler* messageHandler_;
 };
