@@ -17,7 +17,7 @@ public:
     virtual Result Init(const GraphicsEngine& gfx);
 
     // Note: No Result passing in Render, for performance reasons.
-    virtual void Render(const double&) = 0;
+    virtual void Render(const double&) {}
 
     virtual void OnClick() {};
 

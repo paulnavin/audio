@@ -20,25 +20,25 @@ const Window* GraphicsEngine::GetTargetWindow() const {
     return targetWindow_;
 }
 
-Result GraphicsEngine::Init(const Window& targetWindow, const ResourceManager& resourceManager) {
+Result GraphicsEngine::Init(Window* targetWindow, const ResourceManager& resourceManager) {
     Result initResult{};
 
     resourceManager_ = resourceManager;
-    targetWindow_ = &targetWindow;
+    targetWindow_ = targetWindow;
 
-    initResult = engine3d_.Init(targetWindow, resourceManager);
+    initResult = engine3d_.Init(*targetWindow, resourceManager);
     if (initResult.HasErrors()) {
         initResult.AppendError("GraphicsEngine::Init() : Error initialising 3D controller.");
         return initResult;
     }
 
-    initResult = engine2d_.Init(targetWindow, engine3d_);
+    initResult = engine2d_.Init(*targetWindow, engine3d_);
     if (initResult.HasErrors()) {
         initResult.AppendError("GraphicsEngine::Init() : Error initialising 2D controller.");
         return initResult;
     }
 
-    initResult = textManager2d_.Init(targetWindow, engine2d_);
+    initResult = textManager2d_.Init(*targetWindow, engine2d_);
     if (initResult.HasErrors()) {
         initResult.AppendError("Engine2d::Init() : Error initialising 2D text manager.");
         return initResult;
@@ -53,10 +53,12 @@ Result GraphicsEngine::Init2dModel(Model2d* model) {
 
 void GraphicsEngine::NextDisplayConfig() {
     engine3d_.NextDisplayConfig();
+    targetWindow_->UpdateSizes();
 }
 
 void GraphicsEngine::PreviousDisplayConfig() {
     engine3d_.PreviousDisplayConfig();
+    targetWindow_->UpdateSizes();
 }
 
 void GraphicsEngine::Render(const double& dt) {
@@ -75,6 +77,7 @@ void GraphicsEngine::Render(const double& dt) {
 
 void GraphicsEngine::ResetDisplayConfig() {
     engine3d_.ResetDisplayConfig();
+    targetWindow_->UpdateSizes();
 }
 
 void GraphicsEngine::Resize() {

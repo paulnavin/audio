@@ -31,7 +31,7 @@ protected:
     using ElementVector = std::vector<Element*>;
     using ElementList = std::list<Element*>;
     using ElementSet = std::set<Element*>;
-    ElementSet elements_;
+    ElementVector elements_;
 
     float mouseXPosition_;
     float mouseYPosition_;

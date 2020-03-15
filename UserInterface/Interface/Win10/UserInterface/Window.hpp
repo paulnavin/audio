@@ -20,14 +20,16 @@ public:
 public:
     Result Init(const WNDCLASSEXW& wcex, const WindowConfig& config);
     void Show();
+    void Destroy();
+    
     LRESULT ProcessMessage(const UINT& message, const WPARAM& wParam, const LPARAM& lParam);
     void SetWindowMessageHandler(WindowMessageHandler* newHandler);
-    void Destroy();
+    
+    void UpdateSizes();
 
 private:
     void HandleSizeMessage(const WPARAM& wParam);
     LRESULT DisableAnnoyingMenuBeepingSound();
-    void UpdateSizes();
 
 private:
     HINSTANCE appInstance_;

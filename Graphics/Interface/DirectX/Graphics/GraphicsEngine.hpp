@@ -24,7 +24,7 @@ public:
     const Window* GetTargetWindow() const;
 
 public:
-    Result Init(const Window& targetWindow, const ResourceManager& resourceManager);
+    Result Init(Window* targetWindow, const ResourceManager& resourceManager);
     Result Init2dModel(Model2d* model);
     void NextDisplayConfig();
     void PreviousDisplayConfig();
@@ -40,5 +40,5 @@ private:
     Engine3d engine3d_;
     ResourceManager resourceManager_;
     TextManager2d textManager2d_;
-    const Window* targetWindow_;
+    Window* targetWindow_;
 };

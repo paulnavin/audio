@@ -59,7 +59,7 @@ void Element::UpdatePositionOnScreen() {
 }
 
 void Element::UpdateDimensionsOnScreen() {
-    if ((relativeDimensions_ == true) &&(parent_ != nullptr)) {
+    if (relativeDimensions_ == true) {
         dimensionsOnScreen_.height = parent_->dimensionsOnScreen_.height * (dimensions_.height / 100.0f);
         dimensionsOnScreen_.width = parent_->dimensionsOnScreen_.width * (dimensions_.width / 100.0f);
     }

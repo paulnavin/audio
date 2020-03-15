@@ -70,6 +70,7 @@ protected:
 
 private:
     GraphicsEngine graphicsEngine_;
+    bool initialised_ = false;
     bool finished_ = false;
     bool paused_ = false;
     bool resizeRequired_ = false;

@@ -34,7 +34,7 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceMa
     }
     mainWindow_->SetWindowMessageHandler(this);
 
-    initResult = graphicsEngine_.Init(*mainWindow_, resourceManager);
+    initResult = graphicsEngine_.Init(mainWindow_, resourceManager);
     if (initResult.HasErrors()) {
         initResult.AppendError("App::Init() : Error initialising graphics engine.");
         return initResult;
@@ -59,6 +59,7 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceMa
     }
 
     LOG(INFO) << "App::Init() : Successful!";
+    initialised_ = true;
 
     return Result{};
 }
@@ -97,6 +98,7 @@ Result App::Run() {
                 toggleFullScreen_ = false;
             }
             graphicsEngine_.Resize();
+            SelectScene(currentSceneId_);
             resizeRequired_ = false;
             paused_ = false;
         }
@@ -157,23 +159,29 @@ void App::OnClose() {
 
 void App::OnMinimise() {
     LOG(INFO) << "App::OnMinimise() : Boogie woogie!";
-
-    paused_ = true;
-    resizeRequired_ = true;
+    
+    if (initialised_ == true) {
+        paused_ = true;
+        resizeRequired_ = true;
+    }
 }
 
 void App::OnMaximise() {
     LOG(INFO) << "App::OnMaximise() : Boogie woogie!";
 
-    paused_ = true;
-    resizeRequired_ = true;
+    if (initialised_ == true) {
+        paused_ = true;
+        resizeRequired_ = true;
+    }
 }
 
 void App::OnRestore() {
     LOG(INFO) << "App::OnRestore() : Boogie woogie!";
 
-    paused_ = true;
-    resizeRequired_ = true;
+    if (initialised_ == true) {
+        paused_ = true;
+        resizeRequired_ = true;
+    }
 }
 
 void App::OnStartSizeOrMove() {
@@ -183,19 +191,26 @@ void App::OnStartSizeOrMove() {
 
 void App::OnFinishSizeOrMove() {
     LOG(INFO) << "App::OnFinishSizeOrMove() : Boogie woogie!";
-    resizeRequired_ = true;
+
+    if (initialised_ == true) {
+        resizeRequired_ = true;
+    }
 }
 
 void App::OnCommandNextDisplayConfig() {
-    paused_ = true;
-    resizeRequired_ = true;
-    graphicsEngine_.NextDisplayConfig();
+    if (initialised_ == true) {
+        paused_ = true;
+        resizeRequired_ = true;
+        graphicsEngine_.NextDisplayConfig();
+    }
 }
 
 void App::OnCommandPreviousDisplayConfig() {
-    paused_ = true;
-    resizeRequired_ = true;
-    graphicsEngine_.PreviousDisplayConfig();
+    if (initialised_ == true) {
+        paused_ = true;
+        resizeRequired_ = true;
+        graphicsEngine_.PreviousDisplayConfig();
+    }
 }
 
 void App::OnCommandQuit() {
@@ -203,25 +218,31 @@ void App::OnCommandQuit() {
 }
 
 void App::OnCommandResetDisplayConfig() {
-    paused_ = true;
-    resizeRequired_ = true;
-    graphicsEngine_.ResetDisplayConfig();
+    if (initialised_ == true) {
+        paused_ = true;
+        resizeRequired_ = true;
+        graphicsEngine_.ResetDisplayConfig();
+    }
 }
 
 void App::OnCommandToggleScene() {
-    paused_ = true;
-    resizeRequired_ = true;
+    if (initialised_ == true) {
+        paused_ = true;
+        resizeRequired_ = true;
 
-    scenes_[currentSceneId_]->ShutDown();
+        scenes_[currentSceneId_]->ShutDown();
 
-    currentSceneId_ = static_cast<uint8_t>((currentSceneId_ + 1) % ACTUAL_SCENE_COUNT);
+        currentSceneId_ = static_cast<uint8_t>((currentSceneId_ + 1) % ACTUAL_SCENE_COUNT);
 
-    SelectScene(currentSceneId_);
+        SelectScene(currentSceneId_);
+    }
 }
 
 void App::OnCommandToggleFullScreen() {
-    paused_ = true;
-    toggleFullScreen_ = true;
+    if (initialised_ == true) {
+        paused_ = true;
+        toggleFullScreen_ = true;
+    }
 }
 
 void App::UpdateMousePosition(const float& x, const float& y) {
