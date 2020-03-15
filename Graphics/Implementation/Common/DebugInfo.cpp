@@ -8,13 +8,13 @@
 
 Result DebugInfo::Init(const GraphicsEngine& gfx) {
     SetPosition(0.0f, 0.0f);
-    SetDimensions(gfx.GetTargetWindow()->GetHeight(), gfx.GetTargetWindow()->GetWidth());
+    SetDimensions(gfx.GetTargetWindow()->GetWidth(), gfx.GetTargetWindow()->GetHeight());
     SetFps(0);
     SetMousePosition(0.0f, 0.0f);
 
     fpsText_.SetParent(this);
     fpsText_.SetPosition(5.0f, 5.0f);
-    fpsText_.SetDimensions(20.0f, 100.0f);
+    fpsText_.SetDimensions(100.0f, 20.0f);
     Result initResult = fpsText_.Init(gfx);
     if (initResult.HasErrors()) {
         initResult.AppendError("DebugInfo::Init() : Error initialising 2D FPS text.");
@@ -23,7 +23,7 @@ Result DebugInfo::Init(const GraphicsEngine& gfx) {
 
     mousePositionText_.SetParent(this);
     mousePositionText_.SetPosition(5.0f, 35.0f);
-    mousePositionText_.SetDimensions(20.0f, 100.0f);
+    mousePositionText_.SetDimensions(150.0f, 20.0f);
     initResult = mousePositionText_.Init(gfx);
     if (initResult.HasErrors()) {
         initResult.AppendError("DebugInfo::Init() : Error initialising 2D mouse position text.");

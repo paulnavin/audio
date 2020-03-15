@@ -262,7 +262,7 @@ void Engine3d::PreviousDisplayConfig() {
 }
 
 void Engine3d::ResetDisplayConfig() {
-    currentDisplayMode_ = 107;
+    currentDisplayMode_ = supportedDisplayModeCount_ - 30;
 }
 
 
@@ -468,7 +468,6 @@ Result Engine3d::InitSupportedDisplayModes() {
     }
 
     supportedDisplayModeCount_ = static_cast<size_t>(supportedModeCount);
-    currentDisplayMode_ = supportedDisplayModeCount_ - 1;
     supportedDisplayModes_ = new DXGI_MODE_DESC[supportedDisplayModeCount_];
     ZeroMemory(supportedDisplayModes_, sizeof(DXGI_MODE_DESC) * supportedModeCount);
 
@@ -477,6 +476,8 @@ Result Engine3d::InitSupportedDisplayModes() {
         initResult.AppendError("Engine3d::InitSupportedDisplayModes() : Couldn't get supported display modes.");
         return initResult;
     }
+
+    ResetDisplayConfig();
 
     output->Release();
 

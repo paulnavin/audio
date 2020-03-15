@@ -53,7 +53,7 @@ void Model2d::OnMouseClicked(const float& x, const float& y) {
     Position2d position;
     Dimension2d dimensions;
     for (Element* element : elements_) {
-        position = element->GetPosition();
+        position = element->GetAbsolutePosition();
         dimensions = element->GetDimensions();
         if ((x >= position.x) &&
             (x <= position.x + dimensions.width) &&

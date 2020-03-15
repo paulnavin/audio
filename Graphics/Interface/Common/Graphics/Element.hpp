@@ -23,14 +23,16 @@ public:
 
 public:
     const Position2d& GetPosition() const;
+    const Position2d& GetAbsolutePosition() const;
     const Dimension2d& GetDimensions() const;
     const bool IsInitialised() const;
 
 public:
-    void SetDimensions(const float& heightInPixels, const float& widthInPixels);
+    void SetDimensions(const float& widthInPixels, const float& heightInPixels);
     void SetParent(const Element* parent);
     void SetPosition(const float& newX, const float& newY);
-    void SetDimensionsAsPercentage(const float& height, const float& width); // From 0 to 100.
+    void SetPositionAsPercentage(const float& newX, const float& newY);
+    void SetDimensionsAsPercentage(const float& width, const float& height); // From 0 to 100.
  
 protected:
     Dimension2d dimensionsOnScreen_;
@@ -48,6 +50,8 @@ private:
     ChildVector children_;
     bool        isInitialised_ = false;
     Position2d  position_;
+    Position2d  positionAsPercentage_;
+    bool        percentagePosition_ = false;
     Dimension2d dimensions_;
-    bool        relativeDimensions_ = false;
+    bool        percentageDimensions_ = false;
 };

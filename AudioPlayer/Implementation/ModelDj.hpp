@@ -22,7 +22,7 @@ public:
 
 public:
     virtual Result Init(const GraphicsEngine& gfx) override {
-        rootElement_.SetDimensions(gfx.GetTargetWindow()->GetHeight(), gfx.GetTargetWindow()->GetWidth());
+        rootElement_.SetDimensions(gfx.GetTargetWindow()->GetWidth(), gfx.GetTargetWindow()->GetHeight());
         
         Result initResult = rootElement_.Init(gfx);
         if (initResult.HasErrors()) {
@@ -33,7 +33,7 @@ public:
         openFile1Button_.SetParent(&rootElement_);
         openFile1Button_.SetColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
         openFile1Button_.SetPosition(0.0f, 0.0f);
-        openFile1Button_.SetDimensionsAsPercentage(20.0f, 10.0f);
+        openFile1Button_.SetDimensionsAsPercentage(10.0f, 20.0f);
         initResult = openFile1Button_.Init(gfx);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D rectangle.");
@@ -42,8 +42,8 @@ public:
 
         openFile2Button_.SetParent(&rootElement_);
         openFile2Button_.SetColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
-        openFile2Button_.SetPosition(800.0f, 0.0f);
-        openFile2Button_.SetDimensionsAsPercentage(20.0f, 10.0f);
+        openFile2Button_.SetDimensionsAsPercentage(10.0f, 20.0f);
+        openFile2Button_.SetPositionAsPercentage(-10.0f, -20.0f);
         initResult = openFile2Button_.Init(gfx);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelDj::Init() : Error initialising 2D rectangle.");
