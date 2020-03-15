@@ -18,7 +18,7 @@ public:
     const float GetHeight() const;
 
 public:
-    Result Init(const WNDCLASSEXW& wcex, const WindowConfig& config);
+    Result Init(const WNDCLASSEX& wcex, const WindowConfig& config);
     void Show();
     void Destroy();
     

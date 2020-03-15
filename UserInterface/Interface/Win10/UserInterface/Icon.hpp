@@ -12,7 +12,7 @@ public:
     const HICON GetHandle() const;
 
 public:
-    Result Init(const HINSTANCE& appInstance, const LPCWSTR& iconName);
+    Result Init(const HINSTANCE& appInstance, const LPCSTR& iconName);
 
 private:
     HICON handle_;

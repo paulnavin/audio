@@ -44,7 +44,7 @@ void DebugInfo::Render(const double& dt) {
 }
 
 void DebugInfo::SetFps(const int64_t& newFps) {
-    std::wostringstream fpsString{};
+    std::ostringstream fpsString{};
     fpsString.precision(6);
     fpsString << "FPS: " << newFps << std::endl;
 
@@ -52,7 +52,7 @@ void DebugInfo::SetFps(const int64_t& newFps) {
 }
 
 void DebugInfo::SetMousePosition(const float& x, const float& y) {
-    std::wostringstream outputString{};
+    std::ostringstream outputString{};
     outputString.precision(6);
     outputString << "Mouse: " << x << ", " << y << std::endl;
 

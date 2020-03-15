@@ -2,6 +2,7 @@
 
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/TextManager2d.hpp>
+#include <StringHandling/StringUtil.hpp>
 
 Result Text2d::Init(const GraphicsEngine& gfx) {
     const Engine2d& engine = gfx.GetEngine2d();
@@ -32,7 +33,7 @@ void Text2d::Render(const double& dt) {
     deviceContext2d_->DrawTextLayout(textPosition_, textLayout_.Get(), brush_.Get());
 }
 
-Result Text2d::SetText(const std::wstring& newText) {
+Result Text2d::SetText(const std::string& newText) {
     text_ = newText;
     
     if (IsInitialised() == true) {
@@ -47,9 +48,10 @@ Result Text2d::UpdateDetails() {
     static constexpr LONG MAX_TEXT_WIDTH = 1000;
     static constexpr LONG MAX_TEXT_HEIGHT = 600;
 
+    std::wstring outputText = StringUtil::StringToWideString(text_);
     HRESULT hr = writeFactory_->CreateTextLayout(
-        text_.c_str(),
-        static_cast<UINT32>(text_.size()),
+        outputText.c_str(),
+        static_cast<UINT32>(outputText.size()),
         textFormat_.Get(),
         static_cast<float>(dimensionsOnScreen_.width),
         static_cast<float>(dimensionsOnScreen_.height),

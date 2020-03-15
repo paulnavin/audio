@@ -6,8 +6,7 @@
 namespace ErrorDisplay {
 
     void ShowErrors(const Result& result) {
-        std::wstring errorString = StringUtil::StringToWideString(result.Errors());
-        MessageBox(NULL, errorString.c_str(), L"Error!", MB_ICONEXCLAMATION | MB_OK);
+        MessageBox(NULL, result.Errors().c_str(), "Error!", MB_ICONEXCLAMATION | MB_OK);
     }
 
 }

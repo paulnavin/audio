@@ -15,12 +15,12 @@ const float Window::GetHeight() const {
     return height_;
 }
 
-Result Window::Init(const WNDCLASSEXW& wcex, const WindowConfig& config) {
+Result Window::Init(const WNDCLASSEX& wcex, const WindowConfig& config) {
     appInstance_ = wcex.hInstance;
 
     // Note: This function results in a message being called through to WindowManager's
     //       ProcessMessage() function, before the HWND is valid.
-    windowHandle_ = CreateWindowW(wcex.lpszClassName, config.title.data(), WS_OVERLAPPEDWINDOW,
+    windowHandle_ = CreateWindow(wcex.lpszClassName, config.title.data(), WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT, config.width, config.height, nullptr, nullptr, appInstance_, nullptr);
 
     Result initResult{};

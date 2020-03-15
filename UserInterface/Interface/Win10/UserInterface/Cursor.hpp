@@ -12,7 +12,7 @@ public:
     const HCURSOR GetHandle() const;
 
 public:
-    Result Init(const HINSTANCE& appInstance, const LPCWSTR& cursorName);
+    Result Init(const HINSTANCE& appInstance, const LPCSTR& cursorName);
 
 private:
     HCURSOR handle_;

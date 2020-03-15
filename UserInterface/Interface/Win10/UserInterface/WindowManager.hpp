@@ -31,6 +31,6 @@ private:
     using HandleToWindowMap = std::map<HWND, Window*>;
     HandleToWindowMap windows_;
 
-    WNDCLASSEXW wcex_;
+    WNDCLASSEX wcex_;
 };
 

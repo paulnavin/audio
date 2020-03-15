@@ -15,7 +15,7 @@ public:
     void Render(const double& dt) override;
 
 public:
-    Result SetText(const std::wstring& newText);
+    Result SetText(const std::string& newText);
 
 private:
     Result UpdateDetails();
@@ -23,7 +23,7 @@ private:
 private:
     Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> brush_;
     Microsoft::WRL::ComPtr<ID2D1DeviceContext1>  deviceContext2d_;
-    std::wstring                                 text_;
+    std::string                                  text_;
     Microsoft::WRL::ComPtr<IDWriteTextFormat>    textFormat_;
     Microsoft::WRL::ComPtr<IDWriteTextLayout>    textLayout_;
     D2D1_POINT_2F                                textPosition_;

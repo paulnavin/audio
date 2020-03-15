@@ -20,12 +20,11 @@ Engine3d::~Engine3d() {
 Result Engine3d::Init(const Window& newWindow, const ResourceManager& resourceManager) {
     windowHandle_ = newWindow.GetHandle();
 
-    std::string shaderFileName = resourceManager.GetShaderDirectoryName();
-    pixelShaderFileName_ = StringUtil::StringToWideString(shaderFileName);
+    pixelShaderFileName_ = resourceManager.GetShaderDirectoryName();
     vertexShaderFileName_ = pixelShaderFileName_;
 
-    pixelShaderFileName_.append(L"PixelShader.cso");
-    vertexShaderFileName_.append(L"VertexShader.cso");
+    pixelShaderFileName_.append("PixelShader.cso");
+    vertexShaderFileName_.append("VertexShader.cso");
 
     // D3D11_CREATE_DEVICE_BGRA_SUPPORT is needed to do both 3D and 2D.
     UINT deviceCreationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
@@ -427,7 +426,7 @@ Result Engine3d::InitShaders() {
 }
 
 // Loads precompiled shaders from .cso objects.
-Result Engine3d::LoadShader(const std::wstring& fileName, ShaderBuffer* shaderBuffer) {
+Result Engine3d::LoadShader(const std::string& fileName, ShaderBuffer* shaderBuffer) {
     Result loadResult{};
 
     // open the file

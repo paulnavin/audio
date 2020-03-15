@@ -36,7 +36,7 @@ public:
 private:
     Result CreateDxgiResources();
     Result InitShaders();
-    Result LoadShader(const std::wstring& fileName, ShaderBuffer* shaderBuffer);
+    Result LoadShader(const std::string& fileName, ShaderBuffer* shaderBuffer);
     Result InitSupportedDisplayModes();
 
 private:
@@ -46,7 +46,7 @@ private:
     Microsoft::WRL::ComPtr<ID3D11Device> device_;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> deviceContext_;
     Microsoft::WRL::ComPtr<ID3D11PixelShader> pixelShader_;
-    std::wstring pixelShaderFileName_;
+    std::string pixelShaderFileName_;
     Microsoft::WRL::ComPtr<ID3D11RenderTargetView> renderTargetView_;
     bool startInFullscreen_ = false;
     DXGI_MODE_DESC* supportedDisplayModes_;
@@ -57,6 +57,6 @@ private:
     size_t vertexCount_;
     VertexType vertexType_;
     Microsoft::WRL::ComPtr<ID3D11VertexShader> vertexShader_;
-    std::wstring vertexShaderFileName_;
+    std::string vertexShaderFileName_;
     HWND windowHandle_;
 };

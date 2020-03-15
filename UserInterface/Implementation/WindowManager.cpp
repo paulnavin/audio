@@ -30,7 +30,7 @@ Result WindowManager::Init(const HINSTANCE& hInstance, const WindowConfig& windo
     wcex_.lpszClassName = windowConfig.mainWindowClassName_.data();
     wcex_.hIconSm = windowConfig.smallAppIcon_.GetHandle();
 
-    if (!RegisterClassExW(&wcex_)) {
+    if (!RegisterClassEx(&wcex_)) {
         returnValue.AppendError("WindowManager::Init() : Error registering window class.");
     }
     return returnValue;
