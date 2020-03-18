@@ -65,7 +65,7 @@ private:
 
 protected:
     HINSTANCE appInstance_;
-    ::uc::ConfigStore config_;
+    ConfigStore config_;
     Scene* scenes_[MAX_SCENE_COUNT];
 
 private:

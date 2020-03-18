@@ -7,7 +7,7 @@
 #include <Logging/EasyLogging++.hpp>
 #include <UserConfiguration/Config.hpp>
 
-Result Scene::Init(GraphicsEngine* gfx, ::uc::ConfigStore* /*config*/, InputManager* inputManager) {
+Result Scene::Init(GraphicsEngine* gfx, ConfigStore* /*config*/, InputManager* inputManager) {
     Result initResult{};
 
     graphicsEngine_ = gfx;

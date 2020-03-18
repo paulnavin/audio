@@ -8,5 +8,5 @@ public:
     virtual ~Scene1Dj() = default;
 
 public:
-    virtual Result Init(GraphicsEngine* gfx, ::uc::ConfigStore* config, InputManager* inputManager) override;
+    virtual Result Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* inputManager) override;
 };

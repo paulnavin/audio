@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Interface\FileSystem\File.hpp" />
     <ClInclude Include="..\..\Interface\FileSystem\ResourceManager.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\File.cpp" />
     <ClCompile Include="..\..\Implementation\ResourceManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

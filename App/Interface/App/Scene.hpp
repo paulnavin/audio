@@ -2,10 +2,7 @@
 
 #include <ErrorHandling/Result.hpp>
 
-namespace uc {
 class ConfigStore;
-}
-
 class GraphicsEngine;
 class InputManager;
 class Model2d;
@@ -19,7 +16,7 @@ public:
     virtual ~Scene() = default;
 
 public:
-    virtual Result Init(GraphicsEngine* gfx, ::uc::ConfigStore* config, InputManager* inputManager);
+    virtual Result Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* inputManager);
     void ShutDown();
     void UpdateMousePosition(const float& x, const float& y);
     void Update(const double& dt);

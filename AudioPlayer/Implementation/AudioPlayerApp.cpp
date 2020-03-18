@@ -1,7 +1,8 @@
 #include "AudioPlayerApp.hpp"
 
-#include <UserInterface/WindowConfig.hpp>
 #include <ErrorHandling/Result.hpp>
+#include <FileSystem/ResourceManager.hpp>
+#include <UserInterface/WindowConfig.hpp>
 
 #include "Scene1Dj.hpp"
 #include "Scene2Basic.hpp"
@@ -10,7 +11,9 @@
 Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager) {
     Result initResult{};
 
-    initResult = InitConfig("someRubbish.ini");
+    std::string configDirectoryName = resourceManager.GetUserConfigDirectoryName();
+    configDirectoryName.append("\\config.txt");
+    initResult = InitConfig(configDirectoryName);
     if (initResult.HasErrors()) {
         initResult.AppendError("AudioPlayerApp::Init() : Error loading app config.");
         return initResult;

@@ -6,7 +6,7 @@
 #include "ModelStarField.hpp"
 #include "Scene1UserInput.hpp"
 
-Result Scene1Dj::Init(GraphicsEngine* gfx, ::uc::ConfigStore* config, InputManager* inputManager) {
+Result Scene1Dj::Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* inputManager) {
     Result initResult{};
 
     graphicsEngine_ = gfx;

@@ -37,3 +37,7 @@ const std::string ResourceManager::GetLogFileName() const {
 const std::string ResourceManager::GetShaderDirectoryName() const {
     return ".\\";
 }
+
+const std::string ResourceManager::GetUserConfigDirectoryName() const {
+    return ".\\Resources\\Config";
+}

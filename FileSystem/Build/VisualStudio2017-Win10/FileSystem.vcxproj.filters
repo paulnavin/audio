@@ -18,9 +18,15 @@
     <ClInclude Include="..\..\Interface\FileSystem\ResourceManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\FileSystem\File.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\File.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,7 +6,7 @@
 #include "ModelTriangle.hpp"
 #include "Scene2UserInput.hpp"
 
-Result Scene2Basic::Init(GraphicsEngine* gfx, ::uc::ConfigStore* config, InputManager* inputManager) {
+Result Scene2Basic::Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* inputManager) {
     Result initResult{};
 
     graphicsEngine_ = gfx;
