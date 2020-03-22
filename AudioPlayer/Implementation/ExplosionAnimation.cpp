@@ -7,8 +7,12 @@
 Result ExplosionAnimation::Init(const GraphicsEngine& gfx) {
     const ResourceManager& resourceManager = gfx.GetResourceManager();
 
-    Result initResult{};
-        
+    Result initResult = Element::Init(gfx);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("ExplosionAnimation::Init() : Error initialising base Element.");
+        return initResult;
+    }
+
     AnimatedSpriteCycleDataVector explosionAnimationCycles;
 
     AnimatedSpriteCycleData cycle;
@@ -28,7 +32,6 @@ Result ExplosionAnimation::Init(const GraphicsEngine& gfx) {
 
     animatedSprite_.SetParent(this);
     animatedSprite_.SetCycleData(explosionAnimationCycles);
-    animatedSprite_.SetPosition(GetPosition().x, GetPosition().y);
     initResult = animatedSprite_.SetSourceFileName(animatedSpriteFileName);
     if (initResult.HasErrors()) {
         initResult.AppendError("ExplosionAnimation::Init() : Error setting animated sprite file name.");

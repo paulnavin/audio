@@ -45,6 +45,7 @@ void Element::OnMouseClicked(const float& x, const float& y) {
             (x <= position.x + dimensions.width) &&
             (y >= position.y) &&
             (y <= position.y + dimensions.height)) {
+            // TODO: Swap the OnClick() order with the OnMouseClicked() order?  So children go first?
             bool clickResult = element->OnClick();
             if (clickResult == false) {
                 element->OnMouseClicked(x, y);

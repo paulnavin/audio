@@ -1,4 +1,3 @@
 Loading data
 Loading app resources
  - Set of resources per scene?
-Fix bug in ExplosionAnimation where animatedSprite_.SetPosition() doesn't set the position properly, because the actual position on screen hasn't been calculated yet.
