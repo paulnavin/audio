@@ -52,13 +52,8 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceMa
         return initResult;
     }
 
-    initResult = SelectScene(0);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising first scene.");
-        return initResult;
-    }
-
     LOG(INFO) << "App::Init() : Successful!";
+    currentSceneId_ = 0;
     initialised_ = true;
 
     return Result{};
