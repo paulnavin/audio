@@ -13,7 +13,6 @@ public:
 public:
     Result Init(const GraphicsEngine& gfx) override;
     void Render(const double& dt) override;
-    void OnClick() override;
 
 public:
     virtual Result SetSourceFileName(const std::string& fileName);

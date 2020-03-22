@@ -17,9 +17,11 @@ public:
     virtual Result Init(const GraphicsEngine& gfx);
 
     // Note: No Result passing in Render, for performance reasons.
-    virtual void Render(const double&) {}
+    // By default just renders all children.
+    virtual void Render(const double& dt);
 
-    virtual void OnClick() {};
+    // Note: By default checks children for clicking.
+    virtual bool OnClick();
 
 public:
     const Position2d& GetPosition() const;
@@ -28,12 +30,14 @@ public:
     const bool IsInitialised() const;
 
 public:
+    void AddChild(Element* newChild);
+    void OnMouseClicked(const float& x, const float& y);
     void SetDimensions(const float& widthInPixels, const float& heightInPixels);
     void SetParent(const Element* parent);
     void SetPosition(const float& newX, const float& newY);
     void SetPositionAsPercentage(const float& newX, const float& newY);
     void SetDimensionsAsPercentage(const float& width, const float& height); // From 0 to 100.
- 
+
 protected:
     Dimension2d dimensionsOnScreen_;
     const Element* parent_;

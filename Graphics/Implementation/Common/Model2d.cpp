@@ -59,7 +59,10 @@ void Model2d::OnMouseClicked(const float& x, const float& y) {
             (x <= position.x + dimensions.width) &&
             (y >= position.y) &&
             (y <= position.y + dimensions.height)) {
-            element->OnClick();
+            bool clickResult = element->OnClick();
+            if (clickResult == false) {
+                element->OnMouseClicked(x, y);
+            }
         }
     }
 }

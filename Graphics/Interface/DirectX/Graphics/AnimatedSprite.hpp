@@ -14,7 +14,6 @@ public:
 public:
     Result Init(const GraphicsEngine& gfx) override;
     void Render(const double& dt) override;
-    void OnClick() override;
 
 public:
     Result SetSourceFileName(const std::string& fileName);

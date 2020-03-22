@@ -29,9 +29,6 @@ void Sprite::Render(const double&) {
     deviceContext2d_->DrawBitmap(bitmap_.Get(), destRect, opacity, interPol, sourceRect);
 }
 
-void Sprite::OnClick() {
-}
-
 Result Sprite::SetSourceFileName(const std::string& fileName) {
     sourceFileName_ = fileName;
     

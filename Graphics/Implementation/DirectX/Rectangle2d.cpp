@@ -19,12 +19,14 @@ void Rectangle2d::Render(const double&) {
     deviceContext2d_->FillRectangle(&rectangle_, brush_.Get());
 }
 
-void Rectangle2d::OnClick() {
+bool Rectangle2d::OnClick() {
     if (colour_.alpha > 0.7f) {
         SetColour(Colour{ 1.0f, 1.0f, 1.0f, 0.5f });
     } else {
         SetColour(Colour{ 1.0f, 1.0f, 1.0f, 1.0f });
     }
+
+    return true;
 }
 
 Result Rectangle2d::SetColour(const Colour& newColour) {

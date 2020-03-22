@@ -30,9 +30,6 @@ void AnimatedSprite::Render(const double& /*dt*/) {
     deviceContext2d_->DrawBitmap(bitmap_.Get(), destRect, opacity, interPol, sourceRect);
 }
 
-void AnimatedSprite::OnClick() {
-}
-
 Result AnimatedSprite::SetSourceFileName(const std::string& fileName) {
     return Sprite::SetSourceFileName(fileName);
 }

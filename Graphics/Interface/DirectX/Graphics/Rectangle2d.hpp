@@ -14,7 +14,7 @@ public:
 public:
     Result Init(const GraphicsEngine& gfx) override;
     void Render(const double& dt) override;
-    void OnClick() override;
+    bool OnClick() override;
 
 public:
     Result SetColour(const Colour& newColour);

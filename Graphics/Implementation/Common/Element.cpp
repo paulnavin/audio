@@ -7,6 +7,14 @@ Result Element::Init(const GraphicsEngine& /*gfx*/) {
     return Result{};
 }
 
+void Element::Render(const double& dt) {
+    for (Element* element : children_) {
+        element->Render(dt);
+    }
+}
+
+bool Element::OnClick() { return false; }
+
 const bool Element::IsInitialised() const {
     return isInitialised_;
 }
@@ -23,6 +31,27 @@ const Dimension2d& Element::GetDimensions() const {
     return dimensionsOnScreen_;
 }
 
+void Element::AddChild(Element* newChild) {
+    children_.push_back(newChild);
+}
+
+void Element::OnMouseClicked(const float& x, const float& y) {
+    Position2d position;
+    Dimension2d dimensions;
+    for (Element* element : children_) {
+        position = element->GetAbsolutePosition();
+        dimensions = element->GetDimensions();
+        if ((x >= position.x) &&
+            (x <= position.x + dimensions.width) &&
+            (y >= position.y) &&
+            (y <= position.y + dimensions.height)) {
+            bool clickResult = element->OnClick();
+            if (clickResult == false) {
+                element->OnMouseClicked(x, y);
+            }
+        }
+    }
+}
 void Element::SetDimensions(const float& widthInPixels, const float& heightInPixels) {
     dimensionsOnScreen_.height = heightInPixels;
     dimensionsOnScreen_.width = widthInPixels;
