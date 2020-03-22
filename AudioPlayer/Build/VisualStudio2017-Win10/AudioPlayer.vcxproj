@@ -182,6 +182,7 @@
     <ClInclude Include="..\..\Implementation\AudioPlayerApp.hpp" />
     <ClInclude Include="..\..\Implementation\AudioPlayerUserInput.hpp" />
     <ClInclude Include="..\..\Implementation\DjTopRow.hpp" />
+    <ClInclude Include="..\..\Implementation\DjWaveform.hpp" />
     <ClInclude Include="..\..\Implementation\ExplosionAnimation.hpp" />
     <ClInclude Include="..\..\Implementation\JogWheel.hpp" />
     <ClInclude Include="..\..\Implementation\ModelBasic2d.hpp" />
@@ -200,6 +201,7 @@
     <ClCompile Include="..\..\Implementation\AudioPlayerApp.cpp" />
     <ClCompile Include="..\..\Implementation\AudioPlayerUserInput.cpp" />
     <ClCompile Include="..\..\Implementation\DjTopRow.cpp" />
+    <ClCompile Include="..\..\Implementation\DjWaveform.cpp" />
     <ClCompile Include="..\..\Implementation\ExplosionAnimation.cpp" />
     <ClCompile Include="..\..\Implementation\JogWheel.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
