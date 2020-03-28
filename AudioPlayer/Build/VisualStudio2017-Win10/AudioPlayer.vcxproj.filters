@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -19,58 +11,87 @@
     <Filter Include="Documentation">
       <UniqueIdentifier>{46e13ecb-56ee-4101-9f4b-49e528ff7dec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entry Point">
+      <UniqueIdentifier>{5de00474-9987-40fd-a90f-5df330aecf6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene 1 DJ">
+      <UniqueIdentifier>{063b1bad-8609-457d-b870-68c1bd98f434}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene 2 Simple">
+      <UniqueIdentifier>{64cb09d7-b214-41f1-8513-6a4d70a8cc47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entry Point\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Entry Point\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Scene 2 Simple\Header Files">
+      <UniqueIdentifier>{f32cc83e-1602-4453-be5d-71603680593b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene 2 Simple\Source Files">
+      <UniqueIdentifier>{9f8456ec-b603-4096-98e7-2aebe3d8ad13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene 1 DJ\Header Files">
+      <UniqueIdentifier>{6db7c571-be07-44fa-ab03-b4e8e620d7a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene 1 DJ\Source Files">
+      <UniqueIdentifier>{24d228e4-a0f6-4e73-b849-26ac440b1103}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Implementation\targetver.h">
-      <Filter>Header Files</Filter>
+      <Filter>Entry Point\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\ModelStarField.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\ModelTriangle.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\ModelBasic2d.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\ModelDj.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\JogWheel.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\ExplosionAnimation.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\Scene1Dj.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\Scene1UserInput.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\Scene2UserInput.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\Scene2Basic.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Entry Point\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\AudioPlayerUserInputCommands.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Entry Point\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\AudioPlayerApp.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Entry Point\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\AudioPlayerUserInput.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Entry Point\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Implementation\DjTopRow.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\DjTopRow.hpp">
+      <Filter>Scene 2 Simple\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Implementation\DjWaveform.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\DjWaveform.hpp">
+      <Filter>Scene 2 Simple\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ExplosionAnimation.hpp">
+      <Filter>Scene 2 Simple\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\JogWheel.hpp">
+      <Filter>Scene 2 Simple\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ModelDj.hpp">
+      <Filter>Scene 2 Simple\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ModelStarField.hpp">
+      <Filter>Scene 2 Simple\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\Scene1Dj.hpp">
+      <Filter>Scene 2 Simple\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\Scene1UserInput.hpp">
+      <Filter>Scene 2 Simple\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene2Simple\ModelBasic2d.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene2Simple\ModelTriangle.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene2Simple\Scene2Basic.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene2Simple\Scene2UserInput.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -91,40 +112,40 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\JogWheel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Scene1Dj.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Scene1UserInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Scene2Basic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Scene2UserInput.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Entry Point\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\AudioPlayerApp.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Entry Point\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\AudioPlayerUserInput.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Entry Point\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\ModelDj.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\DjTopRow.cpp">
+      <Filter>Scene 2 Simple\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\ExplosionAnimation.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\DjWaveform.cpp">
+      <Filter>Scene 2 Simple\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\DjTopRow.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\ExplosionAnimation.cpp">
+      <Filter>Scene 2 Simple\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\DjWaveform.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\JogWheel.cpp">
+      <Filter>Scene 2 Simple\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\ModelDj.cpp">
+      <Filter>Scene 2 Simple\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\Scene1Dj.cpp">
+      <Filter>Scene 2 Simple\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\Scene1UserInput.cpp">
+      <Filter>Scene 2 Simple\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2Basic.cpp">
+      <Filter>Scene 1 DJ\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2UserInput.cpp">
+      <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

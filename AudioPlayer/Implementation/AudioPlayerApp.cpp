@@ -4,8 +4,8 @@
 #include <FileSystem/ResourceManager.hpp>
 #include <UserInterface/WindowConfig.hpp>
 
-#include "Scene1Dj.hpp"
-#include "Scene2Basic.hpp"
+#include "Scene1Dj/Scene1Dj.hpp"
+#include "Scene2Simple/Scene2Basic.hpp"
 #include "Resource.h"
 
 Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager) {

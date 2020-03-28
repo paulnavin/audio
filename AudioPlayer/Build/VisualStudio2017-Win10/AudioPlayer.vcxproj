@@ -181,35 +181,35 @@
   <ItemGroup>
     <ClInclude Include="..\..\Implementation\AudioPlayerApp.hpp" />
     <ClInclude Include="..\..\Implementation\AudioPlayerUserInput.hpp" />
-    <ClInclude Include="..\..\Implementation\DjTopRow.hpp" />
-    <ClInclude Include="..\..\Implementation\DjWaveform.hpp" />
-    <ClInclude Include="..\..\Implementation\ExplosionAnimation.hpp" />
-    <ClInclude Include="..\..\Implementation\JogWheel.hpp" />
-    <ClInclude Include="..\..\Implementation\ModelBasic2d.hpp" />
-    <ClInclude Include="..\..\Implementation\ModelDj.hpp" />
-    <ClInclude Include="..\..\Implementation\ModelStarField.hpp" />
-    <ClInclude Include="..\..\Implementation\ModelTriangle.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
-    <ClInclude Include="..\..\Implementation\Scene1Dj.hpp" />
-    <ClInclude Include="..\..\Implementation\Scene1UserInput.hpp" />
-    <ClInclude Include="..\..\Implementation\Scene2Basic.hpp" />
-    <ClInclude Include="..\..\Implementation\Scene2UserInput.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\DjTopRow.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\DjWaveform.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ExplosionAnimation.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\JogWheel.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ModelDj.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ModelStarField.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\Scene1Dj.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\Scene1UserInput.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene2Simple\ModelBasic2d.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene2Simple\ModelTriangle.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene2Simple\Scene2Basic.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene2Simple\Scene2UserInput.hpp" />
     <ClInclude Include="..\..\Implementation\targetver.h" />
     <ClInclude Include="..\..\Implementation\AudioPlayerUserInputCommands.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\AudioPlayerApp.cpp" />
     <ClCompile Include="..\..\Implementation\AudioPlayerUserInput.cpp" />
-    <ClCompile Include="..\..\Implementation\DjTopRow.cpp" />
-    <ClCompile Include="..\..\Implementation\DjWaveform.cpp" />
-    <ClCompile Include="..\..\Implementation\ExplosionAnimation.cpp" />
-    <ClCompile Include="..\..\Implementation\JogWheel.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
-    <ClCompile Include="..\..\Implementation\ModelDj.cpp" />
-    <ClCompile Include="..\..\Implementation\Scene1Dj.cpp" />
-    <ClCompile Include="..\..\Implementation\Scene1UserInput.cpp" />
-    <ClCompile Include="..\..\Implementation\Scene2Basic.cpp" />
-    <ClCompile Include="..\..\Implementation\Scene2UserInput.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\DjTopRow.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\DjWaveform.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\ExplosionAnimation.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\JogWheel.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\ModelDj.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\Scene1Dj.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\Scene1UserInput.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2Basic.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2UserInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc" />
