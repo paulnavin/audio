@@ -14,12 +14,6 @@
     <Filter Include="Entry Point">
       <UniqueIdentifier>{5de00474-9987-40fd-a90f-5df330aecf6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene 1 DJ">
-      <UniqueIdentifier>{063b1bad-8609-457d-b870-68c1bd98f434}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene 2 Simple">
-      <UniqueIdentifier>{64cb09d7-b214-41f1-8513-6a4d70a8cc47}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Entry Point\Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
@@ -28,16 +22,22 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Scene 2 Simple\Header Files">
-      <UniqueIdentifier>{f32cc83e-1602-4453-be5d-71603680593b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene 2 Simple\Source Files">
-      <UniqueIdentifier>{9f8456ec-b603-4096-98e7-2aebe3d8ad13}</UniqueIdentifier>
+    <Filter Include="Scene 1 DJ">
+      <UniqueIdentifier>{64cb09d7-b214-41f1-8513-6a4d70a8cc47}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scene 1 DJ\Header Files">
-      <UniqueIdentifier>{6db7c571-be07-44fa-ab03-b4e8e620d7a5}</UniqueIdentifier>
+      <UniqueIdentifier>{f32cc83e-1602-4453-be5d-71603680593b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scene 1 DJ\Source Files">
+      <UniqueIdentifier>{9f8456ec-b603-4096-98e7-2aebe3d8ad13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene 2 Simple">
+      <UniqueIdentifier>{063b1bad-8609-457d-b870-68c1bd98f434}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene 2 Simple\Header Files">
+      <UniqueIdentifier>{6db7c571-be07-44fa-ab03-b4e8e620d7a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene 2 Simple\Source Files">
       <UniqueIdentifier>{24d228e4-a0f6-4e73-b849-26ac440b1103}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -58,40 +58,40 @@
       <Filter>Entry Point\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene1Dj\DjTopRow.hpp">
-      <Filter>Scene 2 Simple\Header Files</Filter>
+      <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene1Dj\DjWaveform.hpp">
-      <Filter>Scene 2 Simple\Header Files</Filter>
+      <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene1Dj\ExplosionAnimation.hpp">
-      <Filter>Scene 2 Simple\Header Files</Filter>
+      <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene1Dj\JogWheel.hpp">
-      <Filter>Scene 2 Simple\Header Files</Filter>
+      <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene1Dj\ModelDj.hpp">
-      <Filter>Scene 2 Simple\Header Files</Filter>
+      <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene1Dj\ModelStarField.hpp">
-      <Filter>Scene 2 Simple\Header Files</Filter>
+      <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene1Dj\Scene1Dj.hpp">
-      <Filter>Scene 2 Simple\Header Files</Filter>
+      <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene1Dj\Scene1UserInput.hpp">
-      <Filter>Scene 2 Simple\Header Files</Filter>
+      <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene2Simple\ModelBasic2d.hpp">
-      <Filter>Scene 1 DJ\Header Files</Filter>
+      <Filter>Scene 2 Simple\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene2Simple\ModelTriangle.hpp">
-      <Filter>Scene 1 DJ\Header Files</Filter>
+      <Filter>Scene 2 Simple\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene2Simple\Scene2Basic.hpp">
-      <Filter>Scene 1 DJ\Header Files</Filter>
+      <Filter>Scene 2 Simple\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene2Simple\Scene2UserInput.hpp">
-      <Filter>Scene 1 DJ\Header Files</Filter>
+      <Filter>Scene 2 Simple\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -121,31 +121,31 @@
       <Filter>Entry Point\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene1Dj\DjTopRow.cpp">
-      <Filter>Scene 2 Simple\Source Files</Filter>
+      <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene1Dj\DjWaveform.cpp">
-      <Filter>Scene 2 Simple\Source Files</Filter>
+      <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene1Dj\ExplosionAnimation.cpp">
-      <Filter>Scene 2 Simple\Source Files</Filter>
+      <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene1Dj\JogWheel.cpp">
-      <Filter>Scene 2 Simple\Source Files</Filter>
+      <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene1Dj\ModelDj.cpp">
-      <Filter>Scene 2 Simple\Source Files</Filter>
+      <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene1Dj\Scene1Dj.cpp">
-      <Filter>Scene 2 Simple\Source Files</Filter>
+      <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene1Dj\Scene1UserInput.cpp">
-      <Filter>Scene 2 Simple\Source Files</Filter>
+      <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2Basic.cpp">
-      <Filter>Scene 1 DJ\Source Files</Filter>
+      <Filter>Scene 2 Simple\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2UserInput.cpp">
-      <Filter>Scene 1 DJ\Source Files</Filter>
+      <Filter>Scene 2 Simple\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
