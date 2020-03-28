@@ -9,7 +9,7 @@ Model2d::Model2d()
 
 Result Model2d::Init(const GraphicsEngine& gfx) {
     const ResourceManager& resourceManager = gfx.GetResourceManager();
-    
+
     Result initResult = debugElement_.Init(gfx);
     if (initResult.HasErrors()) {
         initResult.AppendError("Model2d::Init() : Error initialising debug info.");
@@ -47,6 +47,14 @@ void Model2d::Render(const double& dt) {
     if (showDebugInfo_ == true) {
         debugElement_.Render(dt);
     }
+}
+
+void Model2d::OnMouseDown(const float& /*x*/, const float& /*y*/) {
+    // TODO: Send to all elements listening within range of click.
+}
+
+void Model2d::OnMouseUp(const float& /*x*/, const float& /*y*/) {
+    // TODO: Send to all elements listening.
 }
 
 void Model2d::OnMouseClicked(const float& x, const float& y) {

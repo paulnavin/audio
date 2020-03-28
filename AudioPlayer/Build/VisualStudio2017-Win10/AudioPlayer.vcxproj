@@ -182,6 +182,8 @@
     <ClInclude Include="..\..\Implementation\AudioPlayerApp.hpp" />
     <ClInclude Include="..\..\Implementation\AudioPlayerUserInput.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\Button.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\DjButton.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\DjTopRow.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\DjWaveform.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\ExplosionAnimation.hpp" />
@@ -201,6 +203,8 @@
     <ClCompile Include="..\..\Implementation\AudioPlayerApp.cpp" />
     <ClCompile Include="..\..\Implementation\AudioPlayerUserInput.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\Button.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\DjButton.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\DjTopRow.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\DjWaveform.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\ExplosionAnimation.cpp" />

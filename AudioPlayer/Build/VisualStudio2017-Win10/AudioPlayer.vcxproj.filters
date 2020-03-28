@@ -93,6 +93,12 @@
     <ClInclude Include="..\..\Implementation\Scene2Simple\Scene2UserInput.hpp">
       <Filter>Scene 2 Simple\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\Button.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\DjButton.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc">
@@ -146,6 +152,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2UserInput.cpp">
       <Filter>Scene 2 Simple\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\Button.cpp">
+      <Filter>Scene 1 DJ\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\DjButton.cpp">
+      <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -22,6 +22,8 @@ public:
     void Update(const double& dt);
     Result UpdateFps(const int64_t& newFps);
 
+    void OnCommandMouseDown(const float& x, const float& y);
+    void OnCommandMouseUp(const float& x, const float& y);
     void OnCommandMouseClicked(const float& x, const float& y);
     void OnCommandToggleDebugInfo();
 

@@ -20,6 +20,8 @@ public:
     virtual void Update(const double& dt);
     void Render(const double& dt);
 
+    void OnMouseDown(const float& x, const float& y);
+    void OnMouseUp(const float& x, const float& y);
     void OnMouseClicked(const float& x, const float& y);
 
     void SetFps(const int64_t& newFps);

@@ -60,6 +60,14 @@ void Scene::ShutDown() {
     userInputHandler_ = nullptr;
 }
 
+void Scene::OnCommandMouseDown(const float& x, const float& y) {
+    model2d_->OnMouseDown(x, y);
+}
+
+void Scene::OnCommandMouseUp(const float& x, const float& y) {
+    model2d_->OnMouseUp(x, y);
+}
+
 void Scene::OnCommandMouseClicked(const float& x, const float& y) {
     model2d_->OnMouseClicked(x, y);
 }
@@ -73,7 +81,7 @@ void Scene::UpdateMousePosition(const float& x, const float& y) {
 }
 
 void Scene::Update(const double& dt) {
-    userInputHandler_->Update();
+    userInputHandler_->Update(dt);
     model2d_->Update(dt);
 }
 

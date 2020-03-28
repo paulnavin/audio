@@ -10,7 +10,7 @@ Result DjTopRow::Init(const GraphicsEngine& gfx) {
     }
 
     openFile1Button_.SetParent(this);
-    openFile1Button_.SetColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
+    openFile1Button_.SetHighlightColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
     openFile1Button_.SetPosition(0.0f, 0.0f);
     openFile1Button_.SetDimensionsAsPercentage(11.5f, 100.0f);
     initResult = openFile1Button_.Init(gfx);
@@ -20,7 +20,7 @@ Result DjTopRow::Init(const GraphicsEngine& gfx) {
     }
 
     openFile2Button_.SetParent(this);
-    openFile2Button_.SetColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
+    openFile2Button_.SetHighlightColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
     openFile2Button_.SetDimensionsAsPercentage(11.5f, 100.0f);
     openFile2Button_.SetPositionAsPercentage(-11.5f, 0.0f);
     initResult = openFile2Button_.Init(gfx);
