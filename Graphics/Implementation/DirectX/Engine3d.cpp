@@ -1,7 +1,7 @@
 #include <Graphics/Engine3d.hpp>
 
 #include <Graphics/ShaderBuffer.hpp>
-#include <UserInterface/Window.hpp>
+#include <Display/Window.hpp>
 #include <FileSystem/ResourceManager.hpp>
 #include <StringHandling/StringUtil.hpp>
 

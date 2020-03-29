@@ -1,4 +1,4 @@
-#include <UserInterface/ErrorDisplay.hpp>
+#include <Display/ErrorDisplay.hpp>
 #include <Logging/EasyLogging++.hpp>
 #include <FileSystem/ResourceManager.hpp>
 #include <ErrorHandling/Result.hpp>

@@ -8,8 +8,8 @@
 #include <Graphics/Vertex.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInput/InputManager.hpp>
-#include <UserInterface/WindowMessageHandler.hpp>
-#include <UserInterface/WindowConfig.hpp>
+#include <Display/WindowMessageHandler.hpp>
+#include <Display/WindowConfig.hpp>
 #include <ErrorHandling/Result.hpp>
 #include <Platform/WindowsInterface.hpp>
 

@@ -137,7 +137,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -155,7 +155,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -175,7 +175,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -197,7 +197,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>

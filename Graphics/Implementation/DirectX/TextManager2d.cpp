@@ -1,7 +1,7 @@
 #include <Graphics/TextManager2d.hpp>
 
 #include <Graphics/Engine2d.hpp>
-#include <UserInterface/Window.hpp>
+#include <Display/Window.hpp>
 
 const Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>& TextManager2d::GetFpsBrush() const {
     return fpsBrush_;

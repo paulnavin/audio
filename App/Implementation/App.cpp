@@ -1,10 +1,10 @@
 #include <App/App.hpp>
 
 #include <App/Scene.hpp>
-#include <UserInterface/ErrorDisplay.hpp>
-#include <UserInterface/Window.hpp>
-#include <UserInterface/WindowConfig.hpp>
-#include <UserInterface/WindowManager.hpp>
+#include <Display/ErrorDisplay.hpp>
+#include <Display/Window.hpp>
+#include <Display/WindowConfig.hpp>
+#include <Display/WindowManager.hpp>
 #include <Logging/EasyLogging++.hpp>
 #include <FileSystem/ResourceManager.hpp>
 #include <ErrorHandling/Result.hpp>
@@ -86,7 +86,7 @@ Result App::Run() {
                 DispatchMessage(&msg);
             }
         };
-        
+
         if (resizeRequired_ == true || toggleFullScreen_ == true) {
             if (toggleFullScreen_ == true) {
                 graphicsEngine_.ToggleFullScreen();
@@ -154,7 +154,7 @@ void App::OnClose() {
 
 void App::OnMinimise() {
     LOG(INFO) << "App::OnMinimise() : Boogie woogie!";
-    
+
     if (initialised_ == true) {
         paused_ = true;
         resizeRequired_ = true;
@@ -275,7 +275,7 @@ Result App::InitConfig(const std::string& fileName) {
 
 void App::Update(const double& dt) {
     inputManager_.Update();
-    
+
     userInputHandler_.Update();
     scenes_[currentSceneId_]->Update(dt);
 }

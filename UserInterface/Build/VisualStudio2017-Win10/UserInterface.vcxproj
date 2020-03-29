@@ -18,18 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Interface\Common\UserInterface\ErrorDisplay.hpp" />
-    <ClInclude Include="..\..\Interface\Common\UserInterface\WindowConfig.hpp" />
-    <ClInclude Include="..\..\Interface\Common\UserInterface\WindowMessageHandler.hpp" />
-    <ClInclude Include="..\..\Interface\Win10\UserInterface\Window.hpp" />
-    <ClInclude Include="..\..\Interface\Win10\UserInterface\WindowManager.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Implementation\ErrorDisplay.cpp" />
-    <ClCompile Include="..\..\Implementation\Window.cpp" />
-    <ClCompile Include="..\..\Implementation\WindowManager.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{0932048F-4B3A-4DD1-8989-4CD94D02DA66}</ProjectGuid>

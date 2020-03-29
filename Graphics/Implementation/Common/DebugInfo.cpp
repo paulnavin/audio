@@ -4,7 +4,7 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/TextManager2d.hpp>
 #include <Platform/WindowsInterface.hpp>
-#include <UserInterface/Window.hpp>
+#include <Display/Window.hpp>
 
 Result DebugInfo::Init(const GraphicsEngine& gfx) {
     SetPosition(0.0f, 0.0f);

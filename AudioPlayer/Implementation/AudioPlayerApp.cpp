@@ -2,7 +2,7 @@
 
 #include <ErrorHandling/Result.hpp>
 #include <FileSystem/ResourceManager.hpp>
-#include <UserInterface/WindowConfig.hpp>
+#include <Display/WindowConfig.hpp>
 
 #include "Scene1Dj/Scene1Dj.hpp"
 #include "Scene2Simple/Scene2Basic.hpp"

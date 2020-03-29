@@ -1,8 +1,8 @@
 #include <Graphics/GraphicsEngine.hpp>
 
 #include <Graphics/Model2d.hpp>
-#include <UserInterface/ErrorDisplay.hpp>
-#include <UserInterface/Window.hpp>
+#include <Display/ErrorDisplay.hpp>
+#include <Display/Window.hpp>
 
 const Engine2d& GraphicsEngine::GetEngine2d() const {
     return engine2d_;

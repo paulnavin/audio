@@ -2,7 +2,7 @@
 
 #include <UserInput/KeyBinding.hpp>
 #include <UserInput/KeyState.hpp>
-#include <UserInterface/Window.hpp>
+#include <Display/Window.hpp>
 #include <Platform/WindowsInterface.hpp>
 
 InputManager::~InputManager() {
@@ -48,7 +48,7 @@ const KeyState InputManager::GetStateForKey(const unsigned int keyCode) const {
 }
 
 const bool InputManager::IsKeyPressed(const uint16_t& keyCode) const {
-    return (GetAsyncKeyState(keyCode) & 0x8000) ? 1 : 0; 
+    return (GetAsyncKeyState(keyCode) & 0x8000) ? 1 : 0;
 }
 
 void InputManager::AddCommand(Command* command) {

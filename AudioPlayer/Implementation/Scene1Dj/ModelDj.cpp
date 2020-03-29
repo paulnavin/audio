@@ -4,7 +4,7 @@
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/Ellipse2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
-#include <UserInterface/Window.hpp>
+#include <Display/Window.hpp>
 
 Result ModelDj::Init(const GraphicsEngine& gfx) {
     rootElement_.SetDimensions(gfx.GetTargetWindow()->GetWidth(), gfx.GetTargetWindow()->GetHeight());
