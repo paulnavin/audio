@@ -19,25 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\App\App.hpp" />
-    <ClInclude Include="..\..\Interface\App\AppTimer.hpp" />
-    <ClInclude Include="..\..\Interface\App\AppUserInputCommands.hpp" />
-    <ClInclude Include="..\..\Interface\App\Scene.hpp" />
-    <ClInclude Include="..\..\Interface\App\SceneUserInput.hpp" />
-    <ClInclude Include="..\..\Interface\App\AppUserInput.hpp" />
+    <ClInclude Include="..\..\Interface\Win10\Resources\Cursor.hpp" />
+    <ClInclude Include="..\..\Interface\Win10\Resources\Icon.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\App.cpp" />
-    <ClCompile Include="..\..\Implementation\AppTimer.cpp" />
-    <ClCompile Include="..\..\Implementation\AppUserInput.cpp" />
-    <ClCompile Include="..\..\Implementation\Scene.cpp" />
-    <ClCompile Include="..\..\Implementation\SceneUserInput.cpp" />
+    <ClCompile Include="..\..\Implementation\Cursor.cpp" />
+    <ClCompile Include="..\..\Implementation\Icon.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{F82AD0B2-CD3E-4361-8120-296BAB5686A0}</ProjectGuid>
+    <ProjectGuid>{5422BCFD-835B-4319-9D4B-2FCAA6EF35E6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>App</RootNamespace>
+    <RootNamespace>Resources</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -114,9 +107,8 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\App\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -132,9 +124,8 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\App\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -152,9 +143,8 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\App\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -174,9 +164,8 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\App\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

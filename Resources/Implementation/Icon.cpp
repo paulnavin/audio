@@ -1,4 +1,4 @@
-#include <UserInterface/Icon.hpp>
+#include <Resources/Icon.hpp>
 
 const HICON Icon::GetHandle() const {
     return handle_;

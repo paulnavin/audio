@@ -31,7 +31,7 @@ Result Window::Init(const WNDCLASSEX& wcex, const WindowConfig& config) {
     ShowCursor(config.showCursor_);
 
     UpdateSizes();
-    
+
     return initResult;
 }
 

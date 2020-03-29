@@ -1,11 +1,11 @@
 #pragma once
 
-#include <UserInterface/Window.hpp>
 #include <Stl/StlWrapper.hpp>
 #include <ErrorHandling/Result.hpp>
 #include <Platform/WindowsInterface.hpp>
 
 struct WindowConfig;
+class Window;
 
 class WindowManager {
 

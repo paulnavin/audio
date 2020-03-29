@@ -1,7 +1,7 @@
 #pragma once
 
-#include <UserInterface/Cursor.hpp>
-#include <UserInterface/Icon.hpp>
+#include <Resources/Cursor.hpp>
+#include <Resources/Icon.hpp>
 #include <Stl/StlWrapper.hpp>
 
 struct WindowConfig {
@@ -10,6 +10,8 @@ struct WindowConfig {
     std::array<CHAR, MAX_RESOURCE_NAME_LENGTH> title;
     int32_t height;
     int32_t width;
+
+    // TODO: Turn these into pointers to ResourceManager objects.
     Icon appIcon_;
     Cursor mouseCursor_;
     bool showCursor_ = true;

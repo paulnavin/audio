@@ -1,5 +1,6 @@
 #include <UserInterface/WindowManager.hpp>
 
+#include <UserInterface/Window.hpp>
 #include <UserInterface/WindowConfig.hpp>
 
 //
@@ -55,7 +56,7 @@ Result WindowManager::CreateNewWindow(const WindowConfig& config, Window** windo
 
 //  WM_COMMAND  - process the application menu
 //  WM_DESTROY  - post a quit message and return
-LRESULT WindowManager::ProcessMessage(const HWND& hWnd, const UINT& message, const WPARAM& wParam, const LPARAM& lParam) {    
+LRESULT WindowManager::ProcessMessage(const HWND& hWnd, const UINT& message, const WPARAM& wParam, const LPARAM& lParam) {
     HandleToWindowMap::iterator windowFinder = windows_.find(hWnd);
     if (windowFinder != windows_.end()) {
         Window* window = windowFinder->second;
