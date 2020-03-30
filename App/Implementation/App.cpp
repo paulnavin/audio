@@ -120,7 +120,7 @@ Result App::Run() {
 
             // TODO: Is this actually right???
             // peek into the future and generate the output
-            graphicsEngine_.Render(accumulatedTime / MS_PER_FRAME);
+            scenes_[currentSceneId_]->Render(accumulatedTime / MS_PER_FRAME);
         }
     }
 
@@ -241,6 +241,7 @@ void App::OnCommandToggleFullScreen() {
 }
 
 void App::UpdateMousePosition(const float& x, const float& y) {
+    // TODO: Make a member pointer for current scene, instead of dereferencing the array.
     scenes_[currentSceneId_]->UpdateMousePosition(x, y);
 }
 

@@ -1,9 +1,10 @@
 #pragma once
 
 #include <Graphics/DirectXInterface.hpp>
-#include <Graphics/Model3d.hpp>
 #include <Graphics/ShaderBuffer.hpp>
 #include <Graphics/Vertex.hpp>
+#include <Graphics/VertexBuffer.hpp>
+#include <Graphics/VertexType.hpp>
 #include <ErrorHandling/Result.hpp>
 #include <Stl/StlWrapper.hpp>
 
@@ -22,7 +23,7 @@ public:
 
 public:
     Result Init(const Window& newWindow, const ResourceManager& resourceManager);
-    Result InitGraphics(const Model3d& model);
+    Result InitGraphics(const VertexBuffer& buffer);
     void ClearBuffers();
     Result Present();
     Result RenderVertices();

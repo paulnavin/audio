@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Graphics/Engine2d.hpp>
-#include <Graphics/Ellipse2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
-#include <Graphics/Model2d.hpp>
-#include <Graphics/Rectangle2d.hpp>
+#include <UserInterface/Ellipse2d.hpp>
+#include <UserInterface/Model2d.hpp>
+#include <UserInterface/Rectangle2d.hpp>
 
 class ModelBasic2d : public Model2d {
 public:

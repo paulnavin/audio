@@ -1,10 +1,9 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
-#include <Graphics/Sprite.hpp>
 #include <Stl/StlWrapper.hpp>
-
-#include <Graphics/DebugInfo.hpp>
+#include <UserInterface/DebugInfo.hpp>
+#include <UserInterface/Sprite.hpp>
 
 class Element;
 class GraphicsEngine;

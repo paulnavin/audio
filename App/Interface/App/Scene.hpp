@@ -20,6 +20,7 @@ public:
     void ShutDown();
     void UpdateMousePosition(const float& x, const float& y);
     void Update(const double& dt);
+    void Render(const double& dt);
     Result UpdateFps(const int64_t& newFps);
 
     void OnCommandMouseDown(const float& x, const float& y);

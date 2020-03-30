@@ -1,8 +1,8 @@
 #pragma once
 
-#include <ErrorHandling/Result.hpp>
 #include <Graphics/DirectXInterface.hpp>
-#include <Graphics/Element.hpp>
+#include <ErrorHandling/Result.hpp>
+#include <UserInterface/Element.hpp>
 
 class Sprite : public Element {
 

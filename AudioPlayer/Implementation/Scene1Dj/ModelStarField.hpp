@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Graphics/Model3d.hpp>
+#include <UserInterface/Model3d.hpp>
 #include <Stl/StlWrapper.hpp>
 
 class ModelStarField : public Model3d {
@@ -25,8 +25,8 @@ public:
     const size_t GetVertexCount() const override {
         return starField_.size();
     }
-    const uint8_t* GetVertexData() const override {
-        return reinterpret_cast<const uint8_t*>(starField_.data());
+    void* GetVertexData() override {
+        return reinterpret_cast<void*>(starField_.data());
     }
     const VertexType GetVertexType() const override {
         return VertexType::Point;

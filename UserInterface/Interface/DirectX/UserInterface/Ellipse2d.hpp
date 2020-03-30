@@ -3,7 +3,7 @@
 #include <ErrorHandling/Result.hpp>
 #include <Graphics/Colour.hpp>
 #include <Graphics/DirectXInterface.hpp>
-#include <Graphics/Element.hpp>
+#include <UserInterface/Element.hpp>
 
 class Ellipse2d : public Element {
 

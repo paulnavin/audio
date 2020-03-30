@@ -18,14 +18,13 @@ public:
     const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& GetDeviceContext2d() const;
     const Microsoft::WRL::ComPtr<ID2D1Factory2>& GetFactory() const;
     const Microsoft::WRL::ComPtr<IWICImagingFactory>& GetImageFactory() const;
-    const TextManager2d& GetTextManager() const;
 
 public:
     Result Init(const Window& newWindow, const Engine3d& newEngine);
     Result PrepareForResize();
     Result Resize();
-    void RenderModel(const double& dt);
-    void SetModel(Model2d* model);
+    void StartRender();
+    void EndRender();
 
 private:
     Result CreateDevice();
@@ -42,8 +41,6 @@ private:
 
     // TODO: Pull this Windows Imaging Component out into an ImageManager?
     Microsoft::WRL::ComPtr<IWICImagingFactory> imageFactory_;
-
-    Model2d* model_;
 
     HWND windowHandle_;
 };

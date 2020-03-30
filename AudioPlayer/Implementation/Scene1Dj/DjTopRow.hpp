@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Graphics/Element.hpp>
+#include <UserInterface/Element.hpp>
 
 #include "DjButton.hpp"
 #include "DjWaveform.hpp"

@@ -2,7 +2,7 @@
 
 #include <ErrorHandling/Result.hpp>
 #include <Graphics/DirectXInterface.hpp>
-#include <Graphics/Element.hpp>
+#include <UserInterface/Element.hpp>
 
 class Text2d : public Element {
 

@@ -20,39 +20,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Interface\Common\Graphics\Colour.hpp" />
-    <ClInclude Include="..\..\Interface\Common\Graphics\DebugInfo.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Dimension2d.hpp" />
-    <ClInclude Include="..\..\Interface\Common\Graphics\Element.hpp" />
-    <ClInclude Include="..\..\Interface\Common\Graphics\Model2d.hpp" />
-    <ClInclude Include="..\..\Interface\Common\Graphics\Model3d.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Position2d.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Vertex.hpp" />
-    <ClInclude Include="..\..\Interface\DirectX\Graphics\AnimatedSprite.hpp" />
-    <ClInclude Include="..\..\Interface\DirectX\Graphics\AnimatedSpriteAnimationData.hpp" />
-    <ClInclude Include="..\..\Interface\DirectX\Graphics\AnimatedSpriteCycleData.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Graphics\VertexBuffer.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Graphics\VertexType.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\DirectXInterface.hpp" />
-    <ClInclude Include="..\..\Interface\DirectX\Graphics\Ellipse2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Engine2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Engine3d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\GraphicsEngine.hpp" />
-    <ClInclude Include="..\..\Interface\DirectX\Graphics\Rectangle2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\ShaderBuffer.hpp" />
-    <ClInclude Include="..\..\Interface\DirectX\Graphics\Sprite.hpp" />
-    <ClInclude Include="..\..\Interface\DirectX\Graphics\Text2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\TextManager2d.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\Common\DebugInfo.cpp" />
-    <ClCompile Include="..\..\Implementation\Common\Element.cpp" />
-    <ClCompile Include="..\..\Implementation\Common\Model2d.cpp" />
-    <ClCompile Include="..\..\Implementation\DirectX\AnimatedSprite.cpp" />
-    <ClCompile Include="..\..\Implementation\DirectX\Ellipse2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Engine2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Engine3d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\GraphicsEngine.cpp" />
-    <ClCompile Include="..\..\Implementation\DirectX\Rectangle2d.cpp" />
-    <ClCompile Include="..\..\Implementation\DirectX\Sprite.cpp" />
-    <ClCompile Include="..\..\Implementation\DirectX\Text2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\TextManager2d.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -137,7 +120,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -155,7 +138,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -175,7 +158,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -197,7 +180,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>

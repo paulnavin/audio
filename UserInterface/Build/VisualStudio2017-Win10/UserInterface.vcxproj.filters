@@ -12,12 +12,79 @@
     <Filter Include="Header Files\Common">
       <UniqueIdentifier>{9e0b2634-8f32-4bad-92aa-6e8f028d635f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Win10">
-      <UniqueIdentifier>{e461d443-c4ab-402a-bdc7-a7368c76d9cb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\DirectX">
+      <UniqueIdentifier>{e461d443-c4ab-402a-bdc7-a7368c76d9cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{104572a9-6059-46a0-ae2e-33e78cbddd53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DirectX">
+      <UniqueIdentifier>{2c5f5c4c-5fe0-4668-9636-2dfd5ff7490e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Interface\Common\UserInterface\DebugInfo.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\UserInterface\Element.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\UserInterface\Model2d.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\UserInterface\Model3d.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\DirectX\UserInterface\AnimatedSprite.hpp">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\DirectX\UserInterface\AnimatedSpriteAnimationData.hpp">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\DirectX\UserInterface\AnimatedSpriteCycleData.hpp">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\DirectX\UserInterface\Ellipse2d.hpp">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\DirectX\UserInterface\Rectangle2d.hpp">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\DirectX\UserInterface\Sprite.hpp">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\DirectX\UserInterface\Text2d.hpp">
+      <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Common\DebugInfo.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Common\Element.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Common\Model2d.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\AnimatedSprite.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\Ellipse2d.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\Rectangle2d.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\Sprite.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\DirectX\Text2d.cpp">
+      <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,8 +3,8 @@
 #include <App/AppTimer.hpp>
 #include <App/AppUserInput.hpp>
 #include <Graphics/GraphicsEngine.hpp>
-#include <Graphics/Rectangle2d.hpp>
-#include <Graphics/Text2d.hpp>
+#include <UserInterface/Rectangle2d.hpp>
+#include <UserInterface/Text2d.hpp>
 #include <Graphics/Vertex.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInput/InputManager.hpp>

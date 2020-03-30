@@ -1,6 +1,5 @@
 #include <Graphics/GraphicsEngine.hpp>
 
-#include <Graphics/Model2d.hpp>
 #include <Display/ErrorDisplay.hpp>
 #include <Display/Window.hpp>
 
@@ -47,8 +46,12 @@ Result GraphicsEngine::Init(Window* targetWindow, const ResourceManager& resourc
     return Result{};
 }
 
-Result GraphicsEngine::Init2dModel(Model2d* model) {
-    return model->Init(*this);
+Result GraphicsEngine::Init3dVertices(const VertexBuffer& vertexBuffer) {
+    Result initResult = engine3d_.InitGraphics(vertexBuffer);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("GraphicsEngine::Init3dVertices() : Error initialising 3D vertices.");
+    }
+    return initResult;
 }
 
 void GraphicsEngine::NextDisplayConfig() {
@@ -61,15 +64,19 @@ void GraphicsEngine::PreviousDisplayConfig() {
     targetWindow_->UpdateSizes();
 }
 
-void GraphicsEngine::Render(const double& dt) {
+void GraphicsEngine::StartRender() {
     // (1) Clear the screen.
     engine3d_.ClearBuffers();
 
     // (2) Draw any 3D stuff.
     engine3d_.RenderVertices();
 
-    // (3) Draw any 2D stuff on top of the 3D stuff.
-    engine2d_.RenderModel(dt);
+    engine2d_.StartRender();
+    // The 2D model will Render() after this.
+}
+
+void GraphicsEngine::EndRender() {
+    engine2d_.EndRender();
 
     // (4) Present the buffers to the screen.
     engine3d_.Present();
@@ -96,7 +103,7 @@ void GraphicsEngine::Resize() {
         ErrorDisplay::ShowErrors(resizeResult);
         return;
     }
-    
+
     engine2d_.Resize();
     if (resizeResult.HasErrors()) {
         resizeResult.AppendError("GraphicsEngine::Resize() : Could not resize 2D engine.");
@@ -110,19 +117,6 @@ void GraphicsEngine::Resize() {
         ErrorDisplay::ShowErrors(resizeResult);
         return;
     }
-}
-
-Result GraphicsEngine::Set2dModel(Model2d* model) {
-    engine2d_.SetModel(model);
-    return Result{};
-}
-
-Result GraphicsEngine::Set3dModel(const Model3d& model) {
-    Result initResult = engine3d_.InitGraphics(model);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("GraphicsEngine::Init() : Error initialising 3D graphics when setting 3D model.");
-    }
-    return initResult;
 }
 
 void GraphicsEngine::ToggleFullScreen() {

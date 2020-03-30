@@ -1,14 +1,9 @@
 #pragma once
 
-#include <Graphics/Vertex.hpp>
 #include <ErrorHandling/Result.hpp>
+#include <Graphics/Vertex.hpp>
+#include <Graphics/VertexType.hpp>
 #include <Stl/StlWrapper.hpp>
-
-enum class VertexType {
-    Point,
-    Line,
-    Triangle,
-};
 
 class Model3d {
 public:
@@ -17,7 +12,7 @@ public:
 
 public:
     virtual const size_t GetVertexCount() const = 0;
-    virtual const uint8_t* GetVertexData() const = 0;
+    virtual void* GetVertexData() = 0;
     virtual const VertexType GetVertexType() const = 0;
 
 public:

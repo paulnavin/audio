@@ -25,19 +25,20 @@ public:
 
 public:
     Result Init(Window* targetWindow, const ResourceManager& resourceManager);
-    Result Init2dModel(Model2d* model);
+    Result Init3dVertices(const VertexBuffer& vertexBuffer);
     void NextDisplayConfig();
     void PreviousDisplayConfig();
-    void Render(const double& dt);
+    void StartRender();
+    void EndRender();
     void ResetDisplayConfig();
     void Resize();
-    Result Set2dModel(Model2d* model);
-    Result Set3dModel(const Model3d& model);
     void ToggleFullScreen();
 
 private:
     Engine2d engine2d_;
     Engine3d engine3d_;
+
+    // TODO: Move this up higher, when it manages more than just graphics resources.
     ResourceManager resourceManager_;
     TextManager2d textManager2d_;
     Window* targetWindow_;

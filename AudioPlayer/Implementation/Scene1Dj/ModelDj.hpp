@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Graphics/Element.hpp>
-#include <Graphics/Model2d.hpp>
+#include <UserInterface/Element.hpp>
+#include <UserInterface/Model2d.hpp>
 
 #include "DjTopRow.hpp"
 #include "ExplosionAnimation.hpp"

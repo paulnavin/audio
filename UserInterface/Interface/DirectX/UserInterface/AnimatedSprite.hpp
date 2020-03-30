@@ -1,9 +1,9 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
-#include <Graphics/AnimatedSpriteCycleData.hpp>
 #include <Graphics/DirectXInterface.hpp>
-#include <Graphics/Sprite.hpp>
+#include <UserInterface/AnimatedSpriteCycleData.hpp>
+#include <UserInterface/Sprite.hpp>
 
 class AnimatedSprite : public Sprite {
 

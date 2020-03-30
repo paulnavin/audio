@@ -2,9 +2,9 @@
 
 #include <App/SceneUserInput.hpp>
 #include <Graphics/GraphicsEngine.hpp>
-#include <Graphics/Model2d.hpp>
-#include <Graphics/Model3d.hpp>
 #include <Logging/EasyLogging++.hpp>
+#include <UserInterface/Model2d.hpp>
+#include <UserInterface/Model3d.hpp>
 #include <UserConfiguration/Config.hpp>
 
 Result Scene::Init(GraphicsEngine* gfx, ConfigStore* /*config*/, InputManager* inputManager) {
@@ -24,21 +24,21 @@ Result Scene::Init(GraphicsEngine* gfx, ConfigStore* /*config*/, InputManager* i
         return initResult;
     }
 
-    initResult = graphicsEngine_->Set3dModel(*model3d_);
+    VertexBuffer vertexBuffer;
+    vertexBuffer.data = model3d_->GetVertexData();
+    vertexBuffer.size = model3d_->GetVertexCount();
+    vertexBuffer.type = model3d_->GetVertexType();
+    initResult = graphicsEngine_->Init3dVertices(vertexBuffer);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Scene::Create3dModel() : Error setting 3D model.");
+        initResult.AppendError("Scene::Create3dModel() : Error setting 3D vertex buffer.");
         return initResult;
     }
-
 
     initResult = model2d_->Init(*gfx);
     if (initResult.HasErrors()) {
         initResult.AppendError("Scene::Create2dModel : Error initialising 2D model.");
         return initResult;
     }
-
-    graphicsEngine_->Set2dModel(model2d_);
-    graphicsEngine_->Set3dModel(*model3d_);
 
     LOG(INFO) << "Scene::Init() : Successful!";
 
@@ -83,6 +83,15 @@ void Scene::UpdateMousePosition(const float& x, const float& y) {
 void Scene::Update(const double& dt) {
     userInputHandler_->Update(dt);
     model2d_->Update(dt);
+}
+
+void Scene::Render(const double& dt) {
+    graphicsEngine_->StartRender();
+
+    // (3) Draw any 2D stuff on top of the 3D stuff.
+    model2d_->Render(dt);
+
+    graphicsEngine_->EndRender();
 }
 
 Result Scene::UpdateFps(const int64_t& newFps) {

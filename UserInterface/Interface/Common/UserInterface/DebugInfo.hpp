@@ -1,8 +1,8 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
-#include <Graphics/Element.hpp>
-#include <Graphics/Text2d.hpp>
+#include <UserInterface/Element.hpp>
+#include <UserInterface/Text2d.hpp>
 
 class DebugInfo : public Element {
 

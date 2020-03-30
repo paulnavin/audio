@@ -1,7 +1,6 @@
 #include <Graphics/Engine2d.hpp>
 
 #include <Graphics/Engine3d.hpp>
-#include <Graphics/Model2d.hpp>
 #include <Display/Window.hpp>
 
 const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& Engine2d::GetDeviceContext2d() const {
@@ -63,16 +62,12 @@ Result Engine2d::Resize() {
     return resizeResult;
 }
 
-void Engine2d::RenderModel(const double& dt) {
+void Engine2d::StartRender() {
     deviceContext2d_->BeginDraw();
-
-    model_->Render(dt);
-
-    (void)deviceContext2d_->EndDraw();
 }
 
-void Engine2d::SetModel(Model2d* model) {
-    model_ = model;
+void Engine2d::EndRender() {
+    (void)deviceContext2d_->EndDraw();
 }
 
 Result Engine2d::CreateDevice() {
@@ -145,7 +140,7 @@ Result Engine2d::CreateBitmapRenderTarget() {
 
 Result Engine2d::CreateImageFactory() {
     HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory2, NULL, CLSCTX_INPROC_SERVER, IID_IWICImagingFactory2, &imageFactory_);
-   
+
     Result creationResult{};
     if (FAILED(hr)) {
         creationResult.AppendError("Engine2d::CreateImageFactory() : Could not create WIC factory.");

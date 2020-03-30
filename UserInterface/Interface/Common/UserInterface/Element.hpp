@@ -1,10 +1,9 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
+#include <Graphics/Dimension2d.hpp>
+#include <Graphics/Position2d.hpp>
 #include <Stl/StlWrapper.hpp>
-
-#include "Dimension2d.hpp"
-#include "Position2d.hpp"
 
 class GraphicsEngine;
 

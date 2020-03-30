@@ -1,14 +1,14 @@
 #include "ModelDj.hpp"
 
-#include <Graphics/AnimatedSprite.hpp>
-#include <Graphics/Engine2d.hpp>
-#include <Graphics/Ellipse2d.hpp>
-#include <Graphics/GraphicsEngine.hpp>
 #include <Display/Window.hpp>
+#include <Graphics/Engine2d.hpp>
+#include <Graphics/GraphicsEngine.hpp>
+#include <UserInterface/AnimatedSprite.hpp>
+#include <UserInterface/Ellipse2d.hpp>
 
 Result ModelDj::Init(const GraphicsEngine& gfx) {
     rootElement_.SetDimensions(gfx.GetTargetWindow()->GetWidth(), gfx.GetTargetWindow()->GetHeight());
-        
+
     Result initResult = rootElement_.Init(gfx);
     if (initResult.HasErrors()) {
         initResult.AppendError("ModelDj::Init() : Error initialising root element.");

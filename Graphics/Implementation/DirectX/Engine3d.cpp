@@ -52,9 +52,9 @@ Result Engine3d::Init(const Window& newWindow, const ResourceManager& resourceMa
     return initResult;
 }
 
-Result Engine3d::InitGraphics(const Model3d& model) {
-    vertexCount_ = model.GetVertexCount();
-    vertexType_ = model.GetVertexType();
+Result Engine3d::InitGraphics(const VertexBuffer& buffer) {
+    vertexCount_ = buffer.size;
+    vertexType_ = buffer.type;
     const size_t dataSize = sizeof(Vertex) * vertexCount_;
 
     D3D11_BUFFER_DESC bd;
@@ -66,7 +66,7 @@ Result Engine3d::InitGraphics(const Model3d& model) {
     bd.StructureByteStride = 0;
 
     D3D11_SUBRESOURCE_DATA srd;
-    srd.pSysMem = model.GetVertexData();
+    srd.pSysMem = buffer.data;
     srd.SysMemPitch = 0;
     srd.SysMemSlicePitch = 0;
 
@@ -335,7 +335,7 @@ Result Engine3d::CreateDxgiResources() {
         dxgiResult.AppendError("Engine3d::CreateDxgiResources() : Couldn't get swap chain parent.");
         return dxgiResult;
     }
-    
+
     parentFactory->MakeWindowAssociation(windowHandle_, DXGI_MWA_NO_WINDOW_CHANGES | DXGI_MWA_NO_ALT_ENTER);
 
     dxgiResult = InitSupportedDisplayModes();

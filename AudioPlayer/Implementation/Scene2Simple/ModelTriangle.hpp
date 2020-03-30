@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Graphics/Model3d.hpp>
+#include <UserInterface/Model3d.hpp>
 #include <Stl/StlWrapper.hpp>
 
 class ModelTriangle : public Model3d {
@@ -20,8 +20,8 @@ public:
     const size_t GetVertexCount() const override {
         return 3;
     }
-    const uint8_t* GetVertexData() const override {
-        return reinterpret_cast<const uint8_t*>(triangleVertices.data());
+    void* GetVertexData() override {
+        return reinterpret_cast<void*>(triangleVertices.data());
     }
     const VertexType GetVertexType() const override {
         return VertexType::Triangle;

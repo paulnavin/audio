@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Graphics/AnimatedSprite.hpp>
-#include <Graphics/Element.hpp>
+#include <UserInterface/AnimatedSprite.hpp>
+#include <UserInterface/Element.hpp>
 
 class GraphicsEngine;
 
