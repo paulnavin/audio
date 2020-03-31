@@ -4,9 +4,10 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Position2d.hpp>
 #include <StringHandling/StringUtil.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
-Result Sprite::Init(const GraphicsEngine& gfx) {
-    const Engine2d& engine = gfx.GetEngine2d();
+Result Sprite::Init(ModelPortal* portal) {
+    const Engine2d& engine = portal->gfx->GetEngine2d();
 
     deviceContext2d_ = engine.GetDeviceContext2d();
     imageFactory_ = engine.GetImageFactory();
@@ -16,7 +17,7 @@ Result Sprite::Init(const GraphicsEngine& gfx) {
         updateResult.AppendError("Sprite::Init() : Couldn't update details in Init()");
         return updateResult;
     }
-    return Element::Init(gfx);
+    return Element::Init(portal);
 }
 
 void Sprite::Render(const double&) {

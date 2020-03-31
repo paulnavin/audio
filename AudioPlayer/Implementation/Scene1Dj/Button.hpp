@@ -3,7 +3,7 @@
 #include <UserInterface/Element.hpp>
 #include <UserInterface/Rectangle2d.hpp>
 
-class GraphicsEngine;
+struct ModelPortal;
 
 class Button : public Element {
 public:
@@ -11,7 +11,7 @@ public:
     virtual ~Button() = default;
 
 public:
-    Result Init(const GraphicsEngine& gfx) override;
+    Result Init(ModelPortal* portal) override;
     bool OnClick() override;
 
 private:

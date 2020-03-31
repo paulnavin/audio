@@ -3,7 +3,7 @@
 #include <UserInterface/AnimatedSprite.hpp>
 #include <UserInterface/Element.hpp>
 
-class GraphicsEngine;
+struct ModelPortal;
 
 class ExplosionAnimation : public Element {
 public:
@@ -11,7 +11,7 @@ public:
     virtual ~ExplosionAnimation() = default;
 
 public:
-    virtual Result Init(const GraphicsEngine& gfx) override;
+    virtual Result Init(ModelPortal* portal) override;
 
     virtual void Update(const double& dt);
 

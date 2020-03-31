@@ -1,6 +1,6 @@
 #include <UserInterface/Element.hpp>
 
-Result Element::Init(const GraphicsEngine& /*gfx*/) {
+Result Element::Init(ModelPortal* /*portal*/) {
     UpdatePositionOnScreen();
     UpdateDimensionsOnScreen();
     isInitialised_ = true;

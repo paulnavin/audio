@@ -13,8 +13,8 @@ public:
     ~ModelBasic2d() = default;
 
 public:
-    virtual Result Init(const GraphicsEngine& gfx) override {
-        Result initResult = rectangle_.Init(gfx);
+    virtual Result Init(ModelPortal* portal) override {
+        Result initResult = rectangle_.Init(portal);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelBasic2d::Init() : Error initialising 2D rectangle.");
             return initResult;
@@ -23,7 +23,7 @@ public:
         rectangle_.SetPosition(300.0f, 300.0f);
         rectangle_.SetDimensions(50.0f, 50.0f);
 
-        initResult = ellipse_.Init(gfx);
+        initResult = ellipse_.Init(portal);
         if (initResult.HasErrors()) {
             initResult.AppendError("ModelBasic2d::Init() : Error initialising 2D ellipse.");
             return initResult;
@@ -35,7 +35,7 @@ public:
         elements_.push_back(&ellipse_);
         elements_.push_back(&rectangle_);
 
-        return Model2d::Init(gfx);
+        return Model2d::Init(portal);
     }
 
 private:

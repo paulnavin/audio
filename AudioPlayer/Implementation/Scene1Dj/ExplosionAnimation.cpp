@@ -1,13 +1,14 @@
 #include "ExplosionAnimation.hpp"
 
-#include <Graphics/GraphicsEngine.hpp>
 #include <FileSystem/ResourceManager.hpp>
+#include <Graphics/GraphicsEngine.hpp>
 #include <Stl/StlWrapper.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
-Result ExplosionAnimation::Init(const GraphicsEngine& gfx) {
-    const ResourceManager& resourceManager = gfx.GetResourceManager();
+Result ExplosionAnimation::Init(ModelPortal* portal) {
+    const ResourceManager& resourceManager = portal->gfx->GetResourceManager();
 
-    Result initResult = Element::Init(gfx);
+    Result initResult = Element::Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("ExplosionAnimation::Init() : Error initialising base Element.");
         return initResult;
@@ -38,7 +39,7 @@ Result ExplosionAnimation::Init(const GraphicsEngine& gfx) {
         return initResult;
     }
 
-    initResult = animatedSprite_.Init(gfx);
+    initResult = animatedSprite_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("ExplosionAnimation::Init() : Error initialising animated sprite.");
         return initResult;

@@ -1,11 +1,10 @@
 #include <UserInterface/AnimatedSprite.hpp>
 
 #include <Graphics/Engine2d.hpp>
-#include <Graphics/GraphicsEngine.hpp>
 #include <StringHandling/StringUtil.hpp>
 
-Result AnimatedSprite::Init(const GraphicsEngine& gfx) {
-    return Sprite::Init(gfx);
+Result AnimatedSprite::Init(ModelPortal* portal) {
+    return Sprite::Init(portal);
 }
 
 void AnimatedSprite::Render(const double& /*dt*/) {

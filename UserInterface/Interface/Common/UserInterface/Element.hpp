@@ -5,7 +5,7 @@
 #include <Graphics/Position2d.hpp>
 #include <Stl/StlWrapper.hpp>
 
-class GraphicsEngine;
+struct ModelPortal;
 
 class Element {
 public:
@@ -13,7 +13,7 @@ public:
     virtual ~Element() = default;
 
 public:
-    virtual Result Init(const GraphicsEngine& gfx);
+    virtual Result Init(ModelPortal* portal);
 
     // Note: No Result passing in Render, for performance reasons.
     // By default just renders all children.

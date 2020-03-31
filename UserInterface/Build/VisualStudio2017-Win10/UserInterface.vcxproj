@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Interface\Common\UserInterface\Commander.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\DebugInfo.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\Element.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\Model2d.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\Model3d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\UserInterface\ModelPortal.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\UserInterface\AnimatedSprite.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\UserInterface\AnimatedSpriteAnimationData.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\UserInterface\AnimatedSpriteCycleData.hpp" />
@@ -122,7 +124,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\FileSystem\Interface</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\UserInput\Interface</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -142,7 +144,7 @@
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\FileSystem\Interface</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\UserInput\Interface</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -162,7 +164,7 @@
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\FileSystem\Interface</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\UserInput\Interface</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -182,7 +184,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\FileSystem\Interface</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\DirectX;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\UserInput\Interface</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>

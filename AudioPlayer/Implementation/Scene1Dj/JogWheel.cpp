@@ -3,9 +3,10 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Platform/WindowsInterface.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
-Result JogWheel::Init(const GraphicsEngine& gfx) {
-    const Engine2d& engine = gfx.GetEngine2d();
+Result JogWheel::Init(ModelPortal* portal) {
+    const Engine2d& engine = portal->gfx->GetEngine2d();
     Microsoft::WRL::ComPtr<ID2D1Factory2> factory = engine.GetFactory();
 
     deviceContext2d_ = engine.GetDeviceContext2d();
@@ -41,7 +42,7 @@ Result JogWheel::Init(const GraphicsEngine& gfx) {
         updateResult.AppendError("JogWheel::Init() : Couldn't update details in Init()");
         return updateResult;
     }
-    return Element::Init(gfx);
+    return Element::Init(portal);
 }
 
 void JogWheel::Update(const double& dt) {

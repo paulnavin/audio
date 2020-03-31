@@ -1,21 +1,22 @@
 #include <UserInterface/DebugInfo.hpp>
 
+#include <Display/Window.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/TextManager2d.hpp>
 #include <Platform/WindowsInterface.hpp>
-#include <Display/Window.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
-Result DebugInfo::Init(const GraphicsEngine& gfx) {
+Result DebugInfo::Init(ModelPortal* portal) {
     SetPosition(0.0f, 0.0f);
-    SetDimensions(gfx.GetTargetWindow()->GetWidth(), gfx.GetTargetWindow()->GetHeight());
+    SetDimensions(portal->gfx->GetTargetWindow()->GetWidth(), portal->gfx->GetTargetWindow()->GetHeight());
     SetFps(0);
     SetMousePosition(0.0f, 0.0f);
 
     fpsText_.SetParent(this);
     fpsText_.SetPosition(5.0f, 5.0f);
     fpsText_.SetDimensions(100.0f, 20.0f);
-    Result initResult = fpsText_.Init(gfx);
+    Result initResult = fpsText_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("DebugInfo::Init() : Error initialising 2D FPS text.");
         return initResult;
@@ -24,7 +25,7 @@ Result DebugInfo::Init(const GraphicsEngine& gfx) {
     mousePositionText_.SetParent(this);
     mousePositionText_.SetPosition(5.0f, 35.0f);
     mousePositionText_.SetDimensions(150.0f, 20.0f);
-    initResult = mousePositionText_.Init(gfx);
+    initResult = mousePositionText_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("DebugInfo::Init() : Error initialising 2D mouse position text.");
         return initResult;
@@ -35,7 +36,7 @@ Result DebugInfo::Init(const GraphicsEngine& gfx) {
         updateResult.AppendError("DebugInfo::Init() : Couldn't update details in Init()");
         return updateResult;
     }
-    return Element::Init(gfx);
+    return Element::Init(portal);
 }
 
 void DebugInfo::Render(const double& dt) {

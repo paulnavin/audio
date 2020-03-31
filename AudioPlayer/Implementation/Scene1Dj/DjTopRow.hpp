@@ -5,7 +5,7 @@
 #include "DjButton.hpp"
 #include "DjWaveform.hpp"
 
-class GraphicsEngine;
+struct ModelPortal;
 
 class DjTopRow : public Element {
 public:
@@ -13,7 +13,7 @@ public:
     virtual ~DjTopRow() = default;
 
 public:
-    virtual Result Init(const GraphicsEngine& gfx) override;
+    virtual Result Init(ModelPortal* portal) override;
 
 private:
     DjButton openFile1Button_;

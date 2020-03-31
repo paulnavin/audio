@@ -10,7 +10,8 @@
 Result Scene::Init(GraphicsEngine* gfx, ConfigStore* /*config*/, InputManager* inputManager) {
     Result initResult{};
 
-    graphicsEngine_ = gfx;
+    portal_.gfx = gfx;
+    portal_.commander = &keen_;
 
     initResult = userInputHandler_->Init(this, inputManager);
     if (initResult.HasErrors()) {
@@ -28,13 +29,13 @@ Result Scene::Init(GraphicsEngine* gfx, ConfigStore* /*config*/, InputManager* i
     vertexBuffer.data = model3d_->GetVertexData();
     vertexBuffer.size = model3d_->GetVertexCount();
     vertexBuffer.type = model3d_->GetVertexType();
-    initResult = graphicsEngine_->Init3dVertices(vertexBuffer);
+    initResult = gfx->Init3dVertices(vertexBuffer);
     if (initResult.HasErrors()) {
         initResult.AppendError("Scene::Create3dModel() : Error setting 3D vertex buffer.");
         return initResult;
     }
 
-    initResult = model2d_->Init(*gfx);
+    initResult = model2d_->Init(&portal_);
     if (initResult.HasErrors()) {
         initResult.AppendError("Scene::Create2dModel : Error initialising 2D model.");
         return initResult;
@@ -86,12 +87,12 @@ void Scene::Update(const double& dt) {
 }
 
 void Scene::Render(const double& dt) {
-    graphicsEngine_->StartRender();
+    portal_.gfx->StartRender();
 
     // (3) Draw any 2D stuff on top of the 3D stuff.
     model2d_->Render(dt);
 
-    graphicsEngine_->EndRender();
+    portal_.gfx->EndRender();
 }
 
 Result Scene::UpdateFps(const int64_t& newFps) {

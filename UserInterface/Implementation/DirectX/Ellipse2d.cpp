@@ -2,15 +2,16 @@
 
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
-Result Ellipse2d::Init(const GraphicsEngine& gfx) {
-    deviceContext2d_ = gfx.GetEngine2d().GetDeviceContext2d();
+Result Ellipse2d::Init(ModelPortal* portal) {
+    deviceContext2d_ = portal->gfx->GetEngine2d().GetDeviceContext2d();
     Result updateResult = UpdateDetails();
     if (updateResult.HasErrors()) {
         updateResult.AppendError("Ellipse2d::Init() : Couldn't update details in Init()");
         return updateResult;
     }
-    return Element::Init(gfx);
+    return Element::Init(portal);
 }
 
 void Ellipse2d::Render(const double&) {

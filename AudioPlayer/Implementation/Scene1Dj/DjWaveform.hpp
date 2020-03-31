@@ -3,7 +3,7 @@
 #include <UserInterface/Element.hpp>
 #include <UserInterface/Rectangle2d.hpp>
 
-class GraphicsEngine;
+struct ModelPortal;
 
 class DjWaveform : public Element {
 public:
@@ -11,7 +11,7 @@ public:
     virtual ~DjWaveform() = default;
 
 public:
-    virtual Result Init(const GraphicsEngine& gfx) override;
+    virtual Result Init(ModelPortal* portal) override;
 
 private:
     Rectangle2d window_;

@@ -3,10 +3,11 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/TextManager2d.hpp>
 #include <StringHandling/StringUtil.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
-Result Text2d::Init(const GraphicsEngine& gfx) {
-    const Engine2d& engine = gfx.GetEngine2d();
-    const TextManager2d& textManager = gfx.GetTextManager2d();
+Result Text2d::Init(ModelPortal* portal) {
+    const Engine2d& engine = portal->gfx->GetEngine2d();
+    const TextManager2d& textManager = portal->gfx->GetTextManager2d();
     deviceContext2d_ = engine.GetDeviceContext2d();
 
     textFormat_ = textManager.GetFpsTextFormat();
@@ -18,7 +19,7 @@ Result Text2d::Init(const GraphicsEngine& gfx) {
         updateResult.AppendError("Text2d::Init() : Couldn't update details in Init()");
         return updateResult;
     }
-    return Element::Init(gfx);
+    return Element::Init(portal);
 }
 
 void Text2d::Render(const double& dt) {

@@ -2,16 +2,18 @@
 
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
-Result Rectangle2d::Init(const GraphicsEngine& gfx) {
-    deviceContext2d_ = gfx.GetEngine2d().GetDeviceContext2d();
+Result Rectangle2d::Init(ModelPortal* portal) {
+    deviceContext2d_ = portal->gfx->GetEngine2d().GetDeviceContext2d();
     Result updateResult = UpdateDetails();
     if (updateResult.HasErrors()) {
         updateResult.AppendError("Rectangle2d::Init() : Couldn't update details in Init()");
         return updateResult;
     }
 
-    return Element::Init(gfx);
+    // TODO: Should this be above, before UpdateDetails()?
+    return Element::Init(portal);
 }
 
 void Rectangle2d::Render(const double&) {

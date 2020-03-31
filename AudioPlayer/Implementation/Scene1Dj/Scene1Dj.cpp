@@ -9,8 +9,6 @@
 Result Scene1Dj::Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* inputManager) {
     Result initResult{};
 
-    graphicsEngine_ = gfx;
-
     model3d_ = new ModelStarField();
     model2d_ = new ModelDj();
     userInputHandler_ = new Scene1UserInput();

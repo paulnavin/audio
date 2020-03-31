@@ -6,8 +6,9 @@
 #include <UserInterface/Sprite.hpp>
 
 class Element;
-class GraphicsEngine;
 class Window;
+
+struct ModelPortal;
 
 class Model2d {
 public:
@@ -15,7 +16,7 @@ public:
     virtual ~Model2d() = default;
 
 public:
-    virtual Result Init(const GraphicsEngine& gfx);
+    virtual Result Init(ModelPortal* portal);
     virtual void Update(const double& dt);
     void Render(const double& dt);
 

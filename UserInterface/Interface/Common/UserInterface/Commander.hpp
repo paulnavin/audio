@@ -15,7 +15,7 @@ public:
     Result Init();
 
 public:
-    void RegisterForCommand(Command::Id command, Element* receiver);
+    void RegisterForCommand(const Command::Id& command, Element* receiver);
 
 private:
     std::map<Command::Id, std::vector<Element*> > receivers_;

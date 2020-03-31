@@ -12,7 +12,7 @@ public:
     virtual ~Ellipse2d() = default;
 
 public:
-    Result Init(const GraphicsEngine& gfx) override;
+    Result Init(ModelPortal* portal) override;
     void Render(const double& dt) override;
 
 public:

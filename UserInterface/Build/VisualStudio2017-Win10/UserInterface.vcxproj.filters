@@ -60,6 +60,12 @@
     <ClInclude Include="..\..\Interface\DirectX\UserInterface\Text2d.hpp">
       <Filter>Header Files\DirectX</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\UserInterface\Commander.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\UserInterface\ModelPortal.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Common\DebugInfo.cpp">

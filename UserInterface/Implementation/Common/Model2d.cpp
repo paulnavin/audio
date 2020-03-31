@@ -2,15 +2,16 @@
 
 #include <Graphics/GraphicsEngine.hpp>
 #include <UserInterface/Element.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
 Model2d::Model2d()
     : showDebugInfo_(false) {
 }
 
-Result Model2d::Init(const GraphicsEngine& gfx) {
-    const ResourceManager& resourceManager = gfx.GetResourceManager();
+Result Model2d::Init(ModelPortal* portal) {
+    const ResourceManager& resourceManager = portal->gfx->GetResourceManager();
 
-    Result initResult = debugElement_.Init(gfx);
+    Result initResult = debugElement_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("Model2d::Init() : Error initialising debug info.");
         return initResult;
@@ -24,7 +25,7 @@ Result Model2d::Init(const GraphicsEngine& gfx) {
     }
     mouseCursor_.SetDimensions(48.0f, 48.0f);
 
-    initResult = mouseCursor_.Init(gfx);
+    initResult = mouseCursor_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("Model2d::Init() : Error initialising mouse cursor sprite.");
         return initResult;

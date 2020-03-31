@@ -11,7 +11,7 @@ public:
     virtual ~DebugInfo() = default;
 
 public:
-    Result Init(const GraphicsEngine& gfx) override;
+    Result Init(ModelPortal* portal) override;
     void Render(const double& dt) override;
 
 public:

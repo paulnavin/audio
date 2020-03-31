@@ -1,3 +1,4 @@
 Loading data
 Loading app resources
  - Set of resources per scene?
+ Move deviceContext2d_ into base class Element

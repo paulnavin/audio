@@ -9,8 +9,6 @@
 Result Scene2Basic::Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* inputManager) {
     Result initResult{};
 
-    graphicsEngine_ = gfx;
-
     model3d_ = new ModelTriangle();
     model2d_ = new ModelBasic2d();
     userInputHandler_ = new Scene2UserInput();

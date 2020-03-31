@@ -1,9 +1,11 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
+#include <UserInterface/Commander.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
 class ConfigStore;
-class GraphicsEngine;
+struct ModelPortal;
 class InputManager;
 class Model2d;
 class Model3d;
@@ -29,7 +31,8 @@ public:
     void OnCommandToggleDebugInfo();
 
 protected:
-    GraphicsEngine* graphicsEngine_;
+    Commander keen_;
+    ModelPortal portal_;
     Window* mainWindow_;
     Model3d* model3d_;
     Model2d* model2d_;

@@ -7,7 +7,7 @@
 #include "ExplosionAnimation.hpp"
 #include "JogWheel.hpp"
 
-class GraphicsEngine;
+struct ModelPortal;
 
 class ModelDj : public Model2d {
 public:
@@ -15,7 +15,7 @@ public:
     virtual ~ModelDj() = default;
 
 public:
-    virtual Result Init(const GraphicsEngine& gfx) override;
+    virtual Result Init(ModelPortal* portal) override;
     virtual void Update(const double& dt) override;
 
 private:

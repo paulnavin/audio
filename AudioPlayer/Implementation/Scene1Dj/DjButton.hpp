@@ -5,7 +5,7 @@
 
 #include "Button.hpp"
 
-class GraphicsEngine;
+struct ModelPortal;
 
 class DjButton : public Element {
 public:
@@ -13,7 +13,7 @@ public:
     virtual ~DjButton() = default;
 
 public:
-    virtual Result Init(const GraphicsEngine& gfx) override;
+    virtual Result Init(ModelPortal* portal) override;
 
 public:
     Result SetHighlightColour(const Colour& newColour);
