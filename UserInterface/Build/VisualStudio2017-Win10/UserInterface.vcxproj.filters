@@ -92,5 +92,8 @@
     <ClCompile Include="..\..\Implementation\DirectX\Text2d.cpp">
       <Filter>Source Files\DirectX</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Implementation\Common\Commander.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

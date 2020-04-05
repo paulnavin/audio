@@ -7,6 +7,8 @@
 
 class Window;
 
+// Retrieves state of system, storing the result as Commands.
+// Note: Doesn't notify anything, just stores the state.
 class InputManager {
 public:
     using CommandMap = std::map<Command::Id, Command*>;

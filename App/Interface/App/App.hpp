@@ -45,8 +45,6 @@ public:
     void OnCommandToggleScene();
     void OnCommandToggleFullScreen();
 
-    void UpdateMousePosition(const float& x, const float& y);
-
     Result SelectScene(const uint8_t& newSceneId);
     Result InitWindowConfig(const WindowConfig& windowConfig);
     Result InitConfig(const std::string& fileName);

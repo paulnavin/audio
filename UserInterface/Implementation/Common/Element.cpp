@@ -1,6 +1,7 @@
 #include <UserInterface/Element.hpp>
 
-Result Element::Init(ModelPortal* /*portal*/) {
+Result Element::Init(ModelPortal* portal) {
+    chell_ = portal;
     UpdatePositionOnScreen();
     UpdateDimensionsOnScreen();
     isInitialised_ = true;
@@ -9,11 +10,21 @@ Result Element::Init(ModelPortal* /*portal*/) {
 
 void Element::Render(const double& dt) {
     for (Element* element : children_) {
-        element->Render(dt);
+        if (element->isEnabled_ == true) {
+            element->Render(dt);
+        }
     }
 }
 
 bool Element::OnClick() { return false; }
+
+void Element::HandleCommand(const Command::Id& /*command*/) { }
+
+void Element::HandleMouseMove(const float& /*x*/, const float& /*y*/) {}
+
+const bool Element::IsEnabled() const {
+    return isEnabled_;
+}
 
 const bool Element::IsInitialised() const {
     return isInitialised_;
@@ -57,6 +68,10 @@ void Element::SetDimensions(const float& widthInPixels, const float& heightInPix
     dimensionsOnScreen_.height = heightInPixels;
     dimensionsOnScreen_.width = widthInPixels;
     percentageDimensions_ = false;
+}
+
+void Element::SetEnabled(const bool& enabled) {
+    isEnabled_ = enabled;
 }
 
 void Element::SetParent(const Element* parent) {

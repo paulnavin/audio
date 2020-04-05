@@ -5,6 +5,7 @@
 
 class Element;
 
+// William Blazkowicz Jnr.
 class Commander {
 
 public:
@@ -15,8 +16,13 @@ public:
     Result Init();
 
 public:
-    void RegisterForCommand(const Command::Id& command, Element* receiver);
+    void Distribute(const Command::Id& command);
+    void DistributeMousePosition(const float& x, const float& y);
+    void Subscribe(const Command::Id& command, Element* receiver);
+    void Unsubscribe(const Command::Id& command, Element* receiver);
+    void SubscribeToMouseMove(Element* receiver);
 
 private:
-    std::map<Command::Id, std::vector<Element*> > receivers_;
+    std::map<Command::Id, std::set<Element*> > receivers_;
+    std::vector<Element*> mouseMoveReceviers_;
 };

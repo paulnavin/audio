@@ -40,10 +40,6 @@ Result AppUserInput::Init(App* newApp, InputManager* inputManager) {
 };
 
 void AppUserInput::Update() {
-    float mouseXPosition = static_cast<float>(inputManager_->GetMouseXPos());
-    float mouseYPosition = static_cast<float>(inputManager_->GetMouseYPos());
-    app_->UpdateMousePosition(mouseXPosition, mouseYPosition);
-
     const InputManager::CommandMap* activeCommands = inputManager_->GetActiveKeyMap();
     for (auto command : *activeCommands) {
         switch (command.first) {

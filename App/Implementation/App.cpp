@@ -240,11 +240,6 @@ void App::OnCommandToggleFullScreen() {
     }
 }
 
-void App::UpdateMousePosition(const float& x, const float& y) {
-    // TODO: Make a member pointer for current scene, instead of dereferencing the array.
-    scenes_[currentSceneId_]->UpdateMousePosition(x, y);
-}
-
 Result App::SelectScene(const uint8_t& newSceneId) {
     if (currentSceneId_ != UINT8_MAX) {
         scenes_[currentSceneId_]->ShutDown();

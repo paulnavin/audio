@@ -20,14 +20,15 @@ public:
 public:
     virtual Result Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* inputManager);
     void ShutDown();
+
+    void OnCommand(const Command::Id& command);
     void UpdateMousePosition(const float& x, const float& y);
     void Update(const double& dt);
     void Render(const double& dt);
+
+    // TODO: Don't return a Result here.
     Result UpdateFps(const int64_t& newFps);
 
-    void OnCommandMouseDown(const float& x, const float& y);
-    void OnCommandMouseUp(const float& x, const float& y);
-    void OnCommandMouseClicked(const float& x, const float& y);
     void OnCommandToggleDebugInfo();
 
 protected:

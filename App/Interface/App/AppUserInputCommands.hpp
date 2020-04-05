@@ -3,7 +3,8 @@
 #include <UserInput/Command.hpp>
 
 static constexpr Command::Id Quit = 0;
-static constexpr Command::Id ToggleDebugInfo = Quit + 1;
+static constexpr Command::Id MouseMove = Quit + 1;
+static constexpr Command::Id ToggleDebugInfo = MouseMove + 1;
 static constexpr Command::Id ToggleScene = ToggleDebugInfo + 1;
 static constexpr Command::Id RecreateModels = ToggleScene + 1;
 static constexpr Command::Id LeftButtonDown = RecreateModels + 1;

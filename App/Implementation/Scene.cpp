@@ -61,16 +61,8 @@ void Scene::ShutDown() {
     userInputHandler_ = nullptr;
 }
 
-void Scene::OnCommandMouseDown(const float& x, const float& y) {
-    model2d_->OnMouseDown(x, y);
-}
-
-void Scene::OnCommandMouseUp(const float& x, const float& y) {
-    model2d_->OnMouseUp(x, y);
-}
-
-void Scene::OnCommandMouseClicked(const float& x, const float& y) {
-    model2d_->OnMouseClicked(x, y);
+void Scene::OnCommand(const Command::Id& command) {
+    keen_.Distribute(command);
 }
 
 void Scene::OnCommandToggleDebugInfo() {
@@ -78,6 +70,7 @@ void Scene::OnCommandToggleDebugInfo() {
 }
 
 void Scene::UpdateMousePosition(const float& x, const float& y) {
+    keen_.DistributeMousePosition(x, y);
     model2d_->SetMousePosition(x, y);
 }
 

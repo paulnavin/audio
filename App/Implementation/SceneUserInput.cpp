@@ -36,29 +36,34 @@ void SceneUserInput::Update(const double& dt) {
     }
 
     const InputManager::CommandMap* activeCommands = inputManager_->GetActiveKeyMap();
+
     for (auto command : *activeCommands) {
         switch (command.first) {
-        case LeftButtonDown: { HandleLeftMouseDown(mouseXPosition, mouseYPosition); return; }
-        case LeftButtonUp: { HandleLeftMouseUp(mouseXPosition, mouseYPosition); return; }
-        case ToggleDebugInfo: { scene_->OnCommandToggleDebugInfo(); return; }
+            case ToggleDebugInfo: { 
+                scene_->OnCommandToggleDebugInfo();
+                return; 
+            }
+            default: {
+                scene_->OnCommand(command.first);
+            }
         }
     }
 }
 
-void SceneUserInput::HandleLeftMouseDown(const float& x, const float& y) {
-    scene_->OnCommandMouseDown(x, y);
-    leftMouseDownX_ = x;
-    leftMouseDownY_ = y;
-    leftMouseDownTime_ = 0;
-    leftMouseDown_ = true;
+void SceneUserInput::HandleLeftMouseDown(const float& /*x*/, const float& /*y*/) {
+    //scene_->OnCommandMouseDown(x, y);
+    //leftMouseDownX_ = x;
+    //leftMouseDownY_ = y;
+    //leftMouseDownTime_ = 0;
+    //leftMouseDown_ = true;
 }
 
-void SceneUserInput::HandleLeftMouseUp(const float& x, const float& y) {
-    scene_->OnCommandMouseUp(x, y);
-    leftMouseDown_ = false;
-    if ((leftMouseDownTime_ < 250) &&
-        (fabs(leftMouseDownX_ - x) < 5.0f) &&
-        (fabs(leftMouseDownY_ - y) < 5.0f)) {
-        scene_->OnCommandMouseClicked(leftMouseDownX_, leftMouseDownY_);
-    }
+void SceneUserInput::HandleLeftMouseUp(const float& /*x*/, const float& /*y*/) {
+    //scene_->OnCommandMouseUp(x, y);
+    //leftMouseDown_ = false;
+    //if ((leftMouseDownTime_ < 250) &&
+    //    (fabs(leftMouseDownX_ - x) < 5.0f) &&
+    //    (fabs(leftMouseDownY_ - y) < 5.0f)) {
+    //    scene_->OnCommandMouseClicked(leftMouseDownX_, leftMouseDownY_);
+    //}
 }
