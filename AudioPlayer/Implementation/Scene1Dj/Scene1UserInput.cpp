@@ -6,8 +6,8 @@ Result Scene1UserInput::Init(Scene* newScene, InputManager* inputManager) {
     // No extra commands for now.
 };
 
-void Scene1UserInput::Update(const double& dt) {
-    SceneUserInput::Update(dt);
+void Scene1UserInput::Update() {
+    SceneUserInput::Update();
 
     // No extra commands for now.
 }

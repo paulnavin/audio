@@ -11,6 +11,6 @@ public:
 
 public:
     virtual Result Init(Scene* newScene, InputManager* inputManager) override;
-    void Update(const double& dt) override;
+    void Update() override;
 };
 
