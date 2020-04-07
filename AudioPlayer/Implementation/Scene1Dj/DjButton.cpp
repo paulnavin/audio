@@ -1,6 +1,7 @@
 #include "DjButton.hpp"
 
 #include <Graphics/GraphicsEngine.hpp>
+#include <Resources/ResourceManager.hpp>
 
 Result DjButton::Init(ModelPortal* portal) {
     Result initResult = Element::Init(portal);
@@ -11,7 +12,11 @@ Result DjButton::Init(ModelPortal* portal) {
 
     button_.SetParent(this);
     button_.SetDimensionsAsPercentage(100.0f, 100.0f);
-    button_.SetOnClickHandler([]() {OutputDebugStringA("Clicked"); });
+    button_.SetOnClickHandler(
+        []() {
+        OutputDebugStringA("Clicked");
+        ResourceManager::ShowOpenFileDialog();
+    });
     initResult = button_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("DjButton::Init() : Error initialising button.");

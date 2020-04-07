@@ -2,7 +2,7 @@
 
 #include <Graphics/ShaderBuffer.hpp>
 #include <Display/Window.hpp>
-#include <FileSystem/ResourceManager.hpp>
+#include <FileSystem/ResourceLocator.hpp>
 #include <StringHandling/StringUtil.hpp>
 
 const Microsoft::WRL::ComPtr<ID3D11Device>& Engine3d::GetDirect3dDevice() const {
@@ -17,7 +17,7 @@ Engine3d::~Engine3d() {
     delete[] supportedDisplayModes_;
 }
 
-Result Engine3d::Init(const Window& newWindow, const ResourceManager& resourceManager) {
+Result Engine3d::Init(const Window& newWindow, const ResourceLocator& resourceManager) {
     windowHandle_ = newWindow.GetHandle();
 
     pixelShaderFileName_ = resourceManager.GetShaderDirectoryName();

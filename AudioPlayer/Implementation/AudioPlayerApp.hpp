@@ -10,7 +10,7 @@ public:
     virtual ~AudioPlayerApp() = default;
 
 public:
-    virtual Result Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager) override;
+    virtual Result Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) override;
 
     AudioPlayerUserInput userInputHandler_;
 };

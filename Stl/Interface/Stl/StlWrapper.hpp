@@ -28,5 +28,7 @@
 #include <sstream>
 #include <istream>
 #include <functional>
+#include <locale>
+#include <codecvt>
 
 #pragma warning(pop)    // Turn back on all warnings.

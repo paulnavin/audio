@@ -14,7 +14,7 @@
 #include <Platform/WindowsInterface.hpp>
 
 class Scene;
-class ResourceManager;
+class ResourceLocator;
 class Window;
 
 class App : public WindowMessageHandler {
@@ -23,7 +23,7 @@ public:
     virtual ~App() = default;
 
 public:
-    virtual Result Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager);
+    virtual Result Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager);
     virtual Result Run();
     virtual void ShutDown();
 

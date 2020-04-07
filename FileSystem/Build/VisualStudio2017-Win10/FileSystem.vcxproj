@@ -20,11 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Interface\FileSystem\File.hpp" />
-    <ClInclude Include="..\..\Interface\FileSystem\ResourceManager.hpp" />
+    <ClInclude Include="..\..\Interface\FileSystem\ResourceLocator.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\File.cpp" />
-    <ClCompile Include="..\..\Implementation\ResourceManager.cpp" />
+    <ClCompile Include="..\..\Implementation\ResourceLocator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

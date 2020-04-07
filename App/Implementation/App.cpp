@@ -6,10 +6,10 @@
 #include <Display/WindowConfig.hpp>
 #include <Display/WindowManager.hpp>
 #include <Logging/EasyLogging++.hpp>
-#include <FileSystem/ResourceManager.hpp>
+#include <FileSystem/ResourceLocator.hpp>
 #include <ErrorHandling/Result.hpp>
 
-Result App::Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager) {
+Result App::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) {
     appInstance_ = appInstance;
     Result initResult{};
 

@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClInclude Include="..\..\Interface\Win10\Resources\Cursor.hpp" />
     <ClInclude Include="..\..\Interface\Win10\Resources\Icon.hpp" />
+    <ClInclude Include="..\..\Interface\Win10\Resources\ResourceManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Cursor.cpp" />
     <ClCompile Include="..\..\Implementation\Icon.cpp" />
+    <ClCompile Include="..\..\Implementation\ResourceManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -107,7 +109,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\StringHandling\Interface</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -124,7 +126,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\StringHandling\Interface</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -143,7 +145,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\StringHandling\Interface</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -164,7 +166,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\StringHandling\Interface</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>

@@ -7,7 +7,7 @@ const Engine2d& GraphicsEngine::GetEngine2d() const {
     return engine2d_;
 }
 
-const ResourceManager& GraphicsEngine::GetResourceManager() const {
+const ResourceLocator& GraphicsEngine::GetResourceManager() const {
     return resourceManager_;
 }
 
@@ -19,7 +19,7 @@ const Window* GraphicsEngine::GetTargetWindow() const {
     return targetWindow_;
 }
 
-Result GraphicsEngine::Init(Window* targetWindow, const ResourceManager& resourceManager) {
+Result GraphicsEngine::Init(Window* targetWindow, const ResourceLocator& resourceManager) {
     Result initResult{};
 
     resourceManager_ = resourceManager;

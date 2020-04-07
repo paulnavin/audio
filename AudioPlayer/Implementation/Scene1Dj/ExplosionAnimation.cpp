@@ -1,12 +1,12 @@
 #include "ExplosionAnimation.hpp"
 
-#include <FileSystem/ResourceManager.hpp>
+#include <FileSystem/ResourceLocator.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Stl/StlWrapper.hpp>
 #include <UserInterface/ModelPortal.hpp>
 
 Result ExplosionAnimation::Init(ModelPortal* portal) {
-    const ResourceManager& resourceManager = portal->gfx->GetResourceManager();
+    const ResourceLocator& resourceManager = portal->gfx->GetResourceManager();
 
     Result initResult = Element::Init(portal);
     if (initResult.HasErrors()) {

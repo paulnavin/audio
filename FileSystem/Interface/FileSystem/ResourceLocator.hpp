@@ -2,10 +2,10 @@
 
 #include <ErrorHandling/Result.hpp>
 
-class ResourceManager {
+class ResourceLocator {
 public:
-    ResourceManager() = default;
-    ~ResourceManager() = default;
+    ResourceLocator() = default;
+    ~ResourceLocator() = default;
 
 public:
     const std::string GetAnimatedSpriteDirectoryName() const;

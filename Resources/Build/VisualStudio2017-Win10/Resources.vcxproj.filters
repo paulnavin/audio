@@ -24,12 +24,18 @@
     <ClInclude Include="..\..\Interface\Win10\Resources\Icon.hpp">
       <Filter>Header Files\Win10</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\Win10\Resources\ResourceManager.hpp">
+      <Filter>Header Files\Win10</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Cursor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Icon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

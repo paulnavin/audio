@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\FileSystem\ResourceManager.hpp">
+    <ClInclude Include="..\..\Interface\FileSystem\File.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\FileSystem\File.hpp">
+    <ClInclude Include="..\..\Interface\FileSystem\ResourceLocator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\ResourceManager.cpp">
+    <ClCompile Include="..\..\Implementation\File.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\File.cpp">
+    <ClCompile Include="..\..\Implementation\ResourceLocator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

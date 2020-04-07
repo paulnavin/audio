@@ -9,7 +9,7 @@ Model2d::Model2d()
 }
 
 Result Model2d::Init(ModelPortal* portal) {
-    const ResourceManager& resourceManager = portal->gfx->GetResourceManager();
+    const ResourceLocator& resourceManager = portal->gfx->GetResourceManager();
 
     Result initResult = debugElement_.Init(portal);
     if (initResult.HasErrors()) {

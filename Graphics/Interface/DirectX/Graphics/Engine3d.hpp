@@ -8,7 +8,7 @@
 #include <ErrorHandling/Result.hpp>
 #include <Stl/StlWrapper.hpp>
 
-class ResourceManager;
+class ResourceLocator;
 class Window;
 
 class Engine3d {
@@ -22,7 +22,7 @@ public:
     const Microsoft::WRL::ComPtr<IDXGISwapChain>& GetDirect3dSwapChain() const;
 
 public:
-    Result Init(const Window& newWindow, const ResourceManager& resourceManager);
+    Result Init(const Window& newWindow, const ResourceLocator& resourceManager);
     Result InitGraphics(const VertexBuffer& buffer);
     void ClearBuffers();
     Result Present();

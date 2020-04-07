@@ -1,6 +1,6 @@
 #include <Display/ErrorDisplay.hpp>
 #include <Logging/EasyLogging++.hpp>
-#include <FileSystem/ResourceManager.hpp>
+#include <FileSystem/ResourceLocator.hpp>
 #include <ErrorHandling/Result.hpp>
 #include <Platform/WindowsInterface.hpp>
 
@@ -19,7 +19,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     //START_EASYLOGGINGPP(__argc, __argv);
     // TODO: Should this be here?  Or in App?
-    ResourceManager resourceManager;
+    ResourceLocator resourceManager;
 
     el::Configurations loggingConfig;
     loggingConfig.setGlobally(el::ConfigurationType::Filename, resourceManager.GetLogFileName());

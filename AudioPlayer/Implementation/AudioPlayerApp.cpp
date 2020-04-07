@@ -1,14 +1,14 @@
 #include "AudioPlayerApp.hpp"
 
 #include <ErrorHandling/Result.hpp>
-#include <FileSystem/ResourceManager.hpp>
+#include <FileSystem/ResourceLocator.hpp>
 #include <Display/WindowConfig.hpp>
 
 #include "Scene1Dj/Scene1Dj.hpp"
 #include "Scene2Simple/Scene2Basic.hpp"
 #include "Resource.h"
 
-Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceManager& resourceManager) {
+Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) {
     Result initResult{};
 
     std::string configDirectoryName = resourceManager.GetUserConfigDirectoryName();

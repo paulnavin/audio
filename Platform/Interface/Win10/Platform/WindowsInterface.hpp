@@ -19,5 +19,6 @@
 #pragma warning( disable : 4530)    //  C++ exception handler used, but unwind semantics are not enabled
 
 #include <windows.h>
+#include <shobjidl.h> 
 
 #pragma warning(pop)
