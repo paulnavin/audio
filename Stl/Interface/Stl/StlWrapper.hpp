@@ -27,5 +27,6 @@
 #include <fstream>
 #include <sstream>
 #include <istream>
+#include <functional>
 
 #pragma warning(pop)    // Turn back on all warnings.

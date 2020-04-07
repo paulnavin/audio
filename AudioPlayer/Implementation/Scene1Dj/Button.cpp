@@ -70,7 +70,10 @@ void Button::HandleCommand(const Command::Id& command) {
         return; }
     case LeftButtonUp: {
         buttonDownHighlight_.SetEnabled(false);
-        if (mouseOver_ == false) {
+        if ((mouseOver_ == true) && (onClickHandler_)){
+            onClickHandler_();
+        }
+        else {
             chell_->commander->Unsubscribe(LeftButtonDown, this);
         }
         return; }
@@ -96,6 +99,6 @@ void Button::HandleMouseMove(const float& x, const float& y) {
     }
 }
 
-void Button::SetOnClickHandler() {
-    //chell_->commander->Subscribe(LeftButtonUp, this);
+void Button::SetOnClickHandler(std::function<void()> onClickHandler) {
+    onClickHandler_ = onClickHandler;
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Stl/StlWrapper.hpp>
 #include <UserInterface/Element.hpp>
 #include <UserInterface/Rectangle2d.hpp>
 
@@ -16,11 +17,12 @@ public:
     void HandleCommand(const Command::Id& command) override;
     void HandleMouseMove(const float& x, const float& y) override;
     
-    void SetOnClickHandler();
+    void SetOnClickHandler(std::function<void()> onClickHandler);
 
 private:
     Rectangle2d background_;
     Rectangle2d buttonDownHighlight_;
     bool mouseOver_ = false;
     Rectangle2d mouseOverHighlight_;
+    std::function<void()> onClickHandler_;
 };
