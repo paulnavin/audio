@@ -75,7 +75,7 @@ void Scene::UpdateMousePosition(const float& x, const float& y) {
 }
 
 void Scene::Update(const double& dt) {
-    userInputHandler_->Update(dt);
+    userInputHandler_->Update();
     model2d_->Update(dt);
 }
 

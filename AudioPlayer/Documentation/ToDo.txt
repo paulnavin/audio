@@ -2,3 +2,8 @@ Loading data
 Loading app resources
  - Set of resources per scene?
  Move deviceContext2d_ into base class Element
+ RawInput for multiple cursors/multitouch.
+ Fix full screen support so stuff fills whole screen.
+ Fix window support so can actually resize (only use supported configs if in fullscreen).
+ Investigate WM_ACTIVATEAPP.
+ Different loop for Android to not burn CPU cycles for Update().

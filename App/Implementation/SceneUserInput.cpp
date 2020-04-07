@@ -26,14 +26,10 @@ Result SceneUserInput::Init(Scene* newScene, InputManager* inputManager) {
     return Result{};
 };
 
-void SceneUserInput::Update(const double& dt) {
+void SceneUserInput::Update() {
     float mouseXPosition = static_cast<float>(inputManager_->GetMouseXPos());
     float mouseYPosition = static_cast<float>(inputManager_->GetMouseYPos());
     scene_->UpdateMousePosition(mouseXPosition, mouseYPosition);
-
-    if (leftMouseDown_ == true) {
-        leftMouseDownTime_ += dt;
-    }
 
     const InputManager::CommandMap* activeCommands = inputManager_->GetActiveKeyMap();
 
@@ -48,22 +44,4 @@ void SceneUserInput::Update(const double& dt) {
             }
         }
     }
-}
-
-void SceneUserInput::HandleLeftMouseDown(const float& /*x*/, const float& /*y*/) {
-    //scene_->OnCommandMouseDown(x, y);
-    //leftMouseDownX_ = x;
-    //leftMouseDownY_ = y;
-    //leftMouseDownTime_ = 0;
-    //leftMouseDown_ = true;
-}
-
-void SceneUserInput::HandleLeftMouseUp(const float& /*x*/, const float& /*y*/) {
-    //scene_->OnCommandMouseUp(x, y);
-    //leftMouseDown_ = false;
-    //if ((leftMouseDownTime_ < 250) &&
-    //    (fabs(leftMouseDownX_ - x) < 5.0f) &&
-    //    (fabs(leftMouseDownY_ - y) < 5.0f)) {
-    //    scene_->OnCommandMouseClicked(leftMouseDownX_, leftMouseDownY_);
-    //}
 }

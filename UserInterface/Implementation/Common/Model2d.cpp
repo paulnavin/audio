@@ -50,32 +50,6 @@ void Model2d::Render(const double& dt) {
     }
 }
 
-void Model2d::OnMouseDown(const float& /*x*/, const float& /*y*/) {
-    // TODO: Send to all elements listening within range of click.
-}
-
-void Model2d::OnMouseUp(const float& /*x*/, const float& /*y*/) {
-    // TODO: Send to all elements listening.
-}
-
-void Model2d::OnMouseClicked(const float& x, const float& y) {
-    Position2d position;
-    Dimension2d dimensions;
-    for (Element* element : elements_) {
-        position = element->GetAbsolutePosition();
-        dimensions = element->GetDimensions();
-        if ((x >= position.x) &&
-            (x <= position.x + dimensions.width) &&
-            (y >= position.y) &&
-            (y <= position.y + dimensions.height)) {
-            bool clickResult = element->OnClick();
-            if (clickResult == false) {
-                element->OnMouseClicked(x, y);
-            }
-        }
-    }
-}
-
 void Model2d::SetFps(const int64_t& newFps) {
     debugElement_.SetFps(newFps);
 }
