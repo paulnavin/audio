@@ -1,9 +1,9 @@
-#include "DjButton.hpp"
+#include "HighlightButton.hpp"
 
 #include <Graphics/GraphicsEngine.hpp>
 #include <Resources/ResourceManager.hpp>
 
-Result DjButton::Init(ModelPortal* portal) {
+Result HighlightButton::Init(ModelPortal* portal) {
     Result initResult = Element::Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("DjTopRow::Init() : Error initialising base Element.");
@@ -19,7 +19,7 @@ Result DjButton::Init(ModelPortal* portal) {
     });
     initResult = button_.Init(portal);
     if (initResult.HasErrors()) {
-        initResult.AppendError("DjButton::Init() : Error initialising button.");
+        initResult.AppendError("HighlightButton::Init() : Error initialising button.");
         return initResult;
     }
 
@@ -28,7 +28,7 @@ Result DjButton::Init(ModelPortal* portal) {
     highlight_.SetDimensionsAsPercentage(100.0f, 100.0f);
     initResult = highlight_.Init(portal);
     if (initResult.HasErrors()) {
-        initResult.AppendError("DjButton::Init() : Error initialising highlight.");
+        initResult.AppendError("HighlightButton::Init() : Error initialising highlight.");
         return initResult;
     }
 
@@ -39,6 +39,6 @@ Result DjButton::Init(ModelPortal* portal) {
 }
 
 
-Result DjButton::SetHighlightColour(const Colour& newColour) {
+Result HighlightButton::SetHighlightColour(const Colour& newColour) {
     return highlight_.SetColour(newColour);
 }

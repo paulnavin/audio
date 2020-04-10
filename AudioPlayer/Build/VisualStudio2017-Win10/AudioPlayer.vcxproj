@@ -183,7 +183,8 @@
     <ClInclude Include="..\..\Implementation\AudioPlayerUserInput.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\Button.hpp" />
-    <ClInclude Include="..\..\Implementation\Scene1Dj\DjButton.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ButtonRow.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\HighlightButton.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\DjTopRow.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\DjWaveform.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\ExplosionAnimation.hpp" />
@@ -192,6 +193,9 @@
     <ClInclude Include="..\..\Implementation\Scene1Dj\ModelStarField.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\Scene1Dj.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\Scene1UserInput.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\SettingsButton.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ViewSelectionButton.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ViewSelectionGroup.hpp" />
     <ClInclude Include="..\..\Implementation\Scene2Simple\ModelBasic2d.hpp" />
     <ClInclude Include="..\..\Implementation\Scene2Simple\ModelTriangle.hpp" />
     <ClInclude Include="..\..\Implementation\Scene2Simple\Scene2Basic.hpp" />
@@ -204,7 +208,8 @@
     <ClCompile Include="..\..\Implementation\AudioPlayerUserInput.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\Button.cpp" />
-    <ClCompile Include="..\..\Implementation\Scene1Dj\DjButton.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\ButtonRow.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\HighlightButton.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\DjTopRow.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\DjWaveform.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\ExplosionAnimation.cpp" />
@@ -212,6 +217,9 @@
     <ClCompile Include="..\..\Implementation\Scene1Dj\ModelDj.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\Scene1Dj.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\Scene1UserInput.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\SettingsButton.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\ViewSelectionButton.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene1Dj\ViewSelectionGroup.cpp" />
     <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2Basic.cpp" />
     <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2UserInput.cpp" />
   </ItemGroup>

@@ -96,7 +96,19 @@
     <ClInclude Include="..\..\Implementation\Scene1Dj\Button.hpp">
       <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Implementation\Scene1Dj\DjButton.hpp">
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ButtonRow.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\SettingsButton.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ViewSelectionButton.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\ViewSelectionGroup.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\HighlightButton.hpp">
       <Filter>Scene 1 DJ\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -156,7 +168,19 @@
     <ClCompile Include="..\..\Implementation\Scene1Dj\Button.cpp">
       <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\Scene1Dj\DjButton.cpp">
+    <ClCompile Include="..\..\Implementation\Scene1Dj\ButtonRow.cpp">
+      <Filter>Scene 1 DJ\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\SettingsButton.cpp">
+      <Filter>Scene 1 DJ\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\ViewSelectionButton.cpp">
+      <Filter>Scene 1 DJ\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\ViewSelectionGroup.cpp">
+      <Filter>Scene 1 DJ\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene1Dj\HighlightButton.cpp">
       <Filter>Scene 1 DJ\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

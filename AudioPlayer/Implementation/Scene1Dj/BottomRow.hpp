@@ -2,7 +2,7 @@
 
 #include <UserInterface/Element.hpp>
 
-#include "HighlightButton.hpp"
+#include "DjButton.hpp"
 #include "DjWaveform.hpp"
 
 struct ModelPortal;
@@ -16,8 +16,8 @@ public:
     virtual Result Init(ModelPortal* portal) override;
 
 private:
-    HighlightButton openFile1Button_;
-    HighlightButton openFile2Button_;
+    DjButton openFile1Button_;
+    DjButton openFile2Button_;
     DjWaveform waveform1_;
     DjWaveform waveform2_;
 };

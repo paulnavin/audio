@@ -28,6 +28,15 @@ Result ModelDj::Init(ModelPortal* portal) {
         return initResult;
     }
 
+    buttonRow_.SetParent(&rootElement_);
+    buttonRow_.SetDimensionsAsPercentage(100.0f, 10.0f);
+    buttonRow_.SetPositionAsPercentage(0.0f, 21.0f);
+    initResult = buttonRow_.Init(portal);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("ModelDj::Init() : Error initialising button row.");
+        return initResult;
+    }
+
     jogWheel1_.SetParent(&rootElement_);
     jogWheel1_.SetSlipmatColour(Colour{ 1.0f, 0.5f, 0.5f, 1.0f });
     jogWheel1_.SetPositionColour(Colour{ 0.0f, 0.0f, 0.6f, 1.0f });
@@ -48,6 +57,7 @@ Result ModelDj::Init(ModelPortal* portal) {
     }
 
     elements_.push_back(&topRow_);
+    elements_.push_back(&buttonRow_);
     elements_.push_back(&jogWheel1_);
     elements_.push_back(&explosion_);
 

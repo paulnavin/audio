@@ -7,10 +7,10 @@
 
 struct ModelPortal;
 
-class DjButton : public Element {
+class HighlightButton : public Element {
 public:
-    DjButton() = default;
-    virtual ~DjButton() = default;
+    HighlightButton() = default;
+    virtual ~HighlightButton() = default;
 
 public:
     virtual Result Init(ModelPortal* portal) override;
