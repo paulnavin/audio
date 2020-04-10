@@ -6,6 +6,7 @@
 
 #include "Scene1Dj/Scene1Dj.hpp"
 #include "Scene2Simple/Scene2Basic.hpp"
+#include "Scene3SettingsOverlay/Scene3.hpp"
 #include "Resource.h"
 
 Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) {
@@ -33,6 +34,7 @@ Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceLocator&
 
     scenes_[0] = new Scene1Dj();
     scenes_[1] = new Scene2Basic();
+    scenes_[2] = new Scene3();
 
     return App::Init(appInstance, resourceManager);
 }

@@ -200,6 +200,10 @@
     <ClInclude Include="..\..\Implementation\Scene2Simple\ModelTriangle.hpp" />
     <ClInclude Include="..\..\Implementation\Scene2Simple\Scene2Basic.hpp" />
     <ClInclude Include="..\..\Implementation\Scene2Simple\Scene2UserInput.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene3SettingsOverlay\Model2dSettingsOverlay.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene3SettingsOverlay\Model3dSettingsOverlay.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene3SettingsOverlay\Scene3.hpp" />
+    <ClInclude Include="..\..\Implementation\Scene3SettingsOverlay\Scene3UserInput.hpp" />
     <ClInclude Include="..\..\Implementation\targetver.h" />
     <ClInclude Include="..\..\Implementation\AudioPlayerUserInputCommands.hpp" />
   </ItemGroup>
@@ -222,6 +226,8 @@
     <ClCompile Include="..\..\Implementation\Scene1Dj\ViewSelectionGroup.cpp" />
     <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2Basic.cpp" />
     <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2UserInput.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene3SettingsOverlay\Scene3.cpp" />
+    <ClCompile Include="..\..\Implementation\Scene3SettingsOverlay\Scene3UserInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc" />

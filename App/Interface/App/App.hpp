@@ -55,7 +55,7 @@ private:
     static constexpr DWORD MS_PER_FRAME = MS_PER_SECOND / FRAMES_PER_SECOND;
     static constexpr int32_t MAX_SKIP_FRAMES = 10;
     static constexpr uint8_t MAX_SCENE_COUNT = 10;
-    static constexpr uint8_t ACTUAL_SCENE_COUNT = 2;
+    static constexpr uint8_t ACTUAL_SCENE_COUNT = 3;
 
 private:
     void Update(const double& dt);

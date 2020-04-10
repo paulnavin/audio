@@ -40,6 +40,15 @@
     <Filter Include="Scene 2 Simple\Source Files">
       <UniqueIdentifier>{24d228e4-a0f6-4e73-b849-26ac440b1103}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene 3 Settings Overlay">
+      <UniqueIdentifier>{300ec345-858d-43c4-9e91-9ec7b4588a90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene 3 Settings Overlay\Header Files">
+      <UniqueIdentifier>{e4081f33-1775-40a5-8806-9ad631340465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene 3 Settings Overlay\Source Files">
+      <UniqueIdentifier>{b6faa62b-bf52-4446-a13d-f770e8a40a15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Implementation\targetver.h">
@@ -110,6 +119,18 @@
     </ClInclude>
     <ClInclude Include="..\..\Implementation\Scene1Dj\HighlightButton.hpp">
       <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene3SettingsOverlay\Scene3.hpp">
+      <Filter>Scene 3 Settings Overlay\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene3SettingsOverlay\Scene3UserInput.hpp">
+      <Filter>Scene 3 Settings Overlay\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene3SettingsOverlay\Model3dSettingsOverlay.hpp">
+      <Filter>Scene 3 Settings Overlay\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene3SettingsOverlay\Model2dSettingsOverlay.hpp">
+      <Filter>Scene 3 Settings Overlay\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +203,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene1Dj\HighlightButton.cpp">
       <Filter>Scene 1 DJ\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene3SettingsOverlay\Scene3.cpp">
+      <Filter>Scene 3 Settings Overlay\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Scene3SettingsOverlay\Scene3UserInput.cpp">
+      <Filter>Scene 3 Settings Overlay\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
