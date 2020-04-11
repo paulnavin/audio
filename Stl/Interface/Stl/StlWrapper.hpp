@@ -19,16 +19,15 @@
 
 #include <array>
 #include <cstdint>
+#include <deque>
+#include <fstream>
+#include <functional>
+#include <istream>
 #include <list>
 #include <map>
 #include <set>
-#include <vector>
-#include <string>
-#include <fstream>
 #include <sstream>
-#include <istream>
-#include <functional>
-#include <locale>
-#include <codecvt>
+#include <string>
+#include <vector>
 
 #pragma warning(pop)    // Turn back on all warnings.

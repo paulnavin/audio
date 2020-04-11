@@ -10,12 +10,6 @@ Result AppUserInput::Init(App* newApp, InputManager* inputManager) {
 
     std::vector<KeyBinding> bindings;
 
-    bindings.push_back(KeyBinding(VK_SHIFT, KeyState::StillPressed));
-    bindings.push_back(KeyBinding(VK_CONTROL, KeyState::StillPressed));
-    bindings.push_back(KeyBinding('2', KeyState::JustPressed));
-    inputManager_->AddCommand(new Command(ToggleScene, "Toggle 2D Model", bindings));
-    bindings.clear();
-
     bindings.push_back(KeyBinding('T', KeyState::JustReleased));
     inputManager_->AddCommand(new Command(ToggleFullScreen, "Toggle Full Screen", bindings));
     bindings.clear();
@@ -44,7 +38,6 @@ void AppUserInput::Update() {
     for (auto command : *activeCommands) {
         switch (command.first) {
         case Quit: {app_->OnCommandQuit(); return; }
-        case ToggleScene: { app_->OnCommandToggleScene(); return; }
         case ToggleFullScreen: { app_->OnCommandToggleFullScreen(); return; }
         case NextDisplayConfig: { app_->OnCommandNextDisplayConfig(); return; }
         case PreviousDisplayConfig: { app_->OnCommandPreviousDisplayConfig(); return; }

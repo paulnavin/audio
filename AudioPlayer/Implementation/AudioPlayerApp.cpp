@@ -4,9 +4,6 @@
 #include <FileSystem/ResourceLocator.hpp>
 #include <Display/WindowConfig.hpp>
 
-#include "Scene1Dj/Scene1Dj.hpp"
-#include "Scene2Simple/Scene2Basic.hpp"
-#include "Scene3SettingsOverlay/Scene3.hpp"
 #include "Resource.h"
 
 Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) {
@@ -14,11 +11,7 @@ Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceLocator&
 
     std::string configDirectoryName = resourceManager.GetUserConfigDirectoryName();
     configDirectoryName.append("\\config.txt");
-    initResult = InitConfig(configDirectoryName);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("AudioPlayerApp::Init() : Error loading app config.");
-        return initResult;
-    }
+    SetConfigFileName(configDirectoryName);
 
     WindowConfig newWindowConfig{};
     newWindowConfig.height = config_.GetInt32("height", 200);
@@ -30,11 +23,35 @@ Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceLocator&
     newWindowConfig.smallAppIcon_.Init(appInstance, MAKEINTRESOURCE(IDI_MONKEY_ICON));
     newWindowConfig.mouseCursor_.Init(appInstance, MAKEINTRESOURCE(IDC_DARK_OXYGEN_CURSOR_NORMAL));
     
-    InitWindowConfig(newWindowConfig);
+    SetWindowConfig(newWindowConfig);
 
-    scenes_[0] = new Scene1Dj();
-    scenes_[1] = new Scene2Basic();
-    scenes_[2] = new Scene3();
+    initResult = App::Init(appInstance, resourceManager);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("AudioPlayerApp::Init() : Error initialising base element.");
+        return initResult;
+    }
 
-    return App::Init(appInstance, resourceManager);
+    initResult = userInputHandler_.Init(this, &inputManager_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("AudioPlayerApp::Init() : Error initialising user input handler.");
+        return initResult;
+    }
+
+    SetUserInputHandler(&userInputHandler_);
+
+    SelectNextScene();
+    return initResult;
+}
+
+void AudioPlayerApp::SelectNextScene() {
+    if (currentScene_ == nullptr) {
+        currentScene_ = &scene1_;
+    } else if (currentScene_ == &scene1_) {
+        currentScene_ = &scene2_;
+    } else if (currentScene_ == &scene2_) {
+        currentScene_ = &scene3_;
+    } else if (currentScene_ == &scene3_) {
+        currentScene_ = &scene1_;
+    }
+    SelectScene(currentScene_);
 }

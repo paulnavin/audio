@@ -11,11 +11,16 @@
 
 Result App::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) {
     appInstance_ = appInstance;
-    Result initResult{};
+    
+    Result initResult = config_.LoadConfig(configFileName_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error loading app config from file.");
+        initResult.AppendError(configFileName_.c_str());
+        return initResult;
+    }
 
     WindowManager& windowManager = WindowManager::GetInstance();
     initResult = windowManager.Init(appInstance_, mainWindowConfig_);
-
     if (initResult.HasErrors()) {
         initResult.AppendError("App::Init() : Error initialising WindowManager.");
         return initResult;
@@ -46,17 +51,10 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceMa
         return initResult;
     }
 
-    initResult = userInputHandler_.Init(this, &inputManager_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising user input.");
-        return initResult;
-    }
-
     LOG(INFO) << "App::Init() : Successful!";
-    currentSceneId_ = 0;
     initialised_ = true;
 
-    return Result{};
+    return initResult;
 }
 
 Result App::Run() {
@@ -93,7 +91,7 @@ Result App::Run() {
                 toggleFullScreen_ = false;
             }
             graphicsEngine_.Resize();
-            SelectScene(currentSceneId_);
+            ReinitialiseScenes();
             resizeRequired_ = false;
             paused_ = false;
         }
@@ -120,7 +118,9 @@ Result App::Run() {
 
             // TODO: Is this actually right???
             // peek into the future and generate the output
-            scenes_[currentSceneId_]->Render(accumulatedTime / MS_PER_FRAME);
+            for (Scene* scene : currentScenes_) {
+                scene->Render(accumulatedTime / MS_PER_FRAME);
+            }
         }
     }
 
@@ -128,17 +128,11 @@ Result App::Run() {
 }
 
 void App::ShutDown() {
-    // mainWindow_ will be destroyed by the WindowManager.
     LOG(INFO) << "App::ShutDown() : Shut down!";
+    
+    PopAllScenes();
 
-    for (uint8_t i = 0; i < ACTUAL_SCENE_COUNT; ++i) {
-        if (i == currentSceneId_) {
-            scenes_[i]->ShutDown();
-        }
-        delete scenes_[i];
-        scenes_[i] = nullptr;
-    }
-
+    // mainWindow_ will be destroyed by the WindowManager.
     mainWindow_ = nullptr;
 }
 
@@ -220,19 +214,6 @@ void App::OnCommandResetDisplayConfig() {
     }
 }
 
-void App::OnCommandToggleScene() {
-    if (initialised_ == true) {
-        paused_ = true;
-        resizeRequired_ = true;
-
-        scenes_[currentSceneId_]->ShutDown();
-
-        currentSceneId_ = static_cast<uint8_t>((currentSceneId_ + 1) % ACTUAL_SCENE_COUNT);
-
-        SelectScene(currentSceneId_);
-    }
-}
-
 void App::OnCommandToggleFullScreen() {
     if (initialised_ == true) {
         paused_ = true;
@@ -240,40 +221,70 @@ void App::OnCommandToggleFullScreen() {
     }
 }
 
-Result App::SelectScene(const uint8_t& newSceneId) {
-    if (currentSceneId_ != UINT8_MAX) {
-        scenes_[currentSceneId_]->ShutDown();
-    }
+Result App::SelectScene(Scene* newScene) {
+    PopAllScenes();
+    return PushScene(newScene);
+}
 
-    Result initResult = scenes_[newSceneId]->Init(&graphicsEngine_, &config_, &inputManager_);
+Result App::PushScene(Scene* newScene) {
+    Result initResult = newScene->Init(&graphicsEngine_, &config_, &inputManager_);
     if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising scene1.");
+        initResult.AppendError("App::Init() : Error initialising scene when pushing.");
         return initResult;
     }
-
-    currentSceneId_ = newSceneId;
-
+    currentScenes_.push_back(newScene);
     return initResult;
 }
 
-Result App::InitWindowConfig(const WindowConfig& windowConfig) {
+void App::PopAllScenes() {
+    while (currentScenes_.size() > 0) {
+        PopScene();
+    }
+}
+
+void App::PopScene() {
+    if (currentScenes_.size() > 0) {
+        currentScenes_.back()->ShutDown();
+        currentScenes_.pop_back();
+    }
+}
+
+void App::ReinitialiseScenes() {
+    // Shut down in reverse order, from the top of the stack down.
+    for (auto it = currentScenes_.rbegin(); it != currentScenes_.rend(); ++it) {
+        (*it)->ShutDown();
+    }
+
+    // Then reinitialise in order again, from bottom of stack up.
+    for (Scene* scene : currentScenes_) {
+        scene->Init(&graphicsEngine_, &config_, &inputManager_);
+    }
+}
+
+Result App::SetWindowConfig(const WindowConfig& windowConfig) {
     mainWindowConfig_ = windowConfig;
     return Result{};
 }
 
-Result App::InitConfig(const std::string& fileName) {
-    Result initResult = config_.LoadConfig(fileName);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::InitConfig() : Error loading app config.");
-    }
-    return initResult;
+Result App::SetConfigFileName(const std::string& fileName) {
+    // TODO: Check if it's actually a valid file.
+    configFileName_ = fileName;
+    return Result{};
+}
+
+void App::SetUserInputHandler(AppUserInput* appUserInputHandler) {
+    userInputHandler_ = appUserInputHandler;
 }
 
 void App::Update(const double& dt) {
     inputManager_.Update();
 
-    userInputHandler_.Update();
-    scenes_[currentSceneId_]->Update(dt);
+    if (userInputHandler_ != nullptr) {
+        userInputHandler_->Update();
+    }
+    for (Scene* scene : currentScenes_) {
+        scene->Update(dt);
+    }
 }
 
 
@@ -287,7 +298,9 @@ Result App::UpdateFps() {
 
         totalAppFrames_ = 0;
         lastFpsCalculationTime_ += MS_PER_SECOND;
-        scenes_[currentSceneId_]->UpdateFps(fps_);
+        for (Scene* scene : currentScenes_) {
+            scene->UpdateFps(fps_);
+        }
     }
 
     return Result{};

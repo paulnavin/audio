@@ -23,6 +23,9 @@ public:
     virtual ~App() = default;
 
 public:
+    Result SetWindowConfig(const WindowConfig& windowConfig);
+    Result SetConfigFileName(const std::string& fileName);
+    void SetUserInputHandler(AppUserInput* appUserInputHandler);
     virtual Result Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager);
     virtual Result Run();
     virtual void ShutDown();
@@ -42,12 +45,13 @@ public:
     void OnCommandPreviousDisplayConfig();
     void OnCommandQuit();
     void OnCommandResetDisplayConfig();
-    void OnCommandToggleScene();
     void OnCommandToggleFullScreen();
 
-    Result SelectScene(const uint8_t& newSceneId);
-    Result InitWindowConfig(const WindowConfig& windowConfig);
-    Result InitConfig(const std::string& fileName);
+    Result SelectScene(Scene* newScene);
+    Result PushScene(Scene* newScene);
+    void PopScene();
+    void PopAllScenes();
+    void ReinitialiseScenes();
 
 private:
     static constexpr DWORD FRAMES_PER_SECOND = 60;
@@ -64,7 +68,7 @@ private:
 protected:
     HINSTANCE appInstance_;
     ConfigStore config_;
-    Scene* scenes_[MAX_SCENE_COUNT];
+    InputManager inputManager_;
 
 private:
     GraphicsEngine graphicsEngine_;
@@ -79,9 +83,9 @@ private:
     bool showMousePosition_ = true;
     AppTimer timer_;
     int64_t totalAppFrames_;
-    Window* mainWindow_;
+    Window* mainWindow_ = nullptr;
     WindowConfig mainWindowConfig_;
-    InputManager inputManager_;
-    AppUserInput userInputHandler_;
-    uint8_t currentSceneId_ = UINT8_MAX;
+    std::string configFileName_;
+    AppUserInput* userInputHandler_ = nullptr;
+    std::deque<Scene*> currentScenes_;
 };

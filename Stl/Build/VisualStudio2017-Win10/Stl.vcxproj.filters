@@ -16,7 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Interface\Stl\StlWrapper.hpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
