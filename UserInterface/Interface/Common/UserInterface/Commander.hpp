@@ -21,8 +21,9 @@ public:
     void Subscribe(const Command::Id& command, Element* receiver);
     void Unsubscribe(const Command::Id& command, Element* receiver);
     void SubscribeToMouseMove(Element* receiver);
+    void UnsubscribeFromMouseMove(Element* receiver);
 
 private:
     std::map<Command::Id, std::set<Element*> > receivers_;
-    std::vector<Element*> mouseMoveReceviers_;
+    std::set<Element*> mouseMoveReceviers_;
 };

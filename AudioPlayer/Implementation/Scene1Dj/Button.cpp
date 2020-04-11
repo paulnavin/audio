@@ -4,6 +4,10 @@
 #include <UserInterface/ModelPortal.hpp>
 #include <UserInterface/Commander.hpp>
 
+Button::~Button() {
+    chell_->commander->UnsubscribeFromMouseMove(this);
+}
+
 Result Button::Init(ModelPortal* portal) {
     Result initResult = Element::Init(portal);
     if (initResult.HasErrors()) {

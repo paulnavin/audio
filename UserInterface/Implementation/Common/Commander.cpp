@@ -32,5 +32,9 @@ void Commander::Unsubscribe(const Command::Id& command, Element* receiver) {
 }
 
 void Commander::SubscribeToMouseMove(Element* receiver) {
-    mouseMoveReceviers_.push_back(receiver);
+    mouseMoveReceviers_.insert(receiver);
+}
+
+void Commander::UnsubscribeFromMouseMove(Element* receiver) {
+    mouseMoveReceviers_.erase(receiver);
 }

@@ -9,7 +9,7 @@ struct ModelPortal;
 class Button : public Element {
 public:
     Button() = default;
-    virtual ~Button() = default;
+    virtual ~Button();
 
 public:
     Result Init(ModelPortal* portal) override;
