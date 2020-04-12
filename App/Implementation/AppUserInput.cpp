@@ -30,6 +30,15 @@ Result AppUserInput::Init(App* newApp, InputManager* inputManager) {
     inputManager_->AddCoreCommand(new Command(ResetDisplayConfig, "Reset Display Config", bindings));
     bindings.clear();
 
+    bindings.push_back(KeyBinding(VK_LBUTTON, KeyState::JustPressed));
+    inputManager_->AddCoreCommand(new Command(LeftButtonDown, "Left Button Down", bindings));
+    bindings.clear();
+
+    bindings.push_back(KeyBinding(VK_LBUTTON, KeyState::JustReleased));
+    inputManager_->AddCoreCommand(new Command(LeftButtonUp, "Left Button Up", bindings));
+    bindings.clear();
+
+
     return Result{};
 };
 

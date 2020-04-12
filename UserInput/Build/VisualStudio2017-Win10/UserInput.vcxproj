@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\Interface\UserInput\KeyBinding.hpp" />
     <ClInclude Include="..\..\Interface\UserInput\Command.hpp" />
     <ClInclude Include="..\..\Interface\UserInput\KeyState.hpp" />
+    <ClInclude Include="..\..\Interface\UserInput\UserInputCommands.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Command.cpp" />

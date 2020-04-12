@@ -182,7 +182,6 @@
     <ClInclude Include="..\..\Implementation\AudioPlayerApp.hpp" />
     <ClInclude Include="..\..\Implementation\AudioPlayerUserInput.hpp" />
     <ClInclude Include="..\..\Implementation\Resource.h" />
-    <ClInclude Include="..\..\Implementation\Scene1Dj\Button.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\ButtonRow.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\HighlightButton.hpp" />
     <ClInclude Include="..\..\Implementation\Scene1Dj\DjTopRow.hpp" />
@@ -208,7 +207,6 @@
     <ClCompile Include="..\..\Implementation\AudioPlayerApp.cpp" />
     <ClCompile Include="..\..\Implementation\AudioPlayerUserInput.cpp" />
     <ClCompile Include="..\..\Implementation\main.cpp" />
-    <ClCompile Include="..\..\Implementation\Scene1Dj\Button.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\ButtonRow.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\HighlightButton.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\DjTopRow.cpp" />

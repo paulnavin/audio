@@ -60,3 +60,7 @@ void AudioPlayerApp::SelectNextScene() {
 void AudioPlayerApp::ShowSettings() {
     PushScene(&scene3_);
 }
+
+void AudioPlayerApp::HideSettings() {
+    PopScene();
+}

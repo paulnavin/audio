@@ -27,6 +27,9 @@
     <ClInclude Include="..\..\Interface\UserInput\Command.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\UserInput\UserInputCommands.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\InputManager.cpp">

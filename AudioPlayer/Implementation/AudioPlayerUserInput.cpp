@@ -27,6 +27,10 @@ Result AudioPlayerUserInput::Init(App* newApp, InputManager* inputManager) {
     inputManager_->AddCoreCommand(new Command(ShowSettings, "Show Settings", bindings));
     bindings.clear();
 
+    bindings.push_back(KeyBinding(VK_NAVIGATION_CANCEL, KeyState::StillPressed));
+    inputManager_->AddCoreCommand(new Command(HideSettings, "Hide Settings", bindings));
+    bindings.clear();
+
     return initResult;
 };
 
@@ -38,6 +42,7 @@ void AudioPlayerUserInput::Update() {
         switch (command.first) {
             case ToggleScene: { app_->SelectNextScene(); return; }
             case ShowSettings: { app_->ShowSettings(); return; }
+            case HideSettings: { app_->HideSettings(); return; }
         }
     }
 }

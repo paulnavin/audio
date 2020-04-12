@@ -18,6 +18,7 @@ public:
 public:
     void SelectNextScene();
     void ShowSettings();
+    void HideSettings();
 
 private:
     AudioPlayerUserInput userInputHandler_;

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Interface\Common\UserInterface\Button.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\Commander.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\DebugInfo.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\Element.hpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="..\..\Interface\DirectX\UserInterface\Text2d.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Common\Button.cpp" />
     <ClCompile Include="..\..\Implementation\Common\Commander.cpp" />
     <ClCompile Include="..\..\Implementation\Common\DebugInfo.cpp" />
     <ClCompile Include="..\..\Implementation\Common\Element.cpp" />
