@@ -36,9 +36,6 @@
     <ClInclude Include="..\..\Interface\Common\UserInterface\Model2d.hpp">
       <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Common\UserInterface\Model3d.hpp">
-      <Filter>Header Files\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Interface\DirectX\UserInterface\AnimatedSprite.hpp">
       <Filter>Header Files\DirectX</Filter>
     </ClInclude>

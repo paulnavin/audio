@@ -5,16 +5,13 @@
 #include <Logging/EasyLogging++.hpp>
 #include <UserInterface/Commander.hpp>
 #include <UserInterface/Model2d.hpp>
-#include <UserInterface/Model3d.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInterface/ModelPortal.hpp>
 
 Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* inputManager) {
     Result initResult{};
 
-    portal_ = portal;
     keen_ = portal->commander;
-    GraphicsEngine* gfx = portal->gfx;
 
     initResult = userInputHandler_->Init(this, inputManager);
     if (initResult.HasErrors()) {
@@ -22,25 +19,7 @@ Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* i
         return initResult;
     }
 
-    if (model3d_ != nullptr) {
-        initResult = model3d_->Init();
-        if (initResult.HasErrors()) {
-            initResult.AppendError("Scene::Create3dModel() : Error initialising 3D model.");
-            return initResult;
-        }
-
-        VertexBuffer vertexBuffer;
-        vertexBuffer.data = model3d_->GetVertexData();
-        vertexBuffer.size = model3d_->GetVertexCount();
-        vertexBuffer.type = model3d_->GetVertexType();
-        initResult = gfx->Init3dVertices(vertexBuffer);
-        if (initResult.HasErrors()) {
-            initResult.AppendError("Scene::Create3dModel() : Error setting 3D vertex buffer.");
-            return initResult;
-        }
-    }
-
-    initResult = model2d_->Init(portal_);
+    initResult = model2d_->Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("Scene::Create2dModel : Error initialising 2D model.");
         return initResult;
@@ -52,10 +31,6 @@ Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* i
 }
 
 void Scene::ShutDown() {
-    if (model3d_ != nullptr) {
-        delete model3d_;
-    }
-    model3d_ = nullptr;
     if (model2d_ != nullptr) {
         delete model2d_;
     }
@@ -85,12 +60,12 @@ void Scene::Update(const double& dt) {
 }
 
 void Scene::Render(const double& dt) {
-    //portal_->gfx->StartRender();
+    // (2) Draw 3D stuff - removed!  See here for interoperability if 3D drawing
+    //     is needed again:
+    //       - https://docs.microsoft.com/en-us/windows/win32/direct2d/direct2d-and-direct3d-interoperation-overview
 
     // (3) Draw any 2D stuff on top of the 3D stuff.
     model2d_->Render(dt);
-
-    //portal_->gfx->EndRender();
 }
 
 Result Scene::UpdateFps(const int64_t& newFps) {

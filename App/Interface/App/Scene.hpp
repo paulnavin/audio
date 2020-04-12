@@ -8,7 +8,6 @@ class ConfigStore;
 struct ModelPortal;
 class InputManager;
 class Model2d;
-class Model3d;
 class SceneUserInput;
 class Window;
 
@@ -35,7 +34,6 @@ protected:
     Commander* keen_;
     ModelPortal* portal_;
     Window* mainWindow_;
-    Model3d* model3d_;
     Model2d* model2d_;
     SceneUserInput* userInputHandler_;
 };

@@ -20,6 +20,7 @@ Engine3d::~Engine3d() {
 Result Engine3d::Init(const Window& newWindow, const ResourceLocator& resourceManager) {
     windowHandle_ = newWindow.GetHandle();
 
+    // TODO: Either get rid of these shaders or load them in ResourceManager.
     pixelShaderFileName_ = resourceManager.GetShaderDirectoryName();
     vertexShaderFileName_ = pixelShaderFileName_;
 
