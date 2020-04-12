@@ -69,7 +69,7 @@ void GraphicsEngine::StartRender() {
     engine3d_.ClearBuffers();
 
     // (2) Draw any 3D stuff.
-    engine3d_.RenderVertices();
+    //engine3d_.RenderVertices();
 
     engine2d_.StartRender();
     // The 2D model will Render() after this.

@@ -37,10 +37,7 @@ void AudioPlayerUserInput::Update() {
     for (auto command : *activeCommands) {
         switch (command.first) {
             case ToggleScene: { app_->SelectNextScene(); return; }
-            case ShowSettings: {
-                /*app_->HandleShowSettings();*/ 
-                OutputDebugStringA("Show Settings!\n");
-                return; }
+            case ShowSettings: { app_->ShowSettings(); return; }
         }
     }
 }

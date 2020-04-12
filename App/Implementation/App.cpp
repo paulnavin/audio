@@ -132,9 +132,11 @@ Result App::Run() {
 
             // TODO: Is this actually right???
             // peek into the future and generate the output
+            graphicsEngine_.StartRender();
             for (Scene* scene : currentScenes_) {
                 scene->Render(accumulatedTime / MS_PER_FRAME);
             }
+            graphicsEngine_.EndRender();
         }
     }
 

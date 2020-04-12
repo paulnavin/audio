@@ -22,20 +22,22 @@ Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* i
         return initResult;
     }
 
-    initResult = model3d_->Init();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Scene::Create3dModel() : Error initialising 3D model.");
-        return initResult;
-    }
+    if (model3d_ != nullptr) {
+        initResult = model3d_->Init();
+        if (initResult.HasErrors()) {
+            initResult.AppendError("Scene::Create3dModel() : Error initialising 3D model.");
+            return initResult;
+        }
 
-    VertexBuffer vertexBuffer;
-    vertexBuffer.data = model3d_->GetVertexData();
-    vertexBuffer.size = model3d_->GetVertexCount();
-    vertexBuffer.type = model3d_->GetVertexType();
-    initResult = gfx->Init3dVertices(vertexBuffer);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Scene::Create3dModel() : Error setting 3D vertex buffer.");
-        return initResult;
+        VertexBuffer vertexBuffer;
+        vertexBuffer.data = model3d_->GetVertexData();
+        vertexBuffer.size = model3d_->GetVertexCount();
+        vertexBuffer.type = model3d_->GetVertexType();
+        initResult = gfx->Init3dVertices(vertexBuffer);
+        if (initResult.HasErrors()) {
+            initResult.AppendError("Scene::Create3dModel() : Error setting 3D vertex buffer.");
+            return initResult;
+        }
     }
 
     initResult = model2d_->Init(portal_);
@@ -83,12 +85,12 @@ void Scene::Update(const double& dt) {
 }
 
 void Scene::Render(const double& dt) {
-    portal_->gfx->StartRender();
+    //portal_->gfx->StartRender();
 
     // (3) Draw any 2D stuff on top of the 3D stuff.
     model2d_->Render(dt);
 
-    portal_->gfx->EndRender();
+    //portal_->gfx->EndRender();
 }
 
 Result Scene::UpdateFps(const int64_t& newFps) {
