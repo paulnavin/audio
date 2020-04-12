@@ -8,5 +8,5 @@ public:
     virtual ~Scene2Basic() = default;
 
 public:
-    virtual Result Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* inputManager) override;
+    virtual Result Init(ModelPortal* portal, ConfigStore* config, InputManager* inputManager) override;
 };

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
-#include <UserInterface/Commander.hpp>
-#include <UserInterface/ModelPortal.hpp>
+#include <UserInput/Command.hpp>
 
+class Commander;
 class ConfigStore;
 struct ModelPortal;
 class InputManager;
@@ -18,7 +18,7 @@ public:
     virtual ~Scene() = default;
 
 public:
-    virtual Result Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* inputManager);
+    virtual Result Init(ModelPortal* portal, ConfigStore* config, InputManager* inputManager);
     void ShutDown();
 
     void OnCommand(const Command::Id& command);
@@ -32,8 +32,8 @@ public:
     void OnCommandToggleDebugInfo();
 
 protected:
-    Commander keen_;
-    ModelPortal portal_;
+    Commander* keen_;
+    ModelPortal* portal_;
     Window* mainWindow_;
     Model3d* model3d_;
     Model2d* model2d_;

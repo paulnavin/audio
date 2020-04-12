@@ -1,13 +1,15 @@
 #include <App/App.hpp>
 
+#include <App/AppUserInput.hpp>
 #include <App/Scene.hpp>
 #include <Display/ErrorDisplay.hpp>
 #include <Display/Window.hpp>
 #include <Display/WindowConfig.hpp>
 #include <Display/WindowManager.hpp>
-#include <Logging/EasyLogging++.hpp>
-#include <FileSystem/ResourceLocator.hpp>
 #include <ErrorHandling/Result.hpp>
+#include <FileSystem/ResourceLocator.hpp>
+#include <Logging/EasyLogging++.hpp>
+#include <UserInterface/Commander.hpp>
 
 Result App::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) {
     appInstance_ = appInstance;
@@ -51,6 +53,18 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceMa
         return initResult;
     }
 
+    keen_.SetAppCommandHandler(
+        [this](const Command::Id& command) {
+        this->HandleAppCommand(command);
+    });
+    initResult = keen_.Init();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error initialising Billy Blaze.");
+        return initResult;
+    }
+
+    portal_.commander = &keen_;
+    portal_.gfx = &graphicsEngine_;
     LOG(INFO) << "App::Init() : Successful!";
     initialised_ = true;
 
@@ -221,13 +235,18 @@ void App::OnCommandToggleFullScreen() {
     }
 }
 
+void App::HandleAppCommand(const Command::Id& command) {
+    inputManager_.ActivateCommand(command);
+
+}
+
 Result App::SelectScene(Scene* newScene) {
     PopAllScenes();
     return PushScene(newScene);
 }
 
 Result App::PushScene(Scene* newScene) {
-    Result initResult = newScene->Init(&graphicsEngine_, &config_, &inputManager_);
+    Result initResult = newScene->Init(&portal_, &config_, &inputManager_);
     if (initResult.HasErrors()) {
         initResult.AppendError("App::Init() : Error initialising scene when pushing.");
         return initResult;
@@ -257,7 +276,7 @@ void App::ReinitialiseScenes() {
 
     // Then reinitialise in order again, from bottom of stack up.
     for (Scene* scene : currentScenes_) {
-        scene->Init(&graphicsEngine_, &config_, &inputManager_);
+        scene->Init(&portal_, &config_, &inputManager_);
     }
 }
 

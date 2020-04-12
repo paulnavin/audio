@@ -3,15 +3,18 @@
 #include <App/SceneUserInput.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Logging/EasyLogging++.hpp>
+#include <UserInterface/Commander.hpp>
 #include <UserInterface/Model2d.hpp>
 #include <UserInterface/Model3d.hpp>
 #include <UserConfiguration/Config.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
-Result Scene::Init(GraphicsEngine* gfx, ConfigStore* /*config*/, InputManager* inputManager) {
+Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* inputManager) {
     Result initResult{};
 
-    portal_.gfx = gfx;
-    portal_.commander = &keen_;
+    portal_ = portal;
+    keen_ = portal->commander;
+    GraphicsEngine* gfx = portal->gfx;
 
     initResult = userInputHandler_->Init(this, inputManager);
     if (initResult.HasErrors()) {
@@ -35,7 +38,7 @@ Result Scene::Init(GraphicsEngine* gfx, ConfigStore* /*config*/, InputManager* i
         return initResult;
     }
 
-    initResult = model2d_->Init(&portal_);
+    initResult = model2d_->Init(portal_);
     if (initResult.HasErrors()) {
         initResult.AppendError("Scene::Create2dModel : Error initialising 2D model.");
         return initResult;
@@ -62,7 +65,7 @@ void Scene::ShutDown() {
 }
 
 void Scene::OnCommand(const Command::Id& command) {
-    keen_.Distribute(command);
+    keen_->Distribute(command);
 }
 
 void Scene::OnCommandToggleDebugInfo() {
@@ -70,7 +73,7 @@ void Scene::OnCommandToggleDebugInfo() {
 }
 
 void Scene::UpdateMousePosition(const float& x, const float& y) {
-    keen_.DistributeMousePosition(x, y);
+    keen_->DistributeMousePosition(x, y);
     model2d_->SetMousePosition(x, y);
 }
 
@@ -80,12 +83,12 @@ void Scene::Update(const double& dt) {
 }
 
 void Scene::Render(const double& dt) {
-    portal_.gfx->StartRender();
+    portal_->gfx->StartRender();
 
     // (3) Draw any 2D stuff on top of the 3D stuff.
     model2d_->Render(dt);
 
-    portal_.gfx->EndRender();
+    portal_->gfx->EndRender();
 }
 
 Result Scene::UpdateFps(const int64_t& newFps) {

@@ -11,23 +11,23 @@ Result AppUserInput::Init(App* newApp, InputManager* inputManager) {
     std::vector<KeyBinding> bindings;
 
     bindings.push_back(KeyBinding('T', KeyState::JustReleased));
-    inputManager_->AddCommand(new Command(ToggleFullScreen, "Toggle Full Screen", bindings));
+    inputManager_->AddCoreCommand(new Command(ToggleFullScreen, "Toggle Full Screen", bindings));
     bindings.clear();
 
     bindings.push_back(KeyBinding(VK_ESCAPE, KeyState::JustPressed));
-    inputManager_->AddCommand(new Command(Quit, "Quit", bindings));
+    inputManager_->AddCoreCommand(new Command(Quit, "Quit", bindings));
     bindings.clear();
 
     bindings.push_back(KeyBinding('P', KeyState::JustPressed));
-    inputManager_->AddCommand(new Command(NextDisplayConfig, "Next Display Config", bindings));
+    inputManager_->AddCoreCommand(new Command(NextDisplayConfig, "Next Display Config", bindings));
     bindings.clear();
 
     bindings.push_back(KeyBinding('I', KeyState::JustPressed));
-    inputManager_->AddCommand(new Command(PreviousDisplayConfig, "Previous Display Config", bindings));
+    inputManager_->AddCoreCommand(new Command(PreviousDisplayConfig, "Previous Display Config", bindings));
     bindings.clear();
 
     bindings.push_back(KeyBinding('O', KeyState::JustPressed));
-    inputManager_->AddCommand(new Command(ResetDisplayConfig, "Reset Display Config", bindings));
+    inputManager_->AddCoreCommand(new Command(ResetDisplayConfig, "Reset Display Config", bindings));
     bindings.clear();
 
     return Result{};

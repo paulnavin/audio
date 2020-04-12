@@ -20,7 +20,11 @@ Result AudioPlayerUserInput::Init(App* newApp, InputManager* inputManager) {
     bindings.push_back(KeyBinding(VK_SHIFT, KeyState::StillPressed));
     bindings.push_back(KeyBinding(VK_CONTROL, KeyState::StillPressed));
     bindings.push_back(KeyBinding('2', KeyState::JustPressed));
-    inputManager_->AddCommand(new Command(ToggleScene, "Toggle 2D Model", bindings));
+    inputManager_->AddCoreCommand(new Command(ToggleScene, "Toggle 2D Model", bindings));
+    bindings.clear();
+
+    bindings.push_back(KeyBinding(VK_EXECUTE, KeyState::StillPressed));
+    inputManager_->AddCoreCommand(new Command(ShowSettings, "Show Settings", bindings));
     bindings.clear();
 
     return initResult;
@@ -32,7 +36,11 @@ void AudioPlayerUserInput::Update() {
     const InputManager::CommandMap* activeCommands = inputManager_->GetActiveKeyMap();
     for (auto command : *activeCommands) {
         switch (command.first) {
-        case ToggleScene: { app_->SelectNextScene(); return; }
+            case ToggleScene: { app_->SelectNextScene(); return; }
+            case ShowSettings: {
+                /*app_->HandleShowSettings();*/ 
+                OutputDebugStringA("Show Settings!\n");
+                return; }
         }
     }
 }

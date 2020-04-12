@@ -12,6 +12,7 @@ class Window;
 class InputManager {
 public:
     using CommandMap = std::map<Command::Id, Command*>;
+    using CommandQueue = std::deque<Command::Id>;
 
 public:
     InputManager() = default;
@@ -25,7 +26,8 @@ public:
     const bool IsKeyPressed(const uint16_t& keyCode) const;
 
 public:
-    void AddCommand(Command* command);
+    void ActivateCommand(const Command::Id& command);
+    void AddCoreCommand(Command* command);
     Result Init(Window* targetWindow);
     void RefreshKeyboardState();
     void RefreshMouseState();
@@ -37,6 +39,7 @@ private:
 private:
     CommandMap activeKeyMap_;
     CommandMap coreKeyMap_;
+    CommandQueue appCommandQueue_;
 
     std::array<bool, KEY_COUNT> keyboardStateCurrent_;
     std::array<bool, KEY_COUNT> keyboardStatePrevious_;

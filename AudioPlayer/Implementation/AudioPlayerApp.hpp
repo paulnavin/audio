@@ -13,10 +13,11 @@ public:
     virtual ~AudioPlayerApp() = default;
 
 public:
-    virtual Result Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) override;
+    Result Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) override;
 
 public:
     void SelectNextScene();
+    void ShowSettings();
 
 private:
     AudioPlayerUserInput userInputHandler_;

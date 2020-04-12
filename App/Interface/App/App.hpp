@@ -1,18 +1,20 @@
 #pragma once
 
 #include <App/AppTimer.hpp>
-#include <App/AppUserInput.hpp>
+#include <Display/WindowConfig.hpp>
+#include <Display/WindowMessageHandler.hpp>
+#include <ErrorHandling/Result.hpp>
 #include <Graphics/GraphicsEngine.hpp>
-#include <UserInterface/Rectangle2d.hpp>
-#include <UserInterface/Text2d.hpp>
 #include <Graphics/Vertex.hpp>
+#include <Platform/WindowsInterface.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInput/InputManager.hpp>
-#include <Display/WindowMessageHandler.hpp>
-#include <Display/WindowConfig.hpp>
-#include <ErrorHandling/Result.hpp>
-#include <Platform/WindowsInterface.hpp>
+#include <UserInterface/Commander.hpp>
+#include <UserInterface/ModelPortal.hpp>
+#include <UserInterface/Rectangle2d.hpp>
+#include <UserInterface/Text2d.hpp>
 
+class AppUserInput;
 class Scene;
 class ResourceLocator;
 class Window;
@@ -47,6 +49,8 @@ public:
     void OnCommandResetDisplayConfig();
     void OnCommandToggleFullScreen();
 
+    void HandleAppCommand(const Command::Id& command);
+
     Result SelectScene(Scene* newScene);
     Result PushScene(Scene* newScene);
     void PopScene();
@@ -71,7 +75,9 @@ protected:
     InputManager inputManager_;
 
 private:
+    Commander keen_;
     GraphicsEngine graphicsEngine_;
+    ModelPortal portal_;
     bool initialised_ = false;
     bool finished_ = false;
     bool paused_ = false;

@@ -23,6 +23,14 @@ void Commander::DistributeMousePosition(const float& x, const float& y) {
     }
 }
 
+void Commander::SendAppCommand(const Command::Id& command) {
+    onAppCommand_(command);
+}
+
+void Commander::SetAppCommandHandler(std::function<void(const Command::Id& command)> handler) {
+    onAppCommand_ = handler;
+}
+
 void Commander::Subscribe(const Command::Id& command, Element* receiver) {
     receivers_[command].insert(receiver);
 }

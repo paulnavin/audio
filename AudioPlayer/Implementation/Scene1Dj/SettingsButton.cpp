@@ -1,7 +1,11 @@
 #include "SettingsButton.hpp"
 
+#include "AudioPlayerUserInputCommands.hpp"
+
 #include <Graphics/GraphicsEngine.hpp>
 #include <Resources/ResourceManager.hpp>
+#include <UserInterface/Commander.hpp>
+#include <UserInterface/ModelPortal.hpp>
 
 Result SettingsButton::Init(ModelPortal* portal) {
     Result initResult = Element::Init(portal);
@@ -13,10 +17,10 @@ Result SettingsButton::Init(ModelPortal* portal) {
     button_.SetParent(this);
     button_.SetDimensionsAsPercentage(100.0f, 100.0f);
     button_.SetOnClickHandler(
-        []() {
-        OutputDebugStringA("Clicked");
-        ResourceManager::ShowOpenFileDialog();
-    });
+        [this]() {
+            OutputDebugStringA("Clicked");
+            this->chell_->commander->SendAppCommand(ShowSettings);
+        });
     initResult = button_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("SettingsButton::Init() : Error initialising button.");

@@ -6,7 +6,7 @@
 #include "ModelStarField.hpp"
 #include "Scene1UserInput.hpp"
 
-Result Scene1Dj::Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* inputManager) {
+Result Scene1Dj::Init(ModelPortal* portal, ConfigStore* config, InputManager* inputManager) {
     Result initResult{};
 
     model3d_ = new ModelStarField();
@@ -15,5 +15,5 @@ Result Scene1Dj::Init(GraphicsEngine* gfx, ConfigStore* config, InputManager* in
 
     LOG(INFO) << "Scene1Dj::Init() : Created successfully!";
 
-    return Scene::Init(gfx, config, inputManager);
+    return Scene::Init(portal, config, inputManager);
 }

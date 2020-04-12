@@ -4,6 +4,7 @@
 #include <FileSystem/ResourceLocator.hpp>
 #include <Display/WindowConfig.hpp>
 
+#include "AudioPlayerUserInputCommands.hpp"
 #include "Resource.h"
 
 Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) {
@@ -54,4 +55,8 @@ void AudioPlayerApp::SelectNextScene() {
         currentScene_ = &scene1_;
     }
     SelectScene(currentScene_);
+}
+
+void AudioPlayerApp::ShowSettings() {
+    PushScene(&scene3_);
 }

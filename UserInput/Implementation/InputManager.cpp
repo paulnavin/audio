@@ -51,7 +51,11 @@ const bool InputManager::IsKeyPressed(const uint16_t& keyCode) const {
     return (GetAsyncKeyState(keyCode) & 0x8000) ? 1 : 0;
 }
 
-void InputManager::AddCommand(Command* command) {
+void InputManager::ActivateCommand(const Command::Id& commandId) {
+    appCommandQueue_.push_front(commandId);
+}
+
+void InputManager::AddCoreCommand(Command* command) {
     coreKeyMap_[command->id] = command;
 }
 
@@ -78,6 +82,13 @@ void InputManager::Update() {
 
     bool isActive = false;
     activeKeyMap_.clear();
+
+    while (appCommandQueue_.empty() == false) {
+        Command::Id id = appCommandQueue_.back();
+        appCommandQueue_.pop_back();
+        Command* command = coreKeyMap_[id];
+        activeKeyMap_.insert(std::pair<Command::Id, Command*>(id, command));
+    }
 
     // Go through all the possible bindings to see if they're active.
     for (auto command : coreKeyMap_) {
