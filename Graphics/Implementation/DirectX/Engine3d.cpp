@@ -125,7 +125,9 @@ Result Engine3d::Resize() {
 
     if (currentlyInFullScreenMode_ != alreadyInFullScreenMode) {
         if (alreadyInFullScreenMode) {
-            // switch from window to full screen -> Microsoft recommends resizing the target before going into fullscreen
+            // Note: To stretch to full screen, set "Scaling" value in DXGI_MODE_DESC.
+            // switch from window to full screen
+            // Microsoft recommends resizing the target before going into fullscreen
             HRESULT hr = swapChain_->ResizeTarget(&zeroRefreshRate);
             if (FAILED(hr)) {
                 resizeResult.AppendError("Engine3d::Resize() : Couldn't resize target.");
