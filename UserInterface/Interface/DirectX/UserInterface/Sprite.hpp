@@ -13,6 +13,7 @@ public:
 
 public:
     Result Init(ModelPortal* portal) override;
+    void RenderAndSetPosition(const double& dt);
     void Render(const double& dt) override;
 
 public:

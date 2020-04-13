@@ -22,9 +22,12 @@ Result Sprite::Init(ModelPortal* portal) {
     return initResult;
 }
 
-void Sprite::Render(const double&) {
-    // TODO: Make a separate Render() call that takes a position.
+void Sprite::RenderAndSetPosition(const double&) {
     bitmapToDraw_->SetPositionAndDimension(positionOnScreen_, dimensionsOnScreen_);
+    bitmapToDraw_->Render();
+}
+
+void Sprite::Render(const double&) {
     bitmapToDraw_->Render();
 }
 

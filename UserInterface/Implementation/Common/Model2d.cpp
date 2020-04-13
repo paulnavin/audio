@@ -38,7 +38,7 @@ void Model2d::Render(const double& dt) {
     }
 
     if (isActive_ == true) {
-        mouseCursor_.Render(dt);
+        mouseCursor_.RenderAndSetPosition(dt);
 
         if (showDebugInfo_ == true) {
             debugElement_.Render(dt);
