@@ -21,9 +21,6 @@ Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* i
         return initResult;
     }
 
-    resources->RegisterBitmapToLoad("BlueArrow");
-    resources->RegisterBitmapToLoad("SettingsButton");
-
     initResult = resources->LoadBitmaps();
     if (initResult.HasErrors()) {
         initResult.AppendError("Scene::Init() : Error loading bitmaps.");

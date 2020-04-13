@@ -24,18 +24,21 @@ public:
     void RegisterBitmapToLoad(const std::string& name);
     void RegisterTextToLoad(const char* styleName);
 
-    BitmapResource* GimmeABitmapDammit(const std::string& name);
+    Bitmap* GimmeABitmapDammit(const std::string& name);
     TextBox* GimmeATextBoxDammit(const char* styleName);
 
     Result LoadBitmaps();
 
 private:
     using BitmapResourceMap = std::map<std::string, BitmapResource*>;
+    using Bitmaps = std::vector<Bitmap*>;
+
 private:
     GraphicsEngine* gfx_;
 
     std::vector<std::string> namesToLoad_;
     BitmapResourceMap loadedBitmapResources_;
+    Bitmaps bitties_;
 
     std::string bitmapNames_[10];
     std::string bitmapPaths_[10];

@@ -16,7 +16,7 @@ Result Model2d::Init(ModelPortal* portal) {
         return initResult;
     }
 
-    mouseCursor_.SetBitmapName("BlueArrow");
+    mouseCursor_.SetBitmapName("SettingsButton");
     mouseCursor_.SetDimensions(48.0f, 48.0f);
 
     initResult = mouseCursor_.Init(portal);

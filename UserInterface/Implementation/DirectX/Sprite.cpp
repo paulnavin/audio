@@ -1,6 +1,6 @@
 #include <UserInterface/Sprite.hpp>
 
-#include <Graphics/BitmapResource.hpp>
+#include <Graphics/Bitmap.hpp>
 #include <Graphics/Position2d.hpp>
 #include <Resources/ResourceManager.hpp>
 #include <UserInterface/ModelPortal.hpp>
@@ -23,7 +23,9 @@ Result Sprite::Init(ModelPortal* portal) {
 }
 
 void Sprite::Render(const double&) {
-    bitmapToDraw_->Render(positionOnScreen_, dimensionsOnScreen_);
+    // TODO: Make a separate Render() call that takes a position.
+    bitmapToDraw_->SetPositionAndDimension(positionOnScreen_, dimensionsOnScreen_);
+    bitmapToDraw_->Render();
 }
 
 void Sprite::SetBitmapName(const char* name) {

@@ -51,6 +51,10 @@ void ResourceManager::ShutDown() {
     for (auto resource : loadedBitmapResources_) {
         delete resource.second;
     }
+
+    for (auto bitmap : bitties_) {
+        delete bitmap;
+    }
 }
 
 void ResourceManager::RegisterBitmapToLoad(const std::string& name) {
@@ -61,10 +65,20 @@ void ResourceManager::RegisterTextToLoad(const char* /*styleName*/) {
     
 }
 
-BitmapResource* ResourceManager::GimmeABitmapDammit(const std::string& name) {
+Bitmap* ResourceManager::GimmeABitmapDammit(const std::string& name) {
     BitmapResourceMap::iterator finder = loadedBitmapResources_.find(name);
     if (finder != loadedBitmapResources_.end()) {
-        return finder->second;
+        Bitmap* newBitmap = new Bitmap();
+        Result initResult = newBitmap->Init(gfx_, finder->second);
+        if (initResult.IsOkay()) {
+            bitties_.push_back(newBitmap);
+            return newBitmap;
+        } else {
+            delete newBitmap;
+            initResult.AppendError("Could not get bitmap:");
+            initResult.AppendError(name.c_str());
+            return nullptr;
+        }
     } else {
         return nullptr;
     }
@@ -87,7 +101,7 @@ Result ResourceManager::LoadBitmaps() {
                 loadedBitmapResources_.insert(std::make_pair(name, newResource));
             } else {
                 delete newResource;
-                initResult.AppendError("Could not load bitmap:");
+                initResult.AppendError("Could not load bitmap resource:");
                 initResult.AppendError(resourceLocation.c_str());
                 return initResult;
             }

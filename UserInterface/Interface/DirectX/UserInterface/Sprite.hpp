@@ -3,7 +3,7 @@
 #include <ErrorHandling/Result.hpp>
 #include <UserInterface/Element.hpp>
 
-class BitmapResource;
+class Bitmap;
 
 class Sprite : public Element {
 
@@ -19,6 +19,6 @@ public:
     void SetBitmapName(const char* name);
 
 protected:
-    BitmapResource* bitmapToDraw_;
+    Bitmap* bitmapToDraw_;
     const char*     name_;
 };
