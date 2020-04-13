@@ -9,7 +9,6 @@ Model2d::Model2d()
 }
 
 Result Model2d::Init(ModelPortal* portal) {
-    const ResourceLocator& resourceManager = portal->gfx->GetResourceManager();
 
     Result initResult = debugElement_.Init(portal);
     if (initResult.HasErrors()) {
@@ -17,12 +16,7 @@ Result Model2d::Init(ModelPortal* portal) {
         return initResult;
     }
 
-    std::string spriteFileName = resourceManager.GetFullCursorFileName("BlueArrow.png");
-    initResult = mouseCursor_.SetSourceFileName(spriteFileName);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Model2d::Init() : Error setting mouse cursor file name.");
-        return initResult;
-    }
+    mouseCursor_.SetBitmapName("BlueArrow");
     mouseCursor_.SetDimensions(48.0f, 48.0f);
 
     initResult = mouseCursor_.Init(portal);

@@ -19,7 +19,7 @@ public:
 
 public:
     const Engine2d& GetEngine2d() const;
-    const ResourceLocator& GetResourceManager() const;
+    const ResourceLocator& GetResourceLocator() const;
     const TextManager2d& GetTextManager2d() const;
     const Window* GetTargetWindow() const;
 
@@ -39,7 +39,7 @@ private:
     Engine3d engine3d_;
 
     // TODO: Move this up higher, when it manages more than just graphics resources.
-    ResourceLocator resourceManager_;
+    ResourceLocator resourceLocator_;
     TextManager2d textManager2d_;
     Window* targetWindow_;
 };

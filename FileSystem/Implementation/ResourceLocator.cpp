@@ -24,6 +24,17 @@ const std::string ResourceLocator::GetFullCursorFileName(const std::string& file
     return fullName;
 }
 
+const std::string ResourceLocator::GetImageDirectoryName() const {
+    return "..\\..\\..\\Resources\\Images";
+}
+
+const std::string ResourceLocator::GetFullImageFileName(const std::string& fileName) const {
+    std::string fullName = GetImageDirectoryName();
+    fullName.append("\\");
+    fullName.append(fileName);
+    return fullName;
+}
+
 const std::string ResourceLocator::GetLogDirectoryName() const {
     return ".\\Resources\\Logging";
 }

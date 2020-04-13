@@ -6,7 +6,7 @@
 #include <UserInterface/ModelPortal.hpp>
 
 Result ExplosionAnimation::Init(ModelPortal* portal) {
-    const ResourceLocator& resourceManager = portal->gfx->GetResourceManager();
+    const ResourceLocator& resourceManager = portal->gfx->GetResourceLocator();
 
     Result initResult = Element::Init(portal);
     if (initResult.HasErrors()) {
@@ -31,28 +31,28 @@ Result ExplosionAnimation::Init(ModelPortal* portal) {
 
     std::string animatedSpriteFileName = resourceManager.GetFullAnimatedSpriteFileName("BlueCrystal.png");
 
-    animatedSprite_.SetParent(this);
-    animatedSprite_.SetCycleData(explosionAnimationCycles);
-    initResult = animatedSprite_.SetSourceFileName(animatedSpriteFileName);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("ExplosionAnimation::Init() : Error setting animated sprite file name.");
-        return initResult;
-    }
+    //animatedSprite_.SetParent(this);
+    //animatedSprite_.SetCycleData(explosionAnimationCycles);
+    //initResult = animatedSprite_.SetSourceFileName(animatedSpriteFileName);
+    //if (initResult.HasErrors()) {
+    //    initResult.AppendError("ExplosionAnimation::Init() : Error setting animated sprite file name.");
+    //    return initResult;
+    //}
 
-    initResult = animatedSprite_.Init(portal);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("ExplosionAnimation::Init() : Error initialising animated sprite.");
-        return initResult;
-    }
+    //initResult = animatedSprite_.Init(portal);
+    //if (initResult.HasErrors()) {
+    //    initResult.AppendError("ExplosionAnimation::Init() : Error initialising animated sprite.");
+    //    return initResult;
+    //}
 
     return Result{};
 }
 
-void ExplosionAnimation::Update(const double& dt) {
-    animatedSprite_.UpdateAnimation(dt);
+void ExplosionAnimation::Update(const double& /*dt*/) {
+    //animatedSprite_.UpdateAnimation(dt);
 }
 
-void ExplosionAnimation::Render(const double& dt) {
-    animatedSprite_.Render(dt);
+void ExplosionAnimation::Render(const double& /*dt*/) {
+    //animatedSprite_.Render(dt);
 }
 

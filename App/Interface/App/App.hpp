@@ -7,6 +7,7 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Vertex.hpp>
 #include <Platform/WindowsInterface.hpp>
+#include <Resources/ResourceManager.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInput/InputManager.hpp>
 #include <UserInterface/Commander.hpp>
@@ -78,6 +79,7 @@ private:
     Commander keen_;
     GraphicsEngine graphicsEngine_;
     ModelPortal portal_;
+    ResourceManager resourceManager_;
     bool initialised_ = false;
     bool finished_ = false;
     bool paused_ = false;

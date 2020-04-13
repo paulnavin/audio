@@ -1,9 +1,8 @@
 #pragma once
 
+#include <UserInterface/Button.hpp>
 #include <UserInterface/Element.hpp>
 #include <UserInterface/Text2d.hpp>
-
-#include "Button.hpp"
 
 struct ModelPortal;
 

@@ -53,6 +53,12 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceMa
         return initResult;
     }
 
+    initResult = resourceManager_.Init(&graphicsEngine_);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("App::Init() : Error initialising resource manager.");
+        return initResult;
+    }
+
     keen_.SetAppCommandHandler(
         [this](const Command::Id& command) {
         this->HandleAppCommand(command);
@@ -65,6 +71,7 @@ Result App::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceMa
 
     portal_.commander = &keen_;
     portal_.gfx = &graphicsEngine_;
+    portal_.resourceManager = &resourceManager_;
     LOG(INFO) << "App::Init() : Successful!";
     initialised_ = true;
 
@@ -147,6 +154,8 @@ void App::ShutDown() {
     LOG(INFO) << "App::ShutDown() : Shut down!";
     
     PopAllScenes();
+
+    resourceManager_.ShutDown();
 
     // mainWindow_ will be destroyed by the WindowManager.
     mainWindow_ = nullptr;

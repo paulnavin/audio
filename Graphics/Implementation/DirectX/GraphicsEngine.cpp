@@ -7,8 +7,8 @@ const Engine2d& GraphicsEngine::GetEngine2d() const {
     return engine2d_;
 }
 
-const ResourceLocator& GraphicsEngine::GetResourceManager() const {
-    return resourceManager_;
+const ResourceLocator& GraphicsEngine::GetResourceLocator() const {
+    return resourceLocator_;
 }
 
 const TextManager2d& GraphicsEngine::GetTextManager2d() const {
@@ -22,7 +22,7 @@ const Window* GraphicsEngine::GetTargetWindow() const {
 Result GraphicsEngine::Init(Window* targetWindow, const ResourceLocator& resourceManager) {
     Result initResult{};
 
-    resourceManager_ = resourceManager;
+    resourceLocator_ = resourceManager;
     targetWindow_ = targetWindow;
 
     initResult = engine3d_.Init(*targetWindow, resourceManager);

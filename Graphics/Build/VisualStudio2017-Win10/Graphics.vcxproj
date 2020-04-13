@@ -25,18 +25,26 @@
     <ClInclude Include="..\..\Interface\Common\Graphics\Vertex.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\VertexBuffer.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\VertexType.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\Bitmap.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\BitmapResource.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\DirectXInterface.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Engine2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Engine3d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\GraphicsEngine.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\ShaderBuffer.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\TextBox.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\TextManager2d.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\TextResource.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\DirectX\Bitmap.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\BitmapResource.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Engine2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Engine3d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\GraphicsEngine.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\TextBox.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\TextManager2d.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\TextResource.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

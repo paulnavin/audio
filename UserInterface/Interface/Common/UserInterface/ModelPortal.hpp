@@ -2,9 +2,10 @@
 
 class Commander;
 class GraphicsEngine;
-struct ModelPortal;
+class ResourceManager;
 
 struct ModelPortal {
     GraphicsEngine* gfx;
     Commander* commander;
+    ResourceManager* resourceManager;
 };

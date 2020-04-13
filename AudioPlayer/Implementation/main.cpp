@@ -40,6 +40,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return 1;
     }
     
+    // TODO: Maybe don't shutdown in release mode, just quit...?
     app.ShutDown();
     return 0;
 }

@@ -16,7 +16,7 @@ public:
     Result Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) override;
 
 public:
-    void SelectNextScene();
+    Result SelectNextScene();
     void ShowSettings();
     void HideSettings();
 

@@ -40,11 +40,15 @@ Result AudioPlayerApp::Init(const HINSTANCE& appInstance, const ResourceLocator&
 
     SetUserInputHandler(&userInputHandler_);
 
-    SelectNextScene();
+    initResult = SelectNextScene();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("AudioPlayerApp::Init() : Error selecting first scene.");
+    }
+
     return initResult;
 }
 
-void AudioPlayerApp::SelectNextScene() {
+Result AudioPlayerApp::SelectNextScene() {
     if (currentScene_ == nullptr) {
         currentScene_ = &scene1_;
     } else if (currentScene_ == &scene1_) {
@@ -54,7 +58,7 @@ void AudioPlayerApp::SelectNextScene() {
     } else if (currentScene_ == &scene3_) {
         currentScene_ = &scene1_;
     }
-    SelectScene(currentScene_);
+    return SelectScene(currentScene_);
 }
 
 void AudioPlayerApp::ShowSettings() {

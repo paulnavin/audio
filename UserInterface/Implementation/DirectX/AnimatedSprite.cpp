@@ -8,29 +8,31 @@ Result AnimatedSprite::Init(ModelPortal* portal) {
 }
 
 void AnimatedSprite::Render(const double& /*dt*/) {
-    AnimatedSpriteCycleData cycleData = cycleData_[0];
-    D2D1_RECT_F destRect = { positionOnScreen_.x - (cycleData.width*cycleData.rotationCenterX),
-                    positionOnScreen_.y - (cycleData.height*cycleData.rotationCenterY),
-                    positionOnScreen_.x + (cycleData.width*(1.0f - cycleData.rotationCenterX)),
-                    positionOnScreen_.y + (cycleData.height*(1.0f - cycleData.rotationCenterY)) };
-    D2D1_SIZE_U size = bitmap_->GetPixelSize();
+    //AnimatedSpriteCycleData cycleData = cycleData_[0];
+    //D2D1_RECT_F destRect = { positionOnScreen_.x - (cycleData.width*cycleData.rotationCenterX),
+    //                positionOnScreen_.y - (cycleData.height*cycleData.rotationCenterY),
+    //                positionOnScreen_.x + (cycleData.width*(1.0f - cycleData.rotationCenterX)),
+    //                positionOnScreen_.y + (cycleData.height*(1.0f - cycleData.rotationCenterY)) };
+    //D2D1_SIZE_U size = bitmap_->GetPixelSize();
 
-    size_t startingRow = activeAnimationFrame_ / cycleData.framesPerRow;
-    size_t startingCol = activeAnimationFrame_ % cycleData.framesPerRow;
+    //size_t startingRow = activeAnimationFrame_ / cycleData.framesPerRow;
+    //size_t startingCol = activeAnimationFrame_ % cycleData.framesPerRow;
 
-    float startX = startingCol * (cycleData.width + cycleData.paddingWidth) + cycleData.borderPaddingWidth;
-    float startY = cycleData.borderPaddingHeight;
-    startY += (cycleData.height + cycleData.paddingHeight) * startingRow;
+    //float startX = startingCol * (cycleData.width + cycleData.paddingWidth) + cycleData.borderPaddingWidth;
+    //float startY = cycleData.borderPaddingHeight;
+    //startY += (cycleData.height + cycleData.paddingHeight) * startingRow;
 
-    D2D1_RECT_F sourceRect = { startX, startY, startX + cycleData.width, startY + cycleData.height };
+    //D2D1_RECT_F sourceRect = { startX, startY, startX + cycleData.width, startY + cycleData.height };
 
-    D2D1_BITMAP_INTERPOLATION_MODE interPol = D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR;
-    float opacity = 1.0f;
-    deviceContext2d_->DrawBitmap(bitmap_.Get(), destRect, opacity, interPol, sourceRect);
+    //D2D1_BITMAP_INTERPOLATION_MODE interPol = D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR;
+    //float opacity = 1.0f;
+    //deviceContext2d_->DrawBitmap(bitmap_.Get(), destRect, opacity, interPol, sourceRect);
 }
 
 Result AnimatedSprite::SetSourceFileName(const std::string& fileName) {
-    return Sprite::SetSourceFileName(fileName);
+    // TODO: Fix this relationship.
+    Sprite::SetBitmapName(fileName.c_str());
+    return Result{};
 }
 
 void AnimatedSprite::SetCycleData(const AnimatedSpriteCycleDataVector& newData) {

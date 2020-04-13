@@ -3,6 +3,7 @@
 #include <App/SceneUserInput.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Logging/EasyLogging++.hpp>
+#include <Resources/ResourceManager.hpp>
 #include <UserInterface/Commander.hpp>
 #include <UserInterface/Model2d.hpp>
 #include <UserConfiguration/Config.hpp>
@@ -12,6 +13,7 @@ Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* i
     Result initResult{};
 
     keen_ = portal->commander;
+    ResourceManager* resources = portal->resourceManager;
 
     initResult = userInputHandler_->Init(this, inputManager);
     if (initResult.HasErrors()) {
@@ -19,9 +21,18 @@ Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* i
         return initResult;
     }
 
+    resources->RegisterBitmapToLoad("BlueArrow");
+    resources->RegisterBitmapToLoad("SettingsButton");
+
+    initResult = resources->LoadBitmaps();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Scene::Init() : Error loading bitmaps.");
+        return initResult;
+    }
+
     initResult = model2d_->Init(portal);
     if (initResult.HasErrors()) {
-        initResult.AppendError("Scene::Create2dModel : Error initialising 2D model.");
+        initResult.AppendError("Scene::Init() : Error initialising 2D model.");
         return initResult;
     }
 
