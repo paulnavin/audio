@@ -20,6 +20,7 @@ public:
     virtual void Update(const double& dt);
     void Render(const double& dt);
 
+    void SetActive(bool isActive);
     void SetCursorBitmap(const std::string& bitmapName);
     void SetFps(const int64_t& newFps);
     void SetMousePosition(const float& x, const float& y);
@@ -41,4 +42,6 @@ protected:
     DebugInfo debugElement_;
 
     Window* window_;
+
+    bool isActive_ = true;
 };

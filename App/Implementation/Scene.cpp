@@ -57,6 +57,10 @@ void Scene::OnCommandToggleDebugInfo() {
     model2d_->ToggleDebugInfo();
 }
 
+void Scene::SetTopScene(bool isTopScene) {
+    model2d_->SetActive(isTopScene);
+}
+
 void Scene::UpdateMousePosition(const float& x, const float& y) {
     keen_->DistributeMousePosition(x, y);
     model2d_->SetMousePosition(x, y);

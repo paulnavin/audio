@@ -257,12 +257,19 @@ Result App::SelectScene(Scene* newScene) {
 }
 
 Result App::PushScene(Scene* newScene) {
+    if (currentScenes_.size() > 0) {
+        currentScenes_.back()->SetTopScene(false);
+    }
     Result initResult = newScene->Init(&portal_, &config_, &inputManager_);
     if (initResult.HasErrors()) {
         initResult.AppendError("App::Init() : Error initialising scene when pushing.");
         return initResult;
     }
+
+    newScene->SetTopScene(true);
+
     currentScenes_.push_back(newScene);
+
     return initResult;
 }
 
@@ -276,6 +283,10 @@ void App::PopScene() {
     if (currentScenes_.size() > 0) {
         currentScenes_.back()->ShutDown();
         currentScenes_.pop_back();
+    }
+
+    if (currentScenes_.size() > 0) {
+        currentScenes_.back()->SetTopScene(true);
     }
 }
 

@@ -37,11 +37,17 @@ void Model2d::Render(const double& dt) {
         element->Render(dt);
     }
 
-    mouseCursor_.Render(dt);
+    if (isActive_ == true) {
+        mouseCursor_.Render(dt);
 
-    if (showDebugInfo_ == true) {
-        debugElement_.Render(dt);
+        if (showDebugInfo_ == true) {
+            debugElement_.Render(dt);
+        }
     }
+}
+
+void Model2d::SetActive(bool isActive) {
+    isActive_ = isActive;
 }
 
 void Model2d::SetCursorBitmap(const std::string& bitmapName) {

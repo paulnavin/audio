@@ -23,6 +23,7 @@ private:
     Rectangle2d background_;
     Rectangle2d buttonDownHighlight_;
     bool mouseOver_ = false;
+    bool buttonDownOnThisButton_ = false;
     Rectangle2d mouseOverHighlight_;
     std::function<void()> onClickHandler_;
 };

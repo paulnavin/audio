@@ -28,6 +28,8 @@ public:
     // TODO: Don't return a Result here.
     Result UpdateFps(const int64_t& newFps);
 
+    void SetTopScene(bool isTopScene);
+
     void OnCommandToggleDebugInfo();
 
 protected:

@@ -53,6 +53,8 @@ Result Button::Init(ModelPortal* portal) {
     AddChild(&mouseOverHighlight_);
     AddChild(&buttonDownHighlight_);
 
+    chell_->commander->Subscribe(LeftButtonUp, this);
+
     return initResult;
 }
 
@@ -68,19 +70,23 @@ bool Button::OnClick() {
 
 void Button::HandleCommand(const Command::Id& command) {
     switch (command) {
-    case LeftButtonDown: {
-        chell_->commander->Subscribe(LeftButtonUp, this); 
-        buttonDownHighlight_.SetEnabled(true);
-        return; }
-    case LeftButtonUp: {
-        buttonDownHighlight_.SetEnabled(false);
-        if ((mouseOver_ == true) && (onClickHandler_)){
-            onClickHandler_();
+        case LeftButtonDown: {
+            buttonDownHighlight_.SetEnabled(true);
+            buttonDownOnThisButton_ = true;
+            return;
         }
-        else {
-            chell_->commander->Unsubscribe(LeftButtonDown, this);
+        case LeftButtonUp: {
+            if (buttonDownOnThisButton_ == true) {
+                buttonDownHighlight_.SetEnabled(false);
+                if ((mouseOver_ == true) && (onClickHandler_)) {
+                    onClickHandler_();
+                } else {
+                    chell_->commander->Unsubscribe(LeftButtonDown, this);
+                }
+                buttonDownOnThisButton_ = false;
+            }
+            return; 
         }
-        return; }
     }
 }
 
