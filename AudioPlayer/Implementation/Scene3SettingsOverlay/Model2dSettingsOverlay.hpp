@@ -70,6 +70,8 @@ public:
         elements_.push_back(&ellipse_);
         elements_.push_back(&hideSettingsButton_);
 
+        SetCursorBitmap("SettingsButton");
+
         return Model2d::Init(portal);
     }
 

@@ -61,6 +61,7 @@ Result ModelDj::Init(ModelPortal* portal) {
     elements_.push_back(&jogWheel1_);
     elements_.push_back(&explosion_);
 
+    SetCursorBitmap("BlueArrow");
     return Model2d::Init(portal);
 }
 

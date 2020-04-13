@@ -20,6 +20,7 @@ public:
     virtual void Update(const double& dt);
     void Render(const double& dt);
 
+    void SetCursorBitmap(const std::string& bitmapName);
     void SetFps(const int64_t& newFps);
     void SetMousePosition(const float& x, const float& y);
     void SetWindow(Window* window);
@@ -34,6 +35,7 @@ protected:
     float mouseXPosition_;
     float mouseYPosition_;
     Sprite mouseCursor_;
+    std::string mouseCursorBitmapName_;
 
     bool showDebugInfo_;
     DebugInfo debugElement_;

@@ -16,7 +16,7 @@ Result Model2d::Init(ModelPortal* portal) {
         return initResult;
     }
 
-    mouseCursor_.SetBitmapName("SettingsButton");
+    mouseCursor_.SetBitmapName(mouseCursorBitmapName_.c_str());
     mouseCursor_.SetDimensions(48.0f, 48.0f);
 
     initResult = mouseCursor_.Init(portal);
@@ -42,6 +42,10 @@ void Model2d::Render(const double& dt) {
     if (showDebugInfo_ == true) {
         debugElement_.Render(dt);
     }
+}
+
+void Model2d::SetCursorBitmap(const std::string& bitmapName) {
+    mouseCursorBitmapName_ = bitmapName;
 }
 
 void Model2d::SetFps(const int64_t& newFps) {
