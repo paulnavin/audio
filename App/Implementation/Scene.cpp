@@ -27,6 +27,12 @@ Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* i
         return initResult;
     }
 
+    initResult = resources->LoadAllText();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Scene::Init() : Error loading text.");
+        return initResult;
+    }
+
     initResult = model2d_->Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("Scene::Init() : Error initialising 2D model.");

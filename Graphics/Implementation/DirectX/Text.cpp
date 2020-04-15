@@ -7,8 +7,9 @@
 #include <Graphics/Position2d.hpp>
 #include <Graphics/TextResource.hpp>
 
-Result Text::Init(GraphicsEngine* gfx, TextResource* resource) {
-    resource->Init(gfx);
+Result Text::Init(GraphicsEngine* /*gfx*/, TextResource* resource) {
+    textResource_ = resource;
+    return Result{};
 }
 
 void Text::Render() {

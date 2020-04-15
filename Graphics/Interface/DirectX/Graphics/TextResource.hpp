@@ -2,6 +2,7 @@
 
 #include <ErrorHandling/Result.hpp>
 #include <Graphics/DirectXInterface.hpp>
+#include <Graphics/GraphicsEngine.hpp>
 
 struct Position2d;
 struct Dimension2d;

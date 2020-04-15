@@ -20,4 +20,5 @@ public:
 private:
     Button button_;
     Text2d text_;
+    std::string textToShow_;
 };

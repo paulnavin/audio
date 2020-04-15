@@ -1,6 +1,7 @@
 #include <UserInterface/Text2d.hpp>
 
 #include <Graphics/Text.hpp>
+#include <Resources/ResourceManager.hpp>
 #include <UserInterface/ModelPortal.hpp>
 
 Result Text2d::Init(ModelPortal* portal) {
@@ -11,7 +12,7 @@ Result Text2d::Init(ModelPortal* portal) {
     }
 
     ResourceManager* resourceManager = portal->resourceManager;
-    textToDraw_ = resourceManager->GimmeSomeTextDammit(styleName_);
+    textToDraw_ = resourceManager->GimmeATextBoxDammit(styleName_);
     if (textToDraw_ == nullptr) {
         initResult.AppendError("Text2d::Init() : Couldn't get text style.");
         initResult.AppendError(styleName_);

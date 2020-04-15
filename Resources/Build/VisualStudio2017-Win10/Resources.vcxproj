@@ -24,9 +24,9 @@
     <ClInclude Include="..\..\Interface\Win10\Resources\ResourceManager.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\Cursor.cpp" />
-    <ClCompile Include="..\..\Implementation\Icon.cpp" />
-    <ClCompile Include="..\..\Implementation\ResourceManager.cpp" />
+    <ClCompile Include="..\..\Implementation\Win10\Cursor.cpp" />
+    <ClCompile Include="..\..\Implementation\Win10\Icon.cpp" />
+    <ClCompile Include="..\..\Implementation\Win10\ResourceManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

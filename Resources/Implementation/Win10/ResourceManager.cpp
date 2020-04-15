@@ -62,7 +62,7 @@ void ResourceManager::RegisterBitmapToLoad(const std::string& name) {
 }
 
 void ResourceManager::RegisterTextToLoad(const char* /*styleName*/) {
-    
+
 }
 
 Bitmap* ResourceManager::GimmeABitmapDammit(const std::string& name) {
@@ -83,8 +83,9 @@ Bitmap* ResourceManager::GimmeABitmapDammit(const std::string& name) {
         return nullptr;
     }
 }
-TextBox* ResourceManager::GimmeATextBoxDammit(const char* /*styleName*/) {
-    return nullptr;
+
+Text* ResourceManager::GimmeATextBoxDammit(const char* /*styleName*/) {
+    return &textBoxes_[0];
 }
 
 Result ResourceManager::LoadBitmaps() {
@@ -107,5 +108,11 @@ Result ResourceManager::LoadBitmaps() {
             }
         }
     }
+    return Result{};
+}
+
+Result ResourceManager::LoadAllText() {
+    textResources_[0].Init(gfx_);
+    textBoxes_[0].Init(gfx_, &textResources_[0]);
     return Result{};
 }

@@ -24,6 +24,7 @@ Result ViewSelectionButton::Init(ModelPortal* portal) {
 
     text_.SetParent(this);
     text_.SetDimensionsAsPercentage(100.0f, 100.0f);
+    text_.SetText(textToShow_);
     initResult = text_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("ViewSelectionButton::Init() : Error initialising text.");
@@ -38,5 +39,6 @@ Result ViewSelectionButton::Init(ModelPortal* portal) {
 
 
 Result ViewSelectionButton::SetText(const std::string& text) {
-    return text_.SetText(text);
+    textToShow_ = text;
+    return Result{};
 }

@@ -3,7 +3,7 @@
 #include <ErrorHandling/Result.hpp>
 #include <Graphics/Bitmap.hpp>
 #include <Graphics/BitmapResource.hpp>
-#include <Graphics/TextBox.hpp>
+#include <Graphics/Text.hpp>
 #include <Graphics/TextResource.hpp>
 
 class GraphicsEngine;
@@ -25,9 +25,10 @@ public:
     void RegisterTextToLoad(const char* styleName);
 
     Bitmap* GimmeABitmapDammit(const std::string& name);
-    TextBox* GimmeATextBoxDammit(const char* styleName);
+    Text* GimmeATextBoxDammit(const char* styleName);
 
     Result LoadBitmaps();
+    Result LoadAllText();
 
 private:
     using BitmapResourceMap = std::map<std::string, BitmapResource*>;
@@ -50,8 +51,8 @@ private:
 
     std::string textNames_[10];
     std::string textPaths_[10];
-    TextResource textResources[10];
-    TextBox textBoxes_[10];
+    TextResource textResources_[10];
+    Text textBoxes_[10];
     size_t textResourceCount_ = 0;
     size_t textBoxCount_ = 0;
 };

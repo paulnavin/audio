@@ -4,8 +4,8 @@
 
 class GraphicsEngine;
 class TextResource;
-class Position2d;
-class Dimension2d;
+struct Position2d;
+struct Dimension2d;
 
 class Text {
 public:
