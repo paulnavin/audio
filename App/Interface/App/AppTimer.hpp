@@ -1,7 +1,7 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
-#include <Platform/WindowsInterface.hpp>
+#include <Platform/Platform.hpp>
 
 class AppTimer {
 public:
