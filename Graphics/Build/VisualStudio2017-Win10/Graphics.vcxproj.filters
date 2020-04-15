@@ -66,10 +66,10 @@
     <ClInclude Include="..\..\Interface\DirectX\Graphics\BitmapResource.hpp">
       <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\DirectX\Graphics\TextBox.hpp">
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\TextResource.hpp">
       <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\DirectX\Graphics\TextResource.hpp">
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\Text.hpp">
       <Filter>Header Files\DirectX</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,10 +92,10 @@
     <ClCompile Include="..\..\Implementation\DirectX\BitmapResource.cpp">
       <Filter>Source Files\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\DirectX\TextBox.cpp">
+    <ClCompile Include="..\..\Implementation\DirectX\TextResource.cpp">
       <Filter>Source Files\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\DirectX\TextResource.cpp">
+    <ClCompile Include="..\..\Implementation\DirectX\Text.cpp">
       <Filter>Source Files\DirectX</Filter>
     </ClCompile>
   </ItemGroup>

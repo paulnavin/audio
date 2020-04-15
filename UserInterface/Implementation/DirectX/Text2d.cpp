@@ -1,65 +1,40 @@
 #include <UserInterface/Text2d.hpp>
 
-#include <Graphics/GraphicsEngine.hpp>
-#include <Graphics/TextManager2d.hpp>
-#include <StringHandling/StringUtil.hpp>
+#include <Graphics/Text.hpp>
 #include <UserInterface/ModelPortal.hpp>
 
 Result Text2d::Init(ModelPortal* portal) {
-    const Engine2d& engine = portal->gfx->GetEngine2d();
-    const TextManager2d& textManager = portal->gfx->GetTextManager2d();
-    deviceContext2d_ = engine.GetDeviceContext2d();
-
-    textFormat_ = textManager.GetFpsTextFormat();
-    brush_ = textManager.GetFpsBrush();
-    writeFactory_ = textManager.GetWriteFactory();
-
-    Result updateResult = UpdateDetails();
-    if (updateResult.HasErrors()) {
-        updateResult.AppendError("Text2d::Init() : Couldn't update details in Init()");
-        return updateResult;
+    Result initResult = Element::Init(portal);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("Text2d::Init() : Couldn't init base element.");
+        return initResult;
     }
-    return Element::Init(portal);
+
+    ResourceManager* resourceManager = portal->resourceManager;
+    textToDraw_ = resourceManager->GimmeSomeTextDammit(styleName_);
+    if (textToDraw_ == nullptr) {
+        initResult.AppendError("Text2d::Init() : Couldn't get text style.");
+        initResult.AppendError(styleName_);
+        return initResult;
+    }
+
+    textToDraw_->SetText(text_);
+    textToDraw_->SetPosition(positionOnScreen_);
+    textToDraw_->SetDimensions(dimensionsOnScreen_);
+
+    return initResult;
 }
 
 void Text2d::Render(const double& dt) {
     UNREFERENCED_PARAMETER(dt);
 
-    if (!textLayout_) {
-        return;
-    }
-
-    // TODO: Update the position by overriding SetPosition().
-    textPosition_ = D2D1::Point2F(positionOnScreen_.x, positionOnScreen_.y);
-    deviceContext2d_->DrawTextLayout(textPosition_, textLayout_.Get(), brush_.Get());
+    textToDraw_->Render();
 }
 
-Result Text2d::SetText(const std::string& newText) {
-    text_ = newText;
-
-    if (IsInitialised() == true) {
-        return UpdateDetails();
-    }
-    return Result{};
+void Text2d::SetStyle(const char* styleName) {
+    styleName_ = styleName;
 }
 
-Result Text2d::UpdateDetails() {
-    Result updateResult{};
-    // TODO: Get these from the window or a parent object instead.
-    static constexpr LONG MAX_TEXT_WIDTH = 1000;
-    static constexpr LONG MAX_TEXT_HEIGHT = 600;
-
-    std::wstring outputText = StringUtil::StringToWideString(text_);
-    HRESULT hr = writeFactory_->CreateTextLayout(
-        outputText.c_str(),
-        static_cast<UINT32>(outputText.size()),
-        textFormat_.Get(),
-        static_cast<float>(dimensionsOnScreen_.width),
-        static_cast<float>(dimensionsOnScreen_.height),
-        &textLayout_);
-
-    if (FAILED(hr)) {
-        updateResult.AppendError("Text2d::SetText() : Could not recreate text layout.");
-    }
-    return updateResult;
+void Text2d::SetText(const std::string& text) {
+    text_ = text;
 }

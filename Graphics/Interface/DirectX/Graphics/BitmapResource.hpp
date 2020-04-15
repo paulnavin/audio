@@ -17,7 +17,7 @@ public:
     Microsoft::WRL::ComPtr<IWICFormatConverter> GetWicImage();
 
 public:
-    Result Init(GraphicsEngine* gfx, const char* name);
+    Result Init(GraphicsEngine* gfx, const char* fileName);
 
 private:
     Result LoadFromFile(const char* fileName);

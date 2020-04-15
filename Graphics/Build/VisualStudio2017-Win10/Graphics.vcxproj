@@ -32,7 +32,7 @@
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Engine3d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\GraphicsEngine.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\ShaderBuffer.hpp" />
-    <ClInclude Include="..\..\Interface\DirectX\Graphics\TextBox.hpp" />
+    <ClInclude Include="..\..\Interface\DirectX\Graphics\Text.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\TextManager2d.hpp" />
     <ClInclude Include="..\..\Interface\DirectX\Graphics\TextResource.hpp" />
   </ItemGroup>
@@ -42,7 +42,7 @@
     <ClCompile Include="..\..\Implementation\DirectX\Engine2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\Engine3d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\GraphicsEngine.cpp" />
-    <ClCompile Include="..\..\Implementation\DirectX\TextBox.cpp" />
+    <ClCompile Include="..\..\Implementation\DirectX\Text.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\TextManager2d.cpp" />
     <ClCompile Include="..\..\Implementation\DirectX\TextResource.cpp" />
   </ItemGroup>
