@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "**/DirectX": true,
+        "**/Win10": true
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/App/Interface",
+                "${workspaceFolder}/Display/Interface/Common",
+                "${workspaceFolder}/Display/Interface/MacOs",
+                "${workspaceFolder}/ErrorHandling/Interface",
+                "${workspaceFolder}/FileSystem/Interface",
+                "${workspaceFolder}/Graphics/Interface/Common",
+                "${workspaceFolder}/Graphics/Interface/Vulkan",
+                "${workspaceFolder}/Logging/Interface",
+                "${workspaceFolder}/Platform/Interface/MacOs",
+                "${workspaceFolder}/Resources/Interface/MacOs",
+                "${workspaceFolder}/Stl/Interface",
+                "${workspaceFolder}/StringHandling/Interface",
+                "${workspaceFolder}/UserConfiguration/Interface",
+                "${workspaceFolder}/UserInput/Interface",
+                "${workspaceFolder}/UserInterface/Interface"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}

@@ -7,7 +7,7 @@
 struct WindowConfig {
     static constexpr size_t MAX_RESOURCE_NAME_LENGTH = 100;
 
-    std::array<CHAR, MAX_RESOURCE_NAME_LENGTH> title;
+    std::array<char, MAX_RESOURCE_NAME_LENGTH> title;
     int32_t height;
     int32_t width;
 
@@ -16,5 +16,5 @@ struct WindowConfig {
     Cursor mouseCursor_;
     bool showCursor_ = true;
     Icon smallAppIcon_;
-    std::array<CHAR, MAX_RESOURCE_NAME_LENGTH> mainWindowClassName_;
+    std::array<char, MAX_RESOURCE_NAME_LENGTH> mainWindowClassName_;
 };
