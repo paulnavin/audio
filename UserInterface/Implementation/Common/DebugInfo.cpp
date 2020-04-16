@@ -8,6 +8,12 @@
 #include <UserInterface/ModelPortal.hpp>
 
 Result DebugInfo::Init(ModelPortal* portal) {
+    Result initResult = Element::Init(portal);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("ViewSelectionButton::Init() : Error initialising base Element.");
+        return initResult;
+    }
+
     SetPosition(0.0f, 0.0f);
     SetDimensions(portal->gfx->GetTargetWindow()->GetWidth(), portal->gfx->GetTargetWindow()->GetHeight());
     SetFps(0);
@@ -15,41 +21,40 @@ Result DebugInfo::Init(ModelPortal* portal) {
 
     fpsText_.SetParent(this);
     fpsText_.SetPosition(5.0f, 5.0f);
-    fpsText_.SetDimensions(100.0f, 20.0f);
-    Result initResult = fpsText_.Init(portal);
+    fpsText_.SetDimensions(200.0f, 50.0f);
+    initResult = fpsText_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("DebugInfo::Init() : Error initialising 2D FPS text.");
         return initResult;
     }
 
     mousePositionText_.SetParent(this);
-    mousePositionText_.SetPosition(5.0f, 35.0f);
-    mousePositionText_.SetDimensions(150.0f, 20.0f);
+    mousePositionText_.SetPosition(5.0f, 55.0f);
+    mousePositionText_.SetDimensions(200.0f, 50.0f);
     initResult = mousePositionText_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("DebugInfo::Init() : Error initialising 2D mouse position text.");
         return initResult;
     }
 
-    Result updateResult = UpdateDetails();
-    if (updateResult.HasErrors()) {
-        updateResult.AppendError("DebugInfo::Init() : Couldn't update details in Init()");
-        return updateResult;
+    initResult = UpdateDetails();
+    if (initResult.HasErrors()) {
+        initResult.AppendError("DebugInfo::Init() : Couldn't update details in Init()");
+        return initResult;
     }
-    return Element::Init(portal);
+    return initResult;
 }
 
 void DebugInfo::Render(const double& dt) {
-    fpsText_.Render(dt);
-    mousePositionText_.Render(dt);
+    fpsText_.RenderText(dt, fpsTextToShow_);
+    mousePositionText_.RenderText(dt, mousePositionTextToShow_);
 }
 
 void DebugInfo::SetFps(const int64_t& newFps) {
     std::ostringstream fpsString{};
     fpsString.precision(6);
     fpsString << "FPS: " << newFps << std::endl;
-
-    fpsText_.SetText(fpsString.str());
+    fpsTextToShow_ = fpsString.str();
 }
 
 void DebugInfo::SetMousePosition(const float& x, const float& y) {
@@ -57,7 +62,7 @@ void DebugInfo::SetMousePosition(const float& x, const float& y) {
     outputString.precision(6);
     outputString << "Mouse: " << x << ", " << y << std::endl;
 
-    mousePositionText_.SetText(outputString.str());
+    mousePositionTextToShow_ = outputString.str();
 }
 
 Result DebugInfo::UpdateDetails() {

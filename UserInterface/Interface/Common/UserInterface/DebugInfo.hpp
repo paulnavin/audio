@@ -23,5 +23,7 @@ private:
 
 private:
     Text2d fpsText_;
+    std::string fpsTextToShow_;
     Text2d mousePositionText_;
+    std::string mousePositionTextToShow_;
 };

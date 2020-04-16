@@ -15,6 +15,7 @@ public:
 public:
     Result Init(ModelPortal* portal) override;
     void Render(const double& dt) override;
+    void RenderText(const double& dt, const std::string& text);
 
 public:
     void SetStyle(const char* styleName);

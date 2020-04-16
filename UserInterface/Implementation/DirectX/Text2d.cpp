@@ -19,9 +19,9 @@ Result Text2d::Init(ModelPortal* portal) {
         return initResult;
     }
 
-    textToDraw_->SetText(text_);
     textToDraw_->SetPosition(positionOnScreen_);
     textToDraw_->SetDimensions(dimensionsOnScreen_);
+    textToDraw_->SetText(text_);
 
     return initResult;
 }
@@ -30,6 +30,12 @@ void Text2d::Render(const double& dt) {
     UNREFERENCED_PARAMETER(dt);
 
     textToDraw_->Render();
+}
+
+void Text2d::RenderText(const double& dt, const std::string& text) {
+    UNREFERENCED_PARAMETER(dt);
+
+    textToDraw_->RenderText(text);
 }
 
 void Text2d::SetStyle(const char* styleName) {
