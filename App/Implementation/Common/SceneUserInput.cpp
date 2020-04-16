@@ -2,7 +2,6 @@
 
 #include <App/AppUserInputCommands.hpp>
 #include <App/Scene.hpp>
-#include <Platform/WindowsInterface.hpp>
 #include <UserInput/InputManager.hpp>
 
 Result SceneUserInput::Init(Scene* newScene, InputManager* inputManager) {

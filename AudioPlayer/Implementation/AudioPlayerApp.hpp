@@ -7,13 +7,15 @@
 #include "Scene2Simple/Scene2Basic.hpp"
 #include "Scene3SettingsOverlay/Scene3.hpp"
 
+struct AppInstance;
+
 class AudioPlayerApp final : public App {
 public:
     AudioPlayerApp() = default;
     virtual ~AudioPlayerApp() = default;
 
 public:
-    Result Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) override;
+    Result Init(const AppInstance& appInstance, const ResourceLocator& resourceManager) override;
 
 public:
     Result SelectNextScene();

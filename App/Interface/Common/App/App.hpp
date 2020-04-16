@@ -1,12 +1,12 @@
 #pragma once
 
+#include <App/AppInstance.hpp>
 #include <App/AppTimer.hpp>
 #include <Display/WindowConfig.hpp>
 #include <Display/WindowMessageHandler.hpp>
 #include <ErrorHandling/Result.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Vertex.hpp>
-#include <Platform/WindowsInterface.hpp>
 #include <Resources/ResourceManager.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInput/InputManager.hpp>
@@ -29,7 +29,7 @@ public:
     Result SetWindowConfig(const WindowConfig& windowConfig);
     Result SetConfigFileName(const std::string& fileName);
     void SetUserInputHandler(AppUserInput* appUserInputHandler);
-    virtual Result Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager);
+    virtual Result Init(const AppInstance& appInstance, const ResourceLocator& resourceManager);
     virtual Result Run();
     virtual void ShutDown();
 
@@ -59,9 +59,9 @@ public:
     void ReinitialiseScenes();
 
 private:
-    static constexpr DWORD FRAMES_PER_SECOND = 60;
-    static constexpr DWORD MS_PER_SECOND = 1000;
-    static constexpr DWORD MS_PER_FRAME = MS_PER_SECOND / FRAMES_PER_SECOND;
+    static constexpr float FRAMES_PER_SECOND = 60.0f;
+    static constexpr float MS_PER_SECOND = 1000.0f;
+    static constexpr float MS_PER_FRAME = MS_PER_SECOND / FRAMES_PER_SECOND;
     static constexpr int32_t MAX_SKIP_FRAMES = 10;
     static constexpr uint8_t MAX_SCENE_COUNT = 10;
     static constexpr uint8_t ACTUAL_SCENE_COUNT = 3;
@@ -71,7 +71,7 @@ private:
     Result UpdateFps();
 
 protected:
-    HINSTANCE appInstance_;
+    AppInstance appInstance_;
     ConfigStore config_;
     InputManager inputManager_;
 

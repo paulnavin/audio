@@ -3,7 +3,10 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/App/Interface",
+                "${workspaceFolder}/App/Interface/Common",
+                "${workspaceFolder}/App/Interface/MacOs",
+                "${workspaceFolder}/AudioPlayer/Implementation/MacOs",
+                "${workspaceFolder}/AudioPlayer/Implementation",
                 "${workspaceFolder}/Display/Interface/Common",
                 "${workspaceFolder}/Display/Interface/MacOs",
                 "${workspaceFolder}/ErrorHandling/Interface",
@@ -17,7 +20,8 @@
                 "${workspaceFolder}/StringHandling/Interface",
                 "${workspaceFolder}/UserConfiguration/Interface",
                 "${workspaceFolder}/UserInput/Interface",
-                "${workspaceFolder}/UserInterface/Interface"
+                "${workspaceFolder}/UserInterface/Interface/Common",
+                "${workspaceFolder}/UserInterface/Interface/Vulkan"
             ],
             "defines": [],
             "macFrameworkPath": [

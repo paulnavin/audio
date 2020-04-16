@@ -1,7 +1,6 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
-#include <Platform/WindowsInterface.hpp>
 
 class AppTimer {
 public:
@@ -25,7 +24,7 @@ private:
     int64_t startTime_;
     int64_t totalIdleTime_;
 
-    LARGE_INTEGER cpuFrequency_;
+    uint64_t cpuFrequency_;
     double msPerCpuCount_;
     double msBetweenFrames_;
 
