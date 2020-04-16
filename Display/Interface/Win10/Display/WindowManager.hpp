@@ -4,6 +4,7 @@
 #include <ErrorHandling/Result.hpp>
 #include <Platform/WindowsInterface.hpp>
 
+struct AppInstance;
 struct WindowConfig;
 class Window;
 
@@ -13,7 +14,7 @@ public:
     static WindowManager& GetInstance();
 
 public:
-    Result Init(const HINSTANCE& appInstance, const WindowConfig& windowConfig);
+    Result Init(const AppInstance& appInstance, const WindowConfig& windowConfig);
     Result CreateNewWindow(const WindowConfig& config, Window** windowToReturn);
     LRESULT ProcessMessage(const HWND& hWnd, const UINT& message, const WPARAM& wParam, const LPARAM& lParam);
 

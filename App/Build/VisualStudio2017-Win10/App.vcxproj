@@ -19,19 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Common\Scene.cpp" />
+    <ClCompile Include="..\..\Implementation\Common\SceneUserInput.cpp" />
+    <ClCompile Include="..\..\Implementation\Win10\App.cpp" />
+    <ClCompile Include="..\..\Implementation\Win10\AppTimer.cpp" />
+    <ClCompile Include="..\..\Implementation\Win10\AppUserInput.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="..\..\Interface\App\App.hpp" />
     <ClInclude Include="..\..\Interface\App\AppTimer.hpp" />
+    <ClInclude Include="..\..\Interface\App\AppUserInput.hpp" />
     <ClInclude Include="..\..\Interface\App\AppUserInputCommands.hpp" />
     <ClInclude Include="..\..\Interface\App\Scene.hpp" />
     <ClInclude Include="..\..\Interface\App\SceneUserInput.hpp" />
-    <ClInclude Include="..\..\Interface\App\AppUserInput.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Implementation\App.cpp" />
-    <ClCompile Include="..\..\Implementation\AppTimer.cpp" />
-    <ClCompile Include="..\..\Implementation\AppUserInput.cpp" />
-    <ClCompile Include="..\..\Implementation\Scene.cpp" />
-    <ClCompile Include="..\..\Implementation\SceneUserInput.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

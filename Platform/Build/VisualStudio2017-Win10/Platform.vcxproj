@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Interface\Win10\Platform\AppInstance.hpp" />
     <ClInclude Include="..\..\Interface\Win10\Platform\WindowsInterface.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

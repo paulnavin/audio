@@ -11,7 +11,7 @@
 #include <Logging/EasyLogging++.hpp>
 #include <UserInterface/Commander.hpp>
 
-Result App::Init(const HINSTANCE& appInstance, const ResourceLocator& resourceManager) {
+Result App::Init(const AppInstance& appInstance, const ResourceLocator& resourceManager) {
     appInstance_ = appInstance;
     
     Result initResult = config_.LoadConfig(configFileName_);

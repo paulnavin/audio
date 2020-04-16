@@ -1,12 +1,12 @@
 #pragma once
 
-#include <App/AppInstance.hpp>
 #include <App/AppTimer.hpp>
 #include <Display/WindowConfig.hpp>
 #include <Display/WindowMessageHandler.hpp>
 #include <ErrorHandling/Result.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Vertex.hpp>
+#include <Platform/AppInstance.hpp>
 #include <Resources/ResourceManager.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInput/InputManager.hpp>

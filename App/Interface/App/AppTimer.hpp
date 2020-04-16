@@ -24,7 +24,7 @@ private:
     int64_t startTime_;
     int64_t totalIdleTime_;
 
-    uint64_t cpuFrequency_;
+    int64_t cpuFrequency_;
     double msPerCpuCount_;
     double msBetweenFrames_;
 

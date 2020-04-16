@@ -1,5 +1,6 @@
 #include <Display/WindowManager.hpp>
 
+#include <Platform/AppInstance.hpp>
 #include <Display/Window.hpp>
 #include <Display/WindowConfig.hpp>
 
@@ -16,7 +17,7 @@ WindowManager& WindowManager::GetInstance() {
     return instance;               // Instantiated on first use.
 }
 
-Result WindowManager::Init(const HINSTANCE& hInstance, const WindowConfig& windowConfig) {
+Result WindowManager::Init(const AppInstance& appInstance, const WindowConfig& windowConfig) {
     Result returnValue = {};
     wcex_.cbSize = sizeof(WNDCLASSEX);
 
@@ -24,7 +25,7 @@ Result WindowManager::Init(const HINSTANCE& hInstance, const WindowConfig& windo
     wcex_.lpfnWndProc = WndProc;
     wcex_.cbClsExtra = 0;
     wcex_.cbWndExtra = 0;
-    wcex_.hInstance = hInstance;
+    wcex_.hInstance = appInstance.appHandle;
     wcex_.hIcon = windowConfig.appIcon_.GetHandle();
     wcex_.hCursor = windowConfig.mouseCursor_.GetHandle();
     wcex_.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);

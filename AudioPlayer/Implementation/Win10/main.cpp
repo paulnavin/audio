@@ -27,8 +27,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     el::Loggers::reconfigureAllLoggers(loggingConfig);
 
     AudioPlayerApp app;
+    AppInstance appInstance{ hInstance };
     
-    Result appInitResult = app.Init(hInstance, resourceManager);
+    Result appInitResult = app.Init(appInstance, resourceManager);
     if (appInitResult.HasErrors()) {
         ErrorDisplay::ShowErrors(appInitResult);
         return 1;

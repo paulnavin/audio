@@ -55,14 +55,14 @@
       <UniqueIdentifier>{b6faa62b-bf52-4446-a13d-f770e8a40a15}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Entry Point\Source Files\Win10">
+      <UniqueIdentifier>{bfcdfbf4-345f-4bc7-ae07-deb690ef4ad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entry Point\Header Files\Win10">
+      <UniqueIdentifier>{0cf2ffc7-0572-4503-ad54-1b0203dba0ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Implementation\targetver.h">
-      <Filter>Entry Point\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Implementation\Resource.h">
-      <Filter>Entry Point\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Implementation\AudioPlayerUserInputCommands.hpp">
       <Filter>Entry Point\Header Files</Filter>
     </ClInclude>
@@ -126,11 +126,12 @@
     <ClInclude Include="..\..\Implementation\Scene3SettingsOverlay\Model2dSettingsOverlay.hpp">
       <Filter>Scene 3 Settings Overlay\Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\..\Implementation\AudioPlayer.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <ClInclude Include="..\..\Implementation\Win10\resource.h">
+      <Filter>Entry Point\Header Files\Win10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Implementation\Win10\targetver.h">
+      <Filter>Entry Point\Header Files\Win10</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resources\small.ico">
@@ -144,9 +145,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\main.cpp">
-      <Filter>Entry Point\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Implementation\AudioPlayerApp.cpp">
       <Filter>Entry Point\Source Files</Filter>
     </ClCompile>
@@ -201,6 +199,9 @@
     <ClCompile Include="..\..\Implementation\Scene3SettingsOverlay\Scene3UserInput.cpp">
       <Filter>Scene 3 Settings Overlay\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\main.cpp">
+      <Filter>Entry Point\Source Files\Win10</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Resources\DarkOxygenCursorNormal.cur">
@@ -219,5 +220,10 @@
     <Text Include="..\..\Documentation\ToDo.txt">
       <Filter>Documentation</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\Implementation\Win10\AudioPlayer.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,7 @@
 #include <App/AppTimer.hpp>
 
+#include <Platform/WindowsInterface.hpp>
+
 Result AppTimer::Init() {
     Result initResult;
 
@@ -9,13 +11,15 @@ Result AppTimer::Init() {
     }
 
     // Gives back frequency in counts per second.
-    if (QueryPerformanceFrequency(&cpuFrequency_) == FALSE) {
+    LARGE_INTEGER frequencyInput;
+    if (QueryPerformanceFrequency(&frequencyInput) == FALSE) {
         initResult.AppendError("AppTimer::Init() : Could not initialise timer.");
         return initResult;
     }
+    cpuFrequency_ = frequencyInput.QuadPart;
 
     // Get the frequency in counts per ms.
-    double frequency = static_cast<double>(cpuFrequency_.QuadPart / 1000);
+    double frequency = static_cast<double>(cpuFrequency_ / 1000);
     msPerCpuCount_ = 1 / frequency;
     currentTime_ = 0;
     lastFrameTime_ = 0;

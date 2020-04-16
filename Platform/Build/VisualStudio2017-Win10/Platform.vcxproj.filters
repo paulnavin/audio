@@ -21,5 +21,8 @@
     <ClInclude Include="..\..\Interface\Win10\Platform\WindowsInterface.hpp">
       <Filter>Header Files\Win10</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\Win10\Platform\AppInstance.hpp">
+      <Filter>Header Files\Win10</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
