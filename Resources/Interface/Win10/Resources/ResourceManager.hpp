@@ -41,18 +41,10 @@ private:
     BitmapResourceMap loadedBitmapResources_;
     Bitmaps bitties_;
 
-    std::string bitmapNames_[10];
-    std::string bitmapPaths_[10];
-    BitmapResource bitmapResources_[10];
-    Bitmap bitmaps_[10];
-    size_t bitmapResourceCount_ = 0;
-    size_t bitmapCount_ = 0;
-    size_t bitmapsToLoadCount_ = 0;
-
     std::string textNames_[10];
-    std::string textPaths_[10];
+    std::string textStyles_[10];
     TextResource textResources_[10];
-    Text textBoxes_[10];
+    Text textBoxes_[20];
     size_t textResourceCount_ = 0;
     size_t textBoxCount_ = 0;
 };

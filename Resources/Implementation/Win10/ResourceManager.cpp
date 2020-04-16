@@ -85,7 +85,10 @@ Bitmap* ResourceManager::GimmeABitmapDammit(const std::string& name) {
 }
 
 Text* ResourceManager::GimmeATextBoxDammit(const char* /*styleName*/) {
-    return &textBoxes_[0];
+    size_t textBoxCountBefore = textBoxCount_;
+    textBoxes_[textBoxCountBefore].Init(gfx_, &textResources_[0]);
+    ++textBoxCount_;
+    return &textBoxes_[textBoxCountBefore];
 }
 
 Result ResourceManager::LoadBitmaps() {
@@ -113,6 +116,5 @@ Result ResourceManager::LoadBitmaps() {
 
 Result ResourceManager::LoadAllText() {
     textResources_[0].Init(gfx_);
-    textBoxes_[0].Init(gfx_, &textResources_[0]);
     return Result{};
 }
