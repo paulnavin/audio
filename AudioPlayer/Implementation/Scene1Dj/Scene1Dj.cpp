@@ -18,11 +18,11 @@ Result Scene1Dj::Init(ModelPortal* portal, ConfigStore* config, InputManager* in
     resources->RegisterBitmapToLoad("BlueArrow");
     resources->RegisterBitmapToLoad("SettingsButton");
 
-    TextStyle defaultStyle = { DefaultText, Colour{1.0f, 1.0f, 1.0f, 1.0f}, "Times New Roman", 12.0f };
+    TextStyle defaultStyle = { DefaultText, Colour{1.0f, 1.0f, 1.0f, 1.0f}, "Courier New", 26.0f };
     resources->RegisterTextStyle(defaultStyle);
-    TextStyle standardStyle = { StandardText, Colour{1.0f, 0.0f, 0.0f, 1.0f}, "Lucida Console", 12.0f };
+    TextStyle standardStyle = { StandardText, Colour{1.0f, 0.0f, 0.0f, 1.0f}, "Google Sans", 18.0f };
     resources->RegisterTextStyle(standardStyle);
-    TextStyle bigStyle = { BigText, Colour{0.0f, 0.0f, 1.0f, 1.0f}, "Lucida Console", 36.0f };
+    TextStyle bigStyle = { BigText, Colour{1.0f, 1.0f, 0.0f, 1.0f}, "Lucida Console", 36.0f, TextStyle::HorizontalAlignment::Centre };
     resources->RegisterTextStyle(bigStyle);
 
     LOG(INFO) << "Scene1Dj::Init() : Created successfully!";

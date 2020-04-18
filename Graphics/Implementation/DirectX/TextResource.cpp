@@ -14,7 +14,7 @@ Result TextResource::Init(GraphicsEngine* gfx, const TextStyle& style) {
 
     Result initTextFormatResult{};
     HRESULT hr;
-    D2D1::ColorF colour = { style.colour.red, style.colour.blue, style.colour.green, style.colour.alpha };
+    D2D1::ColorF colour = { style.colour.red, style.colour.green, style.colour.blue, style.colour.alpha };
     hr = deviceContext2d_->CreateSolidColorBrush(colour, &brush_);
     if (FAILED(hr)) {
         initTextFormatResult.AppendError("TextResource::Init() : Could not create brush for FPS text.");
@@ -28,7 +28,13 @@ Result TextResource::Init(GraphicsEngine* gfx, const TextStyle& style) {
         return initTextFormatResult;
     }
 
-    hr = textFormat_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+    if (style.horizontalAlignment == TextStyle::HorizontalAlignment::Centre) {
+        hr = textFormat_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+    } else if (style.horizontalAlignment == TextStyle::HorizontalAlignment::Start) {
+        hr = textFormat_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+    } else {
+        hr = textFormat_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
+    }
     if (FAILED(hr)) {
         initTextFormatResult.AppendError("TextResource::Init() : Could not set text alignment for FPS text format.");
         return initTextFormatResult;

@@ -26,7 +26,7 @@ Result ViewSelectionButton::Init(ModelPortal* portal) {
 
     text_.SetParent(this);
     text_.SetDimensionsAsPercentage(100.0f, 100.0f);
-    text_.SetStyle(DefaultText);
+    text_.SetStyle(BigText);
     text_.SetText(textToShow_);
     initResult = text_.Init(portal);
     if (initResult.HasErrors()) {
