@@ -52,7 +52,7 @@ void Text::SetDimensions(const Dimension2d& dimensions) {
 void Text::UpdateTextLayout() {
     std::wstring outputText = StringUtil::StringToWideString(text_);
 
-    Microsoft::WRL::ComPtr<IDWriteTextFormat>    textFormat = textResource_->GetTextFormat();
+    Microsoft::WRL::ComPtr<IDWriteTextFormat> textFormat = textResource_->GetTextFormat();
 
     // TODO: Error handling here.
     writeFactory_->CreateTextLayout(

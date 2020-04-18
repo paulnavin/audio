@@ -48,21 +48,30 @@ Result ResourceManager::Init(GraphicsEngine* gfx) {
 }
 
 void ResourceManager::ShutDown() {
+    for (auto bitmap : bitties_) {
+        delete bitmap;
+    }
+
     for (auto resource : loadedBitmapResources_) {
         delete resource.second;
     }
 
-    for (auto bitmap : bitties_) {
-        delete bitmap;
+    for (auto text : texties_) {
+        delete text;
     }
+
+    for (auto resource : loadedTextResources_) {
+        delete resource.second;
+    }
+
 }
 
 void ResourceManager::RegisterBitmapToLoad(const std::string& name) {
     namesToLoad_.push_back(name);
 }
 
-void ResourceManager::RegisterTextToLoad(const char* /*styleName*/) {
-
+void ResourceManager::RegisterTextStyle(const TextStyle& newStyle) {
+    stylesToLoad_.push_back(newStyle);
 }
 
 Bitmap* ResourceManager::GimmeABitmapDammit(const std::string& name) {
@@ -84,11 +93,24 @@ Bitmap* ResourceManager::GimmeABitmapDammit(const std::string& name) {
     }
 }
 
-Text* ResourceManager::GimmeATextBoxDammit(const char* /*styleName*/) {
-    size_t textBoxCountBefore = textBoxCount_;
-    textBoxes_[textBoxCountBefore].Init(gfx_, &textResources_[0]);
-    ++textBoxCount_;
-    return &textBoxes_[textBoxCountBefore];
+Text* ResourceManager::GimmeATextBoxDammit(const TextStyle::Id& id) {
+    UNREFERENCED_PARAMETER(id);
+    TextResourceMap::iterator finder = loadedTextResources_.find(id);
+    if (finder != loadedTextResources_.end()) {
+        Text* newText = new Text();
+        Result initResult = newText->Init(gfx_, finder->second);
+        if (initResult.IsOkay()) {
+            texties_.push_back(newText);
+            return newText;
+        } else {
+            delete newText;
+            initResult.AppendError("Could not get text.");
+            return nullptr;
+        }
+    } else {
+        return nullptr;
+    }
+    return nullptr;
 }
 
 Result ResourceManager::LoadBitmaps() {
@@ -115,6 +137,19 @@ Result ResourceManager::LoadBitmaps() {
 }
 
 Result ResourceManager::LoadAllText() {
-    textResources_[0].Init(gfx_);
+    for (TextStyle style : stylesToLoad_) {
+        if (loadedTextResources_.find(style.id) == loadedTextResources_.end()) {
+            TextResource* newResource = new TextResource();
+            Result initResult = newResource->Init(gfx_, style);
+            if (initResult.IsOkay()) {
+                loadedTextResources_.insert(std::make_pair(style.id, newResource));
+            } else {
+                delete newResource;
+                initResult.AppendError("Could not load text resource:");
+                initResult.AppendError(style.fontName);
+                return initResult;
+            }
+        }
+    }
     return Result{};
 }

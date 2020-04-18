@@ -110,13 +110,6 @@ void GraphicsEngine::Resize() {
         ErrorDisplay::ShowErrors(resizeResult);
         return;
     }
-
-    resizeResult = textManager2d_.Resize();
-    if (resizeResult.HasErrors()) {
-        resizeResult.AppendError("GraphicsEngine::Resize() : Could not resize 2D text manager.");
-        ErrorDisplay::ShowErrors(resizeResult);
-        return;
-    }
 }
 
 void GraphicsEngine::ToggleFullScreen() {

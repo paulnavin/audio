@@ -22,6 +22,7 @@
     <ClInclude Include="..\..\Interface\Common\Graphics\Colour.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Dimension2d.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Position2d.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Graphics\TextStyle.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\Vertex.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\VertexBuffer.hpp" />
     <ClInclude Include="..\..\Interface\Common\Graphics\VertexType.hpp" />

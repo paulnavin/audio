@@ -1,7 +1,7 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
-#include <Graphics/DirectXInterface.hpp>
+#include <Graphics/TextStyle.hpp>
 #include <UserInterface/Element.hpp>
 
 class Text;
@@ -18,14 +18,11 @@ public:
     void RenderText(const double& dt, const std::string& text);
 
 public:
-    void SetStyle(const char* styleName);
+    void SetStyle(const TextStyle::Id styleId);
     void SetText(const std::string& newText);
-//
-//private:
-//    Result UpdateDetails();
 
 private:
-    const char* styleName_;
+    TextStyle::Id styleId_;
     std::string text_;
     Text* textToDraw_;
 };

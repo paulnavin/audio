@@ -4,20 +4,49 @@
 #include <Graphics/Dimension2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Position2d.hpp>
+#include <Graphics/TextStyle.hpp>
+#include <StringHandling/StringUtil.hpp>
 
-Result TextResource::Init(GraphicsEngine* gfx/*, const char* fontName*/) {
+Result TextResource::Init(GraphicsEngine* gfx, const TextStyle& style) {
     const TextManager2d& textManager = gfx->GetTextManager2d();
+    deviceContext2d_ = gfx->GetEngine2d().GetDeviceContext2d();
+    Microsoft::WRL::ComPtr<IDWriteFactory2> writeFactory = textManager.GetWriteFactory();
 
-    // TODO: Set up the text format and brush based on input style.
-    textFormat_ = textManager.GetFpsTextFormat();
-    brush_ = textManager.GetFpsBrush();
+    Result initTextFormatResult{};
+    HRESULT hr;
+    D2D1::ColorF colour = { style.colour.red, style.colour.blue, style.colour.green, style.colour.alpha };
+    hr = deviceContext2d_->CreateSolidColorBrush(colour, &brush_);
+    if (FAILED(hr)) {
+        initTextFormatResult.AppendError("TextResource::Init() : Could not create brush for FPS text.");
+        return initTextFormatResult;
+    }
+
+    std::wstring fontName = StringUtil::StringToWideString(style.fontName);
+    hr = writeFactory.Get()->CreateTextFormat(fontName.c_str(), nullptr, DWRITE_FONT_WEIGHT_LIGHT, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, style.size, L"en-GB", &textFormat_);
+    if (FAILED(hr)) {
+        initTextFormatResult.AppendError("TextResource::Init() : Could not create text format for FPS.");
+        return initTextFormatResult;
+    }
+
+    hr = textFormat_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+    if (FAILED(hr)) {
+        initTextFormatResult.AppendError("TextResource::Init() : Could not set text alignment for FPS text format.");
+        return initTextFormatResult;
+    }
+
+    hr = textFormat_->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+    if (FAILED(hr)) {
+        initTextFormatResult.AppendError("TextResource::Init() : Could not set paragraph alignment for FPS text format.");
+        return initTextFormatResult;
+    }
 
     return Result{};
 }
 
-Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> TextResource::GetBrush() {
+const Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>& TextResource::GetBrush() {
     return brush_;
 }
-Microsoft::WRL::ComPtr<IDWriteTextFormat> TextResource::GetTextFormat() {
+
+const Microsoft::WRL::ComPtr<IDWriteTextFormat>& TextResource::GetTextFormat() {
     return textFormat_;
 }

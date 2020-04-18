@@ -22,6 +22,7 @@
     <ClInclude Include="..\..\Interface\Common\UserInterface\Button.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\Commander.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\DebugInfo.hpp" />
+    <ClInclude Include="..\..\Interface\Common\UserInterface\DefaultTextStyles.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\Element.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\Model2d.hpp" />
     <ClInclude Include="..\..\Interface\Common\UserInterface\ModelPortal.hpp" />

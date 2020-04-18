@@ -66,6 +66,9 @@
     <ClInclude Include="..\..\Interface\Common\UserInterface\Button.hpp">
       <Filter>Header Files\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\UserInterface\DefaultTextStyles.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Common\DebugInfo.cpp">

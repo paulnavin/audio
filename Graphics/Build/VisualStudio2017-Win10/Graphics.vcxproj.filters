@@ -72,6 +72,9 @@
     <ClInclude Include="..\..\Interface\DirectX\Graphics\Text.hpp">
       <Filter>Header Files\DirectX</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Graphics\TextStyle.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\DirectX\Engine2d.cpp">

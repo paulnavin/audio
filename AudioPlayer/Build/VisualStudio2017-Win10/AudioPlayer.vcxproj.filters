@@ -132,6 +132,9 @@
     <ClInclude Include="..\..\Implementation\Win10\targetver.h">
       <Filter>Entry Point\Header Files\Win10</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Implementation\Scene1Dj\Scene1TextStyles.hpp">
+      <Filter>Scene 1 DJ\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resources\small.ico">

@@ -5,6 +5,7 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/TextManager2d.hpp>
 #include <Platform/WindowsInterface.hpp>
+#include <UserInterface/DefaultTextStyles.hpp>
 #include <UserInterface/ModelPortal.hpp>
 
 Result DebugInfo::Init(ModelPortal* portal) {
@@ -22,6 +23,7 @@ Result DebugInfo::Init(ModelPortal* portal) {
     fpsText_.SetParent(this);
     fpsText_.SetPosition(5.0f, 5.0f);
     fpsText_.SetDimensions(200.0f, 50.0f);
+    fpsText_.SetStyle(DefaultText);
     initResult = fpsText_.Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("DebugInfo::Init() : Error initialising 2D FPS text.");
@@ -29,6 +31,7 @@ Result DebugInfo::Init(ModelPortal* portal) {
     }
 
     mousePositionText_.SetParent(this);
+    mousePositionText_.SetStyle(DefaultText);
     mousePositionText_.SetPosition(5.0f, 55.0f);
     mousePositionText_.SetDimensions(200.0f, 50.0f);
     initResult = mousePositionText_.Init(portal);

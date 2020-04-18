@@ -3,6 +3,8 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Resources/ResourceManager.hpp>
 
+#include "Scene1TextStyles.hpp"
+
 Result ViewSelectionButton::Init(ModelPortal* portal) {
     Result initResult = Element::Init(portal);
     if (initResult.HasErrors()) {
@@ -24,6 +26,7 @@ Result ViewSelectionButton::Init(ModelPortal* portal) {
 
     text_.SetParent(this);
     text_.SetDimensionsAsPercentage(100.0f, 100.0f);
+    text_.SetStyle(DefaultText);
     text_.SetText(textToShow_);
     initResult = text_.Init(portal);
     if (initResult.HasErrors()) {
