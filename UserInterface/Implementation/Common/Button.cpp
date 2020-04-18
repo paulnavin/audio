@@ -17,14 +17,40 @@ Result Button::Init(ModelPortal* portal) {
 
     chell_->commander->SubscribeToMouseMove(this);
 
-    background_.SetParent(this);
-    background_.SetColour(Colour{ 1.0f, 0.0f, 0.0f, 0.6f });
-    background_.SetPosition(0.0f, 0.0f);
-    background_.SetDimensionsAsPercentage(100.0f, 100.0f);
-    initResult = background_.Init(portal);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("Button::Init() : Error initialising background.");
-        return initResult;
+    if (backgroundImageName_ != nullptr) {
+        backgroundImage_.SetParent(this);
+        backgroundImage_.SetBitmapName(backgroundImageName_);
+        backgroundImage_.SetPosition(0.0f, 0.0f);
+        backgroundImage_.SetDimensionsAsPercentage(100.0f, 100.0f);
+        initResult = backgroundImage_.Init(portal);
+
+        if (initResult.HasErrors()) {
+            initResult.AppendError("Button::Init() : Error initialising background image.");
+            return initResult;
+        }
+    } else {
+        background_.SetParent(this);
+        background_.SetColour(Colour{ 1.0f, 0.0f, 0.0f, 0.6f });
+        background_.SetPosition(0.0f, 0.0f);
+        background_.SetDimensionsAsPercentage(100.0f, 100.0f);
+        initResult = background_.Init(portal);
+        if (initResult.HasErrors()) {
+            initResult.AppendError("Button::Init() : Error initialising background.");
+            return initResult;
+        }
+    }
+
+    if (foregroundImageName_ != nullptr) {
+        foregroundImage_.SetParent(this);
+        foregroundImage_.SetBitmapName(foregroundImageName_);
+        foregroundImage_.SetPosition(0.0f, 0.0f);
+        foregroundImage_.SetDimensionsAsPercentage(100.0f, 100.0f);
+        initResult = foregroundImage_.Init(portal);
+
+        if (initResult.HasErrors()) {
+            initResult.AppendError("Button::Init() : Error initialising foreground image.");
+            return initResult;
+        }
     }
 
     mouseOverHighlight_.SetParent(this);
@@ -49,7 +75,15 @@ Result Button::Init(ModelPortal* portal) {
         return initResult;
     }
 
-    AddChild(&background_);
+    if (backgroundImageName_ != nullptr) {
+        AddChild(&backgroundImage_);
+    } else {
+        AddChild(&background_);
+    }
+
+    if (foregroundImageName_ != nullptr) {
+        AddChild(&foregroundImage_);
+    }
     AddChild(&mouseOverHighlight_);
     AddChild(&buttonDownHighlight_);
 
@@ -111,4 +145,12 @@ void Button::HandleMouseMove(const float& x, const float& y) {
 
 void Button::SetOnClickHandler(std::function<void()> onClickHandler) {
     onClickHandler_ = onClickHandler;
+}
+
+void Button::SetBackgroundImage(const char* name) {
+    backgroundImageName_ = name;
+}
+
+void Button::SetForegroundImage(const char* name) {
+    foregroundImageName_ = name;
 }

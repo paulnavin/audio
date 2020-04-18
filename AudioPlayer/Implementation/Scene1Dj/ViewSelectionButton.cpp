@@ -14,6 +14,7 @@ Result ViewSelectionButton::Init(ModelPortal* portal) {
 
     button_.SetParent(this);
     button_.SetDimensionsAsPercentage(100.0f, 100.0f);
+    button_.SetBackgroundImage("apollo_panel_button_night.9");
     button_.SetOnClickHandler(
         []() {
         OutputDebugStringA("Selected");

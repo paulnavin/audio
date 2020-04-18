@@ -17,6 +17,8 @@ Result Scene1Dj::Init(ModelPortal* portal, ConfigStore* config, InputManager* in
     ResourceManager* resources = portal->resourceManager;
     resources->RegisterBitmapToLoad("BlueArrow");
     resources->RegisterBitmapToLoad("SettingsButton");
+    resources->RegisterBitmapToLoad("apollo_panel_button_night.9");
+    resources->RegisterBitmapToLoad("apollo_panel_button_inner_night.9");
 
     TextStyle defaultStyle = { DefaultText, Colour{1.0f, 1.0f, 1.0f, 1.0f}, "Courier New", 26.0f };
     resources->RegisterTextStyle(defaultStyle);

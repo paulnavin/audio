@@ -19,6 +19,7 @@ Result Sprite::Init(ModelPortal* portal) {
         initResult.AppendError(name_);
         return initResult;
     }
+    bitmapToDraw_->SetPositionAndDimension(positionOnScreen_, dimensionsOnScreen_);
     return initResult;
 }
 
