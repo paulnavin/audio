@@ -2,22 +2,21 @@
 
 #include <UserInterface/Element.hpp>
 
-#include "DjButton.hpp"
-#include "DjWaveform.hpp"
+#include "HighlightButton.hpp"
 
 struct ModelPortal;
 
-class DjTopRow : public Element {
+class BottomRow : public Element {
 public:
-    DjTopRow() = default;
-    virtual ~DjTopRow() = default;
+    BottomRow() = default;
+    ~BottomRow() = default;
 
 public:
-    virtual Result Init(ModelPortal* portal) override;
+    Result Init(ModelPortal* portal) override;
 
 private:
-    DjButton openFile1Button_;
-    DjButton openFile2Button_;
-    DjWaveform waveform1_;
-    DjWaveform waveform2_;
+    HighlightButton cueButton1_;
+    HighlightButton cueButton2_;
+    HighlightButton playButton1_;
+    HighlightButton playButton2_;
 };

@@ -48,6 +48,24 @@ Result ModelDj::Init(ModelPortal* portal) {
         return initResult;
     }
 
+    buttonRow_.SetParent(&rootElement_);
+    buttonRow_.SetDimensionsAsPercentage(100.0f, 10.0f);
+    buttonRow_.SetPositionAsPercentage(0.0f, 21.0f);
+    initResult = buttonRow_.Init(portal);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("ModelDj::Init() : Error initialising button row.");
+        return initResult;
+    }
+
+    bottomRow_.SetParent(&rootElement_);
+    bottomRow_.SetDimensionsAsPercentage(100.0f, 21.0f);
+    bottomRow_.SetPositionAsPercentage(0.0f, -21.0f);
+    initResult = bottomRow_.Init(portal);
+    if (initResult.HasErrors()) {
+        initResult.AppendError("ModelDj::Init() : Error initialising bottom row.");
+        return initResult;
+    }
+
     explosion_.SetParent(&rootElement_);
     explosion_.SetPosition(400.0f, 400.0f);
     initResult = explosion_.Init(portal);
@@ -60,6 +78,7 @@ Result ModelDj::Init(ModelPortal* portal) {
     elements_.push_back(&buttonRow_);
     elements_.push_back(&jogWheel1_);
     elements_.push_back(&explosion_);
+    elements_.push_back(&bottomRow_);
 
     SetCursorBitmap("BlueArrow");
     return Model2d::Init(portal);

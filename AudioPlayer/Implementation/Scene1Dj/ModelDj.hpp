@@ -3,6 +3,7 @@
 #include <UserInterface/Element.hpp>
 #include <UserInterface/Model2d.hpp>
 
+#include"BottomRow.hpp"
 #include "ButtonRow.hpp"
 #include "DjTopRow.hpp"
 #include "ExplosionAnimation.hpp"
@@ -24,6 +25,7 @@ private:
     JogWheel jogWheel1_;
     DjTopRow topRow_;
     ButtonRow buttonRow_;
+    BottomRow bottomRow_;
 
     ExplosionAnimation explosion_;
 };

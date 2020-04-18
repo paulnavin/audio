@@ -1,56 +1,58 @@
-#include "ModelDj.hpp"
+#include "BottomRow.hpp"
 
 #include <Graphics/GraphicsEngine.hpp>
 
-Result DjTopRow::Init(ModelPortal* portal) {
+Result BottomRow::Init(ModelPortal* portal) {
     Result initResult = Element::Init(portal);
     if (initResult.HasErrors()) {
         initResult.AppendError("DjTopRow::Init() : Error initialising base Element.");
         return initResult;
     }
 
-    openFile1Button_.SetParent(this);
-    openFile1Button_.SetHighlightColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
-    openFile1Button_.SetPosition(0.0f, 0.0f);
-    openFile1Button_.SetDimensionsAsPercentage(11.5f, 100.0f);
-    initResult = openFile1Button_.Init(portal);
+    cueButton1_.SetParent(this);
+    cueButton1_.SetHighlightColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
+    cueButton1_.SetPosition(0.0f, 0.0f);
+    cueButton1_.SetDimensionsAsPercentage(11.5f, 100.0f);
+    initResult = cueButton1_.Init(portal);
     if (initResult.HasErrors()) {
-        initResult.AppendError("DjTopRow::Init() : Error initialising open file button 1.");
+        initResult.AppendError("DjTopRow::Init() : Error initialising cue button 1.");
         return initResult;
     }
 
-    openFile2Button_.SetParent(this);
-    openFile2Button_.SetHighlightColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
-    openFile2Button_.SetDimensionsAsPercentage(11.5f, 100.0f);
-    openFile2Button_.SetPositionAsPercentage(-11.5f, 0.0f);
-    initResult = openFile2Button_.Init(portal);
+    cueButton2_.SetParent(this);
+    cueButton2_.SetHighlightColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
+    cueButton2_.SetDimensionsAsPercentage(11.5f, 100.0f);
+    cueButton2_.SetPositionAsPercentage(-23.0f, 0.0f);
+    initResult = cueButton2_.Init(portal);
     if (initResult.HasErrors()) {
-        initResult.AppendError("DjTopRow::Init() : Error initialising open file button 2.");
+        initResult.AppendError("DjTopRow::Init() : Error initialising cue button 2.");
         return initResult;
     }
 
-    waveform1_.SetParent(this);
-    waveform1_.SetPositionAsPercentage(11.5f, 0.0f);
-    waveform1_.SetDimensionsAsPercentage(38.5f, 100.0f);
-    initResult = waveform1_.Init(portal);
+    playButton1_.SetParent(this);
+    playButton1_.SetHighlightColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
+    playButton1_.SetDimensionsAsPercentage(11.5f, 100.0f);
+    playButton1_.SetPositionAsPercentage(11.5f, 0.0f);
+    initResult = playButton1_.Init(portal);
     if (initResult.HasErrors()) {
-        initResult.AppendError("DjTopRow::Init() : Error initialising waveform 1.");
+        initResult.AppendError("DjTopRow::Init() : Error initialising play button 1.");
         return initResult;
     }
 
-    waveform2_.SetParent(this);
-    waveform2_.SetPositionAsPercentage(50.0f, 0.0f);
-    waveform2_.SetDimensionsAsPercentage(38.5f, 100.0f);
-    initResult = waveform2_.Init(portal);
+    playButton2_.SetParent(this);
+    playButton2_.SetHighlightColour(Colour{ 0.5f, 0.5f, 0.5f, 1.0f });
+    playButton2_.SetDimensionsAsPercentage(11.5f, 100.0f);
+    playButton2_.SetPositionAsPercentage(-11.5f, 0.0f);
+    initResult = playButton2_.Init(portal);
     if (initResult.HasErrors()) {
-        initResult.AppendError("DjTopRow::Init() : Error initialising waveform 2.");
+        initResult.AppendError("DjTopRow::Init() : Error initialising play button 2.");
         return initResult;
     }
 
-    AddChild(&openFile1Button_);
-    AddChild(&openFile2Button_);
-    AddChild(&waveform1_);
-    AddChild(&waveform2_);
+    AddChild(&cueButton1_);
+    AddChild(&cueButton2_);
+    AddChild(&playButton1_);
+    AddChild(&playButton2_);
 
     return initResult;
 }
