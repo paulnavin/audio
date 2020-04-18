@@ -16,6 +16,7 @@ void ResourceManager::ShowOpenFileDialog() {
 
         if (SUCCEEDED(hr)) {
             // Show the Open dialog box.
+            ShowCursor(TRUE);
             hr = pFileOpen->Show(NULL);
 
             // Get the file name from the dialog box.
@@ -37,6 +38,7 @@ void ResourceManager::ShowOpenFileDialog() {
                 }
             }
             pFileOpen->Release();
+            ShowCursor(FALSE);
         }
         CoUninitialize();
     }
