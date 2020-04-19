@@ -13,21 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Win10">
-      <UniqueIdentifier>{ccfe7aa4-55ab-4e30-b99b-7f871db50ba9}</UniqueIdentifier>
+    <Filter Include="Source Files\XInput">
+      <UniqueIdentifier>{b1b6256b-01a6-4ccd-8644-423c852685ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Win10">
-      <UniqueIdentifier>{311d6d17-b1ff-42e2-b808-1137bd4da4ad}</UniqueIdentifier>
+    <Filter Include="Header Files\XInput">
+      <UniqueIdentifier>{9b133d66-1880-4be0-8bcf-18bb77774efe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\Win10\Audio\AudioEngine.hpp">
-      <Filter>Header Files\Win10</Filter>
+    <ClInclude Include="..\..\Interface\XInput\Audio\AudioEngine.hpp">
+      <Filter>Header Files\XInput</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\Win10\AudioEngine.cpp">
-      <Filter>Source Files\Win10</Filter>
+    <ClCompile Include="..\..\Implementation\XInput\AudioEngine.cpp">
+      <Filter>Source Files\XInput</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
