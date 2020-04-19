@@ -1,6 +1,7 @@
 #pragma once
 
 #include <App/AppTimer.hpp>
+#include <Audio/AudioEngine.hpp>
 #include <Display/WindowConfig.hpp>
 #include <Display/WindowMessageHandler.hpp>
 #include <ErrorHandling/Result.hpp>
@@ -80,6 +81,7 @@ private:
     GraphicsEngine graphicsEngine_;
     ModelPortal portal_;
     ResourceManager resourceManager_;
+    AudioEngine audioEngine_;
     bool initialised_ = false;
     bool finished_ = false;
     bool paused_ = false;
