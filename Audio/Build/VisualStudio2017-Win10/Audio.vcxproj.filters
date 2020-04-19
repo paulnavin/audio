@@ -13,21 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\XInput">
-      <UniqueIdentifier>{b1b6256b-01a6-4ccd-8644-423c852685ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\XInput">
+    <Filter Include="Header Files\XAudio">
       <UniqueIdentifier>{9b133d66-1880-4be0-8bcf-18bb77774efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XAudio">
+      <UniqueIdentifier>{b1b6256b-01a6-4ccd-8644-423c852685ad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\XInput\Audio\AudioEngine.hpp">
-      <Filter>Header Files\XInput</Filter>
+    <ClInclude Include="..\..\Interface\XAudio\Audio\AudioEngine.hpp">
+      <Filter>Header Files\XAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\XAudio\Audio\XAudio.hpp">
+      <Filter>Header Files\XAudio</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\XInput\AudioEngine.cpp">
-      <Filter>Source Files\XInput</Filter>
+    <ClCompile Include="..\..\Implementation\XAudio\AudioEngine.cpp">
+      <Filter>Source Files\XAudio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

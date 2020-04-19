@@ -17,3 +17,4 @@ Loading data
   - ? ErrorHandling -> Platform/Result.hpp
   - ? Display -> Platform/Window.hpp
   - ? Display -> Remove WindowManager by giving each Window its own WndProc?
+  - Move ResourceLocator out so it's only used by ResourceManager?

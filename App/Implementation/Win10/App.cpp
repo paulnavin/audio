@@ -14,60 +14,51 @@
 Result App::Init(const AppInstance& appInstance, const ResourceLocator& resourceManager) {
     appInstance_ = appInstance;
     
-    Result initResult = config_.LoadConfig(configFileName_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error loading app config from file.");
-        initResult.AppendError(configFileName_.c_str());
-        return initResult;
+    Result result = config_.LoadConfig(configFileName_);
+    if (result.HasErrors()) {
+        result.AppendError("App::Init() : Error loading app config from file.");
+        result.AppendError(configFileName_.c_str());
+        return result;
     }
 
     WindowManager& windowManager = WindowManager::GetInstance();
-    initResult = windowManager.Init(appInstance_, mainWindowConfig_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising WindowManager.");
-        return initResult;
-    }
+    ReturnIfResultError(
+        windowManager.Init(appInstance_, mainWindowConfig_),
+        "App::Init() : Error initialising WindowManager.");
 
-    initResult = timer_.Init();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising app timer.");
-        return initResult;
-    }
+    ReturnIfResultError(
+        timer_.Init(),
+        "App::Init() : Error initialising app timer.");
 
-    initResult = windowManager.CreateNewWindow(mainWindowConfig_, &mainWindow_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error creating main window.");
-        return initResult;
-    }
+    ReturnIfResultError(
+        windowManager.CreateNewWindow(mainWindowConfig_, &mainWindow_),
+        "App::Init() : Error creating main window.");
+
     mainWindow_->SetWindowMessageHandler(this);
 
-    initResult = graphicsEngine_.Init(mainWindow_, resourceManager);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising graphics engine.");
-        return initResult;
-    }
+    ReturnIfResultError(
+        graphicsEngine_.Init(mainWindow_, resourceManager),
+        "App::Init() : Error initialising graphics engine.");
 
-    initResult = inputManager_.Init(mainWindow_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising input manager.");
-        return initResult;
-    }
+    ReturnIfResultError(
+        inputManager_.Init(mainWindow_),
+        "App::Init() : Error initialising input manager.");
 
-    initResult = resourceManager_.Init(&graphicsEngine_);
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising resource manager.");
-        return initResult;
-    }
+    ReturnIfResultError(
+        resourceManager_.Init(&graphicsEngine_),
+        "App::Init() : Error initialising resource manager.");
 
     keen_.SetAppCommandHandler(
         [this](const Command::Id& command) {
         this->HandleAppCommand(command);
     });
-    initResult = keen_.Init();
-    if (initResult.HasErrors()) {
-        initResult.AppendError("App::Init() : Error initialising Billy Blaze.");
-        return initResult;
-    }
+    ReturnIfResultError(
+        keen_.Init(),
+        "App::Init() : Error initialising Billy Blaze.");
+
+    ReturnIfResultError(
+        audioEngine_.Init(),
+        "App::Init() : Error initialising audio engine.");
 
     portal_.commander = &keen_;
     portal_.gfx = &graphicsEngine_;
@@ -75,7 +66,7 @@ Result App::Init(const AppInstance& appInstance, const ResourceLocator& resource
     LOG(INFO) << "App::Init() : Successful!";
     initialised_ = true;
 
-    return initResult;
+    return result;
 }
 
 Result App::Run() {
@@ -154,6 +145,8 @@ void App::ShutDown() {
     LOG(INFO) << "App::ShutDown() : Shut down!";
     
     PopAllScenes();
+
+    audioEngine_.ShutDown();
 
     resourceManager_.ShutDown();
 
