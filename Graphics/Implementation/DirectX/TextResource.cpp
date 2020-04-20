@@ -5,7 +5,7 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Position2d.hpp>
 #include <Graphics/TextStyle.hpp>
-#include <StringHandling/StringUtil.hpp>
+#include <Platform/StringHandling.hpp>
 
 Result TextResource::Init(GraphicsEngine* gfx, const TextStyle& style) {
     const TextManager2d& textManager = gfx->GetTextManager2d();

@@ -3,7 +3,7 @@
 #include <Graphics/AnimatedSpriteCycleData.hpp>
 #include <Graphics/DirectXInterface.hpp>
 #include <ErrorHandling/Result.hpp>
-#include <Stl/StlWrapper.hpp>
+#include <Platform/Stl.hpp>
 
 class Engine2d;
 class TextManager2d;

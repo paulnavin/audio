@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Stl/StlWrapper.hpp>
+#include <Platform/Stl.hpp>
 #include <UserInterface/Element.hpp>
 #include <UserInterface/Rectangle2d.hpp>
 #include <UserInterface/Sprite.hpp>

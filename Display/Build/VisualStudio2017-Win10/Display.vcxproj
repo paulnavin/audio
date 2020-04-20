@@ -111,7 +111,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\Win10;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Common;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>

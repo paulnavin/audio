@@ -5,16 +5,12 @@ Loading data
  Investigate WM_ACTIVATEAPP.
  Different loop for Android to not burn CPU cycles for Update().
  Move random platform stuff into platform:
-  - FileSystem -> Platform/File.hpp
-  - ResourceLocator -> Resources/ResourceLocator.hpp
-  - Stl -> Platform/Stl.hpp & StdLib.hpp
-  - App/AppTimer -> Platform/Timer.hpp
-  - App/AppUserInput -> Common
   - App/App.cpp -> ??? Has PeekMessage() etc, and PostQuitMessage()
-  - Audio stuff XInput specific rather than Win10
   - Can main.cpp be Common, instead of Win10 specifc?
   - ? Logging -> Platform/Logging.hpp
   - ? ErrorHandling -> Platform/Result.hpp
   - ? Display -> Platform/Window.hpp
   - ? Display -> Remove WindowManager by giving each Window its own WndProc?
+  - ? ErrorDisplay -> Platform
   - Move ResourceLocator out so it's only used by ResourceManager?
+  - Move FileOpenDialog stuff out of ResourceManager so it can be common.

@@ -30,18 +30,12 @@
     <ClCompile Include="..\..\Implementation\Win10\App.cpp">
       <Filter>Source Files\Win10</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\Win10\AppTimer.cpp">
-      <Filter>Source Files\Win10</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Win10\AppUserInput.cpp">
-      <Filter>Source Files\Win10</Filter>
+    <ClCompile Include="..\..\Implementation\Common\AppUserInput.cpp">
+      <Filter>Source Files\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Interface\App\App.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Interface\App\AppTimer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Interface\App\AppUserInput.hpp">

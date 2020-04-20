@@ -1,7 +1,7 @@
 #pragma once
 
 #include <ErrorHandling/Result.hpp>
-#include <Stl/StlWrapper.hpp>
+#include <Platform/Stl.hpp>
 #include <UserInterface/DebugInfo.hpp>
 #include <UserInterface/Sprite.hpp>
 

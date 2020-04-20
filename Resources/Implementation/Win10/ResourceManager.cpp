@@ -1,9 +1,9 @@
 #include <Resources/ResourceManager.hpp>
 
-#include <FileSystem/ResourceLocator.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Platform/WindowsInterface.hpp>
-#include <StringHandling/StringUtil.hpp>
+#include <Resources/ResourceLocator.hpp>
+#include <Platform/StringHandling.hpp>
 
 void ResourceManager::ShowOpenFileDialog() {
     std::string fileName;

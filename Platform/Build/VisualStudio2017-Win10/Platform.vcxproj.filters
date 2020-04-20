@@ -16,6 +16,12 @@
     <Filter Include="Header Files\Win10">
       <UniqueIdentifier>{95f2bd1f-a96a-41e8-9861-dca64706e015}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{47270717-ed7e-43eb-bf32-54c180a386fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Win10">
+      <UniqueIdentifier>{48f5ec23-fb11-40cc-ab80-229342810ad1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Interface\Win10\Platform\WindowsInterface.hpp">
@@ -24,5 +30,31 @@
     <ClInclude Include="..\..\Interface\Win10\Platform\AppInstance.hpp">
       <Filter>Header Files\Win10</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\File.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\StdLib.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\Stl.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\Timer.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\StringHandling.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Win10\File.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\Timer.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\StringHandling.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

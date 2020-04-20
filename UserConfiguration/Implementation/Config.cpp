@@ -1,6 +1,6 @@
 #include <UserConfiguration/Config.hpp>
 
-#include <FileSystem/File.hpp>
+#include <Platform/File.hpp>
 
 
 const int32_t ConfigStore::GetInt32(const std::string& key, const int32_t& defaultValue) const {

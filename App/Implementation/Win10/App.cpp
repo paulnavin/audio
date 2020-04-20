@@ -7,13 +7,13 @@
 #include <Display/WindowConfig.hpp>
 #include <Display/WindowManager.hpp>
 #include <ErrorHandling/Result.hpp>
-#include <FileSystem/ResourceLocator.hpp>
 #include <Logging/EasyLogging++.hpp>
+#include <Resources/ResourceLocator.hpp>
 #include <UserInterface/Commander.hpp>
 
 Result App::Init(const AppInstance& appInstance, const ResourceLocator& resourceManager) {
     appInstance_ = appInstance;
-    
+
     Result result = config_.LoadConfig(configFileName_);
     if (result.HasErrors()) {
         result.AppendError("App::Init() : Error loading app config from file.");
@@ -143,7 +143,7 @@ Result App::Run() {
 
 void App::ShutDown() {
     LOG(INFO) << "App::ShutDown() : Shut down!";
-    
+
     PopAllScenes();
 
     audioEngine_.ShutDown();

@@ -1,4 +1,4 @@
-#include <App/AppTimer.hpp>
+#include <Platform/Timer.hpp>
 
 #include <Platform/WindowsInterface.hpp>
 
@@ -39,7 +39,7 @@ const double AppTimer::GetTotalRunningTimeInS() const {
     if (running_ == false) {
         return (lastPausedTime_ - startTime_ - totalIdleTime_) * msPerCpuCount_;
     }
-        
+
     return (currentTime_ - startTime_ - totalIdleTime_) * msPerCpuCount_;
 }
 

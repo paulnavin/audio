@@ -108,7 +108,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Platform\Interface\Common</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

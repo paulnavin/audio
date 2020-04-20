@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Stl/StlWrapper.hpp>
+#include <Platform/Stl.hpp>
 #include <ErrorHandling/Result.hpp>
 #include <Platform/WindowsInterface.hpp>
 

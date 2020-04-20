@@ -19,15 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Common\AppUserInput.cpp" />
     <ClCompile Include="..\..\Implementation\Common\Scene.cpp" />
     <ClCompile Include="..\..\Implementation\Common\SceneUserInput.cpp" />
     <ClCompile Include="..\..\Implementation\Win10\App.cpp" />
-    <ClCompile Include="..\..\Implementation\Win10\AppTimer.cpp" />
-    <ClCompile Include="..\..\Implementation\Win10\AppUserInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Interface\App\App.hpp" />
-    <ClInclude Include="..\..\Interface\App\AppTimer.hpp" />
     <ClInclude Include="..\..\Interface\App\AppUserInput.hpp" />
     <ClInclude Include="..\..\Interface\App\AppUserInputCommands.hpp" />
     <ClInclude Include="..\..\Interface\App\Scene.hpp" />
@@ -115,7 +113,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\DirectX;$(ProjectDir)..\..\Implementation;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\App\Interface;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\Audio\Interface\XAudio</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\App\Interface;$(ProjectDir)..\..\..\Audio\Interface\XAudio;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\Platform\Interface\Common;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Resources\Interface\Common;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\DirectX</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>

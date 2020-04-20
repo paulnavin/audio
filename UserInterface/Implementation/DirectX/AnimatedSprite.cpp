@@ -1,7 +1,7 @@
 #include <UserInterface/AnimatedSprite.hpp>
 
 #include <Graphics/Engine2d.hpp>
-#include <StringHandling/StringUtil.hpp>
+#include <Platform/StringHandling.hpp>
 
 Result AnimatedSprite::Init(ModelPortal* portal) {
     return Sprite::Init(portal);

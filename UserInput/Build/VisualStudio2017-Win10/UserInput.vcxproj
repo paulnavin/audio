@@ -116,7 +116,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Utility\Interface\Win10;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Common;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>

@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Interface\Common\Resources\ResourceLocator.hpp" />
     <ClInclude Include="..\..\Interface\Win10\Resources\Cursor.hpp" />
     <ClInclude Include="..\..\Interface\Win10\Resources\Icon.hpp" />
     <ClInclude Include="..\..\Interface\Win10\Resources\ResourceManager.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Common\ResourceLocator.cpp" />
     <ClCompile Include="..\..\Implementation\Win10\Cursor.cpp" />
     <ClCompile Include="..\..\Implementation\Win10\Icon.cpp" />
     <ClCompile Include="..\..\Implementation\Win10\ResourceManager.cpp" />
@@ -109,7 +111,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\FileSystem\Interface;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;$(ProjectDir)..\..\..\StringHandling\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Common;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>

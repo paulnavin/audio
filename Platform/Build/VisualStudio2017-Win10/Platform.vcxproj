@@ -19,8 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Interface\Common\Platform\File.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Platform\StdLib.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Platform\Stl.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Platform\StringHandling.hpp" />
+    <ClInclude Include="..\..\Interface\Common\Platform\Timer.hpp" />
     <ClInclude Include="..\..\Interface\Win10\Platform\AppInstance.hpp" />
     <ClInclude Include="..\..\Interface\Win10\Platform\WindowsInterface.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Win10\File.cpp" />
+    <ClCompile Include="..\..\Implementation\Win10\StringHandling.cpp" />
+    <ClCompile Include="..\..\Implementation\Win10\Timer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -104,6 +114,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Stl\Interface;</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

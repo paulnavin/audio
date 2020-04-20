@@ -6,7 +6,7 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Position2d.hpp>
 #include <Graphics/TextResource.hpp>
-#include <StringHandling/StringUtil.hpp>
+#include <Platform/StringHandling.hpp>
 
 Result Text::Init(GraphicsEngine* gfx, TextResource* resource) {
     textResource_ = resource;

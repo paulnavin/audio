@@ -1,7 +1,7 @@
-#include <StringHandling/StringUtil.hpp>
+#include <Platform/StringHandling.hpp>
 
 #include <Platform/WindowsInterface.hpp>
-#include <Stl/StlWrapper.hpp>
+#include <Platform/Stl.hpp>
 
 namespace StringUtil {
 

@@ -3,7 +3,7 @@
 #include <ErrorHandling/Result.hpp>
 #include <Graphics/Dimension2d.hpp>
 #include <Graphics/Position2d.hpp>
-#include <Stl/StlWrapper.hpp>
+#include <Platform/Stl.hpp>
 #include <UserInput/Command.hpp>
 
 struct ModelPortal;

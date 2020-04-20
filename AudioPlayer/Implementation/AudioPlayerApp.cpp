@@ -1,9 +1,9 @@
 #include "AudioPlayerApp.hpp"
 
 #include <ErrorHandling/Result.hpp>
-#include <FileSystem/ResourceLocator.hpp>
 #include <Display/WindowConfig.hpp>
 #include <Platform/AppInstance.hpp>
+#include <Resources/ResourceLocator.hpp>
 
 #include "AudioPlayerUserInputCommands.hpp"
 #include "Win10/resource.h"
@@ -24,7 +24,7 @@ Result AudioPlayerApp::Init(const AppInstance& appInstance, const ResourceLocato
     newWindowConfig.appIcon_.Init(appInstance.appHandle, MAKEINTRESOURCE(IDI_AUDIOPLAYER));
     newWindowConfig.smallAppIcon_.Init(appInstance.appHandle, MAKEINTRESOURCE(IDI_MONKEY_ICON));
     newWindowConfig.mouseCursor_.Init(appInstance.appHandle, MAKEINTRESOURCE(IDC_DARK_OXYGEN_CURSOR_NORMAL));
-    
+
     SetWindowConfig(newWindowConfig);
 
     initResult = App::Init(appInstance, resourceManager);

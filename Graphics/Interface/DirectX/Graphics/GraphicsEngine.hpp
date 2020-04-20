@@ -1,10 +1,10 @@
 #pragma once
 
+#include <ErrorHandling/Result.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/Engine3d.hpp>
 #include <Graphics/TextManager2d.hpp>
-#include <FileSystem/ResourceLocator.hpp>
-#include <ErrorHandling/Result.hpp>
+#include <Resources/ResourceLocator.hpp>
 
 class Model2d;
 class Model3d;

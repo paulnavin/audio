@@ -2,7 +2,7 @@
 
 #include <Resources/Cursor.hpp>
 #include <Resources/Icon.hpp>
-#include <Stl/StlWrapper.hpp>
+#include <Platform/Stl.hpp>
 
 struct WindowConfig {
     static constexpr size_t MAX_RESOURCE_NAME_LENGTH = 100;

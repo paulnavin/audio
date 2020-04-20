@@ -1,6 +1,5 @@
 #pragma once
 
-#include <App/AppTimer.hpp>
 #include <Audio/AudioEngine.hpp>
 #include <Display/WindowConfig.hpp>
 #include <Display/WindowMessageHandler.hpp>
@@ -8,6 +7,7 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Vertex.hpp>
 #include <Platform/AppInstance.hpp>
+#include <Platform/Timer.hpp>
 #include <Resources/ResourceManager.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInput/InputManager.hpp>

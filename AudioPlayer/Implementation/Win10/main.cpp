@@ -1,8 +1,8 @@
 #include <Display/ErrorDisplay.hpp>
 #include <Logging/EasyLogging++.hpp>
-#include <FileSystem/ResourceLocator.hpp>
 #include <ErrorHandling/Result.hpp>
 #include <Platform/WindowsInterface.hpp>
+#include <Resources/ResourceLocator.hpp>
 
 #include "AudioPlayerApp.hpp"
 
@@ -18,6 +18,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(nCmdShow);
 
     //START_EASYLOGGINGPP(__argc, __argv);
+
     // TODO: Should this be here?  Or in App?
     ResourceLocator resourceManager;
 
@@ -28,7 +29,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     AudioPlayerApp app;
     AppInstance appInstance{ hInstance };
-    
+
     Result appInitResult = app.Init(appInstance, resourceManager);
     if (appInitResult.HasErrors()) {
         ErrorDisplay::ShowErrors(appInitResult);
@@ -40,7 +41,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         ErrorDisplay::ShowErrors(appRunResult);
         return 1;
     }
-    
+
     // TODO: Maybe don't shutdown in release mode, just quit...?
     app.ShutDown();
     return 0;

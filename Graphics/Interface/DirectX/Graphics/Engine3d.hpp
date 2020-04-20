@@ -6,7 +6,7 @@
 #include <Graphics/VertexBuffer.hpp>
 #include <Graphics/VertexType.hpp>
 #include <ErrorHandling/Result.hpp>
-#include <Stl/StlWrapper.hpp>
+#include <Platform/Stl.hpp>
 
 class ResourceLocator;
 class Window;

@@ -4,7 +4,7 @@
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Position2d.hpp>
-#include <StringHandling/StringUtil.hpp>
+#include <Platform/StringHandling.hpp>
 
 Microsoft::WRL::ComPtr<IWICFormatConverter> BitmapResource::GetWicImage() {
     return image_;
