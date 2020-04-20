@@ -1,7 +1,6 @@
 #pragma once
 
-#include <Platform/WindowsInterface.hpp>
-
 struct AppInstance {
-    HINSTANCE appHandle;
+    AppInstance();
+    ~AppInstance() = default;
 };
