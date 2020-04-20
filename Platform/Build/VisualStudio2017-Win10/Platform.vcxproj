@@ -28,6 +28,7 @@
     <ClInclude Include="..\..\Interface\Win10\Platform\WindowsInterface.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Implementation\Win10\AppInstance.cpp" />
     <ClCompile Include="..\..\Implementation\Win10\File.cpp" />
     <ClCompile Include="..\..\Implementation\Win10\StringHandling.cpp" />
     <ClCompile Include="..\..\Implementation\Win10\Timer.cpp" />

@@ -56,5 +56,8 @@
     <ClCompile Include="..\..\Implementation\Win10\StringHandling.cpp">
       <Filter>Source Files\Win10</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\AppInstance.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

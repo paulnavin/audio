@@ -124,7 +124,7 @@
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\App\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Audio\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Graphics\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Display\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\ErrorHandling\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Logging\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Platform\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\Resources\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserConfiguration\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInput\Binaries\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\..\UserInterface\Binaries\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>App.lib;Audio.lib;Display.lib;ErrorHandling.lib;Graphics.lib;Logging.lib;Platform.lib;Resources.lib;UserConfiguration.lib;UserInput.lib;UserInterface.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -208,6 +208,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\AudioPlayerApp.cpp" />
     <ClCompile Include="..\..\Implementation\AudioPlayerUserInput.cpp" />
+    <ClCompile Include="..\..\Implementation\main.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\BottomRow.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\ButtonRow.cpp" />
     <ClCompile Include="..\..\Implementation\Scene1Dj\HighlightButton.cpp" />
@@ -225,7 +226,6 @@
     <ClCompile Include="..\..\Implementation\Scene2Simple\Scene2UserInput.cpp" />
     <ClCompile Include="..\..\Implementation\Scene3SettingsOverlay\Scene3.cpp" />
     <ClCompile Include="..\..\Implementation\Scene3SettingsOverlay\Scene3UserInput.cpp" />
-    <ClCompile Include="..\..\Implementation\Win10\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resources\AudioPlayer.ico" />

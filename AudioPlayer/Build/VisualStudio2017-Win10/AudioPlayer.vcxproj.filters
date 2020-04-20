@@ -55,9 +55,6 @@
       <UniqueIdentifier>{b6faa62b-bf52-4446-a13d-f770e8a40a15}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Entry Point\Source Files\Win10">
-      <UniqueIdentifier>{bfcdfbf4-345f-4bc7-ae07-deb690ef4ad4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Entry Point\Header Files\Win10">
       <UniqueIdentifier>{0cf2ffc7-0572-4503-ad54-1b0203dba0ad}</UniqueIdentifier>
     </Filter>
@@ -205,11 +202,11 @@
     <ClCompile Include="..\..\Implementation\Scene3SettingsOverlay\Scene3UserInput.cpp">
       <Filter>Scene 3 Settings Overlay\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\Win10\main.cpp">
-      <Filter>Entry Point\Source Files\Win10</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Implementation\Scene1Dj\BottomRow.cpp">
       <Filter>Scene 1 DJ\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\main.cpp">
+      <Filter>Entry Point\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
