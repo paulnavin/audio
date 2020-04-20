@@ -30,9 +30,9 @@
 #pragma warning( disable : 4530)    //  C++ exception handler used, but unwind semantics are not enabled
 #pragma warning( disable : 4623)    //  default constructor was implicitly defined as deleted
 #pragma warning( disable : 4668)    //  'blah' is not defined as a preprocessor macro, replacing with '0' for '#if/#elif'
-#pragma warning( disable : 5045) 
+#pragma warning( disable : 5045)
 
-#include <Logging/EasyLogging++.hpp>
+#include <Platform/Logging.hpp>
 
 #define ELPP_NO_DEFAULT_LOG_FILE true
 

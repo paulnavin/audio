@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Resources/Cursor.hpp>
-#include <Resources/Icon.hpp>
+#include <Platform/Cursor.hpp>
+#include <Platform/Icon.hpp>
 #include <Platform/Stl.hpp>
 
 struct WindowConfig {
@@ -11,7 +11,6 @@ struct WindowConfig {
     int32_t height;
     int32_t width;
 
-    // TODO: Turn these into pointers to ResourceManager objects.
     Icon appIcon_;
     Cursor mouseCursor_;
     bool showCursor_ = true;

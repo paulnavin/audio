@@ -27,12 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\Win10\Resources\Cursor.hpp">
-      <Filter>Header Files\Win10</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Interface\Win10\Resources\Icon.hpp">
-      <Filter>Header Files\Win10</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Interface\Win10\Resources\ResourceManager.hpp">
       <Filter>Header Files\Win10</Filter>
     </ClInclude>
@@ -41,12 +35,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\Win10\Cursor.cpp">
-      <Filter>Source Files\Win10</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Win10\Icon.cpp">
-      <Filter>Source Files\Win10</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Implementation\Win10\ResourceManager.cpp">
       <Filter>Source Files\Win10</Filter>
     </ClCompile>

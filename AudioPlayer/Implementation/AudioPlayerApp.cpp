@@ -1,8 +1,8 @@
 #include "AudioPlayerApp.hpp"
 
 #include <ErrorHandling/Result.hpp>
-#include <Display/WindowConfig.hpp>
 #include <Platform/AppInstance.hpp>
+#include <Platform/WindowConfig.hpp>
 #include <Resources/ResourceLocator.hpp>
 
 #include "AudioPlayerUserInputCommands.hpp"

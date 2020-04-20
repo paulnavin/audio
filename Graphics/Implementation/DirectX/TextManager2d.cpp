@@ -1,14 +1,12 @@
 #include <Graphics/TextManager2d.hpp>
 
 #include <Graphics/Engine2d.hpp>
-#include <Display/Window.hpp>
 
 const Microsoft::WRL::ComPtr<IDWriteFactory2>& TextManager2d::GetWriteFactory() const {
     return writeFactory_;
 }
 
-Result TextManager2d::Init(const Window& newWindow, const Engine2d& newEngine) {
-    windowHandle_ = newWindow.GetHandle();
+Result TextManager2d::Init(const Window& /*newWindow*/, const Engine2d& newEngine) {
     deviceContext2d_ = newEngine.GetDeviceContext2d();
 
     Result initResult = InitialiseFactory();

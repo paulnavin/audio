@@ -1,7 +1,7 @@
 #include <Graphics/Engine2d.hpp>
 
 #include <Graphics/Engine3d.hpp>
-#include <Display/Window.hpp>
+#include <Platform/Window.hpp>
 
 const Microsoft::WRL::ComPtr<ID2D1DeviceContext1>& Engine2d::GetDeviceContext2d() const {
     return deviceContext2d_;

@@ -1,6 +1,6 @@
 #include "Scene2Basic.hpp"
 
-#include <Logging/EasyLogging++.hpp>
+#include <Platform/Logging.hpp>
 
 #include "ModelBasic2d.hpp"
 #include "Scene2UserInput.hpp"

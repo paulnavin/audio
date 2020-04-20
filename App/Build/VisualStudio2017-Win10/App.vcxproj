@@ -113,7 +113,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\App\Interface;$(ProjectDir)..\..\..\Audio\Interface\XAudio;$(ProjectDir)..\..\..\Display\Interface\Common;$(ProjectDir)..\..\..\Display\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Logging\Interface;$(ProjectDir)..\..\..\Platform\Interface\Common;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Resources\Interface\Common;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\DirectX</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\App\Interface;$(ProjectDir)..\..\..\Audio\Interface\XAudio;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX;$(ProjectDir)..\..\..\Platform\Interface\Common;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\Resources\Interface\Common;$(ProjectDir)..\..\..\Resources\Interface\Win10;$(ProjectDir)..\..\..\UserConfiguration\Interface;$(ProjectDir)..\..\..\UserInput\Interface;$(ProjectDir)..\..\..\UserInterface\Interface\Common;$(ProjectDir)..\..\..\UserInterface\Interface\DirectX</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>

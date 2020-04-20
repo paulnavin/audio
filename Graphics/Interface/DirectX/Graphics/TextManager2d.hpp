@@ -23,5 +23,4 @@ public:
 private:
     Microsoft::WRL::ComPtr<ID2D1DeviceContext1>  deviceContext2d_;
     Microsoft::WRL::ComPtr<IDWriteFactory2>      writeFactory_;
-    HWND windowHandle_;
 };

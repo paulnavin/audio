@@ -45,6 +45,30 @@
     <ClInclude Include="..\..\Interface\Common\Platform\StringHandling.hpp">
       <Filter>Header Files\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\Win10\Platform\Window.hpp">
+      <Filter>Header Files\Win10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Win10\Platform\WindowManager.hpp">
+      <Filter>Header Files\Win10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\ErrorDisplay.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\Logging.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\WindowConfig.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\WindowMessageHandler.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Win10\Platform\Cursor.hpp">
+      <Filter>Header Files\Win10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Win10\Platform\Icon.hpp">
+      <Filter>Header Files\Win10</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Win10\File.cpp">
@@ -57,6 +81,24 @@
       <Filter>Source Files\Win10</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Win10\AppInstance.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\EasyLogging++.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\ErrorDisplay.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\Window.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\WindowManager.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\Cursor.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\Icon.cpp">
       <Filter>Source Files\Win10</Filter>
     </ClCompile>
   </ItemGroup>

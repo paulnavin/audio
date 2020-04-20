@@ -1,8 +1,8 @@
 #include "ModelDj.hpp"
 
-#include <Display/Window.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
+#include <Platform/Window.hpp>
 #include <UserInterface/AnimatedSprite.hpp>
 #include <UserInterface/Ellipse2d.hpp>
 #include <UserInterface/ModelPortal.hpp>

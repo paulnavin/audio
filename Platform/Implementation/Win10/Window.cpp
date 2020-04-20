@@ -1,7 +1,7 @@
-#include <Display/Window.hpp>
+#include <Platform/Window.hpp>
 
-#include <Display/WindowConfig.hpp>
-#include <Display/WindowMessageHandler.hpp>
+#include <Platform/WindowConfig.hpp>
+#include <Platform/WindowMessageHandler.hpp>
 
 const HWND Window::GetHandle() const {
     return windowHandle_;

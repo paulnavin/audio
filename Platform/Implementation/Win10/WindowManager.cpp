@@ -1,8 +1,8 @@
-#include <Display/WindowManager.hpp>
+#include <Platform/WindowManager.hpp>
 
 #include <Platform/AppInstance.hpp>
-#include <Display/Window.hpp>
-#include <Display/WindowConfig.hpp>
+#include <Platform/Window.hpp>
+#include <Platform/WindowConfig.hpp>
 
 //
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)

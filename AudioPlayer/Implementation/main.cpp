@@ -1,6 +1,6 @@
-#include <Display/ErrorDisplay.hpp>
-#include <Logging/EasyLogging++.hpp>
 #include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorDisplay.hpp>
+#include <Platform/Logging.hpp>
 #include <Platform/WindowsInterface.hpp>
 #include <Resources/ResourceLocator.hpp>
 

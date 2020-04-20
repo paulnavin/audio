@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Display/Window.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
+#include <Platform/Window.hpp>
 #include <UserInterface/Button.hpp>
 #include <UserInterface/Commander.hpp>
 #include <UserInterface/Ellipse2d.hpp>

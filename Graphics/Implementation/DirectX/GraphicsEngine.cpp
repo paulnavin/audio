@@ -1,7 +1,7 @@
 #include <Graphics/GraphicsEngine.hpp>
 
-#include <Display/ErrorDisplay.hpp>
-#include <Display/Window.hpp>
+#include <Platform/ErrorDisplay.hpp>
+#include <Platform/Window.hpp>
 
 const Engine2d& GraphicsEngine::GetEngine2d() const {
     return engine2d_;

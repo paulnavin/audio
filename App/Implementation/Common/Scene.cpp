@@ -2,7 +2,7 @@
 
 #include <App/SceneUserInput.hpp>
 #include <Graphics/GraphicsEngine.hpp>
-#include <Logging/EasyLogging++.hpp>
+#include <Platform/Logging.hpp>
 #include <Resources/ResourceManager.hpp>
 #include <UserInterface/Commander.hpp>
 #include <UserInterface/Model2d.hpp>

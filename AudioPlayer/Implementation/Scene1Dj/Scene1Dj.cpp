@@ -1,6 +1,6 @@
 #include "Scene1Dj.hpp"
 
-#include <Logging/EasyLogging++.hpp>
+#include <Platform/Logging.hpp>
 #include <Resources/ResourceManager.hpp>
 #include <UserInterface/ModelPortal.hpp>
 

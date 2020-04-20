@@ -1,4 +1,4 @@
-#include <Resources/Cursor.hpp>
+#include <Platform/Cursor.hpp>
 
 const HCURSOR Cursor::GetHandle() const {
     return handle_;

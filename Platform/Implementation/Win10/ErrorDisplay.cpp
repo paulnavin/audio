@@ -1,4 +1,4 @@
-#include <Display/ErrorDisplay.hpp>
+#include <Platform/ErrorDisplay.hpp>
 
 #include <Platform/WindowsInterface.hpp>
 

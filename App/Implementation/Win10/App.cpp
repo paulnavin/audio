@@ -2,12 +2,12 @@
 
 #include <App/AppUserInput.hpp>
 #include <App/Scene.hpp>
-#include <Display/ErrorDisplay.hpp>
-#include <Display/Window.hpp>
-#include <Display/WindowConfig.hpp>
-#include <Display/WindowManager.hpp>
 #include <ErrorHandling/Result.hpp>
-#include <Logging/EasyLogging++.hpp>
+#include <Platform/ErrorDisplay.hpp>
+#include <Platform/Logging.hpp>
+#include <Platform/Window.hpp>
+#include <Platform/WindowConfig.hpp>
+#include <Platform/WindowManager.hpp>
 #include <Resources/ResourceLocator.hpp>
 #include <UserInterface/Commander.hpp>
 

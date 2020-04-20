@@ -1,6 +1,6 @@
 #include "Scene3.hpp"
 
-#include <Logging/EasyLogging++.hpp>
+#include <Platform/Logging.hpp>
 
 #include "Model2dSettingsOverlay.hpp"
 #include "Scene3UserInput.hpp"

@@ -1,8 +1,8 @@
 #include <Graphics/Engine3d.hpp>
 
-#include <Display/Window.hpp>
 #include <Graphics/ShaderBuffer.hpp>
 #include <Platform/StringHandling.hpp>
+#include <Platform/Window.hpp>
 #include <Resources/ResourceLocator.hpp>
 
 const Microsoft::WRL::ComPtr<ID3D11Device>& Engine3d::GetDirect3dDevice() const {

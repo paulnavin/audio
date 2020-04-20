@@ -2,7 +2,7 @@
 
 #include <UserInput/KeyBinding.hpp>
 #include <UserInput/KeyState.hpp>
-#include <Display/Window.hpp>
+#include <Platform/Window.hpp>
 #include <Platform/WindowsInterface.hpp>
 
 InputManager::~InputManager() {

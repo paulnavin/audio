@@ -1,7 +1,5 @@
 #include <Graphics/Text.hpp>
 
-#include <Display/ErrorDisplay.hpp>
-
 #include <Graphics/Dimension2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Position2d.hpp>

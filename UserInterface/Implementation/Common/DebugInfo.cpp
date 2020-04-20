@@ -1,9 +1,9 @@
 #include <UserInterface/DebugInfo.hpp>
 
-#include <Display/Window.hpp>
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/TextManager2d.hpp>
+#include <Platform/Window.hpp>
 #include <Platform/WindowsInterface.hpp>
 #include <UserInterface/DefaultTextStyles.hpp>
 #include <UserInterface/ModelPortal.hpp>
