@@ -1,7 +1,7 @@
 #include "HighlightButton.hpp"
 
 #include <Graphics/GraphicsEngine.hpp>
-#include <Resources/ResourceManager.hpp>
+#include <Platform/File.hpp>
 
 Result HighlightButton::Init(ModelPortal* portal) {
     Result initResult = Element::Init(portal);
@@ -26,7 +26,8 @@ Result HighlightButton::Init(ModelPortal* portal) {
     button_.SetOnClickHandler(
         []() {
         OutputDebugStringA("Clicked");
-        ResourceManager::ShowOpenFileDialog();
+        // TODO: Don't call ShowOpenFileDialog() directly here, send a message to something on another thread.
+        File::ShowOpenFileDialog();
     });
     initResult = button_.Init(portal);
     if (initResult.HasErrors()) {

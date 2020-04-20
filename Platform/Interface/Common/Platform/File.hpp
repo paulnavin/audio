@@ -8,6 +8,8 @@ public:
     File() = default;
     ~File() = default;
 
+    static void ShowOpenFileDialog();
+
 public:
     Result Init(const std::string& fileName);
 

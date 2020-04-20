@@ -13,33 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Win10">
-      <UniqueIdentifier>{35e42815-2cd3-443e-8762-97bbdfa01b11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Win10">
-      <UniqueIdentifier>{1c993f53-903f-4519-93f1-f423aa9b11b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Common">
-      <UniqueIdentifier>{27409c19-254e-4914-a063-c114f15c3ae3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Common">
-      <UniqueIdentifier>{8f17275d-0adc-40d8-a6c4-0753ca2bdef9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\Win10\Resources\ResourceManager.hpp">
-      <Filter>Header Files\Win10</Filter>
+    <ClInclude Include="..\..\Interface\Resources\ResourceLocator.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Common\Resources\ResourceLocator.hpp">
-      <Filter>Header Files\Common</Filter>
+    <ClInclude Include="..\..\Interface\Resources\ResourceManager.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\Win10\ResourceManager.cpp">
-      <Filter>Source Files\Win10</Filter>
+    <ClCompile Include="..\..\Implementation\ResourceLocator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Implementation\Common\ResourceLocator.cpp">
-      <Filter>Source Files\Common</Filter>
+    <ClCompile Include="..\..\Implementation\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Interface\Common\Resources\ResourceLocator.hpp" />
-    <ClInclude Include="..\..\Interface\Win10\Resources\ResourceManager.hpp" />
+    <ClInclude Include="..\..\Interface\Resources\ResourceLocator.hpp" />
+    <ClInclude Include="..\..\Interface\Resources\ResourceManager.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Implementation\Common\ResourceLocator.cpp" />
-    <ClCompile Include="..\..\Implementation\Win10\ResourceManager.cpp" />
+    <ClCompile Include="..\..\Implementation\ResourceLocator.cpp" />
+    <ClCompile Include="..\..\Implementation\ResourceManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -107,7 +107,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface\Common;$(ProjectDir)..\..\Interface\Win10;$(ProjectDir)..\..\..\Platform\Interface\Common;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Interface;$(ProjectDir)..\..\..\Platform\Interface\Common;$(ProjectDir)..\..\..\Platform\Interface\Win10;$(ProjectDir)..\..\..\ErrorHandling\Interface;$(ProjectDir)..\..\..\Graphics\Interface\Common;$(ProjectDir)..\..\..\Graphics\Interface\DirectX</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4820</DisableSpecificWarnings>
     </ClCompile>

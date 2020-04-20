@@ -1,15 +1,9 @@
 Loading data
- Move deviceContext2d_ into base class Element
- RawInput for multiple cursors/multitouch.
- Fix window support so can actually resize (only use supported configs if in fullscreen).
- Investigate WM_ACTIVATEAPP.
- Different loop for Android to not burn CPU cycles for Update().
- Move random platform stuff into platform:
+Move deviceContext2d_ into base class Element
+RawInput for multiple cursors/multitouch.
+Investigate WM_ACTIVATEAPP.
+Different loop for Android to not burn CPU cycles for Update().
+Move random platform stuff into platform:
   - App/App.cpp -> ??? Has PeekMessage() etc, and PostQuitMessage()
-  - ? Logging -> Platform/Logging.hpp
-  - ? ErrorHandling -> Platform/Result.hpp
-  - ? Display -> Platform/Window.hpp
-  - ? Display -> Remove WindowManager by giving each Window its own WndProc?
-  - ? ErrorDisplay -> Platform
   - Move ResourceLocator out so it's only used by ResourceManager?
-  - Move FileOpenDialog stuff out of ResourceManager so it can be common.
+      - Update AnimatedSprite to use ResourceManager.
