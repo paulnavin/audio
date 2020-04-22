@@ -3,6 +3,8 @@
 #include <Audio/XAudio.hpp>
 #include <ErrorHandling/Result.hpp>
 
+struct MySource;
+
 class AudioEngine {
 
 public:
@@ -12,6 +14,8 @@ public:
 public:
     Result Init();
     void ShutDown();
+
+    HRESULT PlayAudioStream(MySource *pMySource);
 
 private:
     Microsoft::WRL::ComPtr<IXAudio2> audioDevice_;

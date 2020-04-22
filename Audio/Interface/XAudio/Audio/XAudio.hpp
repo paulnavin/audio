@@ -5,11 +5,15 @@
 #pragma warning( disable : 4668)    //  Something not defined as a preprocessor macro, assuming 0
 #pragma warning( disable : 5039)	//  disable pointer or reference to potentially throwing function passed to extern C function warning
 
-// For audio playing/mixing. 
+// For audio playing/mixing.
 #include <xaudio2.h>
 
 // For Windows COM stuff.
 #include <wrl/client.h>
+
+
+#include <mmdeviceapi.h>
+#include <audioclient.h>
 
 // Windows Media Foundation for reading/writing audio files.
 #include <mfapi.h>
