@@ -1,7 +1,6 @@
 #include <ErrorHandling/Result.hpp>
 #include <Platform/ErrorDisplay.hpp>
 #include <Platform/Logging.hpp>
-#include <Platform/WindowsInterface.hpp>
 #include <Resources/ResourceLocator.hpp>
 
 #include "AudioPlayerApp.hpp"

@@ -3,7 +3,7 @@
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/Engine3d.hpp>
 #include <Graphics/TextManager2d.hpp>
-#include <FileSystem/ResourceLocator.hpp>
+#include <Resources/ResourceLocator.hpp>
 #include <ErrorHandling/Result.hpp>
 
 class Model2d;

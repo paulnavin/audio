@@ -4,10 +4,10 @@
 
 class TextResource;
 
-class TextBox {
+class Text {
 public:
-    TextBox() = default;
-    ~TextBox() = default;
+    Text() = default;
+    ~Text() = default;
 
 public:
     Result Init(const TextResource& resource);

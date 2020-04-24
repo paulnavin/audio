@@ -1,11 +1,10 @@
 #pragma once
 
+#include <ErrorHandling/Result.hpp>
 #include <Graphics/ShaderBuffer.hpp>
 #include <Graphics/Vertex.hpp>
 #include <Graphics/VertexBuffer.hpp>
 #include <Graphics/VertexType.hpp>
-#include <ErrorHandling/Result.hpp>
-#include <Stl/StlWrapper.hpp>
 
 class ResourceLocator;
 class Window;
