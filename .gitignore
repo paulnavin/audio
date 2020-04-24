@@ -4,3 +4,5 @@ Output
 *.user
 myeasylog.log
 *.aps
+ApolloVulkan/ApolloVk/Debug/
+ApolloVulkan/ApolloVk/x64/Debug
