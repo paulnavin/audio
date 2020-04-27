@@ -26,6 +26,11 @@ Result BitmapResource::Init(GraphicsEngine* gfx, const char* fileName) {
     return Result{};
 }
 
+bool BitmapResource::IsLoaded() const
+{
+    return false;
+}
+
 Result BitmapResource::LoadFromFile(const char* fileName) {
     Result result{};
     Microsoft::WRL::ComPtr<IWICBitmapDecoder> bitmapDecoder;

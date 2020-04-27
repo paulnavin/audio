@@ -36,7 +36,7 @@ typedef struct MySource {
             float val = (float)(sin(2 * PI * (pos_ / cycleLength_)));
 
             for (int chan = 0; chan < pwfx_->nChannels; ++chan) {
-                out[(frame * pwfx_->nChannels) + chan] = val;
+                out[(frame * pwfx_->nChannels) + chan] = val / 200.0f;
             }
 
             pos_ += 1.0;
@@ -46,7 +46,7 @@ typedef struct MySource {
         }
 
         ++cycleCount_;
-        if (cycleCount_ > 5) {
+        if (cycleCount_ > 2) {
             *flags = AUDCLNT_BUFFERFLAGS_SILENT;
         }
 

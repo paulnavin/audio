@@ -27,7 +27,7 @@ private:
 #define ReturnIfHrError(X, MESSAGE) \
     { \
         HRESULT hr = X; \
-        if (result.HasErrors()) { \
+        if (FAILED(hr)) { \
             result.AppendError(MESSAGE); \
             return result; \
         } \

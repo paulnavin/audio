@@ -7,23 +7,28 @@
 #include <Graphics/Position2d.hpp>
 
 Result Bitmap::Init(GraphicsEngine* gfx, BitmapResource* resource) {
-    Result initResult{};
+    Result result{};
 
     deviceContext2d_ = gfx->GetEngine2d().GetDeviceContext2d();
 
-    Microsoft::WRL::ComPtr<IWICFormatConverter> wicImage = resource->GetWicImage();
-    HRESULT hr = deviceContext2d_->CreateBitmapFromWicBitmap(wicImage.Get(), bitmap_.ReleaseAndGetAddressOf());
-    if (FAILED(hr)) {
-        initResult.AppendError("Bitmap::Init() : Error creating bitmap image.");
-        return initResult;
+    if (resource->IsLoaded() == true) {
+        Microsoft::WRL::ComPtr<IWICFormatConverter> wicImage = resource->GetWicImage();
+        ReturnIfHrError(
+            deviceContext2d_->CreateBitmapFromWicBitmap(wicImage.Get(), bitmap_.ReleaseAndGetAddressOf()),
+            "Bitmap::Init() : Error creating bitmap image.");
+        D2D1_SIZE_U size = bitmap_->GetPixelSize();
+        sourceRect_ = { 0.0f, 0.0f, (float)size.width, (float)size.height };
+        drawBitmap_ = true;
+    } else {
+        ReturnIfHrError(
+            deviceContext2d_->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::AliceBlue, 1.0f), &brush_),
+            "Bitmap::Init() : Error creating bitmap debug rectangle brush.");
     }
 
-    return initResult;
+    return result;
 }
 
 void Bitmap::SetPositionAndDimension(const Position2d& position, const Dimension2d& dimensions) {
-    D2D1_SIZE_U size = bitmap_->GetPixelSize();
-    sourceRect_ = { 0.0f, 0.0f, (float)size.width, (float)size.height };
     destRect_ = {
         position.x,
         position.y,
@@ -33,5 +38,9 @@ void Bitmap::SetPositionAndDimension(const Position2d& position, const Dimension
 }
 
 void Bitmap::Render() {
-    deviceContext2d_->DrawBitmap(bitmap_.Get(), destRect_, opacity_, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, sourceRect_);
+    if (drawBitmap_ == true) {
+        deviceContext2d_->DrawBitmap(bitmap_.Get(), destRect_, opacity_, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, sourceRect_);
+    } else {
+        deviceContext2d_->DrawRectangle(&destRect_, brush_.Get());
+    }
 }

@@ -19,6 +19,9 @@ public:
 public:
     Result Init(GraphicsEngine* gfx, const char* fileName);
 
+public:
+    bool IsLoaded() const;
+
 private:
     Result LoadFromFile(const char* fileName);
 

@@ -23,8 +23,10 @@ public:
 private:
     Microsoft::WRL::ComPtr<ID2D1DeviceContext1> deviceContext2d_;
     Microsoft::WRL::ComPtr<ID2D1Bitmap1> bitmap_;
+    Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> brush_;
     D2D1_SIZE_U size_;
     D2D1_RECT_F sourceRect_;
     D2D1_RECT_F destRect_;
     float opacity_ = 1.0f;
+    bool drawBitmap_ = false;
 };
