@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Platform/Stl.hpp>
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 #include <Platform/WindowsInterface.hpp>
 
 struct AppInstance;

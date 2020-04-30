@@ -1,7 +1,7 @@
 #include <Resources/ResourceManager.hpp>
 
 #include <Graphics/GraphicsEngine.hpp>
-#include <Resources/ResourceLocator.hpp>
+#include <Platform/ResourceLocator.hpp>
 
 Result ResourceManager::Init(GraphicsEngine* gfx) {
     gfx_ = gfx;

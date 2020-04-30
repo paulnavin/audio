@@ -3,6 +3,6 @@
 #include <App/AppUserInputCommands.hpp>
 #include <UserInput/Command.hpp>
 
-static constexpr Command::Id ShowSettings = NextAppCommand;
-static constexpr Command::Id HideSettings = ShowSettings + 1;
-static constexpr Command::Id SomeOtherCommand = HideSettings + 1;
+static constexpr CommandId ShowSettings = NextAppCommand;
+static constexpr CommandId HideSettings = ShowSettings + 1;
+static constexpr CommandId SomeOtherCommand = HideSettings + 1;

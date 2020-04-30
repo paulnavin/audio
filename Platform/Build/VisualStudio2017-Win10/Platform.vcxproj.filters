@@ -69,6 +69,24 @@
     <ClInclude Include="..\..\Interface\Win10\Platform\Icon.hpp">
       <Filter>Header Files\Win10</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\Commander.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\Result.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Win10\Platform\ErrorHandling.hpp">
+      <Filter>Header Files\Win10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\CommandId.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Common\Platform\Minion.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Interface\Win10\Platform\ResourceLocator.hpp">
+      <Filter>Header Files\Win10</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Implementation\Win10\File.cpp">
@@ -99,6 +117,15 @@
       <Filter>Source Files\Win10</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Win10\Icon.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\Commander.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\Result.cpp">
+      <Filter>Source Files\Win10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Implementation\Win10\ResourceLocator.cpp">
       <Filter>Source Files\Win10</Filter>
     </ClCompile>
   </ItemGroup>

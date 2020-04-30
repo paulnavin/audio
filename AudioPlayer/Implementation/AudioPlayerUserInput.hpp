@@ -1,7 +1,7 @@
 #pragma once
 
 #include <App/AppUserInput.hpp>
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 
 class AudioPlayerApp;
 class InputManager;

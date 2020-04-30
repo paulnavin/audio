@@ -57,9 +57,6 @@
     <ClInclude Include="..\..\Interface\DirectX\UserInterface\Text2d.hpp">
       <Filter>Header Files\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Interface\Common\UserInterface\Commander.hpp">
-      <Filter>Header Files\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Interface\Common\UserInterface\ModelPortal.hpp">
       <Filter>Header Files\Common</Filter>
     </ClInclude>
@@ -94,9 +91,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Implementation\DirectX\Text2d.cpp">
       <Filter>Source Files\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Implementation\Common\Commander.cpp">
-      <Filter>Source Files\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Implementation\Common\Button.cpp">
       <Filter>Source Files\Common</Filter>

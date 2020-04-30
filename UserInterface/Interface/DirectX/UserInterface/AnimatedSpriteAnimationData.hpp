@@ -2,7 +2,7 @@
 
 #include <Graphics/AnimatedSpriteCycleData.hpp>
 #include <Graphics/DirectXInterface.hpp>
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 #include <Platform/Stl.hpp>
 
 class Engine2d;

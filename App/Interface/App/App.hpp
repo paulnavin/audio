@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Audio/AudioEngine.hpp>
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/Vertex.hpp>
 #include <Platform/AppInstance.hpp>
@@ -11,7 +11,7 @@
 #include <Resources/ResourceManager.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInput/InputManager.hpp>
-#include <UserInterface/Commander.hpp>
+#include <Platform/Commander.hpp>
 #include <UserInterface/ModelPortal.hpp>
 #include <UserInterface/Rectangle2d.hpp>
 #include <UserInterface/Text2d.hpp>
@@ -51,7 +51,7 @@ public:
     void OnCommandResetDisplayConfig();
     void OnCommandToggleFullScreen();
 
-    void HandleAppCommand(const Command::Id& command);
+    void HandleAppCommand(const CommandId& command);
 
     Result SelectScene(Scene* newScene);
     Result PushScene(Scene* newScene);

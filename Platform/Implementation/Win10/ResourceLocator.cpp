@@ -1,4 +1,4 @@
-#include <Resources/ResourceLocator.hpp>
+#include <Platform/ResourceLocator.hpp>
 
 const std::string ResourceLocator::GetAnimatedSpriteDirectoryName() const {
     return "..\\..\\..\\Resources\\AnimatedSprites";

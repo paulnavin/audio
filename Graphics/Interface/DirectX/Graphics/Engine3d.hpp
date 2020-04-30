@@ -5,7 +5,7 @@
 #include <Graphics/Vertex.hpp>
 #include <Graphics/VertexBuffer.hpp>
 #include <Graphics/VertexType.hpp>
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 #include <Platform/Stl.hpp>
 
 class ResourceLocator;

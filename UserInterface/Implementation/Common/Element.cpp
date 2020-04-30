@@ -18,10 +18,6 @@ void Element::Render(const double& dt) {
 
 bool Element::OnClick() { return false; }
 
-void Element::HandleCommand(const Command::Id& /*command*/) { }
-
-void Element::HandleMouseMove(const float& /*x*/, const float& /*y*/) {}
-
 const bool Element::IsEnabled() const {
     return isEnabled_;
 }

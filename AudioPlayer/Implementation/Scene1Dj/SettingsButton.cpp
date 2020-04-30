@@ -4,7 +4,7 @@
 
 #include <Graphics/GraphicsEngine.hpp>
 #include <Resources/ResourceManager.hpp>
-#include <UserInterface/Commander.hpp>
+#include <Platform/Commander.hpp>
 #include <UserInterface/ModelPortal.hpp>
 
 Result SettingsButton::Init(ModelPortal* portal) {

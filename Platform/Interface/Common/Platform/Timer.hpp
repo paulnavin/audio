@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 
 class AppTimer {
 public:

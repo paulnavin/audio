@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 #include <Graphics/Colour.hpp>
 #include <Graphics/DirectXInterface.hpp>
 #include <UserInterface/Element.hpp>

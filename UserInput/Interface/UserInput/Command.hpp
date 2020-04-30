@@ -1,19 +1,19 @@
 #pragma once
 
+#include <Platform/CommandId.hpp>
 #include <Platform/Stl.hpp>
 
 #include "KeyBinding.hpp"
 
 struct Command {
 public:
-    using Id = uint16_t;
     using KeyBindingVector = std::vector<KeyBinding>;
 
 public:
-    Command(const Id& newId, const std::string& newName, const KeyBindingVector& newBindings);
+    Command(const CommandId& newId, const std::string& newName, const KeyBindingVector& newBindings);
 
 public:
-    Id id;
+    CommandId id;
     std::string name;
     KeyBindingVector keyCombo;
 };

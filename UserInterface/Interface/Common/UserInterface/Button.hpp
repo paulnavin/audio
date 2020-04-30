@@ -15,7 +15,7 @@ public:
 public:
     Result Init(ModelPortal* portal) override;
     bool OnClick() override;
-    void HandleCommand(const Command::Id& command) override;
+    void HandleCommand(const CommandId& command) override;
     void HandleMouseMove(const float& x, const float& y) override;
     
     void SetOnClickHandler(std::function<void()> onClickHandler);

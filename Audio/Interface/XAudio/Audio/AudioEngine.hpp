@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Audio/XAudio.hpp>
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 
 struct MySource;
 

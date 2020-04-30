@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 #include <UserInput/Command.hpp>
 
 class Commander;
@@ -20,7 +20,7 @@ public:
     virtual Result Init(ModelPortal* portal, ConfigStore* config, InputManager* inputManager);
     void ShutDown();
 
-    void OnCommand(const Command::Id& command);
+    void OnCommand(const CommandId& command);
     void UpdateMousePosition(const float& x, const float& y);
     void Update(const double& dt);
     void Render(const double& dt);

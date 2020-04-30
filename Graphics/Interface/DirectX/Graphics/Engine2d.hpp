@@ -3,7 +3,7 @@
 #include <Graphics/DirectXInterface.hpp>
 #include <Graphics/TextManager2d.hpp>
 
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 
 class Engine3d;
 class Model2d;

@@ -2,7 +2,7 @@
 
 #include "Command.hpp"
 
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 #include <Platform/Stl.hpp>
 
 class Window;
@@ -11,8 +11,8 @@ class Window;
 // Note: Doesn't notify anything, just stores the state.
 class InputManager {
 public:
-    using CommandMap = std::map<Command::Id, Command*>;
-    using CommandQueue = std::deque<Command::Id>;
+    using CommandMap = std::map<CommandId, Command*>;
+    using CommandQueue = std::deque<CommandId>;
 
 public:
     InputManager() = default;
@@ -26,7 +26,7 @@ public:
     const bool IsKeyPressed(const uint16_t& keyCode) const;
 
 public:
-    void ActivateCommand(const Command::Id& command);
+    void ActivateCommand(const CommandId& command);
     void AddCoreCommand(Command* command);
     Result Init(Window* targetWindow);
     void RefreshKeyboardState();

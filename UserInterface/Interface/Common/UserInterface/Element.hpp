@@ -1,14 +1,15 @@
 #pragma once
 
-#include <ErrorHandling/Result.hpp>
 #include <Graphics/Dimension2d.hpp>
 #include <Graphics/Position2d.hpp>
+#include <Platform/ErrorHandling.hpp>
+#include <Platform/Minion.hpp>
 #include <Platform/Stl.hpp>
 #include <UserInput/Command.hpp>
 
 struct ModelPortal;
 
-class Element {
+class Element : public Minion {
 public:
     Element() = default;
     virtual ~Element() = default;
@@ -23,17 +24,12 @@ public:
     // Note: By default checks children for clicking.
     virtual bool OnClick();
 
-    // TODO: Pass some event data in here?  Like a Union of all possibilites?
-    virtual void HandleCommand(const Command::Id& command);
-
-    // TODO: Handle this as a normal event instead? Or keep for performance?
-    virtual void HandleMouseMove(const float& x, const float& y);
+    const bool IsEnabled() const override;
 
 public:
     const Position2d& GetPosition() const;
     const Position2d& GetAbsolutePosition() const;
     const Dimension2d& GetDimensions() const;
-    const bool IsEnabled() const;
     const bool IsInitialised() const;
 
 public:

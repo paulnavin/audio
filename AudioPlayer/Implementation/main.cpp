@@ -1,7 +1,7 @@
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 #include <Platform/ErrorDisplay.hpp>
 #include <Platform/Logging.hpp>
-#include <Resources/ResourceLocator.hpp>
+#include <Platform/ResourceLocator.hpp>
 
 #include "AudioPlayerApp.hpp"
 

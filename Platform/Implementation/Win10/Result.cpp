@@ -1,4 +1,4 @@
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 
 const bool Result::HasErrors() const {
     return !errors_.empty();

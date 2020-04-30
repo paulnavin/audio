@@ -23,8 +23,5 @@
     <ClInclude Include="..\..\Interface\UserConfiguration\Config.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Implementation\IniReader.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 #include <Graphics/TextStyle.hpp>
 #include <UserInterface/Element.hpp>
 

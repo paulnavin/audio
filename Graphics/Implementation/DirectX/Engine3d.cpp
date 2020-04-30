@@ -3,7 +3,7 @@
 #include <Graphics/ShaderBuffer.hpp>
 #include <Platform/StringHandling.hpp>
 #include <Platform/Window.hpp>
-#include <Resources/ResourceLocator.hpp>
+#include <Platform/ResourceLocator.hpp>
 
 const Microsoft::WRL::ComPtr<ID3D11Device>& Engine3d::GetDirect3dDevice() const {
     return device_;

@@ -2,7 +2,7 @@
 
 #include <UserInput/UserInputCommands.hpp>
 #include <UserInterface/ModelPortal.hpp>
-#include <UserInterface/Commander.hpp>
+#include <Platform/Commander.hpp>
 
 Button::~Button() {
     chell_->commander->UnsubscribeFromMouseMove(this);
@@ -102,7 +102,7 @@ bool Button::OnClick() {
     return true;
 }
 
-void Button::HandleCommand(const Command::Id& command) {
+void Button::HandleCommand(const CommandId& command) {
     switch (command) {
         case LeftButtonDown: {
             buttonDownHighlight_.SetEnabled(true);

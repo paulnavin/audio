@@ -1,9 +1,9 @@
 #include "AudioPlayerApp.hpp"
 
-#include <ErrorHandling/Result.hpp>
 #include <Platform/AppInstance.hpp>
+#include <Platform/ErrorHandling.hpp>
+#include <Platform/ResourceLocator.hpp>
 #include <Platform/WindowConfig.hpp>
-#include <Resources/ResourceLocator.hpp>
 
 #include "AudioPlayerUserInputCommands.hpp"
 #include "Win10/resource.h"

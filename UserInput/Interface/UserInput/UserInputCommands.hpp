@@ -2,7 +2,7 @@
 
 #include <UserInput/Command.hpp>
 
-static constexpr Command::Id LeftButtonDown = 0;
-static constexpr Command::Id LeftButtonUp = LeftButtonDown + 1;
+static constexpr CommandId LeftButtonDown = 0;
+static constexpr CommandId LeftButtonUp = LeftButtonDown + 1;
 
-static constexpr Command::Id NextCoreCommand = LeftButtonUp + 1;
+static constexpr CommandId NextCoreCommand = LeftButtonUp + 1;

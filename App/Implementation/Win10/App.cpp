@@ -2,14 +2,14 @@
 
 #include <App/AppUserInput.hpp>
 #include <App/Scene.hpp>
-#include <ErrorHandling/Result.hpp>
+#include <Platform/Commander.hpp>
+#include <Platform/ErrorHandling.hpp>
 #include <Platform/ErrorDisplay.hpp>
 #include <Platform/Logging.hpp>
+#include <Platform/ResourceLocator.hpp>
 #include <Platform/Window.hpp>
 #include <Platform/WindowConfig.hpp>
 #include <Platform/WindowManager.hpp>
-#include <Resources/ResourceLocator.hpp>
-#include <UserInterface/Commander.hpp>
 
 Result App::Init(const AppInstance& appInstance, const ResourceLocator& resourceManager) {
     appInstance_ = appInstance;
@@ -49,7 +49,7 @@ Result App::Init(const AppInstance& appInstance, const ResourceLocator& resource
         "App::Init() : Error initialising resource manager.");
 
     keen_.SetAppCommandHandler(
-        [this](const Command::Id& command) {
+        [this](const CommandId& command) {
         this->HandleAppCommand(command);
     });
     ReturnIfResultError(
@@ -239,7 +239,7 @@ void App::OnCommandToggleFullScreen() {
     }
 }
 
-void App::HandleAppCommand(const Command::Id& command) {
+void App::HandleAppCommand(const CommandId& command) {
     inputManager_.ActivateCommand(command);
 
 }

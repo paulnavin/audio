@@ -2,7 +2,7 @@
 
 #include <Graphics/DirectXInterface.hpp>
 
-#include <ErrorHandling/Result.hpp>
+#include <Platform/ErrorHandling.hpp>
 
 class Engine2d;
 class Window;

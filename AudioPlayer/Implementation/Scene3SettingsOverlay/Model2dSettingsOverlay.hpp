@@ -4,7 +4,7 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Platform/Window.hpp>
 #include <UserInterface/Button.hpp>
-#include <UserInterface/Commander.hpp>
+#include <Platform/Commander.hpp>
 #include <UserInterface/Ellipse2d.hpp>
 #include <UserInterface/Model2d.hpp>
 #include <UserInterface/ModelPortal.hpp>

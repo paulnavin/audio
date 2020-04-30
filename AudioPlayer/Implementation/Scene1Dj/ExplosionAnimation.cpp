@@ -1,8 +1,8 @@
 #include "ExplosionAnimation.hpp"
 
 #include <Graphics/GraphicsEngine.hpp>
+#include <Platform/ResourceLocator.hpp>
 #include <Platform/Stl.hpp>
-#include <Resources/ResourceLocator.hpp>
 #include <UserInterface/ModelPortal.hpp>
 
 Result ExplosionAnimation::Init(ModelPortal* portal) {

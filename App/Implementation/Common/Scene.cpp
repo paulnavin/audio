@@ -4,7 +4,7 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Platform/Logging.hpp>
 #include <Resources/ResourceManager.hpp>
-#include <UserInterface/Commander.hpp>
+#include <Platform/Commander.hpp>
 #include <UserInterface/Model2d.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInterface/ModelPortal.hpp>
@@ -55,7 +55,7 @@ void Scene::ShutDown() {
     userInputHandler_ = nullptr;
 }
 
-void Scene::OnCommand(const Command::Id& command) {
+void Scene::OnCommand(const CommandId& command) {
     keen_->Distribute(command);
 }
 
