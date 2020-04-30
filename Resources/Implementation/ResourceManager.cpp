@@ -3,8 +3,9 @@
 #include <Graphics/GraphicsEngine.hpp>
 #include <Platform/ResourceLocator.hpp>
 
-Result ResourceManager::Init(GraphicsEngine* gfx) {
+Result ResourceManager::Init(GraphicsEngine* gfx, Commander* keen) {
     gfx_ = gfx;
+    keen_ = keen;
     return Result{};
 }
 

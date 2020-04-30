@@ -7,6 +7,7 @@
 #include <Graphics/TextResource.hpp>
 #include <Graphics/TextStyle.hpp>
 
+class Commander;
 class GraphicsEngine;
 
 class ResourceManager {
@@ -15,7 +16,7 @@ public:
     ~ResourceManager() = default;
 
 public:
-    Result Init(GraphicsEngine* gfx);
+    Result Init(GraphicsEngine* gfx, Commander*);
     void ShutDown();
 
 public:
@@ -38,6 +39,7 @@ private:
     using Texts = std::vector<Text*>;
 
 private:
+    Commander* keen_;
     GraphicsEngine* gfx_;
 
     BitmapNames namesToLoad_;

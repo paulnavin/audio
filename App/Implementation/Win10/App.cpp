@@ -45,7 +45,7 @@ Result App::Init(const AppInstance& appInstance, const ResourceLocator& resource
         "App::Init() : Error initialising input manager.");
 
     ReturnIfResultError(
-        resourceManager_.Init(&graphicsEngine_),
+        resourceManager_.Init(&graphicsEngine_, &keen_),
         "App::Init() : Error initialising resource manager.");
 
     keen_.SetAppCommandHandler(
