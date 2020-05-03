@@ -4,7 +4,7 @@
 #include <Platform/WindowsInterface.hpp>
 
 void File::ShowOpenFileDialog() {
-    std::string fileName;
+    //std::string fileName;
     HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
     if (SUCCEEDED(hr)) {
         IFileOpenDialog *pFileOpen;
@@ -23,13 +23,17 @@ void File::ShowOpenFileDialog() {
                 hr = pFileOpen->GetResult(&pItem);
                 if (SUCCEEDED(hr)) {
                     PWSTR pszFilePath;
+
+                    // TODO: Pull out MAX_FILE_PATH_LENGTH as a shared constant;
+                    static const size_t MAX_FILE_PATH_LENGTH = 512;
+                    char fileName[MAX_FILE_PATH_LENGTH];
+
                     hr = pItem->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
-                    std::wstring returnedFileName(pszFilePath);
-                    fileName = StringUtil::WideStringToString(returnedFileName);
+                    StringUtil::WideStringToString(fileName, pszFilePath, MAX_FILE_PATH_LENGTH);
 
                     // Display the file name to the user.
                     if (SUCCEEDED(hr)) {
-                        MessageBoxA(NULL, fileName.c_str(), "File Path", MB_OK);
+                        MessageBoxA(NULL, fileName, "File Path", MB_OK);
                         CoTaskMemFree(pszFilePath);
                     }
                     pItem->Release();

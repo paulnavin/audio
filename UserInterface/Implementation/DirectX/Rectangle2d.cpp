@@ -55,6 +55,7 @@ Result Rectangle2d::UpdateDetails() {
     hr = deviceContext2d_->CreateGradientStopCollection(stops, _countof(stops), stopCollection.GetAddressOf());
     if (FAILED(hr)) {
         updateResult.AppendError("Rectangle2d::SetColour() : Could not create highlight stops.");
+        return updateResult;
     }
 
     D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES linearGradientBrushProperties = {};

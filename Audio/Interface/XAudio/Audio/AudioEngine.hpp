@@ -2,6 +2,7 @@
 
 #include <Audio/XAudio.hpp>
 #include <Platform/ErrorHandling.hpp>
+#include <Platform/Stl.hpp>
 
 struct MySource;
 

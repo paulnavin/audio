@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Platform/ErrorHandling.hpp>
 #include <Graphics/DirectXInterface.hpp>
+#include <Platform/ErrorHandling.hpp>
+#include <Platform/Stl.hpp>
 
 class GraphicsEngine;
 class TextResource;
@@ -28,11 +29,14 @@ private:
     void UpdateTextLayout();
 
 private:
+    static const size_t MAX_STRING_LENGTH = 512;
+
+private:
     TextResource* textResource_;
 
     Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> brush_;
     Microsoft::WRL::ComPtr<ID2D1DeviceContext1>  deviceContext2d_;
-    std::string                                  text_;
+    wchar_t                                      text_[MAX_STRING_LENGTH];
     D2D1_POINT_2F                                textPosition_;
     float                                        textHeight_;
     float                                        textWidth_;

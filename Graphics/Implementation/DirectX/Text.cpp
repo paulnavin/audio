@@ -33,7 +33,7 @@ void Text::RenderText(const std::string& text) {
 }
 
 void Text::SetText(const std::string& newText) {
-    text_ = newText;
+    StringUtil::StringToWideString(text_, newText.c_str(), MAX_STRING_LENGTH);
 
     UpdateTextLayout();
 }
@@ -48,14 +48,14 @@ void Text::SetDimensions(const Dimension2d& dimensions) {
 }
 
 void Text::UpdateTextLayout() {
-    std::wstring outputText = StringUtil::StringToWideString(text_);
+    size_t stringLength = wcslen(text_);
 
     Microsoft::WRL::ComPtr<IDWriteTextFormat> textFormat = textResource_->GetTextFormat();
 
     // TODO: Error handling here.
     writeFactory_->CreateTextLayout(
-        outputText.c_str(),
-        static_cast<UINT32>(outputText.size()),
+        text_,
+        static_cast<UINT32>(stringLength),
         textFormat.Get(),
         textWidth_,
         textHeight_,

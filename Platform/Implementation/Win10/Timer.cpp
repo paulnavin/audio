@@ -44,7 +44,7 @@ const double AppTimer::GetTotalRunningTimeInS() const {
 }
 
 Result AppTimer::Start() {
-    Result startResult;
+    Result startResult {};
     if (running_ == true) {
         // Calling start while running is okay, we just do nothing.
         return startResult;
@@ -66,7 +66,7 @@ Result AppTimer::Start() {
 }
 
 Result AppTimer::Update() {
-    Result updateResult;
+    Result updateResult {};
     if (running_ == false) {
         msBetweenFrames_ = 0;
         return updateResult;
@@ -89,7 +89,7 @@ Result AppTimer::Update() {
 }
 
 Result AppTimer::Pause() {
-    Result pauseResult;
+    Result pauseResult {};
     if (running_ == false) {
         // Calling pause while paused is okay, we just do nothing.
         return pauseResult;

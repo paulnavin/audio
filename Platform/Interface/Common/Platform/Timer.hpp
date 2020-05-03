@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Platform/ErrorHandling.hpp>
+#include <Platform/StdLib.hpp>
 
 class AppTimer {
 public:

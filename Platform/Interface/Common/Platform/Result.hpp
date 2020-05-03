@@ -1,11 +1,6 @@
 #pragma once
 
-#include <Platform/Stl.hpp>
-
 class Result {
-public:
-    using ErrorList = std::vector<std::string>;
-
 public:
     // TODO: Define move constructor/assignment?
     Result() = default;
@@ -14,13 +9,16 @@ public:
 public:
     const bool HasErrors() const;
     const bool IsOkay() const;
-    const std::string Errors() const;
+    const char* Errors() const;
 
 public:
     void AppendError(const char* newError);
 
 private:
-    ErrorList errors_;
+    static const size_t MAX_STRING_COUNT = 10;
+    static const size_t MAX_STRING_LENGTH = 100;
+    char finalError_[MAX_STRING_COUNT * MAX_STRING_LENGTH];
+    size_t errorCount_ = 0;
 };
 
 #define ReturnIfResultError(X, MESSAGE) \

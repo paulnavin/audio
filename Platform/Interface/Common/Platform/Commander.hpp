@@ -2,6 +2,7 @@
 
 #include <Platform/ErrorHandling.hpp>
 #include <Platform/CommandId.hpp>
+#include <Platform/Stl.hpp>
 
 class Minion;
 

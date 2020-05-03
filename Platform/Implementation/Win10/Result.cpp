@@ -1,27 +1,21 @@
 #include <Platform/ErrorHandling.hpp>
 
+#include <Platform/StdLib.hpp>
+
 const bool Result::HasErrors() const {
-    return !errors_.empty();
+    return errorCount_ != 0;
 }
 
 const bool Result::IsOkay() const {
-    return errors_.empty();
+    return errorCount_ == 0;
 }
 
-const std::string Result::Errors() const {
-    std::string returnValue = "";
-    ErrorList::const_iterator errorFinder = errors_.begin();
-    ErrorList::const_iterator errorEnd = errors_.end();
-    while (errorFinder != errorEnd) {
-        returnValue.append(*errorFinder);
-        returnValue.append("\n");
-
-        // Loop incrementer.
-        ++errorFinder;
-    }
-    return returnValue;
+const char* Result::Errors() const {
+    return finalError_;
 }
 
 void Result::AppendError(const char* newError) {
-    errors_.emplace_back(std::string(newError));
+    strncat_s(finalError_, newError, MAX_STRING_LENGTH - 1);
+    strncat_s(finalError_, "\n", 1);
+    ++errorCount_;
 }

@@ -28,15 +28,18 @@ Result BitmapResource::Init(GraphicsEngine* gfx, const char* fileName) {
 
 bool BitmapResource::IsLoaded() const
 {
-    return false;
+    return true;
 }
 
 Result BitmapResource::LoadFromFile(const char* fileName) {
     Result result{};
     Microsoft::WRL::ComPtr<IWICBitmapDecoder> bitmapDecoder;
 
-    std::wstring imageFileName = StringUtil::StringToWideString(fileName);
-    HRESULT hr = imageFactory_->CreateDecoderFromFilename(imageFileName.c_str(), NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, bitmapDecoder.ReleaseAndGetAddressOf());
+    // TODO: Pull out MAX_FILE_PATH_LENGTH as a shared constant;
+    static const size_t MAX_FILE_PATH_LENGTH = 512;
+    wchar_t imageFileName[MAX_FILE_PATH_LENGTH];
+    StringUtil::StringToWideString(imageFileName, fileName, MAX_FILE_PATH_LENGTH);
+    HRESULT hr = imageFactory_->CreateDecoderFromFilename(imageFileName, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, bitmapDecoder.ReleaseAndGetAddressOf());
     if (FAILED(hr)) {
         result.AppendError("BitmapResource::LoadFromFile() : Error creating decoder from file name.");
         return result;

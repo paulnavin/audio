@@ -20,8 +20,11 @@ Result TextResource::Init(GraphicsEngine* gfx, const TextStyle& style) {
         return initTextFormatResult;
     }
 
-    std::wstring fontName = StringUtil::StringToWideString(style.fontName);
-    hr = writeFactory.Get()->CreateTextFormat(fontName.c_str(), nullptr, DWRITE_FONT_WEIGHT_LIGHT, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, style.size, L"en-GB", &textFormat_);
+    static const size_t MAX_FONT_NAME_LENGTH = 512;
+    wchar_t fontName[MAX_FONT_NAME_LENGTH];
+
+    StringUtil::StringToWideString(fontName, style.fontName, MAX_FONT_NAME_LENGTH);
+    hr = writeFactory.Get()->CreateTextFormat(fontName, nullptr, DWRITE_FONT_WEIGHT_LIGHT, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, style.size, L"en-GB", &textFormat_);
     if (FAILED(hr)) {
         initTextFormatResult.AppendError("TextResource::Init() : Could not create text format for FPS.");
         return initTextFormatResult;
