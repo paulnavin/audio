@@ -26,15 +26,12 @@ Result App::Init(const AppInstance& appInstance, const ResourceLocator& resource
         windowManager.Init(appInstance_, mainWindowConfig_),
         "App::Init() : Error initialising WindowManager.");
 
+    mainWindow_ = windowManager.GetWindow();
+    mainWindow_->SetWindowMessageHandler(this);
+
     ReturnIfResultError(
         timer_.Init(),
         "App::Init() : Error initialising app timer.");
-
-    ReturnIfResultError(
-        windowManager.CreateNewWindow(mainWindowConfig_, &mainWindow_),
-        "App::Init() : Error creating main window.");
-
-    mainWindow_->SetWindowMessageHandler(this);
 
     ReturnIfResultError(
         graphicsEngine_.Init(mainWindow_, resourceManager),

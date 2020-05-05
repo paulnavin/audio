@@ -23,5 +23,5 @@ private:
     IXAudio2MasteringVoice* hisMastersVoice_;
     Microsoft::WRL::ComPtr<IMFAttributes> sourceReaderConfig_;
 
-    std::vector<BYTE> audioData;
+    BYTE* audioData;
 };

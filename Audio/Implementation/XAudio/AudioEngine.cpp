@@ -1,8 +1,5 @@
 #include <Audio/AudioEngine.hpp>
 
-#include <Platform/Stl.hpp>
-
-
 #define PI 3.1415926535897932384626433832795
 #define PI2 2 * PI
 
