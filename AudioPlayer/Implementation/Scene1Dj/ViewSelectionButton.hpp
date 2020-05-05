@@ -15,10 +15,12 @@ public:
     virtual Result Init(ModelPortal* portal) override;
 
 public:
-    Result SetText(const std::string& text);
+    Result SetText(const char* text);
 
+private:
+    static constexpr size_t MAX_STRING_LENGTH = 100;
 private:
     Button button_;
     Text2d text_;
-    std::string textToShow_;
+    char textToShow_[MAX_STRING_LENGTH];
 };

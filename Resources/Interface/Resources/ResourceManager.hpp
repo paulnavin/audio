@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Platform/ErrorHandling.hpp>
+#include <Platform/Stl.hpp>
 #include <Graphics/Bitmap.hpp>
 #include <Graphics/BitmapResource.hpp>
 #include <Graphics/Text.hpp>

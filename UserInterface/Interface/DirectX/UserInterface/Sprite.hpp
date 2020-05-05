@@ -20,6 +20,6 @@ public:
     void SetBitmapName(const char* name);
 
 protected:
-    Bitmap* bitmapToDraw_;
-    const char*     name_;
+    Bitmap*     bitmapToDraw_;
+    const char* name_;
 };

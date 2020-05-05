@@ -32,7 +32,7 @@ void Text2d::Render(const double& dt) {
     textToDraw_->Render();
 }
 
-void Text2d::RenderText(const double& dt, const std::string& text) {
+void Text2d::RenderText(const double& dt, const char* text) {
     UNREFERENCED_PARAMETER(dt);
     UNREFERENCED_PARAMETER(text);
 
@@ -43,6 +43,7 @@ void Text2d::SetStyle(const TextStyle::Id styleId) {
     styleId_ = styleId;
 }
 
-void Text2d::SetText(const std::string& text) {
-    text_ = text;
+void Text2d::SetText(const char* text) {
+    size_t textLength = strlen(text);
+    strncpy_s(text_, MAX_TEXT_LENGTH, text, textLength);
 }

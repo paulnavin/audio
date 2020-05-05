@@ -31,7 +31,7 @@ const int32_t InputManager::GetMouseYPos() const {
     return mouseYPos_;
 }
 
-const KeyState InputManager::GetStateForKey(const unsigned int keyCode) const {
+const KeyState InputManager::GetStateForKey(const size_t& keyCode) const {
     if (keyboardStatePrevious_[keyCode] == true) {
         if (keyboardStateCurrent_[keyCode] == true) {
             return KeyState::StillPressed;

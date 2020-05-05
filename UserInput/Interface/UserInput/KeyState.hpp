@@ -1,8 +1,6 @@
 #pragma once
 
-#include <cstdint>
-
-enum class KeyState : uint16_t {
+enum class KeyState {
     JustPressed,
     StillPressed,
     JustReleased,

@@ -27,13 +27,13 @@ void Text::Render() {
     deviceContext2d_->DrawTextLayout(textPosition_, textLayout_.Get(), brush_.Get());
 }
 
-void Text::RenderText(const std::string& text) {
+void Text::RenderText(const char* text) {
     SetText(text);
     Render();
 }
 
-void Text::SetText(const std::string& newText) {
-    StringUtil::StringToWideString(text_, newText.c_str(), MAX_STRING_LENGTH);
+void Text::SetText(const char* newText) {
+    StringUtil::StringToWideString(text_, newText, MAX_STRING_LENGTH);
 
     UpdateTextLayout();
 }

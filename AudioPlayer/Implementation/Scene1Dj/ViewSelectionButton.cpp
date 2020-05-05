@@ -42,7 +42,7 @@ Result ViewSelectionButton::Init(ModelPortal* portal) {
 }
 
 
-Result ViewSelectionButton::SetText(const std::string& text) {
-    textToShow_ = text;
+Result ViewSelectionButton::SetText(const char* text) {
+    strncpy_s(textToShow_, MAX_STRING_LENGTH, text, strlen(text));
     return Result{};
 }

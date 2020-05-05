@@ -20,7 +20,7 @@ public:
 
 public:
     const CommandMap* GetActiveKeyMap() const;
-    const KeyState GetStateForKey(const unsigned int keyCode) const;
+    const KeyState GetStateForKey(const size_t& keyCode) const;
     const int32_t GetMouseXPos() const;
     const int32_t GetMouseYPos() const;
     const bool IsKeyPressed(const uint16_t& keyCode) const;

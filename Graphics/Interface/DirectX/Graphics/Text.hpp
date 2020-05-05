@@ -2,7 +2,6 @@
 
 #include <Graphics/DirectXInterface.hpp>
 #include <Platform/ErrorHandling.hpp>
-#include <Platform/Stl.hpp>
 
 class GraphicsEngine;
 class TextResource;
@@ -18,10 +17,10 @@ public:
     Result Init(GraphicsEngine* gfx, TextResource* resource);
 
     void Render();
-    void RenderText(const std::string& text);
+    void RenderText(const char* text);
 
 public:
-    void SetText(const std::string& newText);
+    void SetText(const char* newText);
     void SetPosition(const Position2d& position);
     void SetDimensions(const Dimension2d& dimensions);
 
