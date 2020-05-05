@@ -66,9 +66,9 @@ public:
             return initResult;
         }
 
-        elements_.push_back(&rectangle_);
-        elements_.push_back(&ellipse_);
-        elements_.push_back(&hideSettingsButton_);
+        AddChildElement(&rectangle_);
+        AddChildElement(&ellipse_);
+        AddChildElement(&hideSettingsButton_);
 
         SetCursorBitmap("SettingsButton");
 

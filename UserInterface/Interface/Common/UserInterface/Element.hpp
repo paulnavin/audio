@@ -4,7 +4,6 @@
 #include <Graphics/Position2d.hpp>
 #include <Platform/ErrorHandling.hpp>
 #include <Platform/Minion.hpp>
-#include <Platform/Stl.hpp>
 #include <UserInput/Command.hpp>
 
 struct ModelPortal;
@@ -51,14 +50,15 @@ protected:
     Position2d  positionOnScreen_;
 
 private:
-    using ChildVector = std::vector<Element*>;
+    static constexpr size_t MAX_CHILD_COUNT = 20;
 
 private:
     void UpdateDimensionsOnScreen();
     void UpdatePositionOnScreen();
 
 private:
-    ChildVector children_;
+    Element*    children_[MAX_CHILD_COUNT];
+    size_t      childCount_ = 0;
     bool        isInitialised_ = false;
     Position2d  position_;
     Position2d  positionAsPercentage_;

@@ -16,7 +16,7 @@ Result Model2d::Init(ModelPortal* portal) {
         return initResult;
     }
 
-    mouseCursor_.SetBitmapName(mouseCursorBitmapName_.c_str());
+    mouseCursor_.SetBitmapName(mouseCursorBitmapName_);
     mouseCursor_.SetDimensions(48.0f, 48.0f);
 
     initResult = mouseCursor_.Init(portal);
@@ -33,7 +33,8 @@ void Model2d::Update(const double& /*dt*/) {
 }
 
 void Model2d::Render(const double& dt) {
-    for (Element* element : elements_) {
+    for (size_t i = 0; i < elementCount_; ++i) {
+        Element* element = elements_[i];
         element->Render(dt);
     }
 
@@ -46,11 +47,15 @@ void Model2d::Render(const double& dt) {
     }
 }
 
+void Model2d::AddChildElement(Element* newChild) {
+    elements_[elementCount_] = newChild;
+    ++elementCount_;
+}
 void Model2d::SetActive(bool isActive) {
     isActive_ = isActive;
 }
 
-void Model2d::SetCursorBitmap(const std::string& bitmapName) {
+void Model2d::SetCursorBitmap(const char* bitmapName) {
     mouseCursorBitmapName_ = bitmapName;
 }
 

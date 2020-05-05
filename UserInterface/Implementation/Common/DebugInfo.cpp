@@ -3,8 +3,8 @@
 #include <Graphics/Engine2d.hpp>
 #include <Graphics/GraphicsEngine.hpp>
 #include <Graphics/TextManager2d.hpp>
+#include <Platform/StdLib.hpp>
 #include <Platform/Window.hpp>
-#include <Platform/WindowsInterface.hpp>
 #include <UserInterface/DefaultTextStyles.hpp>
 #include <UserInterface/ModelPortal.hpp>
 
@@ -54,18 +54,11 @@ void DebugInfo::Render(const double& dt) {
 }
 
 void DebugInfo::SetFps(const int64_t& newFps) {
-    std::ostringstream fpsString{};
-    fpsString.precision(6);
-    fpsString << "FPS: " << newFps << std::endl;
-    fpsTextToShow_ = fpsString.str();
+    snprintf(fpsTextToShow_, MAX_STRING_LENGTH, "FPS: %" PRIu64, newFps);
 }
 
 void DebugInfo::SetMousePosition(const float& x, const float& y) {
-    std::ostringstream outputString{};
-    outputString.precision(6);
-    outputString << "Mouse: " << x << ", " << y << std::endl;
-
-    mousePositionTextToShow_ = outputString.str();
+    snprintf(mousePositionTextToShow_, MAX_STRING_LENGTH, "Mouse: %.0f, %.0f", x, y);
 }
 
 Result DebugInfo::UpdateDetails() {

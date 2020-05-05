@@ -1,10 +1,9 @@
 #pragma once
 
-#include <Platform/Stl.hpp>
 #include <Graphics/Colour.hpp>
 
 struct TextStyle {
-    using Id = uint8_t;
+    using Id = size_t;
     using Size = float;
 
     enum class HorizontalAlignment {

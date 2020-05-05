@@ -9,7 +9,8 @@ Result Element::Init(ModelPortal* portal) {
 }
 
 void Element::Render(const double& dt) {
-    for (Element* element : children_) {
+    for (size_t i = 0; i < childCount_; ++i) {
+        Element* element = children_[i];
         if (element->isEnabled_ == true) {
             element->Render(dt);
         }
@@ -39,7 +40,8 @@ const Dimension2d& Element::GetDimensions() const {
 }
 
 void Element::AddChild(Element* newChild) {
-    children_.push_back(newChild);
+    children_[childCount_] = newChild;
+    ++childCount_;
 }
 
 void Element::OnMouseClicked(const float& x, const float& y) {

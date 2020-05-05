@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Platform/ErrorHandling.hpp>
-#include <Platform/Stl.hpp>
 #include <UserInterface/DebugInfo.hpp>
 #include <UserInterface/Sprite.hpp>
 
@@ -20,23 +19,26 @@ public:
     virtual void Update(const double& dt);
     void Render(const double& dt);
 
+    void AddChildElement(Element* newChild);
+
     void SetActive(bool isActive);
-    void SetCursorBitmap(const std::string& bitmapName);
+    void SetCursorBitmap(const char* bitmapName);
     void SetFps(const int64_t& newFps);
     void SetMousePosition(const float& x, const float& y);
     void SetWindow(Window* window);
     void ToggleDebugInfo();
 
-protected:
-    using ElementVector = std::vector<Element*>;
-    using ElementList = std::list<Element*>;
-    using ElementSet = std::set<Element*>;
-    ElementVector elements_;
+private:
+    static constexpr size_t MAX_ELEMENT_COUNT = 20;
+    
+private:
+    Element* elements_[MAX_ELEMENT_COUNT];
+    size_t elementCount_ = 0;
 
     float mouseXPosition_;
     float mouseYPosition_;
     Sprite mouseCursor_;
-    std::string mouseCursorBitmapName_;
+    const char* mouseCursorBitmapName_;
 
     bool showDebugInfo_;
     DebugInfo debugElement_;

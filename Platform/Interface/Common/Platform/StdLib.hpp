@@ -19,5 +19,6 @@
 
 #include <cstdint>
 #include <cstring>
+#include <inttypes.h>
 
 #pragma warning(pop)    // Turn back on all warnings.

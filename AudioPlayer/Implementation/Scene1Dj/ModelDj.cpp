@@ -74,11 +74,11 @@ Result ModelDj::Init(ModelPortal* portal) {
         return initResult;
     }
 
-    elements_.push_back(&topRow_);
-    elements_.push_back(&buttonRow_);
-    elements_.push_back(&jogWheel1_);
-    elements_.push_back(&explosion_);
-    elements_.push_back(&bottomRow_);
+    AddChildElement(&topRow_);
+    AddChildElement(&buttonRow_);
+    AddChildElement(&jogWheel1_);
+    AddChildElement(&explosion_);
+    AddChildElement(&bottomRow_);
 
     SetCursorBitmap("BlueArrow");
     return Model2d::Init(portal);

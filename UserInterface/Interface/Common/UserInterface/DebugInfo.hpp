@@ -19,11 +19,14 @@ public:
     void SetMousePosition(const float& x, const float& y);
 
 private:
+    static constexpr size_t MAX_STRING_LENGTH = 100;
+
+private:
     Result UpdateDetails();
 
 private:
     Text2d fpsText_;
-    std::string fpsTextToShow_;
+    char fpsTextToShow_[MAX_STRING_LENGTH];
     Text2d mousePositionText_;
-    std::string mousePositionTextToShow_;
+    char mousePositionTextToShow_[MAX_STRING_LENGTH];
 };

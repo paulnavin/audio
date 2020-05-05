@@ -32,8 +32,8 @@ public:
         ellipse_.SetPosition(700.0f, 500.0f);
         ellipse_.SetDimensions(75.0f, 200.0f);
 
-        elements_.push_back(&ellipse_);
-        elements_.push_back(&rectangle_);
+        AddChildElement(&ellipse_);
+        AddChildElement(&rectangle_);
 
         return Model2d::Init(portal);
     }

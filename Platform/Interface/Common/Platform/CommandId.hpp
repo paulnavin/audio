@@ -1,5 +1,3 @@
 #pragma once
 
-#include <Platform/StdLib.hpp>
-
-using CommandId = uint16_t;
+using CommandId = size_t;
