@@ -2,9 +2,10 @@
 
 #include <App/SceneUserInput.hpp>
 #include <Graphics/GraphicsEngine.hpp>
+#include <Platform/Commander.hpp>
+#include <Platform/ErrorDisplay.hpp>
 #include <Platform/Logging.hpp>
 #include <Resources/ResourceManager.hpp>
-#include <Platform/Commander.hpp>
 #include <UserInterface/Model2d.hpp>
 #include <UserConfiguration/Config.hpp>
 #include <UserInterface/ModelPortal.hpp>
@@ -14,6 +15,7 @@ Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* i
 
     keen_ = portal->commander;
     ResourceManager* resources = portal->resourceManager;
+    portal_ = portal;
 
     initResult = userInputHandler_->Init(this, inputManager);
     if (initResult.HasErrors()) {
@@ -21,7 +23,7 @@ Result Scene::Init(ModelPortal* portal, ConfigStore* /*config*/, InputManager* i
         return initResult;
     }
 
-    initResult = resources->LoadBitmaps();
+    initResult = resources->InitBitmaps();
     if (initResult.HasErrors()) {
         initResult.AppendError("Scene::Init() : Error loading bitmaps.");
         return initResult;
@@ -73,8 +75,21 @@ void Scene::UpdateMousePosition(const float& x, const float& y) {
 }
 
 void Scene::Update(const double& dt) {
+    static double timePassed = 0;
+    static bool loaded = false;
     userInputHandler_->Update();
     model2d_->Update(dt);
+
+    if (timePassed > 5000 && loaded == false) {
+
+        Result initResult = portal_->resourceManager->LoadAllBitmaps();
+        if (initResult.HasErrors()) {
+            initResult.AppendError("Scene::Init() : Error loading bitmaps.");
+            ErrorDisplay::ShowErrors(initResult);
+        }
+        loaded = true;
+    }
+    timePassed += dt;
 }
 
 void Scene::Render(const double& dt) {

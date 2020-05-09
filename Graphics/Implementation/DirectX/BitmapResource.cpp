@@ -11,32 +11,35 @@ Microsoft::WRL::ComPtr<IWICFormatConverter> BitmapResource::GetWicImage() {
 }
 
 Result BitmapResource::Init(GraphicsEngine* gfx, const char* fileName) {
-    Result initResult{};
-
     const Engine2d& engine = gfx->GetEngine2d();
 
     deviceContext2d_ = engine.GetDeviceContext2d();
     imageFactory_ = engine.GetImageFactory();
+    strncpy_s(fileName_, MAX_FILE_PATH_LENGTH, fileName, strlen(fileName));
 
-    Result updateResult = LoadFromFile(fileName);
+    return Result{};
+}
+
+Result BitmapResource::Load() {
+    Result updateResult = LoadFromFile(fileName_);
     if (updateResult.HasErrors()) {
-        updateResult.AppendError("Sprite::Init() : Couldn't update details in Init()");
+        updateResult.AppendError("BitmapResource::Load() : Couldn't load bitmap from disk");
+        updateResult.AppendError(fileName_);
         return updateResult;
     }
-    return Result{};
+    loaded_ = true;
+    return updateResult;
 }
 
 bool BitmapResource::IsLoaded() const
 {
-    return true;
+    return loaded_;
 }
 
 Result BitmapResource::LoadFromFile(const char* fileName) {
     Result result{};
     Microsoft::WRL::ComPtr<IWICBitmapDecoder> bitmapDecoder;
 
-    // TODO: Pull out MAX_FILE_PATH_LENGTH as a shared constant;
-    static const size_t MAX_FILE_PATH_LENGTH = 512;
     wchar_t imageFileName[MAX_FILE_PATH_LENGTH];
     StringUtil::StringToWideString(imageFileName, fileName, MAX_FILE_PATH_LENGTH);
     HRESULT hr = imageFactory_->CreateDecoderFromFilename(imageFileName, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, bitmapDecoder.ReleaseAndGetAddressOf());

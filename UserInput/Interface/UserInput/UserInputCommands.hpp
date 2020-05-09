@@ -1,6 +1,6 @@
 #pragma once
 
-#include <UserInput/Command.hpp>
+#include <Platform/CommandId.hpp>
 
 static constexpr CommandId LeftButtonDown = 0;
 static constexpr CommandId LeftButtonUp = LeftButtonDown + 1;

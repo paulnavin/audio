@@ -27,13 +27,15 @@ public:
     Bitmap* GimmeABitmapDammit(const std::string& name);
     Text* GimmeATextBoxDammit(const TextStyle::Id& id);
 
-    Result LoadBitmaps();
+    Result InitBitmaps();
     Result LoadAllText();
+    Result LoadAllBitmaps();
 
 private:
     using BitmapNames = std::vector<std::string>;
     using BitmapResourceMap = std::map<std::string, BitmapResource*>;
     using Bitmaps = std::vector<Bitmap*>;
+    using BitmapNameResourcePair = std::pair<std::string, BitmapResource*>;
 
     using TextStyles = std::vector<TextStyle>;
     using TextResourceMap = std::map<TextStyle::Id, TextResource*>;

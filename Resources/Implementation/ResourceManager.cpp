@@ -1,6 +1,8 @@
 #include <Resources/ResourceManager.hpp>
 
+#include <Graphics/GraphicsCommands.hpp>
 #include <Graphics/GraphicsEngine.hpp>
+#include <Platform/Commander.hpp>
 #include <Platform/ResourceLocator.hpp>
 
 Result ResourceManager::Init(GraphicsEngine* gfx, Commander* keen) {
@@ -40,7 +42,7 @@ Bitmap* ResourceManager::GimmeABitmapDammit(const std::string& name) {
     BitmapResourceMap::iterator finder = loadedBitmapResources_.find(name);
     if (finder != loadedBitmapResources_.end()) {
         Bitmap* newBitmap = new Bitmap();
-        Result initResult = newBitmap->Init(gfx_, finder->second);
+        Result initResult = newBitmap->Init(keen_, gfx_, finder->second);
         if (initResult.IsOkay()) {
             bitties_.push_back(newBitmap);
             return newBitmap;
@@ -75,7 +77,7 @@ Text* ResourceManager::GimmeATextBoxDammit(const TextStyle::Id& id) {
     return nullptr;
 }
 
-Result ResourceManager::LoadBitmaps() {
+Result ResourceManager::InitBitmaps() {
     const ResourceLocator& resourceLocator = gfx_->GetResourceLocator();
     for (std::string name : namesToLoad_) {
         if (loadedBitmapResources_.find(name) == loadedBitmapResources_.end()) {
@@ -89,7 +91,7 @@ Result ResourceManager::LoadBitmaps() {
                 loadedBitmapResources_.insert(std::make_pair(name, newResource));
             } else {
                 delete newResource;
-                initResult.AppendError("Could not load bitmap resource:");
+                initResult.AppendError("Could not init bitmap resource:");
                 initResult.AppendError(resourceLocation.c_str());
                 return initResult;
             }
@@ -113,5 +115,16 @@ Result ResourceManager::LoadAllText() {
             }
         }
     }
+    return Result{};
+}
+
+Result ResourceManager::LoadAllBitmaps() {
+    OutputDebugStringA("Started loading bitmaps!");
+    for (BitmapNameResourcePair resource : loadedBitmapResources_) {
+        resource.second->Load();
+    }
+    OutputDebugStringA("Finished loading bitmaps!");
+    keen_->Distribute(BitmapLoaded);
+    // TODO: Error handling here.
     return Result{};
 }
