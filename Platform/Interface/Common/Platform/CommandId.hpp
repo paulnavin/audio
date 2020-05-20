@@ -2,6 +2,9 @@
 
 using CommandId = size_t;
 
+// Note: The following hash function is taken from:
+//         https://stackoverflow.com/questions/2111667/compile-time-string-hashing
+
 #pragma warning(push)
 #pragma warning( disable : 4514)    //  Inline function removed.
 
